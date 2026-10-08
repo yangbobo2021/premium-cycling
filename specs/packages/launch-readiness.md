@@ -12,15 +12,15 @@
 
 ### launch-readiness-1
 
-当有权员工查看上线就绪状态，商店应按市场列出品牌与语言、商品与库存、价格、授权素材、税、配送、适用整车组装责任、支付、售后政策、通知、客服和站点服务的配置状态；未配置市场时应列出市场缺项。
+当有权员工查看上线就绪状态，商店应按市场列出品牌与语言、商品与库存、价格、授权素材、税、配送、适用整车组装责任、支付、售后政策、通知、客服和站点服务的配置状态，并标明缺项影响的商品变体与可服务目的地；未配置市场时应列出市场缺项。
 
 ### launch-readiness-2
 
-当市场缺少已发布商品资料 [[market-catalog-5](market-catalog.md#market-catalog-5)]、当前市场价格 [[market-catalog-6](market-catalog.md#market-catalog-6)] 或可售库存 [[market-catalog-13](market-catalog.md#market-catalog-13)]，商店应标示该市场商品交易未就绪并指出缺项。
+当商店核验市场中的商品交易资格，商店应按每个拟售变体的已发布资料 [[market-catalog-5](market-catalog.md#market-catalog-5)]、当前市场价格 [[market-catalog-6](market-catalog.md#market-catalog-6)] 与可售库存 [[market-catalog-13](market-catalog.md#market-catalog-13)] 标示其真实交易就绪或缺项；市场无任何可交易变体时应标示市场无可交易商品。
 
 ### launch-readiness-3
 
-当商品图片 [[market-catalog-9](market-catalog.md#market-catalog-9)] 或内容视频 [[content-marketing-4](content-marketing.md#content-marketing-4)] 缺少授权证明或来源记录，商店应标示正式素材未就绪并指出待补资料。
+当商品图片 [[market-catalog-9](market-catalog.md#market-catalog-9)] 或内容视频 [[content-marketing-4](content-marketing.md#content-marketing-4)] 缺少授权证明或来源记录，商店应标示对应商品素材或内容发布未就绪并指出待补资料；仅被交易引用的商品素材缺口阻断对应商品交易。
 
 ### launch-readiness-4
 
@@ -54,15 +54,15 @@
 
 ### launch-readiness-10
 
-当有权员工请求真实售卖就绪结论，商店应仅在商品与库存 [[launch-readiness-2](#launch-readiness-2)]、授权素材 [[launch-readiness-3](#launch-readiness-3)]、税配送及售后政策 [[launch-readiness-4](#launch-readiness-4)]、适用整车组装责任与顾客指引 [[launch-readiness-15](#launch-readiness-15)]、真实支付及退款服务 [[launch-readiness-5](#launch-readiness-5)]、通知客服 [[launch-readiness-6](#launch-readiness-6)]、运行恢复 [[launch-readiness-7](#launch-readiness-7)] 和适用商业决策均通过后给出就绪状态，否则列出未完成事项；测试支付不能满足真实售卖条件。
+当有权员工请求真实售卖就绪结论，商店应按市场、拟售商品变体及可服务目的地的组合核对商品与库存 [[launch-readiness-2](#launch-readiness-2)]、该商品所用授权素材 [[launch-readiness-3](#launch-readiness-3)]、该目的地及商品适用的税配送与售后政策 [[launch-readiness-4](#launch-readiness-4)]、适用整车组装责任与顾客指引 [[launch-readiness-15](#launch-readiness-15)]，并核对市场共同依赖的真实支付及退款服务 [[launch-readiness-5](#launch-readiness-5)]、通知客服 [[launch-readiness-6](#launch-readiness-6)]、运行恢复 [[launch-readiness-7](#launch-readiness-7)]，其他商业决策按其影响范围核对；仅通过的组合可标为真实售卖就绪，市场应分别显示全部、部分或无组合就绪及各缺项，测试支付不能满足真实售卖条件。
 
 ### launch-readiness-13
 
-当有权员工请求测试流程就绪结论，商店应仅在可核对的测试报价 [[cart-checkout-10](cart-checkout.md#cart-checkout-10)]、显式测试付款 [[cart-checkout-18](cart-checkout.md#cart-checkout-18)]、隔离的测试库存与权益可供下单 [[cart-checkout-22](cart-checkout.md#cart-checkout-22)] [[launch-readiness-9](#launch-readiness-9)] 和阻止测试订单真实交运 [[orders-fulfillment-13](orders-fulfillment.md#orders-fulfillment-13)] 均可核验时标示测试流程就绪，并与真实售卖就绪状态分开显示。
+当有权员工请求测试流程就绪结论，商店应仅在可核对的测试报价 [[cart-checkout-10](cart-checkout.md#cart-checkout-10)]、显式测试付款 [[cart-checkout-18](cart-checkout.md#cart-checkout-18)]、隔离的测试库存与实际使用的权益可供下单 [[cart-checkout-22](cart-checkout.md#cart-checkout-22)] [[launch-readiness-9](#launch-readiness-9)] 和阻止测试订单真实交运 [[orders-fulfillment-13](orders-fulfillment.md#orders-fulfillment-13)] 均可核验时标示测试流程就绪，并与真实售卖就绪状态分开显示。
 
 ### launch-readiness-14
 
-当市场未达到真实售卖就绪状态 [[launch-readiness-10](#launch-readiness-10)]，商店应阻止新的真实收款并避免对公众宣称可真实购买；已就绪的显式测试流程可独立标示，测试付款不授权实物交运 [[orders-fulfillment-13](orders-fulfillment.md#orders-fulfillment-13)]。
+当顾客准备对市场、商品变体与收货目的地的组合发起真实收款，商店应仅允许该组合已通过真实售卖就绪核验 [[launch-readiness-10](#launch-readiness-10)] 的付款；未就绪组合应阻止收款并避免对公众宣称其可真实购买，已就绪组合不受其他商品或目的地缺项阻断；显式测试付款仍不得授权实物交运 [[orders-fulfillment-13](orders-fulfillment.md#orders-fulfillment-13)]。
 
 ### launch-readiness-15
 
@@ -76,20 +76,20 @@
 
 | 情形 | 断言 |
 | --- | --- |
-| 查看市场就绪页及未设市场 | 各类输入状态或市场缺项逐项可见 [[launch-readiness-1](#launch-readiness-1)] |
-| 缺少商品、价格或库存 | 市场交易未就绪且缺项准确 [[launch-readiness-2](#launch-readiness-2)] |
-| 缺少素材授权 | 正式素材未就绪且待补资料明确 [[launch-readiness-3](#launch-readiness-3)] |
+| 查看部分就绪市场及未设市场 | 各类输入状态、受影响变体与目的地或市场缺项逐项可见 [[launch-readiness-1](#launch-readiness-1)] |
+| 同市场一变体缺少资料、价格或库存及市场无可交易变体 | 仅缺项变体未就绪；无可交易变体时市场无商品可卖 [[launch-readiness-2](#launch-readiness-2)] |
+| 一商品素材或非交易内容视频缺少授权 | 对应素材或内容待补，非交易内容不阻断其他商品 [[launch-readiness-3](#launch-readiness-3)] |
 | 缺少税、配送或售后规则 | 受影响交易未就绪且缺口明确 [[launch-readiness-4](#launch-readiness-4)] |
 | 真实服务有效、测试模式明确及配置缺失 | 真实／测试支付就绪状态分离且缺项明确 [[launch-readiness-5](#launch-readiness-5)] |
 | 通知或客服渠道缺配置 | 受影响联系路径标未就绪 [[launch-readiness-6](#launch-readiness-6)] |
 | 运行服务或恢复结果缺失 | 对应风险及待办可见 [[launch-readiness-7](#launch-readiness-7)] |
 | 完成输入后重查 | 时间、结果、责任人及状态更新 [[launch-readiness-8](#launch-readiness-8)] |
 | 测试订单引用正式商品资料并尝试占正式库存、优惠或积分 | 只读资料可用，正式资源与统计不受影响，缺少隔离资源时测试下单受阻 [[launch-readiness-9](#launch-readiness-9)] |
-| 真实服务全通过、仅测试付款及人工决策待定 | 仅真实售卖条件全部完成时就绪 [[launch-readiness-10](#launch-readiness-10)] |
+| 同市场一个目的地缺配送规则、一车型缺组装指引、另一组合完整；仅测试付款或市场共同条件缺失 | 完整组合仍就绪；缺项组合受阻；共同条件缺失时全市场无组合就绪 [[launch-readiness-10](#launch-readiness-10)] |
 | 整车组装责任、交付形态、顾客指引或购买前政策缺失；仅售配件 | 有整车缺项则受影响车型未就绪，配件市场不受整车组装门槛阻断 [[launch-readiness-15](#launch-readiness-15)] |
 | 显式测试付款与测试数据隔离 | 测试就绪独立显示且无实物交运授权 [[launch-readiness-13](#launch-readiness-13)] |
-| 市场真实售卖未就绪 | 新真实收款受阻、无公开购买承诺且测试付款不授权交运 [[launch-readiness-14](#launch-readiness-14)] |
+| 局部组合未就绪且其他组合就绪 | 仅未就绪组合的真实收款与公开购买承诺受阻，测试付款不授权交运 [[launch-readiness-14](#launch-readiness-14)] |
 
 ### launch-readiness-12
 
-当在系统环境执行从缺少商家输入到补齐配置的组合路径，验证者应断言初始阻断项按市场列出 [[launch-readiness-1](#launch-readiness-1)]、补齐输入后记录核验结果 [[launch-readiness-8](#launch-readiness-8)]，且真实售卖与测试流程分别按其条件给出结论 [[launch-readiness-10](#launch-readiness-10)] [[launch-readiness-13](#launch-readiness-13)]。
+当在系统环境执行从缺少商家输入到补齐配置的组合路径，验证者应断言初始阻断项按市场、商品及目的地列出 [[launch-readiness-1](#launch-readiness-1)]、补齐输入后记录核验结果 [[launch-readiness-8](#launch-readiness-8)]，且真实售卖的各组合与测试流程分别按其条件给出结论 [[launch-readiness-10](#launch-readiness-10)] [[launch-readiness-13](#launch-readiness-13)]。
