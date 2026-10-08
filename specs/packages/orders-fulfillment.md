@@ -18,8 +18,8 @@
 | --- | --- |
 | 订单身份 | 编号、购买人或游客联系途径、提交时间 |
 | 商品行 | 确切变体 [[market-catalog-6](market-catalog.md#market-catalog-6)]、数量、成交单价和币种 |
-| 行金额 | 优惠分摊 [[content-marketing-7](content-marketing.md#content-marketing-7)]、积分抵扣分摊 [[customer-account-12](customer-account.md#customer-account-12)]、税额与计税依据 [[cart-checkout-10](cart-checkout.md#cart-checkout-10)] |
-| 配送 | 收货地址、所选服务、费用、预计时效 [[cart-checkout-8](cart-checkout.md#cart-checkout-8)] 及费用分摊规则 [[merchant-operations-10](merchant-operations.md#merchant-operations-10)] |
+| 行金额 | 优惠分摊 [[content-marketing-7](content-marketing.md#content-marketing-7)]、积分抵扣分摊 [[customer-account-12](customer-account.md#customer-account-12)]、税额与计税依据 [[cart-checkout-10](cart-checkout.md#cart-checkout-10)]，以及多件同一订单行按件分摊和尾差归属 |
+| 配送 | 收货地址、所选服务、费用、预计时效 [[cart-checkout-8](cart-checkout.md#cart-checkout-8)]、适用费用分摊规则 [[merchant-operations-10](merchant-operations.md#merchant-operations-10)] 及逐行按件实际分摊金额 |
 | 成交与政策 | 最终应付总额 [[cart-checkout-10](cart-checkout.md#cart-checkout-10)]、支付模式 [[cart-checkout-13](cart-checkout.md#cart-checkout-13)]、适用规则和政策版本 [[content-marketing-9](content-marketing.md#content-marketing-9)] |
 
 ### orders-fulfillment-2
@@ -98,7 +98,7 @@
 
 | 情形 | 断言 |
 | --- | --- |
-| 建立待付款订单 | 快照含商品、逐行费用分摊、税务依据、地址、配送费与时效、总额、模式及规则版本 [[orders-fulfillment-1](#orders-fulfillment-1)] |
+| 建立含多件商品的待付款订单 | 快照含商品、逐行及按件费用分摊与尾差归属、税务依据、地址、配送费与时效、总额、模式及规则版本 [[orders-fulfillment-1](#orders-fulfillment-1)] |
 | 变更商品与政策 | 历史快照不变 [[orders-fulfillment-2](#orders-fulfillment-2)] |
 | 顾客和员工查单 | 仅授权内容与事件时间可见 [[orders-fulfillment-3](#orders-fulfillment-3)] |
 | 付款失败／待核对、部分交运、取消、退款及售后申请 | 各状态维度按表推进且非法跳转被拒绝 [[orders-fulfillment-4](#orders-fulfillment-4)] |

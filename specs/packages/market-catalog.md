@@ -36,7 +36,7 @@
 
 ### market-catalog-7
 
-当某变体在当前市场不可售，商店应阻止该变体进入新的待付款订单 [[cart-checkout-22](cart-checkout.md#cart-checkout-22)] 或换货占用 [[after-sales-23](after-sales.md#after-sales-23)] 并说明原因：
+当某变体在当前市场不可售，商店应阻止该变体进入新的待付款订单 [[cart-checkout-22](cart-checkout.md#cart-checkout-22)] 或换货占用 [[after-sales-30](after-sales.md#after-sales-30)] 并说明原因：
 
 | 不可售原因 | 说明 |
 | --- | --- |
@@ -62,12 +62,12 @@
 
 ### market-catalog-11
 
-当业务流程请求占用变体库存，商店应仅减少目标变体的可售量并保留关联业务来源的可追溯占用记录：
+当业务流程请求占用变体库存，商店应仅减少同一交易模式库存池中目标变体的可售量并保留关联业务来源的可追溯占用记录；测试订单只能占用隔离的测试库存，不得改变正式可售量 [[launch-readiness-9](launch-readiness.md#launch-readiness-9)]：
 
 | 占用来源 | 关联记录 |
 | --- | --- |
 | 待付款订单 [[orders-fulfillment-1](orders-fulfillment.md#orders-fulfillment-1)] | 订单及订单行 |
-| 已通过履约条件核对的换货 [[after-sales-23](after-sales.md#after-sales-23)] | 原订单行、售后案件与目标变体 |
+| 已批准且检查完成的换货占库请求 [[after-sales-30](after-sales.md#after-sales-30)] | 原订单行、售后案件与目标变体 |
 
 ### market-catalog-12
 
@@ -82,11 +82,15 @@
 
 ### market-catalog-13
 
-当同一变体的订单 [[cart-checkout-22](cart-checkout.md#cart-checkout-22)] 或换货 [[after-sales-23](after-sales.md#after-sales-23)] 库存占用请求超过可售量，商店应拒绝超量部分并向请求方显示可用数量或缺货状态。
+当同一变体的订单 [[cart-checkout-22](cart-checkout.md#cart-checkout-22)] 或换货 [[after-sales-30](after-sales.md#after-sales-30)] 库存占用请求超过所属库存池可售量，商店应拒绝超量部分并向请求方显示可用数量或缺货状态。
 
 ### market-catalog-14
 
 当商品媒体不可用，商店应展示明确的无图状态而不显示破损图片或未经授权的替代素材。
+
+### market-catalog-17
+
+当顾客查看已发布整车商品的购买条件，商店应在购买前展示该车型已确认的交付形态、商家与顾客各自的组装责任、所需顾客指引及适用政策入口 [[content-marketing-9](content-marketing.md#content-marketing-9)]；资料未确认时应明确提示且不得形成可付款报价。
 
 ## 验证
 
@@ -104,6 +108,7 @@
 | 选择两个变体 | 标识、规格、报价和可售状态分别正确 [[market-catalog-6](#market-catalog-6)] |
 | 下架或售罄 | 新订单被阻止且显示原因 [[market-catalog-7](#market-catalog-7)] |
 | 媒体失效 | 显示无图状态且不显示破图 [[market-catalog-14](#market-catalog-14)] |
+| 整车组装信息齐备或未确认 | 购买前责任、交付形态、指引及政策可见；缺项时无可付款报价 [[market-catalog-17](#market-catalog-17)] |
 
 ### market-catalog-16
 
@@ -114,6 +119,6 @@
 | 新增及修改商品与变体 | 仅目标记录变化且重载后保持 [[market-catalog-8](#market-catalog-8)] |
 | 发布资料不完整的商品 | 发布失败并指出缺项 [[market-catalog-9](#market-catalog-9)] |
 | 调整库存 | 数量、原因、操作者与时间可追溯 [[market-catalog-10](#market-catalog-10)] |
-| 订单与换货分别占用库存 | 仅目标变体可售量变化且来源可查 [[market-catalog-11](#market-catalog-11)] |
+| 正式订单、隔离测试订单与换货分别占用库存 | 仅同模式目标变体可售量变化且来源可查，测试订单不影响正式可售量 [[market-catalog-11](#market-catalog-11)] |
 | 失败、超时、取消及换货终止后重复释放 | 仅恢复一次目标变体库存 [[market-catalog-12](#market-catalog-12)] |
 | 订单与换货并发超量占用 | 超量请求被拒绝且可售量不为负 [[market-catalog-13](#market-catalog-13)] |

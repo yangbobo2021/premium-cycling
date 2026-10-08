@@ -72,7 +72,7 @@
 
 ### customer-account-12
 
-给定商家已启用积分计划，当顾客在结账使用积分，账户系统应仅按已公布的币种与兑换规则提供可用抵扣，并记录对应订单。
+给定商家已启用积分计划，当顾客在结账使用积分，账户系统应仅按已公布的币种与兑换规则及扣除其他有效占用后的余额 [[customer-account-19](#customer-account-19)] 提供可用抵扣，并记录对应订单。
 
 ### customer-account-13
 
@@ -96,6 +96,18 @@
 ### customer-account-18
 
 当顾客请求重置凭据，账户系统应验证其对已登记渠道的控制权并使旧凭据或过期重置凭据失效。
+
+### customer-account-19
+
+给定积分计划已启用，当待付款订单请求积分抵扣，账户系统应按顾客、币种和已发布规则原子占用不超过未占用余额的积分，并关联订单及交易模式；测试订单只能使用隔离的测试积分 [[launch-readiness-9](launch-readiness.md#launch-readiness-9)]。
+
+### customer-account-20
+
+当关联订单的付款成功结果已核实 [[cart-checkout-14](cart-checkout.md#cart-checkout-14)]，账户系统应将该订单的积分占用仅确认一次为实际使用 [[customer-account-19](#customer-account-19)]。
+
+### customer-account-21
+
+当订单关联的积分占用收到合法释放请求，账户系统应仅释放一次该订单的积分占用 [[customer-account-19](#customer-account-19)]；合法依据为已核实的付款失败 [[cart-checkout-15](cart-checkout.md#cart-checkout-15)]、未发起付款超时 [[cart-checkout-25](cart-checkout.md#cart-checkout-25)] 或付款前取消 [[after-sales-2](after-sales.md#after-sales-2)]，付款结果待核对 [[cart-checkout-23](cart-checkout.md#cart-checkout-23)] 时不得释放。
 
 ## 验证
 
@@ -128,3 +140,6 @@
 | 结账抵扣 | 仅允许规则内币种和额度 [[customer-account-12](#customer-account-12)] |
 | 失败、取消、退款及重复事件 | 各情形按原账本调整一次 [[customer-account-13](#customer-account-13)] |
 | 未启用积分 | 前台与结账无积分承诺 [[customer-account-14](#customer-account-14)] |
+| 两笔订单竞争同一积分余额及测试订单提交 | 未占用余额不透支，测试订单不使用正式积分 [[customer-account-19](#customer-account-19)] |
+| 付款成功及重复回报 | 积分占用仅确认一次使用 [[customer-account-20](#customer-account-20)] |
+| 付款失败、超时、付款前取消、待核对及重复回报 | 已核实失败或关闭后仅释放一次，待核对保留 [[customer-account-21](#customer-account-21)] |

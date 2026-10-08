@@ -41,21 +41,21 @@
 
 ### content-marketing-7
 
-当有权员工发布促销，商店应保存适用市场 [[market-catalog-1](market-catalog.md#market-catalog-1)]、商品、时间、资格、叠加与使用限制，并只向符合条件的顾客展示。
+当有权员工发布促销，商店应保存适用市场 [[market-catalog-1](market-catalog.md#market-catalog-1)]、商品、时间、资格、叠加与使用限制，并只向符合条件且仍有未占用额度 [[content-marketing-13](#content-marketing-13)] 的顾客展示。
 
 ### content-marketing-8
 
-当促销进入不可再使用的状态，商店应停止向顾客展示可用承诺：
+当促销进入不可再使用的状态，商店应停止向顾客展示可用承诺，既有待付款订单已取得的有效占用 [[content-marketing-13](#content-marketing-13)] 按其确认报价处理：
 
 | 状态原因 | 对新购买的结果 |
 | --- | --- |
 | 到达结束时间 | 不再应用该促销 |
 | 被有权员工撤回 | 不再应用该促销 |
-| 达到使用上限 | 不再应用该促销 |
+| 已用与已占额度达到上限 | 不再应用该促销 |
 
 ### content-marketing-9
 
-当访客查看联系、配送、退换、保修、隐私和服务条款页面，商店应显示适用市场 [[market-catalog-1](market-catalog.md#market-catalog-1)]、已生效政策版本 [[merchant-operations-10](merchant-operations.md#merchant-operations-10)] 及生效时间。
+当访客查看联系、配送、整车组装、退换、保修、隐私和服务条款页面，商店应显示适用市场 [[market-catalog-1](market-catalog.md#market-catalog-1)]、已生效政策版本 [[merchant-operations-10](merchant-operations.md#merchant-operations-10)] 及生效时间。
 
 ### content-marketing-11
 
@@ -64,6 +64,18 @@
 ### content-marketing-12
 
 当有权员工撤回内容，商店应记录撤回时间并停止公开该内容。
+
+### content-marketing-13
+
+当待付款订单请求有限额的促销资格，商店应按已发布的总量及每客限制 [[content-marketing-7](#content-marketing-7)] 原子占用未占用额度并关联订单与交易模式；测试订单只能使用隔离的测试额度 [[launch-readiness-9](launch-readiness.md#launch-readiness-9)]。
+
+### content-marketing-14
+
+当关联订单的付款成功结果已核实 [[cart-checkout-14](cart-checkout.md#cart-checkout-14)]，商店应将该订单的促销占用仅确认一次为实际使用 [[content-marketing-13](#content-marketing-13)]。
+
+### content-marketing-15
+
+当订单关联的促销占用收到合法释放请求，商店应仅释放一次该订单的促销占用 [[content-marketing-13](#content-marketing-13)]；合法依据为已核实的付款失败 [[cart-checkout-15](cart-checkout.md#cart-checkout-15)]、未发起付款超时 [[cart-checkout-25](cart-checkout.md#cart-checkout-25)] 或付款前取消 [[after-sales-2](after-sales.md#after-sales-2)]，付款结果待核对 [[cart-checkout-23](cart-checkout.md#cart-checkout-23)] 时不得释放。
 
 ## 验证
 
@@ -84,3 +96,6 @@
 | 发布有效及不适用促销 | 仅合格顾客可见且规则完整 [[content-marketing-7](#content-marketing-7)] |
 | 失效、撤回或用尽促销 | 不再公开承诺或应用新优惠 [[content-marketing-8](#content-marketing-8)] |
 | 查看各服务页面 | 市场、生效时间和版本可见 [[content-marketing-9](#content-marketing-9)] |
+| 两笔订单竞争最后一份优惠及测试订单提交 | 未占用额度不透支，测试订单不使用正式优惠额度 [[content-marketing-13](#content-marketing-13)] |
+| 付款成功及重复回报 | 促销占用仅确认一次使用 [[content-marketing-14](#content-marketing-14)] |
+| 付款失败、超时、付款前取消、待核对及重复回报 | 已核实失败或关闭后仅释放一次，待核对保留 [[content-marketing-15](#content-marketing-15)] |

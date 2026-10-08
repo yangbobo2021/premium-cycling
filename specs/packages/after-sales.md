@@ -16,7 +16,7 @@
 
 ### after-sales-2
 
-给定订单付款结果已核清，当有权员工批准未交运商品取消，售后流程应按付款状态记录取消原因、变更对应订单行状态 [[orders-fulfillment-4](orders-fulfillment.md#orders-fulfillment-4)] 并释放已取消商品的库存占用 [[market-catalog-12](market-catalog.md#market-catalog-12)]：
+给定订单付款结果已核清，当有权员工批准未交运商品取消，售后流程应按付款状态记录取消原因、变更对应订单行状态 [[orders-fulfillment-4](orders-fulfillment.md#orders-fulfillment-4)] 并释放已取消商品的库存占用 [[market-catalog-12](market-catalog.md#market-catalog-12)]；付款前整单取消还应释放限额优惠 [[content-marketing-15](content-marketing.md#content-marketing-15)] 与积分占用 [[customer-account-21](customer-account.md#customer-account-21)]：
 
 | 付款状态 | 取消后的资金结果 |
 | --- | --- |
@@ -51,7 +51,7 @@
 
 ### after-sales-8
 
-当订单行退款被核准，售后流程应将退款同时限制在该行原成交金额及税费／配送分摊 [[orders-fulfillment-1](orders-fulfillment.md#orders-fulfillment-1)] 加该案件已确认补款 [[after-sales-28](#after-sales-28)]、扣除该行及案件既有退款后的剩余已付金额，以及整单和关联补款的剩余实收金额之内，并保存计算依据、币种、支付模式与核准者。
+当订单行退款被核准，售后流程应按本次获准且尚未处理的数量 [[after-sales-4](#after-sales-4)]、原成交快照的按件优惠与积分抵扣及税费／配送分摊 [[orders-fulfillment-1](orders-fulfillment.md#orders-fulfillment-1)] 计算本次可退实付款，并以该数量对应的尚未退款实付款、该行剩余实收金额及整单剩余实收金额的最小值为上限；已确认的换货补款 [[after-sales-28](#after-sales-28)] 仅增加所属案件可退实收额，不得转给其他订单行或数量，并应保存计算依据、币种、支付模式与核准者。
 
 ### after-sales-9
 
@@ -84,8 +84,8 @@
 | 案件类型 | 允许的状态路径 |
 | --- | --- |
 | 取消 | 待审核 → 已拒绝／待付款核对／待退款／已完成；待付款核对 → 待审核；待退款 → 已完成（退款成功后） |
-| 退货 | 待审核 → 已拒绝／待退回；待退回 → 待检查；待检查 → 已拒绝／待退款；待退款 → 已完成（退款成功后） |
-| 换货 | 待审核 → 已拒绝／待退回；待退回 → 待检查；待检查 → 已拒绝／待补差价／待换货履约；待补差价 → 待换货履约；待换货履约 → 已终止（交运前）／已完成（替代包裹送达后） [[after-sales-27](#after-sales-27)] |
+| 退货 | 待审核 → 已拒绝／待退回；待退回 → 待检查；待检查 → 待原件处置／待退款；待原件处置 → 已拒绝（原件去向履行后） [[after-sales-31](#after-sales-31)]；待退款 → 已完成（退款成功后） |
+| 换货 | 待审核 → 已拒绝／待退回；待退回 → 待检查；待检查 → 待原件处置／待补差价／待换货履约；待原件处置 → 已拒绝（原件去向履行后） [[after-sales-31](#after-sales-31)]；待补差价 → 待换货履约；待换货履约 → 待终止结算（交运前）／已完成（替代包裹送达后）；待终止结算 → 已终止（资金与原件去向核清后） [[after-sales-27](#after-sales-27)] [[after-sales-31](#after-sales-31)] |
 | 运输损坏或保修 | 待审核 → 已拒绝／待补资料／待诊断；待补资料 → 待审核；待诊断 → 已拒绝／待处理；待处理 → 已完成（结果履行后） |
 | 退款 | 待核准 → 已拒绝／待执行；待执行 → 结果待核对／已失败／已完成；结果待核对 → 已失败／已完成；已失败 → 待执行（重新核准后） |
 
@@ -107,12 +107,12 @@
 
 ### after-sales-23
 
-当换货案件准备替代商品履约，售后流程应按目标变体可售量 [[market-catalog-13](market-catalog.md#market-catalog-13)]、库存占用 [[market-catalog-11](market-catalog.md#market-catalog-11)] 及价差处理结果 [[after-sales-28](#after-sales-28)] 决定是否请求创建可追踪的替代包裹 [[orders-fulfillment-19](orders-fulfillment.md#orders-fulfillment-19)]：
+当换货案件准备替代商品履约，售后流程应按已取得的目标变体库存占用 [[after-sales-30](#after-sales-30)] 及价差处理结果 [[after-sales-28](#after-sales-28)] 决定是否请求创建可追踪的替代包裹 [[orders-fulfillment-19](orders-fulfillment.md#orders-fulfillment-19)]：
 
 | 履约条件 | 结果 |
 | --- | --- |
 | 已检查退回商品、目标变体占库有效、价差已结清且获履约授权 | 请求替代包裹 |
-| 目标变体无库存 | 不占库，向顾客提供改选目标或改走退款的路径 |
+| 目标变体占库失败 | 不创建包裹，向顾客提供改选目标或改走退款的路径 |
 | 未检查实物、价差未结清或缺少履约授权 | 保留案件待办，不创建包裹 |
 
 ### after-sales-24
@@ -136,7 +136,7 @@
 
 ### after-sales-27
 
-当已占用库存的换货案件在替代商品交运前终止，售后流程应释放目标变体库存 [[market-catalog-12](market-catalog.md#market-catalog-12)]、记录原因，并为已确认补款 [[after-sales-28](#after-sales-28)] 建立退款待办及向顾客说明后续退货或退款路径：
+当换货案件在替代商品交运前终止，售后流程应释放已有目标变体库存占用 [[market-catalog-12](market-catalog.md#market-catalog-12)]、记录原因，将未退的已确认补款 [[after-sales-28](#after-sales-28)] 建为关联该案件的退款待办，并向顾客显示待退金额、退款状态及已退回原件的待处理去向；案件应进入待终止结算而非已终止：
 
 | 终止原因 | 记录 |
 | --- | --- |
@@ -163,6 +163,14 @@
 | 换货补款成功或失败 | 按原差额安排 [[after-sales-28](#after-sales-28)] 标记结清或保留待办 |
 | 仍无法确认 | 保持待核对，不重复退款或扣款 |
 
+### after-sales-30
+
+当已批准换货且退回商品检查完成、目标变体确定，售后流程应按目标变体当前可售量 [[market-catalog-13](market-catalog.md#market-catalog-13)] 请求一次关联案件的库存占用 [[market-catalog-11](market-catalog.md#market-catalog-11)]；占用失败时应保持案件待办、禁止替代包裹履约并向顾客显示改选或退款路径。
+
+### after-sales-31
+
+当已接收原件的退换案件拟以拒绝或终止结案，售后流程应仅在原件已按适用政策确定并履行退还顾客或退货退款等去向、且换货终止案件的关联补款退款成功结果 [[after-sales-25](#after-sales-25)] 已确认或无补款待退时，标记已拒绝或已终止，并向顾客显示资金结果与原件处置记录；原件未处理或退款失败、结果未明时保持待原件处置或待终止结算。
+
 ## 验证
 
 ### after-sales-15
@@ -172,7 +180,7 @@
 | 情形 | 断言 |
 | --- | --- |
 | 可取消与不可取消状态 | 资格、状态与拒绝原因正确 [[after-sales-1](#after-sales-1)] |
-| 批准未付款整单或已付款未交运行取消 | 原报价不被改写，库存和已付款退款待办正确 [[after-sales-2](#after-sales-2)] |
+| 批准未付款整单或已付款未交运行取消 | 原报价不被改写；未付款整单的库存、优惠、积分占用释放，已付款行的退款待办正确 [[after-sales-2](#after-sales-2)] |
 | 付款待核对时申请取消 | 案件等待核对且库存与资金状态不提前变更 [[after-sales-26](#after-sales-26)] |
 | 退货、换货与运输损坏申请 | 各类型必需资料和案件可查 [[after-sales-3](#after-sales-3)] |
 | 超过未处理数量 | 超量拒绝并显示可申请数量 [[after-sales-4](#after-sales-4)] |
@@ -183,9 +191,11 @@
 | 接受退货及缺少退回政策 | 指引完整或阻止生成寄回指引 [[after-sales-21](#after-sales-21)] |
 | 换货有价差及顾客未确认 | 差额可见且不交运 [[after-sales-22](#after-sales-22)] |
 | 目标缺货、未检查及已具备换货条件 | 仅最后一种可请求替代包裹 [[after-sales-23](#after-sales-23)] |
+| 换货检查后并发争用目标变体 | 仅占库成功的案件可继续，失败案件有改选或退款路径 [[after-sales-30](#after-sales-30)] |
 | 补款成功、失败、未明及退差额 | 仅确认已结清后可履约且重复确认不重复收款 [[after-sales-28](#after-sales-28)] |
 | 原退款或补款结果仍未知 | 按原引用核对且不重复资金动作 [[after-sales-29](#after-sales-29)] |
-| 已占库换货撤回或无法履行 | 占用释放、原因留存且顾客可选择后续路径 [[after-sales-27](#after-sales-27)] |
+| 已占库换货撤回或无法履行 | 占用释放、退款待办关联案件，顾客可见补款和原件待处理状态 [[after-sales-27](#after-sales-27)] |
+| 已接收退换原件的拒绝、换货终止；补款退款未知、失败或成功及原件处置未完／已完 | 资金或原件未结不进入拒绝或终止终态，均结清后顾客可见结果 [[after-sales-31](#after-sales-31)] |
 | 未履行和已履行售后决定 | 仅已履行的案件可完成 [[after-sales-24](#after-sales-24)] |
 
 ### after-sales-16
@@ -194,7 +204,7 @@
 
 | 情形 | 断言 |
 | --- | --- |
-| 同一订单含高价与低价行及换货补款 | 每行和案件已付金额上限、模式与核准依据正确 [[after-sales-8](#after-sales-8)] |
+| 高低价行、同一行购两件仅退一件、积分抵扣致单行零实付、重复部分退款及换货补款 | 本次数量与按件实付款、行及整单剩余实收额均限制退款，补款不跨行挪用 [[after-sales-8](#after-sales-8)] |
 | 真实与测试退款配置 | 仅使用原订单允许路径并留结果 [[after-sales-9](#after-sales-9)] |
 | 原支付模式确认退款成功 | 按核准订单行金额更新已退余额和状态 [[after-sales-25](#after-sales-25)] |
 | 退款结果未明 | 案件待核对且不重复执行 [[after-sales-10](#after-sales-10)] |
