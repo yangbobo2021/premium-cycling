@@ -77,11 +77,21 @@
 
 ### cart-checkout-13
 
-给定待付款订单、库存及所需优惠和积分占用已持久确认 [[cart-checkout-22](#cart-checkout-22)]，当顾客提交付款，结账流程应只调用经就绪检查 [[launch-readiness-5](launch-readiness.md#launch-readiness-5)] 且符合真实售卖或测试流程边界 [[launch-readiness-14](launch-readiness.md#launch-readiness-14)] 的支付方式，并明确标示模式。
+给定待付款订单、库存及所需优惠和积分占用已持久确认 [[cart-checkout-22](#cart-checkout-22)]，当顾客提交付款，结账流程应按下表重新核对所选支付模式，仅在对应条件通过后调用经就绪检查 [[launch-readiness-5](launch-readiness.md#launch-readiness-5)] 的支付方式，并明确标示模式：
+
+| 模式 | 付款前条件 |
+| --- | --- |
+| 真实支付 | 每个订单行对当前收货目的地均通过售卖就绪核验 [[launch-readiness-14](launch-readiness.md#launch-readiness-14)]；任一行未就绪则整单不得发起收款 |
+| 测试支付 | 隔离测试流程已就绪 [[launch-readiness-13](launch-readiness.md#launch-readiness-13)]，不得发起真实扣款 |
 
 ### cart-checkout-14
 
-给定对应待付款订单及库存占用仍有效 [[orders-fulfillment-1](orders-fulfillment.md#orders-fulfillment-1)] [[market-catalog-11](market-catalog.md#market-catalog-11)]，且订单实际使用的限额优惠 [[content-marketing-13](content-marketing.md#content-marketing-13)] 与积分 [[customer-account-19](customer-account.md#customer-account-19)] 占用仍有效（若有），当支付成功结果被核对，结账流程应原子地将该订单标为已付款并保存支付模式、实收金额、币种、结果与原收款交易引用编号，仅对实际使用的优惠 [[content-marketing-14](content-marketing.md#content-marketing-14)] 与积分 [[customer-account-20](customer-account.md#customer-account-20)] 确认使用。
+给定对应待付款订单及库存占用仍有效 [[orders-fulfillment-1](orders-fulfillment.md#orders-fulfillment-1)] [[market-catalog-11](market-catalog.md#market-catalog-11)]，且订单实际使用的限额优惠 [[content-marketing-13](content-marketing.md#content-marketing-13)] 与积分 [[customer-account-19](customer-account.md#customer-account-19)] 占用仍有效（若有），当支付成功结果被核对，结账流程应原子地将该订单标为已付款并按下表保存模式、已确认付款额度、币种、结果与交易引用，仅对实际使用的优惠 [[content-marketing-14](content-marketing.md#content-marketing-14)] 与积分 [[customer-account-20](customer-account.md#customer-account-20)] 确认使用：
+
+| 支付模式 | 已确认付款额度与引用 |
+| --- | --- |
+| 真实支付 | 实际收款金额与原收款交易引用 |
+| 测试支付 [[cart-checkout-18](#cart-checkout-18)] | 隔离的模拟付款金额与测试交易引用，不记录为真实收款 |
 
 ### cart-checkout-15
 
@@ -106,7 +116,7 @@
 
 ### cart-checkout-22
 
-当顾客提交已确认的最终报价，结账流程应按已选真实或测试交易模式，原子地保存待付款订单快照 [[orders-fulfillment-1](orders-fulfillment.md#orders-fulfillment-1)]、占用同模式变体库存 [[market-catalog-11](market-catalog.md#market-catalog-11)] 及报价实际使用的限额优惠资格 [[content-marketing-13](content-marketing.md#content-marketing-13)] 和积分抵扣额 [[customer-account-19](customer-account.md#customer-account-19)]；任一所需占用失败或测试流程缺少所需隔离资源时，应不创建可付款订单、不发起付款并说明原因，且不得借用正式可售量或正式权益 [[launch-readiness-9](launch-readiness.md#launch-readiness-9)]。
+当顾客提交已确认的最终报价，结账流程应先核对真实交易的每个商品行对收货目的地均可售 [[launch-readiness-14](launch-readiness.md#launch-readiness-14)]，再按已选真实或测试交易模式原子地保存待付款订单快照 [[orders-fulfillment-1](orders-fulfillment.md#orders-fulfillment-1)]、占用同模式变体库存 [[market-catalog-11](market-catalog.md#market-catalog-11)] 及报价实际使用的限额优惠资格 [[content-marketing-13](content-marketing.md#content-marketing-13)] 和积分抵扣额 [[customer-account-19](customer-account.md#customer-account-19)]；真实交易有任一行未就绪、任一所需占用失败或测试流程缺少所需隔离资源时，应不创建可付款订单、不发起付款并逐行说明原因，且不得借用正式可售量或正式权益 [[launch-readiness-9](launch-readiness.md#launch-readiness-9)]。
 
 ### cart-checkout-23
 
@@ -159,12 +169,13 @@
 | 情形 | 断言 |
 | --- | --- |
 | 已确认报价付款 | 仅在订单、库存和所需权益占用持久化后使用配置的支付模式 [[cart-checkout-13](#cart-checkout-13)] |
-| 无优惠且积分未启用的普通付款，以及使用权益的付款 | 两者均可确认成功；原订单保存模式、实收金额、币种、结果与原收款交易引用，仅实际使用的权益被确认 [[cart-checkout-14](#cart-checkout-14)] |
+| 无优惠且积分未启用的普通付款、使用权益的真实付款及测试付款 | 均可确认成功；真实实收与隔离测试模拟额度及各自引用分开保存，仅实际使用的权益被确认 [[cart-checkout-14](#cart-checkout-14)] |
 | 确认失败 | 订单标失败，占用释放且可重试 [[cart-checkout-15](#cart-checkout-15)] |
 | 双击与重复回报 | 订单、库存、优惠和积分效果均仅一次 [[cart-checkout-16](#cart-checkout-16)] |
 | 失败后变价再重试 | 重新核价确认，新待付款订单关联原失败订单且原快照不变 [[cart-checkout-17](#cart-checkout-17)] |
 | 测试模式付款 | 无真实扣款声明或真实收款授权 [[cart-checkout-18](#cart-checkout-18)] |
-| 两笔独立订单并发抢购同一库存、最后一份限额优惠或同一积分余额，及订单写入失败 | 仅订单与全部所需占用原子成功者可付款，失败者无占用和扣款；测试订单不得占正式资源 [[cart-checkout-22](#cart-checkout-22)] |
+| 一就绪行与一未就绪行混合购物车、并发抢购同一库存或权益，及订单写入失败 | 混合整单不形成可付款订单；仅全部行就绪且订单与所需占用原子成功者可付款，测试订单不占正式资源 [[cart-checkout-22](#cart-checkout-22)] |
+| 待付款混合订单中一行变为未就绪 | 整单付款受阻且未发起扣款 [[cart-checkout-13](#cart-checkout-13)] |
 | 支付结果未明 | 订单待核对，禁止二次扣款与履约 [[cart-checkout-23](#cart-checkout-23)] |
 | 查询原付款引用得到成功、失败或仍未知 | 仅已核实结果推进订单 [[cart-checkout-26](#cart-checkout-26)] |
 | 付款成功但订单、库存或权益状态写入失败 | 核对后修复或退款，绝不二次扣款或交运 [[cart-checkout-24](#cart-checkout-24)] |

@@ -50,7 +50,7 @@
 
 ### launch-readiness-9
 
-当样例或测试数据存在于商店，商店应使测试订单与正式订单、可售库存 [[market-catalog-11](market-catalog.md#market-catalog-11)]、限额优惠 [[content-marketing-13](content-marketing.md#content-marketing-13)]、积分 [[customer-account-19](customer-account.md#customer-account-19)]、评价和经营汇总 [[merchant-operations-12](merchant-operations.md#merchant-operations-12)] 隔离，并标示数据来源；正式商品资料仅可供测试流程只读引用。
+当样例或测试数据存在于商店，商店应使测试订单、模拟付款 [[cart-checkout-14](cart-checkout.md#cart-checkout-14)] 与退款记录 [[after-sales-9](after-sales.md#after-sales-9)] 同正式订单、真实收退款记录、可售库存 [[market-catalog-11](market-catalog.md#market-catalog-11)]、限额优惠 [[content-marketing-13](content-marketing.md#content-marketing-13)]、积分 [[customer-account-19](customer-account.md#customer-account-19)]、评价和经营汇总 [[merchant-operations-12](merchant-operations.md#merchant-operations-12)] 隔离，并标示数据来源；正式商品资料仅可供测试流程只读引用。
 
 ### launch-readiness-10
 
@@ -62,7 +62,7 @@
 
 ### launch-readiness-14
 
-当顾客准备对市场、商品变体与收货目的地的组合发起真实收款，商店应仅允许该组合已通过真实售卖就绪核验 [[launch-readiness-10](#launch-readiness-10)] 的付款；未就绪组合应阻止收款并避免对公众宣称其可真实购买，已就绪组合不受其他商品或目的地缺项阻断；显式测试付款仍不得授权实物交运 [[orders-fulfillment-13](orders-fulfillment.md#orders-fulfillment-13)]。
+当顾客准备对购物车发起真实收款，商店应仅在每个商品行与该订单收货目的地的组合均通过真实售卖就绪核验 [[launch-readiness-10](#launch-readiness-10)] 时允许整单付款；任一行未就绪应阻止整单收款、指出受影响行并避免对公众宣称该行可真实购买，其他单独就绪的商品不受其缺项阻断。
 
 ### launch-readiness-15
 
@@ -84,11 +84,11 @@
 | 通知或客服渠道缺配置 | 受影响联系路径标未就绪 [[launch-readiness-6](#launch-readiness-6)] |
 | 运行服务或恢复结果缺失 | 对应风险及待办可见 [[launch-readiness-7](#launch-readiness-7)] |
 | 完成输入后重查 | 时间、结果、责任人及状态更新 [[launch-readiness-8](#launch-readiness-8)] |
-| 测试订单引用正式商品资料并尝试占正式库存、优惠或积分 | 只读资料可用，正式资源与统计不受影响，缺少隔离资源时测试下单受阻 [[launch-readiness-9](#launch-readiness-9)] |
+| 测试订单引用正式商品资料并尝试占正式库存、优惠、积分或收退款记录 | 只读资料可用，正式资源、真实资金记录与统计不受影响，缺少隔离资源时测试下单受阻 [[launch-readiness-9](#launch-readiness-9)] |
 | 同市场一个目的地缺配送规则、一车型缺组装指引、另一组合完整；仅测试付款或市场共同条件缺失 | 完整组合仍就绪；缺项组合受阻；共同条件缺失时全市场无组合就绪 [[launch-readiness-10](#launch-readiness-10)] |
 | 整车组装责任、交付形态、顾客指引或购买前政策缺失；仅售配件 | 有整车缺项则受影响车型未就绪，配件市场不受整车组装门槛阻断 [[launch-readiness-15](#launch-readiness-15)] |
 | 显式测试付款与测试数据隔离 | 测试就绪独立显示且无实物交运授权 [[launch-readiness-13](#launch-readiness-13)] |
-| 局部组合未就绪且其他组合就绪 | 仅未就绪组合的真实收款与公开购买承诺受阻，测试付款不授权交运 [[launch-readiness-14](#launch-readiness-14)] |
+| 同市场其他商品就绪；购物车同时含就绪与未就绪行 | 单独就绪商品仍可买，混合整单真实收款受阻并指出未就绪行 [[launch-readiness-14](#launch-readiness-14)] |
 
 ### launch-readiness-12
 
