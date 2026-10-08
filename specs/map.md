@@ -27,6 +27,7 @@ meta.md       规约的规约
 | ID | 文件 | 摘要 |
 | --- | --- | --- |
 | [DR-000](decisions/000-spec-structure-format.md) | 000-spec-structure-format.md | 规约结构、格式和命名约定 |
+| [DR-001](decisions/001-candidate-business-requirements.md) | 001-candidate-business-requirements.md | 首版中文业务候选需求的来源、边界与待定决策 |
 
 ## 规约包
 
@@ -34,3 +35,14 @@ meta.md       规约的规约
 | --- | --- |
 | [git.md](packages/git.md) | 提交信息格式和 AI 共同作者 trailers |
 | [licensing.md](packages/licensing.md) | SPDX 头要求与验证检查 |
+| [market-catalog.md](packages/market-catalog.md) | 候选：市场、商品、价格、变体与库存 |
+| [product-selection.md](packages/product-selection.md) | 候选：搜索、比较、整车选型与配件兼容 |
+| [cart-checkout.md](packages/cart-checkout.md) | 候选：购物车、报价、结账与支付边界 |
+| [orders-fulfillment.md](packages/orders-fulfillment.md) | 候选：订单快照、状态与整车／配件履约 |
+| [after-sales.md](packages/after-sales.md) | 候选：取消、退换、退款、保修与维修 |
+| [customer-account.md](packages/customer-account.md) | 候选：顾客身份、地址、收藏、评价与积分 |
+| [customer-support.md](packages/customer-support.md) | 候选：客服会话、分配转派与通知 |
+| [content-marketing.md](packages/content-marketing.md) | 候选：品牌内容、骑行内容、视频与促销 |
+| [merchant-operations.md](packages/merchant-operations.md) | 候选：员工权限、业务规则、队列与审计 |
+| [site-quality.md](packages/site-quality.md) | 候选：响应式、无障碍、SEO、安全与恢复 |
+| [launch-readiness.md](packages/launch-readiness.md) | 候选：商家资料、政策、渠道与上线就绪 |
