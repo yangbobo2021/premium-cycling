@@ -12,7 +12,15 @@
 
 ### orders-fulfillment-1
 
-当结账形成有效订单 [[cart-checkout-14](cart-checkout.md#cart-checkout-14)]，订单系统应保存编号、购买人或游客联系途径、商品与确切变体、数量、成交价格、币种、优惠、税费、地址、配送选择、支付模式及政策版本的快照。
+当结账提交已确认报价并建立待付款订单 [[cart-checkout-22](cart-checkout.md#cart-checkout-22)]，订单系统应保存下表所列不可变的成交快照：
+
+| 快照部分 | 必需内容 |
+| --- | --- |
+| 订单身份 | 编号、购买人或游客联系途径、提交时间 |
+| 商品行 | 确切变体 [[market-catalog-6](market-catalog.md#market-catalog-6)]、数量、成交单价和币种 |
+| 行金额 | 优惠分摊 [[content-marketing-7](content-marketing.md#content-marketing-7)]、积分抵扣分摊 [[customer-account-12](customer-account.md#customer-account-12)]、税额与计税依据 [[cart-checkout-10](cart-checkout.md#cart-checkout-10)] |
+| 配送 | 收货地址、所选服务、费用、预计时效 [[cart-checkout-8](cart-checkout.md#cart-checkout-8)] 及费用分摊规则 [[merchant-operations-10](merchant-operations.md#merchant-operations-10)] |
+| 成交与政策 | 最终应付总额 [[cart-checkout-10](cart-checkout.md#cart-checkout-10)]、支付模式 [[cart-checkout-13](cart-checkout.md#cart-checkout-13)]、适用规则和政策版本 [[content-marketing-9](content-marketing.md#content-marketing-9)] |
 
 ### orders-fulfillment-2
 
@@ -20,15 +28,23 @@
 
 ### orders-fulfillment-3
 
-当已核验订单归属的顾客 [[customer-account-3](customer-account.md#customer-account-3)] 或有权员工 [[merchant-operations-3](merchant-operations.md#merchant-operations-3)] 查询订单，订单系统应展示其可访问的当前支付、履约及售后状态和事件时间。
+当已核验订单归属的游客 [[customer-account-3](customer-account.md#customer-account-3)]、已登录且订单归属本人的会员 [[customer-account-7](customer-account.md#customer-account-7)] 或有权员工 [[merchant-operations-3](merchant-operations.md#merchant-operations-3)] 查询订单，订单系统应展示其可访问的当前支付、履约及售后状态和事件时间。
 
 ### orders-fulfillment-4
 
-当业务动作推进订单状态，订单系统应按已定义的合法转换保存新状态、操作者、原因和时间，并拒绝无依据的跳转。
+当支付、履约或售后事件推进订单记录，订单系统应按下表分别保存对应状态、操作者或事件来源、原因与时间，并拒绝表外跳转：
+
+| 状态维度 | 允许的变化 |
+| --- | --- |
+| 支付 | 待付款 → 结果待核对／已付款／付款失败／已失效／已关闭（全部未付款行取消）；结果待核对 → 已付款／付款失败；付款失败与已失效为终态，重试建立关联的新待付款订单 [[cart-checkout-17](cart-checkout.md#cart-checkout-17)]；已付款结果不因退款倒退 [[cart-checkout-14](cart-checkout.md#cart-checkout-14)] [[cart-checkout-15](cart-checkout.md#cart-checkout-15)] [[cart-checkout-23](cart-checkout.md#cart-checkout-23)] [[cart-checkout-25](cart-checkout.md#cart-checkout-25)] [[after-sales-2](after-sales.md#after-sales-2)] |
+| 订单行履约 | 待付款 → 待履约（确认付款后）／已取消（付款前取消）；待履约 → 拣货中 → 已打包 → 已交运 → 已送达；未交运的行可按批准取消转为已取消 [[after-sales-2](after-sales.md#after-sales-2)]；已交运行不得直接取消 |
+| 包裹配送 | 待交运 → 已交运 → 已送达；运输异常作为带证据的标记，不代替送达事件 |
+| 退款 | 每行未退款 → 部分退款 → 已退款；仅在退款成功结果被确认 [[after-sales-25](after-sales.md#after-sales-25)] 后推进，不改写原支付成功记录或既有交运历史 |
+| 售后 | 案件状态单独记录 [[after-sales-18](after-sales.md#after-sales-18)]，不将申请中直接解释为订单已取消或已退款 |
 
 ### orders-fulfillment-5
 
-当履约人员开始处理已具备付款确认 [[cart-checkout-14](cart-checkout.md#cart-checkout-14)] 和履约授权的订单，订单系统应记录每个整车或配件订单行的拣货与待发状态。
+当履约人员开始处理已具备付款确认 [[cart-checkout-14](cart-checkout.md#cart-checkout-14)] 且非结果待核对 [[cart-checkout-23](cart-checkout.md#cart-checkout-23)] 的订单，订单系统应按实物履约授权记录每个整车或配件订单行的拣货与待发状态。
 
 ### orders-fulfillment-6
 
@@ -36,7 +52,7 @@
 
 ### orders-fulfillment-7
 
-当整车按已公布的组装责任交付，订单系统应记录需由商家完成或需顾客完成的组装事项及随货指引。
+当整车按已公布的组装与保修政策 [[content-marketing-9](content-marketing.md#content-marketing-9)] 交付，订单系统应记录需由商家完成或需顾客完成的组装事项及随货指引。
 
 ### orders-fulfillment-8
 
@@ -66,6 +82,14 @@
 
 当履约动作重复提交，订单系统应避免重复拣货、交运或送达事件影响同一包裹状态。
 
+### orders-fulfillment-18
+
+当订单含多个订单行或包裹，订单系统应根据各行与包裹的实际状态展示部分或全部交运、送达及取消结果，并单独显示退款和售后状态，不以汇总状态覆盖历史事件。
+
+### orders-fulfillment-19
+
+当已完成资格与占库核对的换货案件 [[after-sales-23](after-sales.md#after-sales-23)] 请求替代商品履约，订单系统应创建关联原订单行、目标变体与售后案件的独立包裹，并按该包裹的实际交运与送达事件推进状态。
+
 ## 验证
 
 ### orders-fulfillment-15
@@ -74,13 +98,15 @@
 
 | 情形 | 断言 |
 | --- | --- |
-| 完成有效结账 | 订单快照含商品、费用、地址、模式及政策版本 [[orders-fulfillment-1](#orders-fulfillment-1)] |
+| 建立待付款订单 | 快照含商品、逐行费用分摊、税务依据、地址、配送费与时效、总额、模式及规则版本 [[orders-fulfillment-1](#orders-fulfillment-1)] |
 | 变更商品与政策 | 历史快照不变 [[orders-fulfillment-2](#orders-fulfillment-2)] |
 | 顾客和员工查单 | 仅授权内容与事件时间可见 [[orders-fulfillment-3](#orders-fulfillment-3)] |
-| 合法及非法状态操作 | 合法变更可追溯，非法跳转被拒绝 [[orders-fulfillment-4](#orders-fulfillment-4)] |
+| 付款失败／待核对、部分交运、取消、退款及售后申请 | 各状态维度按表推进且非法跳转被拒绝 [[orders-fulfillment-4](#orders-fulfillment-4)] |
 | 分行拣货 | 仅目标订单行进入待发状态 [[orders-fulfillment-5](#orders-fulfillment-5)] |
 | 测试支付请求真实交运 | 实物交运任务被阻止 [[orders-fulfillment-13](#orders-fulfillment-13)] |
 | 重复提交履约动作 | 包裹状态和事件不重复 [[orders-fulfillment-14](#orders-fulfillment-14)] |
+| 多行分批履约及部分取消 | 汇总与细项一致，退款和售后独立可见 [[orders-fulfillment-18](#orders-fulfillment-18)] |
+| 经授权的换货包裹 | 原订单行、目标变体与售后案件关联且状态独立 [[orders-fulfillment-19](#orders-fulfillment-19)] |
 
 ### orders-fulfillment-16
 

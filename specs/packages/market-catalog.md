@@ -36,11 +36,21 @@
 
 ### market-catalog-7
 
-当某变体在当前市场下架或无可售库存，商店应阻止该变体进入新的有效订单并说明原因。
+当某变体在当前市场不可售，商店应阻止该变体进入新的待付款订单 [[cart-checkout-22](cart-checkout.md#cart-checkout-22)] 或换货占用 [[after-sales-23](after-sales.md#after-sales-23)] 并说明原因：
+
+| 不可售原因 | 说明 |
+| --- | --- |
+| 未在当前市场上架 | 标示市场不可售 |
+| 可售量不足 | 标示缺货或可用数量 |
 
 ### market-catalog-8
 
-当有权员工新增或修改商品及变体，商店应保存其类别、规格、市场可售性、价格、媒体来源和发布状态。
+当有权员工提交商品资料变更，商店应按变更类型保存商品及变体的类别、规格、市场可售性、价格、媒体来源和发布状态：
+
+| 变更类型 | 保存结果 |
+| --- | --- |
+| 新增商品或变体 | 创建可识别且尚未发布的记录 |
+| 修改商品或变体 | 仅更新所选记录并保留其他记录 |
 
 ### market-catalog-9
 
@@ -52,15 +62,27 @@
 
 ### market-catalog-11
 
-当有效订单占用某变体库存，商店应仅减少该变体可售量并保留可追溯占用记录。
+当业务流程请求占用变体库存，商店应仅减少目标变体的可售量并保留关联业务来源的可追溯占用记录：
+
+| 占用来源 | 关联记录 |
+| --- | --- |
+| 待付款订单 [[orders-fulfillment-1](orders-fulfillment.md#orders-fulfillment-1)] | 订单及订单行 |
+| 已通过履约条件核对的换货 [[after-sales-23](after-sales.md#after-sales-23)] | 原订单行、售后案件与目标变体 |
 
 ### market-catalog-12
 
-当有效订单的库存占用被合法释放，商店应仅恢复对应变体的可售量且重复释放不产生额外库存。
+当库存占用接收合法释放请求，商店应仅恢复对应变体的可售量且重复释放不产生额外库存：
+
+| 释放来源 | 释放依据 |
+| --- | --- |
+| 付款失败 | 失败结果已核实 [[cart-checkout-15](cart-checkout.md#cart-checkout-15)] |
+| 未付款超时 | 付款未发起且占用已失效 [[cart-checkout-25](cart-checkout.md#cart-checkout-25)] |
+| 待付款整单或已付款订单行取消 | 取消已批准 [[after-sales-2](after-sales.md#after-sales-2)] |
+| 换货终止 | 替代商品尚未交运 [[after-sales-27](after-sales.md#after-sales-27)] |
 
 ### market-catalog-13
 
-当同一变体的购买请求超过可售量，商店应拒绝超量部分并向顾客显示可用数量或缺货状态。
+当同一变体的订单 [[cart-checkout-22](cart-checkout.md#cart-checkout-22)] 或换货 [[after-sales-23](after-sales.md#after-sales-23)] 库存占用请求超过可售量，商店应拒绝超量部分并向请求方显示可用数量或缺货状态。
 
 ### market-catalog-14
 
@@ -89,9 +111,9 @@
 
 | 情形 | 断言 |
 | --- | --- |
-| 保存商品与变体 | 各字段和发布状态重载后保持 [[market-catalog-8](#market-catalog-8)] |
+| 新增及修改商品与变体 | 仅目标记录变化且重载后保持 [[market-catalog-8](#market-catalog-8)] |
 | 发布资料不完整的商品 | 发布失败并指出缺项 [[market-catalog-9](#market-catalog-9)] |
 | 调整库存 | 数量、原因、操作者与时间可追溯 [[market-catalog-10](#market-catalog-10)] |
-| 订单占用库存 | 仅目标变体可售量变化 [[market-catalog-11](#market-catalog-11)] |
-| 重复释放占用 | 仅恢复一次目标变体库存 [[market-catalog-12](#market-catalog-12)] |
-| 并发超量购买 | 超量请求被拒绝且可售量不为负 [[market-catalog-13](#market-catalog-13)] |
+| 订单与换货分别占用库存 | 仅目标变体可售量变化且来源可查 [[market-catalog-11](#market-catalog-11)] |
+| 失败、超时、取消及换货终止后重复释放 | 仅恢复一次目标变体库存 [[market-catalog-12](#market-catalog-12)] |
+| 订单与换货并发超量占用 | 超量请求被拒绝且可售量不为负 [[market-catalog-13](#market-catalog-13)] |

@@ -20,7 +20,12 @@
 
 ### merchant-operations-3
 
-当管理员授予或撤销角色，运营系统应使员工后续操作立即遵守新权限，并记录权限变化。
+当管理员提交员工角色变更，运营系统应记录变更并使员工后续操作立即遵守新权限：
+
+| 变更 | 后续权限 |
+| --- | --- |
+| 授予角色 | 允许新角色授权的操作 |
+| 撤销角色 | 立即拒绝已失去授权的操作 |
 
 ### merchant-operations-4
 
@@ -32,7 +37,7 @@
 
 ### merchant-operations-6
 
-当库存人员盘点或调整库存，运营系统应要求原因并保留库存调整记录 [[market-catalog-10](market-catalog.md#market-catalog-10)]。
+当库存人员提交盘点差异调整，运营系统应要求原因并保留库存调整记录 [[market-catalog-10](market-catalog.md#market-catalog-10)]。
 
 ### merchant-operations-7
 
@@ -40,11 +45,11 @@
 
 ### merchant-operations-8
 
-当售后员工处理取消、退换或退款，运营系统应按其权限开放对应案件动作 [[after-sales-6](after-sales.md#after-sales-6)]，并记录决定依据。
+当售后员工请求案件处理动作，运营系统应按其角色开放取消 [[after-sales-2](after-sales.md#after-sales-2)]、退换审核 [[after-sales-6](after-sales.md#after-sales-6)] 或退款执行 [[after-sales-9](after-sales.md#after-sales-9)] 的对应权限，并记录决定依据。
 
 ### merchant-operations-9
 
-当客服主管查看会话队列，运营系统应显示其可分配与转派的待办 [[customer-support-6](customer-support.md#customer-support-6)]，并隐藏无权访问的客户资料。
+当客服主管查看会话队列，运营系统应显示其可分配 [[customer-support-7](customer-support.md#customer-support-7)] 与转派 [[customer-support-8](customer-support.md#customer-support-8)] 的待办 [[customer-support-6](customer-support.md#customer-support-6)]，并隐藏无权访问的客户资料。
 
 ### merchant-operations-10
 
@@ -82,7 +87,7 @@
 | 创建员工 | 个人账号、创建者和时间可查 [[merchant-operations-2](#merchant-operations-2)] |
 | 停用员工 | 动作留痕且后续访问受阻 [[merchant-operations-16](#merchant-operations-16)] |
 | 重置员工凭据 | 发起者留痕且员工需验证身份 [[merchant-operations-17](#merchant-operations-17)] |
-| 授予与撤销角色 | 后续权限即时变化 [[merchant-operations-3](#merchant-operations-3)] |
+| 授予与撤销角色 | 各角色变更后权限即时变化 [[merchant-operations-3](#merchant-operations-3)] |
 | 越权操作 | 业务数据不变 [[merchant-operations-4](#merchant-operations-4)] |
 | 维护商品及价格 | 仅授权字段按商品流程更新 [[merchant-operations-5](#merchant-operations-5)] |
 | 盘点库存 | 原因和调整记录可查 [[merchant-operations-6](#merchant-operations-6)] |

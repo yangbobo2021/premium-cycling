@@ -20,7 +20,12 @@
 
 ### content-marketing-3
 
-当内容未发布或已撤回，商店应从公开列表、导航和直接访问中隐藏该内容。
+当公众请求非公开内容，商店应从公开列表、导航和直接访问中隐藏该内容：
+
+| 内容状态 | 公开结果 |
+| --- | --- |
+| 草稿或尚未发布 | 不可公开访问 |
+| 已撤回 | 不可公开访问，保留员工可见历史 |
 
 ### content-marketing-4
 
@@ -40,11 +45,17 @@
 
 ### content-marketing-8
 
-当促销失效、被撤回或达到使用上限，商店应停止公开承诺该优惠并保留原订单优惠快照 [[orders-fulfillment-1](orders-fulfillment.md#orders-fulfillment-1)]。
+当促销进入不可再使用的状态，商店应停止向顾客展示可用承诺：
+
+| 状态原因 | 对新购买的结果 |
+| --- | --- |
+| 到达结束时间 | 不再应用该促销 |
+| 被有权员工撤回 | 不再应用该促销 |
+| 达到使用上限 | 不再应用该促销 |
 
 ### content-marketing-9
 
-当访客查看联系、配送、退换、保修、隐私和服务条款页面，商店应显示适用市场、政策生效时间及已发布版本。
+当访客查看联系、配送、退换、保修、隐私和服务条款页面，商店应显示适用市场 [[market-catalog-1](market-catalog.md#market-catalog-1)]、已生效政策版本 [[merchant-operations-10](merchant-operations.md#merchant-operations-10)] 及生效时间。
 
 ### content-marketing-11
 
@@ -71,5 +82,5 @@
 | 发布内容 | 版本进入公开入口并有发布时间 [[content-marketing-11](#content-marketing-11)] |
 | 撤回内容 | 内容停止公开并留撤回时间 [[content-marketing-12](#content-marketing-12)] |
 | 发布有效及不适用促销 | 仅合格顾客可见且规则完整 [[content-marketing-7](#content-marketing-7)] |
-| 失效、撤回或用尽促销 | 不再公开承诺，历史订单不变 [[content-marketing-8](#content-marketing-8)] |
+| 失效、撤回或用尽促销 | 不再公开承诺或应用新优惠 [[content-marketing-8](#content-marketing-8)] |
 | 查看各服务页面 | 市场、生效时间和版本可见 [[content-marketing-9](#content-marketing-9)] |

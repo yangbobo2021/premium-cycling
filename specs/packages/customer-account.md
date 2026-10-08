@@ -24,15 +24,31 @@
 
 ### customer-account-4
 
-当顾客查看或修改个人资料，账户系统应只允许其访问本人资料并保存可核实的修改记录。
+当顾客提交个人资料访问操作，账户系统应只允许其访问本人资料，并按操作保存结果：
+
+| 操作 | 结果 |
+| --- | --- |
+| 查看 | 仅返回本人可访问的资料 |
+| 修改 | 保存本人改动及可核实的修改记录 |
 
 ### customer-account-5
 
-当已登录顾客保存、修改或删除地址，账户系统应在其账户中保持更新，并阻止未授权用户读取。
+当已登录顾客提交地址列表变更，账户系统应仅在本人账户保存变更，并阻止未授权用户读取：
+
+| 操作 | 结果 |
+| --- | --- |
+| 新增 | 加入本人地址列表 |
+| 修改 | 仅更新所选本人地址 |
+| 删除 | 从本人可选地址中移除所选地址 |
 
 ### customer-account-6
 
-当已登录顾客收藏或移除商品变体，账户系统应跨会话保存选择并标示下架或缺货状态 [[market-catalog-7](market-catalog.md#market-catalog-7)]。
+当已登录顾客提交收藏列表变更，账户系统应跨会话保存本人选择并标示仍保留变体的下架或缺货状态 [[market-catalog-7](market-catalog.md#market-catalog-7)]：
+
+| 操作 | 结果 |
+| --- | --- |
+| 收藏变体 | 加入本人收藏列表 |
+| 移除变体 | 从本人收藏列表删除所选项 |
 
 ### customer-account-7
 
@@ -60,7 +76,14 @@
 
 ### customer-account-13
 
-给定商家已启用积分计划，当订单失败、取消或退款改变积分资格，账户系统应按原订单记录释放或冲回积分，且重复事件仅产生一次效果。
+给定商家已启用积分计划，当原订单的积分资格发生已核实的变化，账户系统应按原订单行、原账本和已公布规则计算尚需调整的差额，且不同事件不得重复冲回同一权益：
+
+| 资格变化 | 账本结果 |
+| --- | --- |
+| 付款失败 [[cart-checkout-15](cart-checkout.md#cart-checkout-15)] | 释放尚未最终使用的抵扣，不取得购买积分 |
+| 订单行取消 [[after-sales-2](after-sales.md#after-sales-2)] | 按该行及原记录冲回取得或使用的积分 |
+| 退款成功 [[after-sales-25](after-sales.md#after-sales-25)] | 按实际退款范围与原记录调整积分 |
+| 同一事件重复 | 不再增加或扣减余额 |
 
 ### customer-account-14
 
@@ -88,8 +111,8 @@
 | 重置凭据 | 需证明渠道控制权，旧凭据与过期凭据失效 [[customer-account-18](#customer-account-18)] |
 | 游客查单或售后 | 需证明原联系渠道控制权 [[customer-account-3](#customer-account-3)] |
 | 本人及他人改资料 | 仅本人成功且记录持久 [[customer-account-4](#customer-account-4)] |
-| 增改删地址 | 本人可见，他人不可读取 [[customer-account-5](#customer-account-5)] |
-| 收藏缺货变体 | 跨会话保留并标示不可售 [[customer-account-6](#customer-account-6)] |
+| 增改删地址 | 仅本人列表按操作变化，他人不可读取 [[customer-account-5](#customer-account-5)] |
+| 收藏、移除及保留缺货变体 | 列表跨会话正确且保留项标示不可售 [[customer-account-6](#customer-account-6)] |
 | 查询本人及他人订单 | 仅本人订单可见 [[customer-account-7](#customer-account-7)] |
 | 合格评价及重复提交 | 一条有效待审核评价 [[customer-account-8](#customer-account-8)] |
 | 发布及驳回评价 | 理由留存，仅发布内容公开 [[customer-account-9](#customer-account-9)] |
@@ -103,5 +126,5 @@
 | 合格订单取得积分 | 按币种和规则只记一笔来源事件 [[customer-account-10](#customer-account-10)] |
 | 查询积分 | 余额与历史一致且不为负 [[customer-account-11](#customer-account-11)] |
 | 结账抵扣 | 仅允许规则内币种和额度 [[customer-account-12](#customer-account-12)] |
-| 失败、取消、退款及重复事件 | 积分正确释放或冲回一次 [[customer-account-13](#customer-account-13)] |
+| 失败、取消、退款及重复事件 | 各情形按原账本调整一次 [[customer-account-13](#customer-account-13)] |
 | 未启用积分 | 前台与结账无积分承诺 [[customer-account-14](#customer-account-14)] |

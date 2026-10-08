@@ -28,7 +28,7 @@
 
 ### customer-support-5
 
-当顾客请求将会话关联订单，客服系统应验证其订单归属 [[customer-account-3](customer-account.md#customer-account-3)] 并只向有权客服展示必要的订单摘要。
+当顾客请求将会话关联订单，客服系统应验证游客联系渠道控制权 [[customer-account-3](customer-account.md#customer-account-3)] 或会员本人订单归属 [[customer-account-7](customer-account.md#customer-account-7)]，并只向有权客服展示必要的订单摘要。
 
 ### customer-support-6
 
@@ -48,7 +48,15 @@
 
 ### customer-support-10
 
-当订单状态 [[orders-fulfillment-4](orders-fulfillment.md#orders-fulfillment-4)]、付款结果 [[cart-checkout-14](cart-checkout.md#cart-checkout-14)] [[cart-checkout-15](cart-checkout.md#cart-checkout-15)]、交运状态 [[orders-fulfillment-9](orders-fulfillment.md#orders-fulfillment-9)]、售后决定 [[after-sales-6](after-sales.md#after-sales-6)]、退款执行 [[after-sales-9](after-sales.md#after-sales-9)] 或客服回复产生需要通知的事件，通知系统应向已配置的顾客渠道发送对应状态与下一步。
+当已登记的可通知业务事件发生，通知系统应按事件类型向已配置的顾客渠道发送对应状态与下一步：
+
+| 事件类型 | 通知内容 |
+| --- | --- |
+| 订单状态 [[orders-fulfillment-4](orders-fulfillment.md#orders-fulfillment-4)] | 最新订单状态与查询入口 |
+| 付款成功或失败 [[cart-checkout-14](cart-checkout.md#cart-checkout-14)] [[cart-checkout-15](cart-checkout.md#cart-checkout-15)] | 付款结果、模式及后续操作 |
+| 包裹交运 [[orders-fulfillment-9](orders-fulfillment.md#orders-fulfillment-9)] | 包裹及跟踪入口 |
+| 售后决定与退款结果 [[after-sales-6](after-sales.md#after-sales-6)] [[after-sales-25](after-sales.md#after-sales-25)] | 案件状态及下一步 |
+| 客服回复 [[customer-support-20](#customer-support-20)] | 会话回复及回访入口 |
 
 ### customer-support-11
 
@@ -74,6 +82,10 @@
 
 当员工打开无权访问的会话，客服系统应拒绝读取内容并显示返回其授权队列的路径。
 
+### customer-support-20
+
+当已分配且有权的客服向会话发送回复，客服系统应持久保存发送者、内容与时间，并使顾客在实时连接或重新进入会话后读取该回复。
+
 ## 验证
 
 ### customer-support-14
@@ -94,6 +106,7 @@
 | 无选中会话 | 工作区有可理解的选择或等待提示 [[customer-support-17](#customer-support-17)] |
 | 会话加载失败 | 故障与重试路径可见 [[customer-support-18](#customer-support-18)] |
 | 员工越权打开会话 | 内容不泄露且可返回授权队列 [[customer-support-19](#customer-support-19)] |
+| 分配客服回复及顾客断线重连 | 回复持久、署名正确且顾客可读取 [[customer-support-20](#customer-support-20)] |
 
 ### customer-support-15
 
@@ -101,11 +114,11 @@
 
 | 情形 | 断言 |
 | --- | --- |
-| 各关键业务事件 | 内容含正确状态与下一步 [[customer-support-10](#customer-support-10)] |
+| 订单、付款、交运、售后及客服回复 | 各通知含对应状态与下一步 [[customer-support-10](#customer-support-10)] |
 | 游客订单事件 | 发向下单联系渠道 [[customer-support-11](#customer-support-11)] |
 | 发送失败后重试 | 留原因，业务动作不重复 [[customer-support-12](#customer-support-12)] |
 | 渠道缺失或失效 | 员工见异常且无虚假送达状态 [[customer-support-13](#customer-support-13)] |
 
 ### customer-support-16
 
-当在系统环境执行从顾客留言到客服接续的组合路径，验证者应断言离线消息持久保存 [[customer-support-3](#customer-support-3)]、会话进入待分配队列 [[customer-support-6](#customer-support-6)]、分配或转派只保留一位负责人 [[customer-support-7](#customer-support-7)] [[customer-support-8](#customer-support-8)]，且回复通知可追踪 [[customer-support-10](#customer-support-10)] [[customer-support-12](#customer-support-12)]。
+当在系统环境执行从顾客留言到客服接续的组合路径，验证者应断言离线消息持久保存 [[customer-support-3](#customer-support-3)]、会话进入待分配队列 [[customer-support-6](#customer-support-6)]、分配或转派只保留一位负责人 [[customer-support-7](#customer-support-7)] [[customer-support-8](#customer-support-8)]、客服回复可由顾客读取 [[customer-support-20](#customer-support-20)]，且回复通知可追踪 [[customer-support-10](#customer-support-10)] [[customer-support-12](#customer-support-12)]。

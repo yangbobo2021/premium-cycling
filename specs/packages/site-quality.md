@@ -12,7 +12,14 @@
 
 ### site-quality-1
 
-当顾客在桌面或窄屏设备完成商品选择 [[product-selection-1](product-selection.md#product-selection-1)]、结账 [[cart-checkout-10](cart-checkout.md#cart-checkout-10)] 或查单 [[orders-fulfillment-3](orders-fulfillment.md#orders-fulfillment-3)]，站点应保持关键内容和操作可见且不发生横向遮挡。
+当顾客或员工在桌面或窄屏设备执行主要任务，站点应保持任务所需内容与操作可见、可完成且不发生横向遮挡：
+
+| 用户任务 | 覆盖行为 |
+| --- | --- |
+| 顾客选品与购物车 | 商品发现 [[product-selection-1](product-selection.md#product-selection-1)]、购物车变更 [[cart-checkout-2](cart-checkout.md#cart-checkout-2)] |
+| 顾客结账与查单 | 最终报价 [[cart-checkout-10](cart-checkout.md#cart-checkout-10)]、订单查询 [[orders-fulfillment-3](orders-fulfillment.md#orders-fulfillment-3)] |
+| 顾客售后与客服 | 售后申请 [[after-sales-3](after-sales.md#after-sales-3)]、实时消息 [[customer-support-2](customer-support.md#customer-support-2)] 与客服回复 [[customer-support-20](customer-support.md#customer-support-20)] |
+| 员工工作区 | 订单待办 [[merchant-operations-7](merchant-operations.md#merchant-operations-7)]、客服队列 [[merchant-operations-9](merchant-operations.md#merchant-operations-9)] |
 
 ### site-quality-2
 
@@ -32,11 +39,17 @@
 
 ### site-quality-6
 
-当公开商品、分类或文章已发布，站点应提供可读地址、独立标题与描述、可索引正文及规范地址。
+当公开商品与分类 [[market-catalog-4](market-catalog.md#market-catalog-4)] 或文章 [[content-marketing-11](content-marketing.md#content-marketing-11)] 已发布，站点应提供可读地址、独立标题与描述、可索引正文及规范地址。
 
 ### site-quality-7
 
-当内容未发布或属于账户、结账、内部搜索及员工页面，站点应避免将其加入公开站点地图或向搜索引擎声明可索引。
+当页面不属于可索引的公开内容，站点应避免将其加入公开站点地图或向搜索引擎声明可索引：
+
+| 页面类型 | 排除依据 |
+| --- | --- |
+| 未发布内容 | 尚未面向公众 [[content-marketing-3](content-marketing.md#content-marketing-3)] |
+| 账户资料与结账 | 包含私有资料或交易状态 [[customer-account-4](customer-account.md#customer-account-4)] [[cart-checkout-5](cart-checkout.md#cart-checkout-5)] |
+| 内部搜索与员工页面 | 不属于稳定公开内容或需要授权 [[merchant-operations-4](merchant-operations.md#merchant-operations-4)] |
 
 ### site-quality-8
 
@@ -82,7 +95,7 @@
 
 | 情形 | 断言 |
 | --- | --- |
-| 桌面及窄屏完成关键任务 | 关键内容无横向遮挡 [[site-quality-1](#site-quality-1)] |
+| 桌面及窄屏完成选品、购物车、结账、查单、售后、聊天及员工待办 | 每项任务可完成且关键内容无横向遮挡 [[site-quality-1](#site-quality-1)] |
 | 浏览主要页面 | 字体、色彩、图像、留白和层级一致 [[site-quality-2](#site-quality-2)] |
 | 应用已批准视觉规范 | 已发布页面符合规范 [[site-quality-18](#site-quality-18)] |
 | 仅键盘操作 | 焦点可见且控件可完成任务 [[site-quality-3](#site-quality-3)] |
