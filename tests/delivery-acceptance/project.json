@@ -1,0 +1,10 @@
+{
+  "name": "premium-cycling",
+  "project_root": "/Users/boboyang/work/sublang.ai/premium-cycling",
+  "test_dir": "/Users/boboyang/work/sublang.ai/premium-cycling/tests",
+  "app_start": "",
+  "test_commands": [],
+  "device_targets": [],
+  "requirements_source": "specs/packages/*.md::外部行为 (excluding git.md and licensing.md)",
+  "requirements_sha256": "19eac30ed888286396019edbdc3b79937ae17218ab16b48797ba0395a21c943a"
+}

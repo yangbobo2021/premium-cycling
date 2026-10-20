@@ -24,7 +24,7 @@
 | --- | --- |
 | 需求规约 | 已编写首版中文候选规约，覆盖商品与市场、选型与兼容、结账支付、订单履约、售后、顾客账户、客服、营销、商家运营及站点质量等业务 |
 | 业务输入 | 目标市场、品牌、商品资料、支付渠道和经营政策等仍有待确定，边界见 [DR-001](specs/decisions/001-candidate-business-requirements.md) |
-| 黑盒测试设计 | 本地已保存需求快照、场景、方法及设计审查记录；这些资产尚未纳入 GitHub 仓库 |
+| 黑盒测试设计 | 需求快照、场景、方法、设计审查记录及辅助文件已纳入 GitHub 仓库，见 [黑盒场景设计报告](tests/delivery-acceptance/black-box-design-report.md) |
 | 应用实现与验收 | 尚未完成应用实现、应用测试执行和交付验收，完整项目开发能力仍待后续实验验证 |
 
 规约中的功能描述表示预期行为，设计审查结果只用于判断测试设计是否充分。
@@ -39,22 +39,29 @@ premium-cycling/
 ├── README.md                 # 实验用途、当前阶段与阅读入口
 ├── AGENTS.md                 # AI 在本项目中的工作约定
 ├── LICENSE                   # Apache-2.0 许可证
-└── specs/
-    ├── map.md                # 规约索引
-    ├── meta.md               # 规约格式、组织与引用规则
-    ├── decisions/            # 项目决策、需求来源与实验定位
-    ├── intents/              # 开发意图、任务与验证计划
-    └── packages/             # 按业务意图组织的规约包及工程约定
+├── specs/
+│   ├── map.md                # 规约索引
+│   ├── meta.md               # 规约格式、组织与引用规则
+│   ├── decisions/            # 项目决策、需求来源与实验定位
+│   ├── intents/              # 开发意图、任务与验证计划
+│   └── packages/             # 按业务意图组织的规约包及工程约定
+└── tests/
+    └── delivery-acceptance/   # 需求快照、场景、方法与设计审查台账
+        ├── review-history/   # 历史审查及中文化前的快照
+        ├── scripts/          # 导出、场景生成、审查等辅助脚本
+        └── …                # 设计报告、截图、日志与工作流记录
 ```
 
-本地工作目录另有 `tests/delivery-acceptance/`，保存测试设计台账、审查记录及相关辅助文件。
-该目录目前通过本地 Git 排除配置忽略，克隆公开仓库不会获得这些文件。
+`tests/delivery-acceptance/` 已纳入版本管理，克隆公开仓库即可获得测试设计资产。
+历史记录中保留了采集时的本地绝对路径、端口、源码版本和阶段结论，用于追溯当时的过程；其中的路径和服务地址需要结合自己的环境调整。
+辅助脚本依赖生成时的工具环境，仓库中的记录与截图不代表相关本地服务仍在运行。
 
 ## 如何阅读
 
 1. 从 [规约地图](specs/map.md) 查找业务范围和相关规约包。
 2. 阅读 [实验定位](specs/decisions/002-ai-project-experiment.md) 和 [候选需求来源与边界](specs/decisions/001-candidate-business-requirements.md)，了解实验目标与待定事项。
 3. 查看 `specs/packages/` 中各包的预期行为和验证要求；编写或修改规约前，先阅读 [规约定义](specs/meta.md)。
+4. 从 [黑盒场景设计报告](tests/delivery-acceptance/black-box-design-report.md) 了解设计范围，再查看 [场景说明](tests/delivery-acceptance/black-box-scenarios.md) 和 [待定业务输入](tests/delivery-acceptance/pending-business-inputs.json)。
 
 ## 许可证
 

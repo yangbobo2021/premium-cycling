@@ -1,0 +1,32 @@
+{
+  "operation": "zh-CN language-only localization",
+  "created_at": "2026-10-08T07:29:18.781511+00:00",
+  "source": "/Users/boboyang/work/sublang.ai/premium-cycling/tests/delivery-acceptance",
+  "files": {
+    "requirements.json": {
+      "sha256": "19eac30ed888286396019edbdc3b79937ae17218ab16b48797ba0395a21c943a",
+      "bytes": 123064
+    },
+    "scenarios.json": {
+      "sha256": "725c23f66787954449a22b87f80549b142f32ba0ea6036ce90a8f661e3b94658",
+      "bytes": 104230
+    },
+    "methods.json": {
+      "sha256": "fc1545cbee956fd7424e6c7bb5cfcef3791ce0a724738fff629ce5d68e99fbb5",
+      "bytes": 731465
+    },
+    "coverage_review.json": {
+      "sha256": "2b1ad2b125ca1d8b9a8b7d3c890d7cdd4214e31db26b0440f88059d2d6d1f0a7",
+      "bytes": 644889
+    },
+    "black-box-gate.json": {
+      "sha256": "f43a0177a273cc8686d83077f5336f44c59e838a1ccab4ddc1d71ef04f323211",
+      "bytes": 531
+    }
+  },
+  "invariants": [
+    "requirements unchanged",
+    "all IDs/order/flags/links/structures unchanged",
+    "no execution or approval"
+  ]
+}

@@ -1,0 +1,1329 @@
+{
+  "stage": "analyst_scenario_design",
+  "execution": "not_run",
+  "independent_review": "not_authored; pending",
+  "requirements_sha256": "19eac30ed888286396019edbdc3b79937ae17218ab16b48797ba0395a21c943a",
+  "requirements_assessed": 188,
+  "new_scenarios": 204,
+  "new_ai_methods": 196,
+  "scope": "Confirmed external behaviors only. Every setup vector and table row is mandatory, not a menu from which the executor chooses the easiest case. Formal business values remain pending-business-inputs.json dependencies.",
+  "assessment_rule": "For every ID, identify concrete pre-state/mode/actor, act at supported user/external boundary and compare visible outcome. Exception, boundary, transition and interaction vectors appear where the confirmed behavior makes them relevant. Independent reviewer must still challenge omitted vectors.",
+  "items": [
+    {
+      "requirement_id": "after-sales-1",
+      "scenario_id": "BB-after-sales-1",
+      "operation_modes_and_user_states": "Owner orders in unpaid, paid/unshipped, partly shipped and delivered states; record applicable cancellation policy and another customer's order.",
+      "action_and_variants": "Owner opens cancellation for each order, submits where eligible, refreshes status; repeat with the other customer's order through its known link.",
+      "incorrect_behavior_detection": "Eligibility and refusal reason match each current state; submission shows processing rather than a fabricated completed cancellation; no other-customer access."
+    },
+    {
+      "requirement_id": "after-sales-2",
+      "scenario_id": "BB-after-sales-2",
+      "operation_modes_and_user_states": "Unpaid order with two lines, stock, limited promotion and points held and no payment in flight; separate paid order with one unshipped and one shipped line, in each payment mode.",
+      "action_and_variants": "Authorized staff approves cancellation, then repeats the approval; inspect order, inventory and benefits. For unpaid order attempt to buy retained goods again; for paid order cancel only eligible line.",
+      "incorrect_behavior_detection": "Unpaid order closes all lines, releases all holds once and requires new quote/order for repurchase. Paid order cancels only eligible line and creates refund pending in original mode, never claims refunded; shipped line unchanged; reason recorded."
+    },
+    {
+      "requirement_id": "after-sales-3",
+      "scenario_id": "BB-after-sales-3",
+      "operation_modes_and_user_states": "Owner with purchased unprocessed quantities; guest ownership verified and member ownership established in separate runs. Prepare return, exchange target and damaged-package evidence, plus each required field omitted in turn.",
+      "action_and_variants": "Submit each application type through order-line after-sales entry; correct missing fields and resubmit; reopen the resulting case.",
+      "incorrect_behavior_detection": "Queryable case binds correct line, quantity, type, reason and evidence; exchange identifies target; damage identifies package. Incomplete application identifies missing required data rather than losing it or fabricating evidence."
+    },
+    {
+      "requirement_id": "after-sales-4",
+      "scenario_id": "BB-after-sales-4",
+      "operation_modes_and_user_states": "Order line bought quantity 3 with quantity 1 already processed; remaining 2. Reset separate runs for claims of 1, 2 and 3; concurrent claims of 2 against same remaining quantity.",
+      "action_and_variants": "Owner submits return/exchange requests at each quantity and in two sessions concurrently; reload cases and remaining entitlement.",
+      "incorrect_behavior_detection": "Claims cannot exceed remaining 2 individually or collectively; excess refused with available quantity; already processed units cannot be claimed again."
+    },
+    {
+      "requirement_id": "after-sales-5",
+      "scenario_id": "BB-after-sales-5",
+      "operation_modes_and_user_states": "Order under policy V1; current policy V2 differs. Prepare times just inside, exactly at and just outside V1 cutoff, and eligible/ineligible item condition per V1.",
+      "action_and_variants": "Owner submits return and exchange applications for each vector and opens rejection details.",
+      "incorrect_behavior_detection": "Eligibility uses V1's explicit inclusive/exclusive rule and conditions; disallowed applications show original policy and specific reason, never substitute V2. Undefined boundary semantics are recorded as a missing execution oracle."
+    },
+    {
+      "requirement_id": "after-sales-6",
+      "scenario_id": "BB-after-sales-6",
+      "operation_modes_and_user_states": "Pending return and exchange cases with supporting data; authorized reviewer identity; accepted and rejected branches in separate fresh cases.",
+      "action_and_variants": "Reviewer accepts or rejects with reason; owner reopens case and staff history.",
+      "incorrect_behavior_detection": "Decision, reason, reviewer and time persist; customer sees corresponding next step, not the opposite branch or an unexplained status."
+    },
+    {
+      "requirement_id": "after-sales-7",
+      "scenario_id": "BB-after-sales-7",
+      "operation_modes_and_user_states": "Two cases with distinct order lines and bicycle serial numbers; one item physically received, the other only in transit; condition and inspection evidence recorded in fixture.",
+      "action_and_variants": "Receiving staff records actual receipt and inspection of first item with pass/fail conclusions in separate runs; inspect both cases.",
+      "incorrect_behavior_detection": "Received serial/line, condition, evidence and refund/exchange conclusion persist on correct case; mere shipment is not represented as inspected receipt; second case remains unchanged."
+    },
+    {
+      "requirement_id": "after-sales-8",
+      "scenario_id": "BB-after-sales-8",
+      "operation_modes_and_user_states": "Paid multi-unit line with discount, points, tax, shipping and rounding allocation; prior partial refund and pending reserve. Two exchanges have separate confirmed top-ups; real/test modes separately. Compute per-source remaining limits from original snapshot.",
+      "action_and_variants": "Staff requests approval at the calculated limit and one currency minor unit over each unit/line/order/source limit; try using exchange A top-up for case B, and an unconfirmed top-up.",
+      "incorrect_behavior_detection": "Approval records amount basis, currency, mode and approver; approved amount never exceeds eligible unprocessed quantity or any remaining limit; top-up balance belongs only to its case; current prices cannot inflate original refund."
+    },
+    {
+      "requirement_id": "after-sales-9",
+      "scenario_id": "BB-after-sales-9",
+      "operation_modes_and_user_states": "Approved refund distributed across original payment and case top-up, with distinct references; run real and isolated test modes; observe recipient's transaction history through supported boundary.",
+      "action_and_variants": "Authorized staff executes refund twice including double-click/retry; inspect each source's receiver history and case references.",
+      "incorrect_behavior_detection": "One refund per approved allocation via its original mode; separate original-payment and refund references saved. Test creates only isolated simulated refunds and no real receiver request."
+    },
+    {
+      "requirement_id": "after-sales-10",
+      "scenario_id": "BB-after-sales-10",
+      "operation_modes_and_user_states": "Approved refund accepted by receiver but response withheld; another refund competes for remaining source balance.",
+      "action_and_variants": "Staff executes first refund, reloads pending case, retries execution and requests overlapping refund.",
+      "incorrect_behavior_detection": "Case remains pending reconciliation with original reference and reserved amount; same refund is not dispatched again and competing approval cannot spend the reservation."
+    },
+    {
+      "requirement_id": "after-sales-11",
+      "scenario_id": "BB-after-sales-11",
+      "operation_modes_and_user_states": "Two delivered bicycle order lines with verified distinct serials; prepare same serial for attempted second association.",
+      "action_and_variants": "Staff binds serial to first line, repeats same binding and attempts binding it to the other line; reopen both records.",
+      "incorrect_behavior_detection": "Serial refers to exact delivered line without duplicate associations; second-line conflict is restricted and first association remains correct."
+    },
+    {
+      "requirement_id": "after-sales-12",
+      "scenario_id": "BB-after-sales-12",
+      "operation_modes_and_user_states": "Order under warranty V1, public policy V2 differs; fixtures eligible, outside V1 coverage and missing purchase/serial evidence.",
+      "action_and_variants": "Owner submits warranty claim for each fixture, reads assessment, supplies requested missing evidence and resubmits.",
+      "incorrect_behavior_detection": "Eligibility reflects published applicable policy and original order snapshot; insufficient data prompts specific supplementation, not an invented approval/refusal; reassessment uses supplied evidence."
+    },
+    {
+      "requirement_id": "after-sales-13",
+      "scenario_id": "BB-after-sales-13",
+      "operation_modes_and_user_states": "Warranty/repair case with diagnosed issue; repair and replacement outcomes and chargeable/free policy branches in independent runs.",
+      "action_and_variants": "Staff records diagnosis, responsibility, result and fee basis, then actual return/disposition; owner follows progress before and after return.",
+      "incorrect_behavior_detection": "All diagnosis, responsibility, repair/replacement result, fee basis and handback states persist; completion is not inferred from diagnosis alone."
+    },
+    {
+      "requirement_id": "after-sales-14",
+      "scenario_id": "BB-after-sales-14",
+      "operation_modes_and_user_states": "Approved cases affecting stock, promotion and points; preserve original order snapshot; include two events cancel then refund for same entitlement.",
+      "action_and_variants": "Staff performs approved adjustments, replays same action and processes subsequent related event; inspect inventory, benefit/points histories and original order.",
+      "incorrect_behavior_detection": "Each adjustment names source case; entitlement changes only by remaining justified amount; repeated or overlapping events do not double-adjust; original snapshot is byte/field equivalent at visible export boundary."
+    },
+    {
+      "requirement_id": "after-sales-18",
+      "scenario_id": "BB-after-sales-18",
+      "operation_modes_and_user_states": "Fresh case per source-state/edge in confirmed after-sales-18 table, including all six exchange pre-shipment termination states. Required payment, inspection, original-item custody and fulfillment evidence can be made satisfied or independently unsatisfied.",
+      "action_and_variants": "For EVERY listed arrow, staff performs its named business action with prerequisites satisfied and reads persisted state/history; repeat with each prerequisite missing. For each source state request every unlisted target offered by UI or supported boundary; use no guessed internal endpoint.",
+      "incorrect_behavior_detection": "Exactly listed transitions with prerequisites succeed; skipped review/inspection, unfinished refund, undelivered replacement and unresolved original-item custody cannot reach terminal state. Source and time persist; unavailable illegal controls and rejected boundary requests count as observable rejection."
+    },
+    {
+      "requirement_id": "after-sales-19",
+      "scenario_id": "BB-after-sales-19",
+      "operation_modes_and_user_states": "Three allocations in one case: successful, definitively failed, uncertain. Failure reason and source reserve recorded.",
+      "action_and_variants": "Staff reconciles failure, requests reapproval/retry for failed allocation, attempts retry before reapproval and attempts re-executing successful/uncertain allocations.",
+      "incorrect_behavior_detection": "Failure reason remains on original case, failed reserve releases once; only failed and reapproved allocation retries; successful money and uncertain reservation remain unchanged."
+    },
+    {
+      "requirement_id": "after-sales-20",
+      "scenario_id": "BB-after-sales-20",
+      "operation_modes_and_user_states": "Refund carrying money, stock and points consequences; original balances and receiver reference recorded; two copies of execution and successful result.",
+      "action_and_variants": "Execute/refeed duplicates serially and concurrently through supported receiver test facility; inspect refund amount, stock, points and reconciliation history.",
+      "incorrect_behavior_detection": "Money, inventory and points adjust once only; duplicate-event reconciliation record is visible to authorized staff."
+    },
+    {
+      "requirement_id": "after-sales-21",
+      "scenario_id": "BB-after-sales-21",
+      "operation_modes_and_user_states": "Approved return/exchange under V1 with address, packaging/disassembly, cost payer and deadline known; V2 differs. Omit each required condition separately.",
+      "action_and_variants": "Owner opens return instructions after approval, then each missing-condition case; restore condition and reopen.",
+      "incorrect_behavior_detection": "Instructions use V1 destination, bicycle handling, payer and deadline; each missing input blocks shipping instructions and identifies missing condition; restored complete case provides them."
+    },
+    {
+      "requirement_id": "after-sales-22",
+      "scenario_id": "BB-after-sales-22",
+      "operation_modes_and_user_states": "Inspected original item and target quote; fixtures target cost above, below and equal original refundable amount; original discounts allocated.",
+      "action_and_variants": "Owner selects target, views calculated difference and attempts shipment before confirming settlement; then confirms displayed arrangement.",
+      "incorrect_behavior_detection": "Difference compares original refundable amount with current target quote; shipment blocked before confirmation; positive/negative/zero branch stated accurately without silently using original list price."
+    },
+    {
+      "requirement_id": "after-sales-23",
+      "scenario_id": "BB-after-sales-23",
+      "operation_modes_and_user_states": "Approved exchange; baseline inspected goods, valid target hold, settled difference and fulfillment authorization. Omit each individually; separate target stock failure.",
+      "action_and_variants": "Staff requests replacement fulfillment for each vector and opens customer case/package list.",
+      "incorrect_behavior_detection": "Only fully qualified case requests traceable replacement package; stock failure exposes change-target/refund paths; each other missing prerequisite leaves pending case with no replacement package."
+    },
+    {
+      "requirement_id": "after-sales-24",
+      "scenario_id": "BB-after-sales-24",
+      "operation_modes_and_user_states": "Cases for unpaid cancellation, paid cancellation, return refund, exchange, warranty and repair. For each prepare fulfilled result and one unmet completion condition in table, including unsettled received original.",
+      "action_and_variants": "Staff attempts Mark complete in both branches and customer reopens case.",
+      "incorrect_behavior_detection": "Unpaid cancellation needs all lines closed/stock released; refund needs all sources successful; exchange needs replacement delivered; repair needs fulfilled return/disposition; unmet conditions refuse completion and preserve pending state."
+    },
+    {
+      "requirement_id": "after-sales-25",
+      "scenario_id": "BB-after-sales-25",
+      "operation_modes_and_user_states": "Approved refund with two sources; first succeeds and second remains pending; real and isolated test modes, original order refund totals recorded.",
+      "action_and_variants": "Staff verifies first result through original receiver reference, then rechecks same result; finally verify second success.",
+      "incorrect_behavior_detection": "Only corresponding source reservation becomes refunded balance, once; partial success does not complete case; complete only after both successes; source result evidence and actual/test distinction persist."
+    },
+    {
+      "requirement_id": "after-sales-26",
+      "scenario_id": "BB-after-sales-26",
+      "operation_modes_and_user_states": "Order payment pending reconciliation with inventory, promotion and points held; receiver might already have charged.",
+      "action_and_variants": "Owner requests cancellation and staff tries approval before reconciliation; inspect order, holds and case.",
+      "incorrect_behavior_detection": "Case becomes pending payment reconciliation; inventory stays held, order is not described as cancelled/refunded; reconciliation required before next decision."
+    },
+    {
+      "requirement_id": "after-sales-27",
+      "scenario_id": "BB-after-sales-27",
+      "operation_modes_and_user_states": "Cross customer withdrawal/inability to fulfill with original never shipped/in transit/received and no top-up/confirmed unrefunded top-up; target reserved; replacement not shipped. Include already-shipped replacement control.",
+      "action_and_variants": "Customer withdraws or staff confirms failure with reason; inspect holds, original disposition, top-up refund task and customer status; repeat action.",
+      "incorrect_behavior_detection": "Target hold releases once; reason/request time/responsible person retained; unrefunded top-up linked to case and original transaction becomes pending refund. Only never-sent original with no refund due can terminate immediately; other cases await settlement; shipped case cannot use this pre-shipment route."
+    },
+    {
+      "requirement_id": "after-sales-28",
+      "scenario_id": "BB-after-sales-28",
+      "operation_modes_and_user_states": "Fresh cases per difference sign, real/test mode and receiver success/failure/unknown. Preserve original snapshot; positive case has confirmed arrangement identifier.",
+      "action_and_variants": "Customer confirms price difference twice; staff checks receiver outcome and attempts fulfillment. For definitive failure customer reconfirms; for unknown retry reconciliation instead of payment.",
+      "incorrect_behavior_detection": "Positive arrangement initiates once, records confirmed amount/currency/mode/reference on success; failure can reconfirm, unknown cannot debit again/ship. Negative settles only all refunds successful; zero records confirmation without money action; original snapshot unchanged."
+    },
+    {
+      "requirement_id": "after-sales-29",
+      "scenario_id": "BB-after-sales-29",
+      "operation_modes_and_user_states": "Uncertain refund and top-up cases; receiver fixtures success, failure and still unknown, same original attempt references in real/test modes.",
+      "action_and_variants": "Authorized staff invokes reconciliation and repeats query; compare receiver query reference and updated case.",
+      "incorrect_behavior_detection": "Queries original attempt; success/failure follow refund/top-up branches, unknown remains pending with no second refund/debit. Already-successful allocations stay intact."
+    },
+    {
+      "requirement_id": "after-sales-30",
+      "scenario_id": "BB-after-sales-30",
+      "operation_modes_and_user_states": "Approved inspected exchange with target stock N; controls unapproved, uninspected and missing target; two eligible cases compete for last unit.",
+      "action_and_variants": "Staff requests target reservation twice and concurrently against last unit, then opens case and inventory histories.",
+      "incorrect_behavior_detection": "Eligible case gets one linked target hold; no oversell, duplicate hold or premature hold for missing prerequisites; failure remains pending, blocks package and offers change target/refund."
+    },
+    {
+      "requirement_id": "after-sales-31",
+      "scenario_id": "BB-after-sales-31",
+      "operation_modes_and_user_states": "Cross desired rejected/terminated/completed with original never sent/in transit/received-disposition-unfulfilled/disposition-fulfilled and refund none/all success/one failed/one unknown.",
+      "action_and_variants": "Staff attempts terminal action, then separately completes only money, only original disposition, and finally both; customer opens money and original-item history.",
+      "incorrect_behavior_detection": "Terminal allowed only when BOTH obligations settled; unresolved original stays awaiting disposition/termination settlement or original state; failed/unknown money prevents closure; public case shows actual money and disposition records."
+    },
+    {
+      "requirement_id": "after-sales-32",
+      "scenario_id": "BB-after-sales-32",
+      "operation_modes_and_user_states": "Original payment and two confirmed top-ups with different cases/modes; one unconfirmed top-up. Record each received amount minus successful refunds and other pending reservations; two approvals race for last refundable minor unit.",
+      "action_and_variants": "Approve exact balance, then over by one minor unit, duplicate approval identifier, concurrent separate approvals and cross-case/transaction/mode transfers.",
+      "incorrect_behavior_detection": "Each allocation binds eligible confirmed source and reserves once; aggregate accepted reservations never exceed that source balance; cross-source or mode borrowing and unconfirmed top-up refused with basis saved."
+    },
+    {
+      "requirement_id": "after-sales-33",
+      "scenario_id": "BB-after-sales-33",
+      "operation_modes_and_user_states": "Case with original-payment and top-up allocations; vectors success+unknown, success+pending, success+failure, all-success, and failure+unknown/pending.",
+      "action_and_variants": "Staff executes/reconciles one source at a time in different arrival orders, refreshes case, and attempts retry on each source.",
+      "incorrect_behavior_detection": "Unknown takes precedence, then pending, then failed, then complete only if all success; per-source outcomes retained; successful sources never re-execute and unknown cannot retry; only failed reapproved allocation can retry."
+    },
+    {
+      "requirement_id": "cart-checkout-1",
+      "scenario_id": "BB-cart-checkout-1",
+      "operation_modes_and_user_states": "Published bicycle with two sizes at different prices plus accessory; enabled markets with distinct currencies; stock available.",
+      "action_and_variants": "Guest and member select each variant, add specified quantity and reopen cart.",
+      "incorrect_behavior_detection": "Each line shows exact selected variant, quantity, market currency and displayed price; similarly named variants are not substituted."
+    },
+    {
+      "requirement_id": "cart-checkout-2",
+      "scenario_id": "BB-cart-checkout-2",
+      "operation_modes_and_user_states": "Two cart lines, target stock N greater than 1; known prices. Independent quantities 1, N and N+1.",
+      "action_and_variants": "Customer increases/decreases quantity, requests N+1, deletes one line then last line; refresh after each.",
+      "incorrect_behavior_detection": "Valid changes preserve line/recalculate subtotal and total; excess rejected; deleting removes only selected line and subtotal; empty cart has no stale total."
+    },
+    {
+      "requirement_id": "cart-checkout-3",
+      "scenario_id": "BB-cart-checkout-3",
+      "operation_modes_and_user_states": "Guest/member cart with four lines: unchanged, subsequently unpublished, now out of stock and repriced in current market.",
+      "action_and_variants": "Leave shopping, apply each controlled catalog change as staff, then return in original browsing context and reopen cart.",
+      "incorrect_behavior_detection": "Still-valid lines restored; unavailable and changed-price lines clearly identified; old price or stock is not silently represented as current."
+    },
+    {
+      "requirement_id": "cart-checkout-4",
+      "scenario_id": "BB-cart-checkout-4",
+      "operation_modes_and_user_states": "Cart quoted in enabled market A; B changes one price/currency and makes another line unavailable; old checkout tab remains open.",
+      "action_and_variants": "Customer switches A to B, inspects cart and submits old tab quote; confirm new valid quote after resolving unavailable item.",
+      "incorrect_behavior_detection": "Every line is rechecked for B; old quote cannot submit unchanged; difference/unavailability shown with correct B currency."
+    },
+    {
+      "requirement_id": "cart-checkout-5",
+      "scenario_id": "BB-cart-checkout-5",
+      "operation_modes_and_user_states": "Signed-out browser with sellable cart and synthetic contact/address, no account; all market inputs supplied.",
+      "action_and_variants": "Proceed to checkout, enter contact and shipping address, advance toward final quote without registering.",
+      "incorrect_behavior_detection": "Guest can provide required information and proceed; no mandatory account creation or hidden login gate."
+    },
+    {
+      "requirement_id": "cart-checkout-6",
+      "scenario_id": "BB-cart-checkout-6",
+      "operation_modes_and_user_states": "Member A has two saved addresses, B has different private address; cart prepared.",
+      "action_and_variants": "A checks out once selecting each saved address and once entering a new address; review destination and quote.",
+      "incorrect_behavior_detection": "Chosen address is used correctly; new address entry works; B's addresses never offered."
+    },
+    {
+      "requirement_id": "cart-checkout-7",
+      "scenario_id": "BB-cart-checkout-7",
+      "operation_modes_and_user_states": "Approved market/address schema and delivery coverage; valid covered address, one required field absent per run, valid but uncovered destination and disabled market.",
+      "action_and_variants": "Guest/member submits each address then corrects it to covered valid address.",
+      "incorrect_behavior_detection": "Missing fields and uncovered destination identified; invalid destination cannot advance as deliverable; corrected covered address proceeds."
+    },
+    {
+      "requirement_id": "cart-checkout-8",
+      "scenario_id": "BB-cart-checkout-8",
+      "operation_modes_and_user_states": "Validated address with two eligible services and one ineligible service under current rules; another address/cart changes eligibility and cost.",
+      "action_and_variants": "Customer opens delivery options, selects each eligible service and changes address/cart; inspect recalculated offer.",
+      "incorrect_behavior_detection": "Only applicable options with rule-derived fee and supported estimate appear; customer choice is explicit and reflected in quote; stale service not retained when inapplicable."
+    },
+    {
+      "requirement_id": "cart-checkout-9",
+      "scenario_id": "BB-cart-checkout-9",
+      "operation_modes_and_user_states": "Published promo with known market/product/customer/period/stacking rules; valid, invalid code, expired and inapplicable vectors; limited quota exhausted control.",
+      "action_and_variants": "Customer applies each promo at checkout, combines permitted and forbidden offers and views totals/errors.",
+      "incorrect_behavior_detection": "Eligible discount matches rule; invalid/expired/inapplicable reasons distinct; forbidden stacking or exhausted quota cannot reduce total."
+    },
+    {
+      "requirement_id": "cart-checkout-10",
+      "scenario_id": "BB-cart-checkout-10",
+      "operation_modes_and_user_states": "Mixed bicycle/accessory cart with discount, optional points, selected shipping; approved tax and allocation rules. Three destinations: taxable, explicitly zero/exempt, unknown rule.",
+      "action_and_variants": "Guest/member completes checkout data for each; independently calculate components from fixture rules and compare displayed quote.",
+      "incorrect_behavior_detection": "Goods, discounts, applicable points, shipping, tax, total and currency reconcile; zero shows basis; missing tax basis blocks payable quote rather than assuming zero."
+    },
+    {
+      "requirement_id": "cart-checkout-11",
+      "scenario_id": "BB-cart-checkout-11",
+      "operation_modes_and_user_states": "Open confirmed quote in one tab. In separate vectors change price, stock, promo, tax and shipping, then combined price+stock+promo changes before submit.",
+      "action_and_variants": "Customer submits stale quote, reads differences, declines once then confirms revised valid quote.",
+      "incorrect_behavior_detection": "Old/new differences shown and fresh customer confirmation required; unavailable stock cannot proceed; declining cannot create payment at new total."
+    },
+    {
+      "requirement_id": "cart-checkout-12",
+      "scenario_id": "BB-cart-checkout-12",
+      "operation_modes_and_user_states": "Otherwise-ready cart; independently disable target market, remove destination tax/delivery/after-sales rule or payment readiness; combine two missing inputs.",
+      "action_and_variants": "Customer attempts final payment submission and opens missing-input explanation.",
+      "incorrect_behavior_detection": "No payment dispatch for each gap; affected destination/item/mode and missing business condition shown; configuration absence not converted into a default policy."
+    },
+    {
+      "requirement_id": "cart-checkout-13",
+      "scenario_id": "BB-cart-checkout-13",
+      "operation_modes_and_user_states": "Persisted payable order and required holds; real mode with all lines ready/one line no longer ready; test mode ready/not ready; observe receiver attempts.",
+      "action_and_variants": "Customer presses Pay after readiness changes and views mode label and receiver history.",
+      "incorrect_behavior_detection": "Only ready corresponding mode invoked; any unready real line blocks whole payment; ready test routes isolated simulation with explicit label and zero real requests."
+    },
+    {
+      "requirement_id": "cart-checkout-14",
+      "scenario_id": "BB-cart-checkout-14",
+      "operation_modes_and_user_states": "Valid pending order in real/test mode with inventory and four benefit vectors: neither, promo only, points only, both. Receiver confirms exact amount/currency/reference.",
+      "action_and_variants": "Customer completes payment, staff reconciles result and repeats result delivery; inspect order and both benefit histories together.",
+      "incorrect_behavior_detection": "Order becomes paid with correct mode/confirmed amount/currency/reference; only used holds convert once, no partial visible state where paid order retains unconfirmed used benefit; test money not real receipts."
+    },
+    {
+      "requirement_id": "cart-checkout-15",
+      "scenario_id": "BB-cart-checkout-15",
+      "operation_modes_and_user_states": "Pending order in each payment mode with neither/promo/points/both benefits; receiver definitive failure.",
+      "action_and_variants": "Customer pays and sees failure, refreshes and retries failure delivery; inspect order, inventory and used benefit balances.",
+      "incorrect_behavior_detection": "Failure status and retryable checkout retained; inventory and actual used benefits release once; unused benefits unaffected, no paid claim."
+    },
+    {
+      "requirement_id": "cart-checkout-16",
+      "scenario_id": "BB-cart-checkout-16",
+      "operation_modes_and_user_states": "Two customer tabs on same confirmed quote; known stock and optional promotion/points; success and failure payment-result branches separately.",
+      "action_and_variants": "Double-submit quote concurrently and resend same payment attempt result serially/concurrently; reload orders and all balances.",
+      "incorrect_behavior_detection": "One pending order and one set of holds; each result creates one payment/benefit use or reversal effect tied to original attempt; independent genuine quotes remain distinct."
+    },
+    {
+      "requirement_id": "cart-checkout-17",
+      "scenario_id": "BB-cart-checkout-17",
+      "operation_modes_and_user_states": "Failed order snapshot retained; change price and stock after failure; include now-unavailable variant and changed promo.",
+      "action_and_variants": "Customer clicks Retry, views new offer, first declines and then confirms valid new quote.",
+      "incorrect_behavior_detection": "Current price/availability checked; new related pending order/holds only after confirmation; original failed order and snapshot unchanged; unavailable item blocks retry order."
+    },
+    {
+      "requirement_id": "cart-checkout-18",
+      "scenario_id": "BB-cart-checkout-18",
+      "operation_modes_and_user_states": "Isolated test quote and payment service ready; real receiver transaction baseline known.",
+      "action_and_variants": "Customer reaches confirmation, pays and opens result/receipt; staff views payment and fulfillment status.",
+      "incorrect_behavior_detection": "Before and after payment explicitly says test/no real charge; simulated success not real receipt or real-shipping authorization; receiver has no real debit."
+    },
+    {
+      "requirement_id": "cart-checkout-22",
+      "scenario_id": "BB-cart-checkout-22",
+      "operation_modes_and_user_states": "Real/test cart with two lines and none/promo/points/both benefits. Force shortage independently in stock, promo, points, and test resource; one real line unready. Separate all-ready fixture.",
+      "action_and_variants": "Customer submits confirmed quote including two concurrent attempts for final resource; inspect order list, receiver attempts and all balances before/after.",
+      "incorrect_behavior_detection": "Success saves snapshot and same-mode holds together. Any required failure produces no payable order or payment and no orphan holds, identifies affected line/reason, never borrows live resources for test."
+    },
+    {
+      "requirement_id": "cart-checkout-23",
+      "scenario_id": "BB-cart-checkout-23",
+      "operation_modes_and_user_states": "Receiver accepts payment but result cannot yet be confirmed; order has inventory and optional benefits held.",
+      "action_and_variants": "Customer pays, reloads and retries Pay; staff opens reconciliation queue and attempts fulfillment; advance past hold deadline.",
+      "incorrect_behavior_detection": "Order remains pending reconciliation with original reference, staff task and holds; no second charge or physical fulfillment; elapsed deadline alone does not release holds."
+    },
+    {
+      "requirement_id": "cart-checkout-24",
+      "scenario_id": "BB-cart-checkout-24",
+      "operation_modes_and_user_states": "Receiver success with original order, inventory hold, used promo hold or used points hold independently invalid; unused-benefit missing control.",
+      "action_and_variants": "Staff reconciles success, attempts shipment/payment again, then separately repairs original state or verifies original-mode refund.",
+      "incorrect_behavior_detection": "Affected case stays unresolved with staff task until repair or successful refund; no second charge or physical fulfillment meanwhile; absent unused benefits must not manufacture an exception."
+    },
+    {
+      "requirement_id": "cart-checkout-25",
+      "scenario_id": "BB-cart-checkout-25",
+      "operation_modes_and_user_states": "Configured deadline T; order not started payment and another pending reconciliation; each with optional promo/points. Observe just before T, at T and after T using controlled test clock or scheduled waiting.",
+      "action_and_variants": "Customer/staff views expiration results and attempts submission at each point; repeat expiration processing.",
+      "incorrect_behavior_detection": "Verified-unstarted order expires at configured boundary and releases inventory/used benefits once; before deadline stays valid; uncertain payment never auto-releases even after T."
+    },
+    {
+      "requirement_id": "cart-checkout-26",
+      "scenario_id": "BB-cart-checkout-26",
+      "operation_modes_and_user_states": "Uncertain original attempt with receiver success-valid holds, success-invalid holds, definite failure or still unknown, in both modes.",
+      "action_and_variants": "Authorized staff invokes reconciliation twice; inspect query reference, original order, holds and exception queue.",
+      "incorrect_behavior_detection": "Queries original reference; valid success paid, invalid success repair/refund exception, failure releases, unknown holds/no second charge; no unrelated order advanced."
+    },
+    {
+      "requirement_id": "content-marketing-1",
+      "scenario_id": "BB-content-marketing-1",
+      "operation_modes_and_user_states": "Brand, technical and riding articles in enabled languages A/B, plus drafts and withdrawn articles.",
+      "action_and_variants": "Visitor opens content entry in A then B and navigates each category.",
+      "incorrect_behavior_detection": "Lists include only published content in active language and correct category; no draft/withdrawn leakage."
+    },
+    {
+      "requirement_id": "content-marketing-2",
+      "scenario_id": "BB-content-marketing-2",
+      "operation_modes_and_user_states": "Published article with title/body/time and related published and unpublished products.",
+      "action_and_variants": "Visitor opens article and follows each displayed product link.",
+      "incorrect_behavior_detection": "Title, complete body and publication time match published version; related product links lead to published products, not private drafts."
+    },
+    {
+      "requirement_id": "content-marketing-3",
+      "scenario_id": "BB-content-marketing-3",
+      "operation_modes_and_user_states": "Draft, scheduled-not-yet-published and withdrawn article URLs known; employee can view histories.",
+      "action_and_variants": "Anonymous visitor uses list, navigation and direct URL, including a previously saved withdrawn link; authorized editor opens history.",
+      "incorrect_behavior_detection": "No nonpublic body exposed on public routes; withdrawal keeps staff-visible history."
+    },
+    {
+      "requirement_id": "content-marketing-4",
+      "scenario_id": "BB-content-marketing-4",
+      "operation_modes_and_user_states": "Article with licensed external video, known title, cover or permitted alternative description and source platform.",
+      "action_and_variants": "Visitor opens article and activates video playback entry; repeat with cover absent but alternative description present.",
+      "incorrect_behavior_detection": "Title and cover/alternative visible; playback entry usable; external source identified accurately."
+    },
+    {
+      "requirement_id": "content-marketing-5",
+      "scenario_id": "BB-content-marketing-5",
+      "operation_modes_and_user_states": "Article with readable text before/after video; invalid video URL and embedding unavailable in separate vectors.",
+      "action_and_variants": "Visitor loads article, attempts playback, scrolls and reads remainder during failure.",
+      "incorrect_behavior_detection": "Understandable video fallback; article text remains readable and navigable without false playback success."
+    },
+    {
+      "requirement_id": "content-marketing-6",
+      "scenario_id": "BB-content-marketing-6",
+      "operation_modes_and_user_states": "Authorized editor and unauthorized/anonymous session; draft with unique revision marker.",
+      "action_and_variants": "Editor changes text, saves, reopens and previews; anonymous/unauthorized user opens preview link.",
+      "incorrect_behavior_detection": "Saved draft revision persists, preview only authorized; public content not prematurely changed."
+    },
+    {
+      "requirement_id": "content-marketing-7",
+      "scenario_id": "BB-content-marketing-7",
+      "operation_modes_and_user_states": "Promo rules specify market, product, start/end, customer qualification, stacking and total/per-customer limits; eligible/ineligible customers and one remaining quota.",
+      "action_and_variants": "Staff publishes, customer views offer before/start/inside/end per configured boundary, in each market/product/qualification combination, with quota free/fully held.",
+      "incorrect_behavior_detection": "Saved rule fields preserved; only qualified customers with unheld quota see usable promise; out-of-scope or capacity-held customers do not."
+    },
+    {
+      "requirement_id": "content-marketing-8",
+      "scenario_id": "BB-content-marketing-8",
+      "operation_modes_and_user_states": "Existing pending order with valid promo reservation; new checkout without reservation. Independently reach end time, withdraw promo and consume/hold final quota.",
+      "action_and_variants": "Existing customer completes confirmed held quote; new customer views/applies offer after each transition.",
+      "incorrect_behavior_detection": "New purchase cannot apply unavailable promo or see usable promise; still-valid existing hold honored at confirmed quote rather than retroactively removed."
+    },
+    {
+      "requirement_id": "content-marketing-9",
+      "scenario_id": "BB-content-marketing-9",
+      "operation_modes_and_user_states": "Enabled markets A/B with distinct effective and future policies for contact, delivery, assembly, returns, warranty, privacy and terms.",
+      "action_and_variants": "Visitor opens every listed policy page in both markets, then after controlled effective-time transition.",
+      "incorrect_behavior_detection": "Every page identifies applicable market, effective version and time; future/other-market version not substituted."
+    },
+    {
+      "requirement_id": "content-marketing-11",
+      "scenario_id": "BB-content-marketing-11",
+      "operation_modes_and_user_states": "Editor draft V1 and revised V2; anonymous session with content entry open.",
+      "action_and_variants": "Authorized employee publishes V2, visitor refreshes list and opens article, editor checks publication history.",
+      "incorrect_behavior_detection": "V2 enters public entry with recorded publication time; V1 is not mistakenly published as latest."
+    },
+    {
+      "requirement_id": "content-marketing-12",
+      "scenario_id": "BB-content-marketing-12",
+      "operation_modes_and_user_states": "Published article reachable through list/navigation/direct URL; editor history available.",
+      "action_and_variants": "Authorized employee withdraws; visitor revisits all routes and saved link; editor reopens history.",
+      "incorrect_behavior_detection": "Withdrawal time persists and content stops being public while staff history remains."
+    },
+    {
+      "requirement_id": "content-marketing-13",
+      "scenario_id": "BB-content-marketing-13",
+      "operation_modes_and_user_states": "Published total quota with one free unit and per-customer remaining one; existing holds accounted for; separate live/test pools.",
+      "action_and_variants": "Two customers submit quotes concurrently for final total slot; same customer uses two tabs for per-customer slot; repeat test order against empty test quota with live quota free.",
+      "incorrect_behavior_detection": "Accepted holds never exceed either cap; each tied to order/mode; test does not consume live quota; losing checkout gets no payable order with missing quota."
+    },
+    {
+      "requirement_id": "content-marketing-14",
+      "scenario_id": "BB-content-marketing-14",
+      "operation_modes_and_user_states": "Two orders with distinct promo holds; receiver success for first, unknown/failure for second.",
+      "action_and_variants": "Reconcile first payment repeatedly and open authorized promo usage/order history.",
+      "incorrect_behavior_detection": "First hold converts once to used; second untouched until its verified success; no double decrement on duplicate success."
+    },
+    {
+      "requirement_id": "content-marketing-15",
+      "scenario_id": "BB-content-marketing-15",
+      "operation_modes_and_user_states": "Independent reserved orders for verified failure, no-payment timeout, prepayment cancellation and uncertain payment; include another order's hold.",
+      "action_and_variants": "Perform each customer/staff action causing release twice; inspect quota and reservation history.",
+      "incorrect_behavior_detection": "Only first three release their own quota once; uncertain payment retains quota; other order unaffected."
+    },
+    {
+      "requirement_id": "customer-account-1",
+      "scenario_id": "BB-customer-account-1",
+      "operation_modes_and_user_states": "Unused synthetic contact, already-registered contact, invalid contact, valid and invalid/expired verification proof per configured channel.",
+      "action_and_variants": "Visitor registers each, attempts completing without proof, then completes valid verification and repeats same registration.",
+      "incorrect_behavior_detection": "Only verified valid identity is established; duplicate/invalid identity cannot occupy another account; correct verified visitor can proceed."
+    },
+    {
+      "requirement_id": "customer-account-2",
+      "scenario_id": "BB-customer-account-2",
+      "operation_modes_and_user_states": "Accounts A/B with synthetic credentials referenced externally; logged-out browser, valid and wrong credentials.",
+      "action_and_variants": "Submit wrong then correct A credentials, open A private page and request B's known private route.",
+      "incorrect_behavior_detection": "Wrong login creates no private session; valid login accesses A only, B remains inaccessible."
+    },
+    {
+      "requirement_id": "customer-account-3",
+      "scenario_id": "BB-customer-account-3",
+      "operation_modes_and_user_states": "Guest order O and contact channel; valid proof, wrong/expired proof and guessed order/contact information.",
+      "action_and_variants": "Visitor requests order view and after-sales operation using order number alone, guessed data, invalid proof then valid channel proof.",
+      "incorrect_behavior_detection": "No ownership authorization until control verified; valid proof permits only corresponding order actions; guessed facts cannot expose order data."
+    },
+    {
+      "requirement_id": "customer-account-4",
+      "scenario_id": "BB-customer-account-4",
+      "operation_modes_and_user_states": "Logged-in A and B with distinct profile markers; anonymous session.",
+      "action_and_variants": "A reads/edits own profile, reloads and views modification record; A/anonymous attempt read/edit B via supported public boundary.",
+      "incorrect_behavior_detection": "A changes persist with verifiable history; B untouched and private; unauthorized responses do not return B fields."
+    },
+    {
+      "requirement_id": "customer-account-5",
+      "scenario_id": "BB-customer-account-5",
+      "operation_modes_and_user_states": "A has addresses A1/A2 and B has B1; signed-in and signed-out sessions.",
+      "action_and_variants": "A adds A3, modifies A1, deletes A2, reloads address list/checkout choices; B and anonymous try A-address links.",
+      "incorrect_behavior_detection": "Only requested A records change and deleted A2 no longer selectable; A3 persists; unauthorized users cannot read A addresses."
+    },
+    {
+      "requirement_id": "customer-account-6",
+      "scenario_id": "BB-customer-account-6",
+      "operation_modes_and_user_states": "A/B accounts; variants V1/V2; V1 later unpublished and V2 out of stock.",
+      "action_and_variants": "A favorites both, signs out/in, staff changes availability, A reopens favorites and removes V1; B opens own list.",
+      "incorrect_behavior_detection": "A selections survive sessions, retained variants show unlisted/out-of-stock state; removal persists; B list unaffected."
+    },
+    {
+      "requirement_id": "customer-account-7",
+      "scenario_id": "BB-customer-account-7",
+      "operation_modes_and_user_states": "A-owned orders, B-owned order, verified guest order not assigned to A, and A with no orders in separate run.",
+      "action_and_variants": "A opens history, follows each own order entry and requests B/guest order known route.",
+      "incorrect_behavior_detection": "Only assigned A orders summarized and queryable; no implicit claim of unrelated guest order; empty history does not leak other users."
+    },
+    {
+      "requirement_id": "customer-account-8",
+      "scenario_id": "BB-customer-account-8",
+      "operation_modes_and_user_states": "Purchased line eligible under published review rule; ineligible state, another customer's line and existing valid review controls.",
+      "action_and_variants": "Customer submits score/text, reloads, submits again serially and concurrently for same line; attempt ineligible and foreign line.",
+      "incorrect_behavior_detection": "One effective review per qualified purchased line, with score/text/line and pending-review status; ineligible/foreign submissions not accepted as valid reviews."
+    },
+    {
+      "requirement_id": "customer-account-9",
+      "scenario_id": "BB-customer-account-9",
+      "operation_modes_and_user_states": "Two pending reviews and authorized moderator; anonymous product page.",
+      "action_and_variants": "Moderator publishes one and rejects other with reasons; visitor reloads product page; reopen staff review history.",
+      "incorrect_behavior_detection": "Decisions/reasons recorded; only published review appears, pending/rejected text hidden from public."
+    },
+    {
+      "requirement_id": "customer-account-10",
+      "scenario_id": "BB-customer-account-10",
+      "operation_modes_and_user_states": "Enabled plan with published currency-specific earn rule; eligible order just before and at required state, disqualified order, two currencies and live/test modes.",
+      "action_and_variants": "Staff advances actual qualifying business event; customer views points history; replay event.",
+      "incorrect_behavior_detection": "Exactly one traceable award for qualifying order under its currency/rule; premature/disqualified order earns none; repeat does not duplicate and test/live remain separate."
+    },
+    {
+      "requirement_id": "customer-account-11",
+      "scenario_id": "BB-customer-account-11",
+      "operation_modes_and_user_states": "Enabled plan and account with independently calculated acquire/use/reversal/expiry history; include zero balance and pending holds.",
+      "action_and_variants": "Customer opens balance and history before/after each event and expiry boundary.",
+      "incorrect_behavior_detection": "Visible balance nonnegative and reconciles ledger; source orders and acquire/use/reverse/expiry records distinguishable, without hiding negative arithmetic behind misleading balance."
+    },
+    {
+      "requirement_id": "customer-account-12",
+      "scenario_id": "BB-customer-account-12",
+      "operation_modes_and_user_states": "Enabled plan; balance B with existing hold H; valid and unsupported currency/rule cases; request B-H and one permitted point unit above; independent conversion oracle.",
+      "action_and_variants": "Customer applies points at checkout and inspects quote/associated order; repeat from second checkout while first hold active.",
+      "incorrect_behavior_detection": "Only unheld eligible balance available under published currency conversion; excessive/unsupported redemption cannot lower payable amount; associated order recorded."
+    },
+    {
+      "requirement_id": "customer-account-13",
+      "scenario_id": "BB-customer-account-13",
+      "operation_modes_and_user_states": "Original line award/redemption records and original rules; separate verified failure, cancellation and successful partial refund. Include cancel then refund same units and duplicate events.",
+      "action_and_variants": "Execute corresponding business actions in differing orders; customer and staff inspect points ledger and independently calculate remaining adjustment.",
+      "incorrect_behavior_detection": "Failure releases uncommitted redemption without award; cancel/refund adjust only actual eligible scope and outstanding delta; duplicate or overlapping events never reverse same entitlement twice."
+    },
+    {
+      "requirement_id": "customer-account-14",
+      "scenario_id": "BB-customer-account-14",
+      "operation_modes_and_user_states": "Plan disabled, customer previously had test points; anonymous and member views.",
+      "action_and_variants": "Browse product, cart, account and checkout and try prior redemption entry.",
+      "incorrect_behavior_detection": "No redeemable-points display or earning promise while disabled; stale entry cannot silently apply points."
+    },
+    {
+      "requirement_id": "customer-account-17",
+      "scenario_id": "BB-customer-account-17",
+      "operation_modes_and_user_states": "A logged in with profile/order tabs open; private request/session captured only in external secure test context.",
+      "action_and_variants": "A logs out, refreshes tabs, uses back navigation and replays prior private request; attempt ordinary signed-out access.",
+      "incorrect_behavior_detection": "Former session no longer authorizes private data; stale UI does not grant subsequent read/write access."
+    },
+    {
+      "requirement_id": "customer-account-18",
+      "scenario_id": "BB-customer-account-18",
+      "operation_modes_and_user_states": "A registered channel; wrong channel, expired reset proof and valid proof; previous credential known through secure reference.",
+      "action_and_variants": "Request reset, attempt with wrong/expired proof, complete with valid proof; try old credential and reuse reset proof; log in with new credential.",
+      "incorrect_behavior_detection": "Only verified registered-channel holder resets; old credential and expired reset proof rejected; new credential authenticates intended account."
+    },
+    {
+      "requirement_id": "customer-account-19",
+      "scenario_id": "BB-customer-account-19",
+      "operation_modes_and_user_states": "A balance with one remaining redeemable unit, B separate balance, distinct currency ledgers and isolated test pool empty while real has balance.",
+      "action_and_variants": "A submits two concurrent quotes requesting last unit, repeats same submission and attempts test/currency mismatch redemption.",
+      "incorrect_behavior_detection": "One correctly scoped hold per order; total never exceeds unheld A balance, no borrowing B/other currency/live pool; record includes order and mode."
+    },
+    {
+      "requirement_id": "customer-account-20",
+      "scenario_id": "BB-customer-account-20",
+      "operation_modes_and_user_states": "Orders A/B each hold points; A verified paid, B uncertain/failed.",
+      "action_and_variants": "Reconcile A payment twice and inspect account/order ledger before and after.",
+      "incorrect_behavior_detection": "A hold becomes one actual-use event; B not finalized; customer balance and reserved amount reconcile without duplicate deduction."
+    },
+    {
+      "requirement_id": "customer-account-21",
+      "scenario_id": "BB-customer-account-21",
+      "operation_modes_and_user_states": "Orders with points holds for verified failure, never-started timeout, prepayment cancellation and uncertain payment, plus unrelated hold.",
+      "action_and_variants": "Trigger each legal release twice and attempt timeout/release of uncertain order; inspect customer balance and histories.",
+      "incorrect_behavior_detection": "Only respective legal hold releases once; uncertain and unrelated holds remain; no new points created by repeated release."
+    },
+    {
+      "requirement_id": "customer-support-1",
+      "scenario_id": "BB-customer-support-1",
+      "operation_modes_and_user_states": "Configured contact routes; service online and offline fixtures with actual availability known.",
+      "action_and_variants": "Guest/member opens support before/after availability transition and follows displayed contact route.",
+      "incorrect_behavior_detection": "Online/offline indicator agrees with service, usable contact routes shown without claiming unavailable staff online."
+    },
+    {
+      "requirement_id": "customer-support-2",
+      "scenario_id": "BB-customer-support-2",
+      "operation_modes_and_user_states": "Online support, customer and authorized agent sessions, message with unique marker and recipient conversation identity.",
+      "action_and_variants": "Customer sends message, both participants observe send status, reload/re-enter same conversation.",
+      "incorrect_behavior_detection": "Message durably visible in correct conversation to both with accurate send state; no lost message after refresh or unrelated-conversation delivery."
+    },
+    {
+      "requirement_id": "customer-support-3",
+      "scenario_id": "BB-customer-support-3",
+      "operation_modes_and_user_states": "Support offline; valid contact plus missing/invalid contact vectors.",
+      "action_and_variants": "Guest leaves message with contact; correct rejected invalid contact; agent later opens follow-up queue and customer reopens conversation.",
+      "incorrect_behavior_detection": "Valid message creates saved follow-up conversation and explains reply route; no false live-delivery claim; contact sufficient for stated route."
+    },
+    {
+      "requirement_id": "customer-support-4",
+      "scenario_id": "BB-customer-support-4",
+      "operation_modes_and_user_states": "A/B conversations with distinct messages; guest verified identity and member sessions; connection deliberately interrupted.",
+      "action_and_variants": "A reconnects/re-enters, attempts without valid identity then verifies; request B conversation known link.",
+      "incorrect_behavior_detection": "After verification A history restored including pre-disconnect messages; unverified/foreign history not exposed."
+    },
+    {
+      "requirement_id": "customer-support-5",
+      "scenario_id": "BB-customer-support-5",
+      "operation_modes_and_user_states": "Guest order with valid/invalid channel proof; A-owned and B-owned member orders; authorized and unrelated support agents.",
+      "action_and_variants": "Customer associates each order, then each agent opens conversation order summary.",
+      "incorrect_behavior_detection": "Only verified guest or owner-member order can link; only authorized support sees necessary summary, no unrelated full customer details."
+    },
+    {
+      "requirement_id": "customer-support-6",
+      "scenario_id": "BB-customer-support-6",
+      "operation_modes_and_user_states": "No current owner; new online and offline conversations in authorized team's scope and another team's conversation.",
+      "action_and_variants": "Customers start conversations; authorized agent/manager refreshes queue, unrelated employee opens same queue.",
+      "incorrect_behavior_detection": "New conversations marked unassigned and visible to authorized personnel; unauthorized customer details not exposed."
+    },
+    {
+      "requirement_id": "customer-support-7",
+      "scenario_id": "BB-customer-support-7",
+      "operation_modes_and_user_states": "Unassigned conversation, two authorized assigners and agents A/B; notification receipt observation available.",
+      "action_and_variants": "Assign A/B concurrently, reload queue/detail and inspect resulting responsibility and notifications.",
+      "incorrect_behavior_detection": "At each observable settled state exactly one responsible agent; notification matches effective assignment, no competing active owners."
+    },
+    {
+      "requirement_id": "customer-support-8",
+      "scenario_id": "BB-customer-support-8",
+      "operation_modes_and_user_states": "Conversation assigned A with unread/unhandled message; authorized transfer actor and agent B.",
+      "action_and_variants": "Transfer A to B with reason; both agents reopen queue and B opens history.",
+      "incorrect_behavior_detection": "Original owner, new owner, reason/time recorded; B receives unfinished state and history, work not marked resolved or left with two owners."
+    },
+    {
+      "requirement_id": "customer-support-9",
+      "scenario_id": "BB-customer-support-9",
+      "operation_modes_and_user_states": "Closed conversation with customer/agent history.",
+      "action_and_variants": "Customer sends new message; agent opens follow-up queue and conversation; both reload.",
+      "incorrect_behavior_detection": "Pending follow-up restored; original history retained and new message included, not silently lost in closed state."
+    },
+    {
+      "requirement_id": "customer-support-10",
+      "scenario_id": "BB-customer-support-10",
+      "operation_modes_and_user_states": "Configured synthetic customer channel for guest/member; registered events: order state, paid, failed, shipped, after-sales decision, refund result, support reply; real/test modes where applicable.",
+      "action_and_variants": "Cause each event via its customer/staff workflow; inspect captured recipient message and follow query/tracking/case/conversation link as recipient.",
+      "incorrect_behavior_detection": "Corresponding status, payment mode where relevant, and next action correct; link leads to authorized correct record; old/other customer's status never substituted."
+    },
+    {
+      "requirement_id": "customer-support-11",
+      "scenario_id": "BB-customer-support-11",
+      "operation_modes_and_user_states": "Guest order with no account and working checkout contact; registered notification events enabled.",
+      "action_and_variants": "Cause order/payment/shipping/after-sales notification events; inspect checkout-channel receipt and follow link through guest verification.",
+      "incorrect_behavior_detection": "Guest receives through checkout contact without account inbox dependency; correct guest order route and ownership challenge preserved."
+    },
+    {
+      "requirement_id": "customer-support-12",
+      "scenario_id": "BB-customer-support-12",
+      "operation_modes_and_user_states": "Notification receiver fails for an order payment, shipment or refund event; before counts/balances recorded.",
+      "action_and_variants": "Staff opens failure, retries notification after channel recovery and compares business records/receiver histories.",
+      "incorrect_behavior_detection": "Failure cause and retryable state retained; delivery retry never repeats payment/refund/shipment or original state transition."
+    },
+    {
+      "requirement_id": "customer-support-13",
+      "scenario_id": "BB-customer-support-13",
+      "operation_modes_and_user_states": "Missing channel configuration and configured-but-unavailable channel in separate cases; notification event pending.",
+      "action_and_variants": "Cause notification event; staff opens exception queue and customer checks status.",
+      "incorrect_behavior_detection": "Authorized staff sees actionable pending channel exception; no claim customer received undelivered message."
+    },
+    {
+      "requirement_id": "customer-support-17",
+      "scenario_id": "BB-customer-support-17",
+      "operation_modes_and_user_states": "Authorized support worker with no selected conversation; run empty queue and nonempty unassigned queue.",
+      "action_and_variants": "Open workspace directly and return to it after leaving a conversation.",
+      "incorrect_behavior_detection": "Explicit select-conversation or wait-for-assignment instruction; no stale customer's conversation shown as current."
+    },
+    {
+      "requirement_id": "customer-support-18",
+      "scenario_id": "BB-customer-support-18",
+      "operation_modes_and_user_states": "Authorized agent, reproducible network/service load failure at public boundary then restored availability.",
+      "action_and_variants": "Open workspace during failure, activate displayed retry after recovery.",
+      "incorrect_behavior_detection": "Visible fault with usable retry; retry actually loads authorized workspace, not endless false success or blank panel."
+    },
+    {
+      "requirement_id": "customer-support-19",
+      "scenario_id": "BB-customer-support-19",
+      "operation_modes_and_user_states": "Agent authorized for queue A but not conversation B; B contains unique private marker.",
+      "action_and_variants": "Agent opens B's known link and uses offered return action.",
+      "incorrect_behavior_detection": "B content refused/not disclosed; return reaches authorized queue, not another forbidden or stale conversation."
+    },
+    {
+      "requirement_id": "customer-support-20",
+      "scenario_id": "BB-customer-support-20",
+      "operation_modes_and_user_states": "Conversation assigned agent A, unauthorized/unassigned B, customer online then disconnected.",
+      "action_and_variants": "A sends reply with marker; customer reads live, disconnects, A sends second reply and customer re-enters; B attempts reply.",
+      "incorrect_behavior_detection": "Authorized replies persist sender/content/time and are readable live or after re-entry; unauthorized reply cannot appear as valid assigned-agent reply."
+    },
+    {
+      "requirement_id": "launch-readiness-1",
+      "scenario_id": "BB-launch-readiness-1",
+      "operation_modes_and_user_states": "No-market fixture then two markets, each with one missing input in turn: brand/language, product/stock, price, licensed media, tax, delivery, applicable assembly, payment, after-sales, notification, support, runtime.",
+      "action_and_variants": "Authorized employee opens readiness page for each market/configuration and expands gaps.",
+      "incorrect_behavior_detection": "No market explicitly reported; each category status and gap names affected variants/destinations; no generic green status concealing a scoped missing input."
+    },
+    {
+      "requirement_id": "launch-readiness-2",
+      "scenario_id": "BB-launch-readiness-2",
+      "operation_modes_and_user_states": "Market with two variants: complete vs missing published data/price/stock independently; separate market where all variants fail.",
+      "action_and_variants": "Employee runs transaction eligibility check then inspects each variant and market summary.",
+      "incorrect_behavior_detection": "Readiness tied to each variant and its missing input; market with no passing variant explicitly has no tradable goods, not ready merely because catalog exists."
+    },
+    {
+      "requirement_id": "launch-readiness-3",
+      "scenario_id": "BB-launch-readiness-3",
+      "operation_modes_and_user_states": "Variant A uses image lacking license/source; B fully licensed; unrelated content video lacks proof; independent omissions of license and source.",
+      "action_and_variants": "Employee checks media/content readiness; customer tries quotes for A and B separately and opens content publishing check.",
+      "incorrect_behavior_detection": "Affected media/content flagged with missing proof; A gap blocks A transaction; unrelated video gap does not block ready B transaction."
+    },
+    {
+      "requirement_id": "launch-readiness-4",
+      "scenario_id": "BB-launch-readiness-4",
+      "operation_modes_and_user_states": "Market with destinations D1/D2 and bicycle/accessory; current tax, shipping and after-sales rules; omit each independently or make only future version available.",
+      "action_and_variants": "Employee checks readiness; customer attempts quote for affected and unaffected combinations.",
+      "incorrect_behavior_detection": "Affected destination/product marked unready with exact checkout blocker; future rule not treated effective; unaffected valid combination remains ready."
+    },
+    {
+      "requirement_id": "launch-readiness-5",
+      "scenario_id": "BB-launch-readiness-5",
+      "operation_modes_and_user_states": "Configurations: verified real collection+refund, real collection but broken refund, unavailable real service, explicitly marked test, test without label and unconfirmed mode.",
+      "action_and_variants": "Employee runs payment readiness check for each mode and opens missing-confirmation detail.",
+      "incorrect_behavior_detection": "Only verified real with working money/refund route qualifies for real readiness; labeled test only test; invalid/unconfirmed configurations unready with specific missing confirmation."
+    },
+    {
+      "requirement_id": "launch-readiness-6",
+      "scenario_id": "BB-launch-readiness-6",
+      "operation_modes_and_user_states": "Configured/unconfigured/unavailable notification and support contacts, independently and together.",
+      "action_and_variants": "Employee checks service readiness and opens affected customer contact routes.",
+      "incorrect_behavior_detection": "Each missing/unusable service marked unready with affected contact path; presence of config alone not claimed working."
+    },
+    {
+      "requirement_id": "launch-readiness-7",
+      "scenario_id": "BB-launch-readiness-7",
+      "operation_modes_and_user_states": "Domain/public service, private access control, backup and recovery results each absent/unverifiable independently; complete control.",
+      "action_and_variants": "Employee opens readiness and relevant run-result references.",
+      "incorrect_behavior_detection": "Every absent verification yields corresponding risk and action; backup record alone cannot stand for recovery verification; complete evidence discoverable."
+    },
+    {
+      "requirement_id": "launch-readiness-8",
+      "scenario_id": "BB-launch-readiness-8",
+      "operation_modes_and_user_states": "Two independent gaps A/B with old verification time; authorized actor; actual input A corrected, B unchanged.",
+      "action_and_variants": "Employee saves A and requests recheck, opens history; repeat with correction that still fails verification.",
+      "incorrect_behavior_detection": "Related status recomputed from result, verifier/time/result retained; B not cleared; failed recheck not recorded ready merely because input saved."
+    },
+    {
+      "requirement_id": "launch-readiness-9",
+      "scenario_id": "BB-launch-readiness-9",
+      "operation_modes_and_user_states": "Live and isolated test inventories, promo quotas, points, orders, reviews and metrics; live product source read-only. Test mode ready with synthetic resources.",
+      "action_and_variants": "Customer completes test order/payment/review and refund including promotions/points; staff attempts live shipment and edits live source through test flow; compare all live balances/metrics and test records.",
+      "incorrect_behavior_detection": "Test source labeled and all money/order/stock/benefits/reviews/metrics segregated; no live debit/refund/shipment or live mutable effect; product reference remains read-only."
+    },
+    {
+      "requirement_id": "launch-readiness-10",
+      "scenario_id": "BB-launch-readiness-10",
+      "operation_modes_and_user_states": "Two markets, two variants and two destinations; baseline complete. Independently fail product/stock/media/policies/bicycle assembly and shared payment-refund/notification/support/runtime inputs; test-only payment control.",
+      "action_and_variants": "Employee requests real-sale readiness for all combinations, then successively restores inputs to move none→partial→all.",
+      "incorrect_behavior_detection": "Only fully passing combinations ready; market summary none/partial/all accurate; local gap does not block unrelated combination, shared gap blocks its market, test payment never satisfies real requirement."
+    },
+    {
+      "requirement_id": "launch-readiness-13",
+      "scenario_id": "BB-launch-readiness-13",
+      "operation_modes_and_user_states": "Test quote verifiable, explicit simulated payment, test inventory and required promo/points holds, physical-shipment guard. Remove each independently; benefit-free quote control.",
+      "action_and_variants": "Employee requests test-flow readiness, customer exercises corresponding missing-input submit or shipping attempt.",
+      "incorrect_behavior_detection": "Ready only with all applicable checks verifiable; unused benefits not mandatory; no fallback to live stock/rights, simulated success not real-sale readiness."
+    },
+    {
+      "requirement_id": "launch-readiness-14",
+      "scenario_id": "BB-launch-readiness-14",
+      "operation_modes_and_user_states": "Ready variant A, unready B for D1, both ready for D2; real mode; single A cart and mixed A+B cart; receiver baseline.",
+      "action_and_variants": "Customer attempts real payment for each cart/destination before and after B changes readiness; inspect public purchase promise and receiver.",
+      "incorrect_behavior_detection": "Any failing line blocks entire charge and names line; no public real-purchase promise for failing line; A alone remains purchasable when ready; changing destination rechecks combination."
+    },
+    {
+      "requirement_id": "launch-readiness-15",
+      "scenario_id": "BB-launch-readiness-15",
+      "operation_modes_and_user_states": "Bicycle models A/B and accessory-only market; omit A confirmed responsibilities, delivered form, deliverable guide or prepurchase assembly/policy separately.",
+      "action_and_variants": "Employee checks readiness and customer opens A/B conditions; repeat accessory-only market with bicycle fields absent.",
+      "incorrect_behavior_detection": "Each A gap names missing input and prevents A real sale; complete B unaffected; accessory-only market not blocked by inapplicable bicycle requirements."
+    },
+    {
+      "requirement_id": "market-catalog-1",
+      "scenario_id": "BB-market-catalog-1",
+      "operation_modes_and_user_states": "Two enabled markets with distinguishable configured language/currency; signed-out and member sessions.",
+      "action_and_variants": "Customer enters storefront for each market and opens product/cart.",
+      "incorrect_behavior_detection": "Current market, applicable language and quote currency visible and consistent with that market, not stale previous setting."
+    },
+    {
+      "requirement_id": "market-catalog-2",
+      "scenario_id": "BB-market-catalog-2",
+      "operation_modes_and_user_states": "A/B enabled; variant V1 repriced in B, V2 only A, V3 only B; independent market prices not assumed exchange-rate conversions.",
+      "action_and_variants": "Customer browses A, switches to B, inspects prior product/cart links and B catalog.",
+      "incorrect_behavior_detection": "B sellable set and independent quotes shown; prior V2 unavailable and V1 change marked; no stale A currency/price."
+    },
+    {
+      "requirement_id": "market-catalog-3",
+      "scenario_id": "BB-market-catalog-3",
+      "operation_modes_and_user_states": "Disabled market D and enabled control E, with known market links.",
+      "action_and_variants": "Customer selects/requests D directly, follows previous checkout link, then switches to E.",
+      "incorrect_behavior_detection": "D explains region unavailable and offers no D checkout path; enabled E remains usable."
+    },
+    {
+      "requirement_id": "market-catalog-4",
+      "scenario_id": "BB-market-catalog-4",
+      "operation_modes_and_user_states": "Bicycle and accessory categories; published available, published out-of-stock and draft variants with unique names.",
+      "action_and_variants": "Customer browses category and general catalog lists.",
+      "incorrect_behavior_detection": "Configured categories and only published products displayed; out-of-stock clearly marked, drafts excluded."
+    },
+    {
+      "requirement_id": "market-catalog-5",
+      "scenario_id": "BB-market-catalog-5",
+      "operation_modes_and_user_states": "Published bicycle/accessory with known name/category/brand/specs/price/currency/conditions; one lacks image.",
+      "action_and_variants": "Customer opens each detail page and variant-independent buying information.",
+      "incorrect_behavior_detection": "All required fields accurately visible, specs backed by supplied data; no-image explicit instead of fabricated image; conditions not omitted."
+    },
+    {
+      "requirement_id": "market-catalog-6",
+      "scenario_id": "BB-market-catalog-6",
+      "operation_modes_and_user_states": "Same product with two visually similar variants differing ID/spec/market price/availability.",
+      "action_and_variants": "Customer switches variants repeatedly in markets A/B and proceeds to cart for sellable selection.",
+      "incorrect_behavior_detection": "Selected unique ID/spec/price/availability all agree; last variant not accidentally reused."
+    },
+    {
+      "requirement_id": "market-catalog-7",
+      "scenario_id": "BB-market-catalog-7",
+      "operation_modes_and_user_states": "Variant unlisted in current market and insufficient-stock variant separately; cart/exchange selected before availability change.",
+      "action_and_variants": "Customer submits new confirmed order or staff requests exchange hold after change.",
+      "incorrect_behavior_detection": "No new payable order or exchange hold for unavailable variant; reason distinguishes market exclusion from shortage/available quantity."
+    },
+    {
+      "requirement_id": "market-catalog-8",
+      "scenario_id": "BB-market-catalog-8",
+      "operation_modes_and_user_states": "Authorized product employee; existing P1/P2 and variants; full metadata including media source and market flags.",
+      "action_and_variants": "Create product and variant, reopen before publication; edit P1/V1 fields, reopen P1/P2 and public catalog.",
+      "incorrect_behavior_detection": "New records identifiable and unpublished; specified categories/specs/market/price/media source/status saved; other records unchanged."
+    },
+    {
+      "requirement_id": "market-catalog-9",
+      "scenario_id": "BB-market-catalog-9",
+      "operation_modes_and_user_states": "Draft bicycle/accessory with required category specs, market price and licensed media; omit each in turn and prepare complete control.",
+      "action_and_variants": "Authorized employee presses Publish for each draft and checks public listing.",
+      "incorrect_behavior_detection": "Each gap prevents publication with named missing field/evidence; complete genuine data can publish; another category's specs cannot substitute."
+    },
+    {
+      "requirement_id": "market-catalog-10",
+      "scenario_id": "BB-market-catalog-10",
+      "operation_modes_and_user_states": "Variants V1/V2 with known counts; authorized operator; increase and decrease adjustments with reasons.",
+      "action_and_variants": "Employee adjusts V1, reopens inventory history and checks V2.",
+      "incorrect_behavior_detection": "V1 before/after, reason, operator and time match action; V2 count unchanged."
+    },
+    {
+      "requirement_id": "market-catalog-11",
+      "scenario_id": "BB-market-catalog-11",
+      "operation_modes_and_user_states": "Live/test V1 pools and V2 control; new order and approved-inspected exchange sources; separate missing-test-stock control.",
+      "action_and_variants": "Customer submits quote or employee reserves exchange target; inspect visible stock/history and source links.",
+      "incorrect_behavior_detection": "Only corresponding-mode V1 availability decreases; history traces order/line or original line/case/target; V2 and opposite-mode pools unchanged; absent test pool cannot borrow live."
+    },
+    {
+      "requirement_id": "market-catalog-12",
+      "scenario_id": "BB-market-catalog-12",
+      "operation_modes_and_user_states": "Holds for verified payment failure, never-started expiry, approved unpaid whole/paid line cancellation and pre-shipment exchange termination; uncertain payment control.",
+      "action_and_variants": "Trigger each legal release, repeat and concurrently retry; inspect V1/V2 pools and history.",
+      "incorrect_behavior_detection": "Only associated variant/mode quantity restored once; invalid/uncertain release does not inflate stock; unrelated holds preserved."
+    },
+    {
+      "requirement_id": "market-catalog-13",
+      "scenario_id": "BB-market-catalog-13",
+      "operation_modes_and_user_states": "Same-mode variant with N=1 free and another variant available; two orders, two exchanges, and order-vs-exchange pairs in separate runs.",
+      "action_and_variants": "Submit quantity 1 and quantity 2 separately; race each pair for final unit through actual checkout/approved exchange actions.",
+      "incorrect_behavior_detection": "Accepted total never exceeds 1; excess part refused with availability/shortage; no extra payable order/fulfillable exchange or cross-variant borrowing."
+    },
+    {
+      "requirement_id": "market-catalog-14",
+      "scenario_id": "BB-market-catalog-14",
+      "operation_modes_and_user_states": "Published product whose media later returns unavailable response or inaccessible file; authorized alternate image absent.",
+      "action_and_variants": "Customer opens catalog/detail on desktop/narrow screen.",
+      "incorrect_behavior_detection": "Clear no-image state, no broken-image glyph or unlicensed substitute; product information readable."
+    },
+    {
+      "requirement_id": "market-catalog-17",
+      "scenario_id": "BB-market-catalog-17",
+      "operation_modes_and_user_states": "Published bicycle with confirmed form, merchant/customer assembly responsibility, customer guide and policy link; omit each confirmation separately.",
+      "action_and_variants": "Customer reads buying conditions then attempts quote for complete and incomplete model.",
+      "incorrect_behavior_detection": "Complete model shows every required pre-purchase condition and working policy entry; incomplete model explicitly warns and cannot form payable quote."
+    },
+    {
+      "requirement_id": "merchant-operations-1",
+      "scenario_id": "BB-merchant-operations-1",
+      "operation_modes_and_user_states": "Fresh uninitialized test deployment with approved bootstrap authorization reference; unauthorized visitor and initialized deployment controls.",
+      "action_and_variants": "Authorized person performs initial setup; unauthenticated person attempts setup before and after it; authorized person repeats setup.",
+      "incorrect_behavior_detection": "First personal identifiable admin established only by controlled process; unauthorized/repeated initialization cannot create replacement or extra admin."
+    },
+    {
+      "requirement_id": "merchant-operations-2",
+      "scenario_id": "BB-merchant-operations-2",
+      "operation_modes_and_user_states": "Authorized administrator and distinct proposed employee identities.",
+      "action_and_variants": "Admin creates employee and reopens staff roster/audit.",
+      "incorrect_behavior_detection": "Personal employee identity, creator and creation time saved rather than a shared untraceable account."
+    },
+    {
+      "requirement_id": "merchant-operations-3",
+      "scenario_id": "BB-merchant-operations-3",
+      "operation_modes_and_user_states": "Employee logged in to two sessions with known role matrix; initially lacks a role, then receives it, then loses it.",
+      "action_and_variants": "Admin grants role, employee performs newly permitted action; admin revokes, employee repeats from existing tab/session and new navigation.",
+      "incorrect_behavior_detection": "Grant allows matching action; revocation immediately blocks subsequent action in all existing sessions; role change history recorded."
+    },
+    {
+      "requirement_id": "merchant-operations-4",
+      "scenario_id": "BB-merchant-operations-4",
+      "operation_modes_and_user_states": "Employee lacking each product/order/refund/content/customer-data capability; snapshots of target records and authorized control user.",
+      "action_and_variants": "Attempt each forbidden action through UI and supported external request using known record identifiers; inspect records as authorized user.",
+      "incorrect_behavior_detection": "All forbidden actions refused without business-record changes or private fields; authorized control can perform permitted counterpart."
+    },
+    {
+      "requirement_id": "merchant-operations-5",
+      "scenario_id": "BB-merchant-operations-5",
+      "operation_modes_and_user_states": "Product operator permitted catalog fields but not other business fields; target P1 and unrelated P2.",
+      "action_and_variants": "Operator edits permitted fields through product management, attempts extra unauthorized field mutation via supported interface, reopens records.",
+      "incorrect_behavior_detection": "Only granted product/variant/market-price/publication fields changed through catalog behavior; unauthorized field and P2 preserved."
+    },
+    {
+      "requirement_id": "merchant-operations-6",
+      "scenario_id": "BB-merchant-operations-6",
+      "operation_modes_and_user_states": "Inventory employee; counted versus recorded stock differ; blank reason and valid reason vectors.",
+      "action_and_variants": "Submit adjustment without reason, then with reason; reopen adjustment history.",
+      "incorrect_behavior_detection": "Missing reason prevents adjustment; accepted adjustment retains before/after/count delta, cause, operator and time."
+    },
+    {
+      "requirement_id": "merchant-operations-7",
+      "scenario_id": "BB-merchant-operations-7",
+      "operation_modes_and_user_states": "Orders/packages/exceptions within and outside employee scope; legal next and forbidden skipped state.",
+      "action_and_variants": "Employee opens queue, handles legal task and attempts forbidden progression and out-of-scope task.",
+      "incorrect_behavior_detection": "Only authorized work visible; legal update persists, invalid state jump blocked, unrelated records unchanged."
+    },
+    {
+      "requirement_id": "merchant-operations-8",
+      "scenario_id": "BB-merchant-operations-8",
+      "operation_modes_and_user_states": "Role matrix separates cancellation approval, return/exchange review and refund execution; cases ready for each.",
+      "action_and_variants": "Each role attempts all three actions using actual staff entry; inspect case decision records.",
+      "incorrect_behavior_detection": "Only corresponding role permissions permit action; denial leaves case unchanged; accepted action records decision basis."
+    },
+    {
+      "requirement_id": "merchant-operations-9",
+      "scenario_id": "BB-merchant-operations-9",
+      "operation_modes_and_user_states": "Manager authorized for subset of conversations and assignments/transfers; private out-of-scope customer marker.",
+      "action_and_variants": "Manager opens queue, assigns and transfers permitted item, requests out-of-scope conversation/customer data.",
+      "incorrect_behavior_detection": "Only accessible assignable/transferable tasks and necessary data shown; unprivileged customer details hidden."
+    },
+    {
+      "requirement_id": "merchant-operations-10",
+      "scenario_id": "BB-merchant-operations-10",
+      "operation_modes_and_user_states": "Tax, delivery, warranty, return, promotion and notification rules with approved fields; old active V1 and proposed V2 future; missing required field per type.",
+      "action_and_variants": "Authorized employee saves/activates each, observes before and at effective time, retries missing-value rule.",
+      "incorrect_behavior_detection": "Scope/time/version/operator persisted; incomplete rules cannot activate; applicable effective version used, not merely last edited."
+    },
+    {
+      "requirement_id": "merchant-operations-11",
+      "scenario_id": "BB-merchant-operations-11",
+      "operation_modes_and_user_states": "Authorized changes in price, inventory, order, refund, points, roles, publication and support transfer; ordinary employee read access.",
+      "action_and_variants": "Perform each change, view audit, then ordinary employee attempts editing/deleting through available controls/supported boundary.",
+      "incorrect_behavior_detection": "Each event has accountable sensitive-change record; ordinary employee cannot delete/alter it; original event still viewable."
+    },
+    {
+      "requirement_id": "merchant-operations-12",
+      "scenario_id": "BB-merchant-operations-12",
+      "operation_modes_and_user_states": "Known fixtures across two markets and periods with real/test orders, sales, pending shipments, returns and support backlog; independently calculated totals.",
+      "action_and_variants": "Authorized employee filters each market/time including boundaries and toggles real/test view if offered; compare figures.",
+      "incorrect_behavior_detection": "Metrics match included records and distinguish test from real; wrong market/time or test transactions cannot inflate real totals."
+    },
+    {
+      "requirement_id": "merchant-operations-13",
+      "scenario_id": "BB-merchant-operations-13",
+      "operation_modes_and_user_states": "Known pending-shipment, return and support backlog records within selected market/time; zero-count control.",
+      "action_and_variants": "Employee opens each exception indicator and compares resulting task identifiers/counts to contributing records.",
+      "incorrect_behavior_detection": "Queue supports verifying corresponding metric with consistent scope; no unrelated default queue or missing contributing exception."
+    },
+    {
+      "requirement_id": "merchant-operations-16",
+      "scenario_id": "BB-merchant-operations-16",
+      "operation_modes_and_user_states": "Active employee in two sessions; admin identity known.",
+      "action_and_variants": "Admin disables employee; disabled employee reloads private views and submits a previously permitted action.",
+      "incorrect_behavior_detection": "Actor/time recorded; every subsequent access blocked, including old session; protected business state unchanged."
+    },
+    {
+      "requirement_id": "merchant-operations-17",
+      "scenario_id": "BB-merchant-operations-17",
+      "operation_modes_and_user_states": "Admin, employee registered controlled channel, invalid/expired proof and valid proof vectors.",
+      "action_and_variants": "Admin initiates reset; employee tries without/invalid verification then completes valid channel verification.",
+      "incorrect_behavior_detection": "Initiator/time recorded; reset cannot complete before verified identity; valid employee can finish through controlled channel."
+    },
+    {
+      "requirement_id": "orders-fulfillment-1",
+      "scenario_id": "BB-orders-fulfillment-1",
+      "operation_modes_and_user_states": "Guest/member confirmed mixed bicycle/accessory quote, quantity 3 on one line with non-even minor-unit allocation; discount, points, tax and shipping; real/test modes. Independent allocation worksheet follows supplied policy.",
+      "action_and_variants": "Customer confirms quote to create pending order; owner/authorized staff opens detail or supported export and compares every field in confirmed snapshot table to quote/worksheet.",
+      "incorrect_behavior_detection": "Order ID/owner-contact/time, exact variants/quantities/prices/currency, per-unit discount/points/tax/shipping and rounding recipient, tax basis, address/service/fee/estimate, total/mode/policy versions all preserved; unit allocations sum to quoted totals."
+    },
+    {
+      "requirement_id": "orders-fulfillment-2",
+      "scenario_id": "BB-orders-fulfillment-2",
+      "operation_modes_and_user_states": "Existing order snapshot/export and current catalog/policy version recorded.",
+      "action_and_variants": "Authorized employee changes product details, price and policy; owner reopens old order then creates a new quote.",
+      "incorrect_behavior_detection": "Old order's complete transaction snapshot unchanged; new quote reflects current values without overwriting history."
+    },
+    {
+      "requirement_id": "orders-fulfillment-3",
+      "scenario_id": "BB-orders-fulfillment-3",
+      "operation_modes_and_user_states": "Verified guest, unverified guest, owner member, other member, authorized employee and unauthorized employee; order with payment/fulfillment/after-sales events.",
+      "action_and_variants": "Each identity requests order detail from known link; authorized identities reopen after an event.",
+      "incorrect_behavior_detection": "Only authorized owner/employee sees current states and event times; other identities refused, guest number alone insufficient."
+    },
+    {
+      "requirement_id": "orders-fulfillment-4",
+      "scenario_id": "BB-orders-fulfillment-4",
+      "operation_modes_and_user_states": "Fresh order/package per transition in confirmed table; payment pending/unknown/paid/failed/expired/closed; fulfillment pending-payment/pending-fulfillment/picking/packed/shipped/delivered/cancelled; refund none/partial/full.",
+      "action_and_variants": "For each explicit matrix edge perform corresponding customer/staff/external action, inspect all dimensions and source/reason/time; attempt each forbidden target, including paid→failed after refund and shipped→cancelled.",
+      "incorrect_behavior_detection": "Only permitted qualified edge changes its dimension; failed/expired retries create related new order; refund does not erase paid/shipping history; transport exception is annotation, after-sales request is not cancellation/refund."
+    },
+    {
+      "requirement_id": "orders-fulfillment-5",
+      "scenario_id": "BB-orders-fulfillment-5",
+      "operation_modes_and_user_states": "Real paid authorized order, unpaid order, unknown-payment order and simulated-paid order; bicycle and accessory lines.",
+      "action_and_variants": "Fulfillment worker starts picking and marks ready to dispatch for each line/fixture.",
+      "incorrect_behavior_detection": "Qualified lines show their picking/ready status; unpaid/unknown cannot advance and test success alone cannot authorize physical fulfillment."
+    },
+    {
+      "requirement_id": "orders-fulfillment-6",
+      "scenario_id": "BB-orders-fulfillment-6",
+      "operation_modes_and_user_states": "Bicycle model with applicable confirmed packaging checklist; two packages, pass and failed checklist item.",
+      "action_and_variants": "Packager records each check and exception, saves and reopens package record.",
+      "incorrect_behavior_detection": "Applicable checks, performer and actual abnormal result retained on correct package, failure not silently converted to all-pass."
+    },
+    {
+      "requirement_id": "orders-fulfillment-7",
+      "scenario_id": "BB-orders-fulfillment-7",
+      "operation_modes_and_user_states": "Delivered-form policy specifies merchant/customer responsibilities; two bicycle models with different assignments and guide versions.",
+      "action_and_variants": "Staff prepares each bicycle delivery and records performed/customer-required assembly and accompanying guide; customer opens delivered instructions.",
+      "incorrect_behavior_detection": "Correct model/policy-specific responsibilities and actual guide recorded and available; merchant work not misattributed to customer or vice versa."
+    },
+    {
+      "requirement_id": "orders-fulfillment-8",
+      "scenario_id": "BB-orders-fulfillment-8",
+      "operation_modes_and_user_states": "Paid mixed order with separate bicycle/accessory packages and distinct estimates.",
+      "action_and_variants": "Staff ships accessory while bicycle still preparing; customer views order; later ship bicycle.",
+      "incorrect_behavior_detection": "Each package/line status independent and each item's expected arrival identifiable; first shipment does not falsely mark all shipped."
+    },
+    {
+      "requirement_id": "orders-fulfillment-9",
+      "scenario_id": "BB-orders-fulfillment-9",
+      "operation_modes_and_user_states": "Ready package with verified carrier service, tracking ID, dispatch time and source evidence; second package control.",
+      "action_and_variants": "Employee records actual dispatch and customer opens tracking; refresh after update.",
+      "incorrect_behavior_detection": "Correct carrier/tracking/time/evidence persist for dispatched package; customer sees update time, second package unaffected."
+    },
+    {
+      "requirement_id": "orders-fulfillment-10",
+      "scenario_id": "BB-orders-fulfillment-10",
+      "operation_modes_and_user_states": "Dispatched package with previous carrier status/time; no first result and later polling failure in separate fixtures.",
+      "action_and_variants": "Customer opens tracking during unavailable response and after recovery.",
+      "incorrect_behavior_detection": "Source and last update clearly shown; failure/no data not delivered; recovery displays actual subsequent status."
+    },
+    {
+      "requirement_id": "orders-fulfillment-11",
+      "scenario_id": "BB-orders-fulfillment-11",
+      "operation_modes_and_user_states": "Two packages in same order with separate IDs; verifiable delivered event for first, unverified claim control.",
+      "action_and_variants": "Staff applies/verifies first carrier delivery and customer opens both; attempt unverified claim for second.",
+      "incorrect_behavior_detection": "First records source/time and delivered status; second unchanged until its own verifiable delivery, no order-wide fabricated arrival."
+    },
+    {
+      "requirement_id": "orders-fulfillment-12",
+      "scenario_id": "BB-orders-fulfillment-12",
+      "operation_modes_and_user_states": "Delivered mixed order with one damaged bicycle package and undamaged accessory; owner evidence and report time known.",
+      "action_and_variants": "Owner reports damage from bicycle package, uploads synthetic evidence, submits and follows after-sales entry.",
+      "incorrect_behavior_detection": "Report preserves correct package/item/description/evidence/time; queryable linked case, accessory not mistakenly implicated."
+    },
+    {
+      "requirement_id": "orders-fulfillment-13",
+      "scenario_id": "BB-orders-fulfillment-13",
+      "operation_modes_and_user_states": "Test-paid order and authorized fulfillment worker; real dispatch receiver baseline.",
+      "action_and_variants": "Worker attempts create physical shipment from test order via UI and supported boundary.",
+      "incorrect_behavior_detection": "Physical dispatch task rejected and no real carrier request; test-payment status explicitly not authorization."
+    },
+    {
+      "requirement_id": "orders-fulfillment-14",
+      "scenario_id": "BB-orders-fulfillment-14",
+      "operation_modes_and_user_states": "Paid package ready for picking; each picking, dispatch and delivered action has known source/reference.",
+      "action_and_variants": "Repeat same action serially and concurrently at each stage; inspect package history/state and dispatch receiver.",
+      "incorrect_behavior_detection": "No duplicate business effect or state regression from repetitions; single package not dispatched twice or counted delivered twice."
+    },
+    {
+      "requirement_id": "orders-fulfillment-18",
+      "scenario_id": "BB-orders-fulfillment-18",
+      "operation_modes_and_user_states": "Three-line split order with one cancelled, one shipped, one preparing; later first delivery, partial refund and pending after-sales; then all remaining fulfilled.",
+      "action_and_variants": "Customer opens summary and detailed timeline after each transition.",
+      "incorrect_behavior_detection": "Partial/all shipping, delivery and cancellation accurately derived; refund/after-sales displayed separately; earlier events and per-line reality retained."
+    },
+    {
+      "requirement_id": "orders-fulfillment-19",
+      "scenario_id": "BB-orders-fulfillment-19",
+      "operation_modes_and_user_states": "Qualified exchange with original delivered package, inspected original return, target hold, settled difference and authorization.",
+      "action_and_variants": "Staff requests replacement, dispatches and records verified delivery; owner follows original and replacement links.",
+      "incorrect_behavior_detection": "New independent package links original line, case and exact target variant; only replacement follows its actual progress, original history preserved."
+    },
+    {
+      "requirement_id": "product-selection-1",
+      "scenario_id": "BB-product-selection-1",
+      "operation_modes_and_user_states": "Published match in A, match only B, matching draft, unrelated item; keyword yielding none; guest/member.",
+      "action_and_variants": "Search matching and no-result keywords in A, switch B and repeat.",
+      "incorrect_behavior_detection": "Results relevant and restricted to current market published products; empty result explicit with usable browse entry."
+    },
+    {
+      "requirement_id": "product-selection-2",
+      "scenario_id": "BB-product-selection-2",
+      "operation_modes_and_user_states": "Catalog where different items satisfy category/spec/price/availability individually but only one satisfies all; prices at chosen range bounds and outside.",
+      "action_and_variants": "Apply all filters, verify set, remove each one in turn and then clear all.",
+      "incorrect_behavior_detection": "Every displayed item satisfies remaining combined filters; clearing one preserves others and restores only newly eligible items; boundary inclusion matches stated filter."
+    },
+    {
+      "requirement_id": "product-selection-3",
+      "scenario_id": "BB-product-selection-3",
+      "operation_modes_and_user_states": "Filtered products with distinct and tied prices/spec sort values; documented sort choices.",
+      "action_and_variants": "Select each offered sort order then reverse/change it while filters remain active.",
+      "incorrect_behavior_detection": "Results obey advertised ordering, tied values do not break filtering; filters and membership retained rather than resetting catalog."
+    },
+    {
+      "requirement_id": "product-selection-4",
+      "scenario_id": "BB-product-selection-4",
+      "operation_modes_and_user_states": "Two comparable published bicycles/accessories with known differing specs and one absent value.",
+      "action_and_variants": "Customer selects products for comparison and reads corresponding fields side by side.",
+      "incorrect_behavior_detection": "Correct products/specs aligned; missing value explicitly unknown, not zero or copied from other product."
+    },
+    {
+      "requirement_id": "product-selection-5",
+      "scenario_id": "BB-product-selection-5",
+      "operation_modes_and_user_states": "Two bicycle models/sizes with different merchant-supplied geometry/ranges, source labels.",
+      "action_and_variants": "Customer opens fit information and switches model/variant.",
+      "incorrect_behavior_detection": "Applicable size ranges, geometry and model/variant attribution match supplied data, not stale or generalized dimensions."
+    },
+    {
+      "requirement_id": "product-selection-6",
+      "scenario_id": "BB-product-selection-6",
+      "operation_modes_and_user_states": "Confirmed sizing rules with input dimensions/preferences and independently derived candidate sets; fixtures inside each interval and preference-driven different result.",
+      "action_and_variants": "Customer enters complete dimensions/preferences for each vector and submits fit request.",
+      "incorrect_behavior_detection": "Returned candidate frame sizes and explanation match provided rule; recommendation changes when a rule-relevant input changes."
+    },
+    {
+      "requirement_id": "product-selection-7",
+      "scenario_id": "BB-product-selection-7",
+      "operation_modes_and_user_states": "Confirmed rule boundaries; vectors shared adjacent-size edge, one step outside supported range, and each required body/model input missing.",
+      "action_and_variants": "Customer submits fit inputs, reads guidance and follows supplement/manual-confirmation path.",
+      "incorrect_behavior_detection": "Boundary shows justified candidate sizes and posture checks; out-of-range says not applicable/manual confirmation; missing input named; none claims uniquely correct size."
+    },
+    {
+      "requirement_id": "product-selection-8",
+      "scenario_id": "BB-product-selection-8",
+      "operation_modes_and_user_states": "Two bicycle/accessory variants, one verified compatible and one verified incompatible with sources/time.",
+      "action_and_variants": "Customer selects each pairing and opens compatibility details.",
+      "incorrect_behavior_detection": "Verified conclusion, exact model/spec and source or verification time shown; other variant's conclusion not reused."
+    },
+    {
+      "requirement_id": "product-selection-9",
+      "scenario_id": "BB-product-selection-9",
+      "operation_modes_and_user_states": "Pairing with missing interface/dimension data, expired verification, or record for different selected variant.",
+      "action_and_variants": "Customer selects each pair and opens fit/consultation path.",
+      "incorrect_behavior_detection": "Cannot-confirm state with specific missing spec, last verification time or variant mismatch; usable specification/support path, no unsupported compatibility guarantee."
+    },
+    {
+      "requirement_id": "product-selection-10",
+      "scenario_id": "BB-product-selection-10",
+      "operation_modes_and_user_states": "Authorized employee and two models with existing fit/compatibility records; new valid record changes one conclusion.",
+      "action_and_variants": "Employee updates source/model/verifier/time and data; customer reopens affected and control pair.",
+      "incorrect_behavior_detection": "Updated metadata persists and affected public conclusion follows effective data; control model unchanged and obsolete conclusion not retained."
+    },
+    {
+      "requirement_id": "site-quality-1",
+      "scenario_id": "BB-site-quality-1",
+      "operation_modes_and_user_states": "Reproducible browser/device matrix containing desktop and narrow viewport from agreed target range; guest/member/employee fixtures for search-cart, quote-order lookup, after-sales-chat and staff queues.",
+      "action_and_variants": "At each viewport actually search/add/change cart, complete quote/view order, submit after-sales/send/read support reply, process authorized order/support queue task; rotate/resize midway and inspect overflow.",
+      "incorrect_behavior_detection": "Required content and actions visible and completable without horizontal obstruction; no lost totals, hidden submit control or inaccessible staff queue after reflow. Evidence includes task completion at each viewport."
+    },
+    {
+      "requirement_id": "site-quality-2",
+      "scenario_id": "BB-site-quality-2",
+      "operation_modes_and_user_states": "Main catalog/detail/cart/checkout/order/content views with long titles, absent image and mixed image proportions; desktop/narrow display.",
+      "action_and_variants": "Customer navigates each page and identifies product info and primary action; capture comparable views for human visual assessment.",
+      "incorrect_behavior_detection": "Typography/color/image proportions/spacing/hierarchy consistently communicate products and actions; stretched images, clipped labels or visually indistinguishable primary action fail qualitative review."
+    },
+    {
+      "requirement_id": "site-quality-3",
+      "scenario_id": "BB-site-quality-3",
+      "operation_modes_and_user_states": "Guest/member/employee main-task fixtures as in responsive scenario; pointer unused after initial browser focus.",
+      "action_and_variants": "Use Tab/Shift-Tab/Enter/Space and applicable standard keys to search, select variant, edit cart, submit checkout fields, query order, submit case and operate support; include dialogs/errors.",
+      "incorrect_behavior_detection": "Visible focus, logical traversal and usable controls permit task completion; no keyboard trap or unreachable critical action; recording shows focus progression."
+    },
+    {
+      "requirement_id": "site-quality-4",
+      "scenario_id": "BB-site-quality-4",
+      "operation_modes_and_user_states": "Supported assistive reader and accessibility inspection at user boundary; forms, informative/decorative images, validation errors, payment/status and quote changes.",
+      "action_and_variants": "Navigate/read forms and images with assistive tool, submit invalid field, change shipping/quantity and trigger status update.",
+      "incorrect_behavior_detection": "Meaningful labels/appropriate alternatives and perceivable changed status/fees; user can identify field/error/result without seeing layout; decorative images not misleadingly announced as products."
+    },
+    {
+      "requirement_id": "site-quality-5",
+      "scenario_id": "BB-site-quality-5",
+      "operation_modes_and_user_states": "Registration/address/checkout/after-sales forms and cart/support actions; one invalid field and controlled external failure per operation.",
+      "action_and_variants": "Submit invalid input or trigger failure, read message, correct/retry from offered control and finish valid action.",
+      "incorrect_behavior_detection": "Specific problem identified and working correction/retry path; valid continuation succeeds without unexplained blank state or loss of necessary context."
+    },
+    {
+      "requirement_id": "site-quality-6",
+      "scenario_id": "BB-site-quality-6",
+      "operation_modes_and_user_states": "Published product, category and article pages with distinct content; browser and unauthenticated HTTP client available.",
+      "action_and_variants": "Open and fetch each public URL, inspect delivered document/title/description/canonical and visible body; follow canonical.",
+      "incorrect_behavior_detection": "Readable URL, page-specific title/description, indexable substantive text and correct canonical; no all-pages-identical title or canonical to unrelated page."
+    },
+    {
+      "requirement_id": "site-quality-7",
+      "scenario_id": "BB-site-quality-7",
+      "operation_modes_and_user_states": "Draft/withdrawn content, account/checkout, internal search and employee routes; public sitemap/indexing metadata accessible.",
+      "action_and_variants": "Fetch sitemap and each route anonymously plus authorized boundary where needed; inspect indexing declaration and public entries.",
+      "incorrect_behavior_detection": "Excluded route classes absent from public sitemap and never declare themselves indexable; public discovery does not reveal unpublished/private content."
+    },
+    {
+      "requirement_id": "site-quality-8",
+      "scenario_id": "BB-site-quality-8",
+      "operation_modes_and_user_states": "A/B accounts, orders, support conversations and employee records plus nonexistent IDs; guest/member/low-privilege employee sessions.",
+      "action_and_variants": "A or unprivileged user requests B and nonexistent resources via known public routes, read and modification attempts; compare responses and owner-visible state.",
+      "incorrect_behavior_detection": "Both unauthorized-existent and nonexistent requests avoid sensitive existence/detail disclosures; forbidden data/change unavailable, owner data unchanged."
+    },
+    {
+      "requirement_id": "site-quality-9",
+      "scenario_id": "BB-site-quality-9",
+      "operation_modes_and_user_states": "Approved authentication/sensitive-action limit L and time window, transport/session policy, synthetic identities; external secret references only.",
+      "action_and_variants": "Attempt invalid login/sensitive operations below/at/above L, try valid user after allowed recovery window; inspect browser-visible transport/session handling without recording secret values.",
+      "incorrect_behavior_detection": "Configured abuse limits enforced at defined boundary with recoverable legitimate use; credentials/session data protected in transit and exposed browser surfaces per approved policy. Missing thresholds/policy are execution-oracle gaps, not invented defaults."
+    },
+    {
+      "requirement_id": "site-quality-10",
+      "scenario_id": "BB-site-quality-10",
+      "operation_modes_and_user_states": "Approved purposes/policy and contact/request process; synthetic account with collected personal data.",
+      "action_and_variants": "Customer reaches each collection point, opens policy, submits access, correction and deletion/retention request through provided entries.",
+      "incorrect_behavior_detection": "Approved purpose and applicable policy available; each required request path usable with queryable acknowledgement appropriate to configured process; no claim of immediate deletion where only request is required."
+    },
+    {
+      "requirement_id": "site-quality-11",
+      "scenario_id": "BB-site-quality-11",
+      "operation_modes_and_user_states": "Synthetic unique password/payment-shaped/contact markers, no live credentials; public error surfaces and authorized ordinary-log view.",
+      "action_and_variants": "Trigger normal business events and failed submissions containing synthetic sensitive markers; inspect responses and ordinary logs via supported operational boundary.",
+      "incorrect_behavior_detection": "No password/full payment credential/unnecessary personal marker exposed; logs still correlate event/error without secret. Evidence records marker labels/redacted findings, not credential values."
+    },
+    {
+      "requirement_id": "site-quality-12",
+      "scenario_id": "BB-site-quality-12",
+      "operation_modes_and_user_states": "Order submission, payment, refund and support-message workflows; external interruption before acknowledgement and receiver accepted-but-response-lost vectors; original references/counts known.",
+      "action_and_variants": "Perform action through user UI, interrupt response, reload and retry through offered flow; inspect staff reconciliation and external receiver outcomes.",
+      "incorrect_behavior_detection": "Understandable pending/failure state and reconcilable original record retained; retry does not duplicate respective business effect; unknown money result not falsely finalized."
+    },
+    {
+      "requirement_id": "site-quality-13",
+      "scenario_id": "BB-site-quality-13",
+      "operation_modes_and_user_states": "Unresolved checkout/payment/refund or notification error affecting known records, plus unrelated staff role; approved persistence threshold if defined.",
+      "action_and_variants": "Cause failure to remain unresolved, authorized employee opens operations exception view, follows affected records, then resolve and revisit; unauthorized employee requests details.",
+      "incorrect_behavior_detection": "Authorized staff sees concrete error, scope and handling status across persistence/resolution; unrelated staff does not gain private data; unresolved error cannot vanish without outcome."
+    },
+    {
+      "requirement_id": "site-quality-14",
+      "scenario_id": "BB-site-quality-14",
+      "operation_modes_and_user_states": "Approved backup plan and declared covered datasets/recovery point; reproducible known order/inventory/account/audit data; successful and failed backup attempts.",
+      "action_and_variants": "Authorized operator executes backup through supported operational command/interface and opens result report.",
+      "incorrect_behavior_detection": "Actual success/failure, covered dataset scope and declared recovery point saved; failed/incomplete backup never reported as successful full coverage."
+    },
+    {
+      "requirement_id": "site-quality-17",
+      "scenario_id": "BB-site-quality-17",
+      "operation_modes_and_user_states": "Approved restore plan, completed backup with known reference records and declared recovery point; later mutations distinguish old/new state; isolated restore target.",
+      "action_and_variants": "Operator performs restore drill through supported operation; use app/authorized export on restored target to verify order, stock, account and audit records against saved point; record missing-dataset failure control.",
+      "incorrect_behavior_detection": "All four datasets recover to declared point and verifiable drill result saved; merely starting restore not success, missing/inconsistent dataset fails; no production destructive action assumed."
+    },
+    {
+      "requirement_id": "site-quality-18",
+      "scenario_id": "BB-site-quality-18",
+      "operation_modes_and_user_states": "Formally confirmed visual specification with fonts/colors/image treatments and target pages; valid licensed assets; no invented brand decisions.",
+      "action_and_variants": "Customer opens catalog/detail/cart/checkout/content at target viewports; reviewer compares rendered font/color/image treatment against each specified value/example.",
+      "incorrect_behavior_detection": "Published pages match confirmed standard; deviations documented per page. Without formal standard this conditional execution remains unproven, never self-approved with an invented look."
+    }
+  ]
+}

@@ -1,0 +1,2172 @@
+{
+  "source": "specs/packages/*.md::外部行为 (excluding git.md and licensing.md)",
+  "version": "confirmed-external-behavior-2026-10-08; candidate-v0.1; git:c0e5c2e2d9c03e79fdb0f8a1d7fefac80f6c16d9; source-set-sha256:5e16d2f558f3dc616a142a1f1841f85308007ddc238c1f4030f4be5d385e76ee",
+  "confirmation": {
+    "status": "confirmed_for_black_box_scenario_design",
+    "date": "2026-10-08",
+    "authority": "human user in this Codex task",
+    "statement": "我确认当前业务需求包中的‘外部行为’作为本次场景设计的需求基线。"
+  },
+  "scope": {
+    "stage": "black-box",
+    "excluded_packages": [
+      "git.md",
+      "licensing.md"
+    ],
+    "excluded_sections": [
+      "意图",
+      "验证"
+    ],
+    "constraints": [
+      "经营参数保持待定，不擅自补充具体值",
+      "不沿用 K.P 滑板项目经营政策",
+      "仅生成和审查场景；不实现、不执行应用测试、不生成白盒、不宣称网站验收通过",
+      "未来配置与数据仅在确认后用于执行，合成夹具不是经营决策",
+      "电助力车、定制装配、经销商能力为待定扩展，不作为首版要求"
+    ]
+  },
+  "baseline_context": {
+    "sources": [
+      {
+        "path": "specs/map.md",
+        "sha256": "b9c06b171fb42cb3a7df92f4e7d645f27c8da97dc88006303ea77e32b06cbc4f"
+      },
+      {
+        "path": "specs/decisions/001-candidate-business-requirements.md",
+        "sha256": "433711ad76805411c990a7f9ae334a9df47880d74a28bafe1b119c8faa80b909"
+      }
+    ],
+    "decision_record": "<!-- SPDX-License-Identifier: Apache-2.0 -->\n<!-- SPDX-FileCopyrightText: 2026 SubLang International <https://sublang.ai> -->\n\n# DR-001: 首版候选业务需求的来源与边界\n\n## 状态\n\n已接受的文档编写决策；所列业务行为仍为候选需求草案，未经逐项业务批准。\n\n## 背景\n\n人类已确认本项目是销售自行车及自行车配件的高端出海独立站，首版中文需求最终服务于测试。\n本项目尚无已确认的目标市场、品牌、付款方式、商业政策、真实商品数据或服务凭据。\n参考材料为相邻 K.P 项目的 specs/requirements/、REQUEST.md 和 PRODUCTION_REQUEST.md；这些材料属于另一品牌和滑板品类，且含相互演进的演示与生产边界。\n\n## 决策\n\n- 将完整电商能力写成按共同业务意图组织的候选规约包；各包外部行为和验证均为设计约定，不表示已实现、已测试或已获逐项批准。\n- 本次文档版本为候选 v0.1；该版本号标识审阅阶段，不代表正式业务基线。\n- 仅继承参考材料的功能覆盖线索，不继承 K.P 品牌、滑板品类、美国／加拿大市场、英文站点、模拟支付、税费或退换政策，也不继承其技术和历史演示政策。\n- 将自行车尺码与几何、配件兼容性、整车履约和维修保修作为本项目特有的候选行为；缺乏可靠数据时明确提示，不作尺寸或适配保证。\n- 将未确定的经营参数作为配置和决策输入；在所需输入缺失时，不得把示例值伪装为可交易的正式报价或承诺。\n- 已分配的规约条目 ID 可供将来确认和 JSON 需求快照使用；公开发布后遵守 ID 永不重新分配的规则。\n- 未来测试资产目录由用户指定，建议默认项目 tests/；进入测试流程前先询问目录，本次不导出已确认 JSON 或创建测试台账。\n- 跨包端到端组合由最终结果所在包承接验证设计：发现至付款与订单由 cart-checkout 负责，订单至送达由 orders-fulfillment 负责，订单至售后结案由 after-sales 负责，会话至处理接续由 customer-support 负责，上线配置至正式可交易状态由 launch-readiness 负责。\n\n### 待定决策及影响范围\n\n| 待定事项 | 主要影响包 |\n| --- | --- |\n| 目标国家／地区、站点语言、报价与结算币种 | market-catalog、cart-checkout、content-marketing、launch-readiness |\n| 正式品牌、视觉资产与授权商品资料 | market-catalog、content-marketing、site-quality、launch-readiness |\n| 真实或测试支付、支付服务、退款资金边界与对账 | cart-checkout、after-sales、orders-fulfillment、launch-readiness |\n| 配送范围、服务、运费、税务规则、退货期限与费用承担 | cart-checkout、orders-fulfillment、after-sales、launch-readiness |\n| 整车包装／组装责任、运输损坏处理、保修与维修承诺 | orders-fulfillment、after-sales、content-marketing、launch-readiness |\n| 自行车类别、是否销售电助力车、配件类型及兼容数据来源 | market-catalog、product-selection、orders-fulfillment、after-sales |\n| 积分是否上线、取得／兑换／过期数值及促销叠加 | customer-account、cart-checkout、content-marketing |\n| 定制装配、经销商业务是否纳入后续范围 | market-catalog、product-selection、orders-fulfillment、merchant-operations |\n| 客服时段、通知渠道、隐私与服务政策、数据保留期 | customer-support、site-quality、launch-readiness |\n\n电助力车、定制装配和经销商能力仅是待定扩展范围，不构成首版交付要求。\n\n## 影响\n\n- 规约包以候选身份保持可审阅、可测试设计和稳定引用，后续业务确认可逐项接受、修订或撤销。\n- 商家资料、授权素材、政策和外部服务缺失会限制正式交易或公开承诺，但不阻断需求文档编写。\n- 后续确认实质性经营选择时，应记录相应决策并同步修订受影响的规约包与索引。\n",
+    "interpretation": "DR-001 的候选身份由用户本次外部行为确认限定覆盖；经营参数仍待定，测试目录已明确。"
+  },
+  "source_files": [
+    {
+      "path": "specs/packages/after-sales.md",
+      "sha256": "02ef51474f4b3d40435a6141eed462cb6c5be459f911fa03c6b4236455b7a103",
+      "external_behavior_count": 30
+    },
+    {
+      "path": "specs/packages/cart-checkout.md",
+      "sha256": "c1bc8d96bc1dd033f2997002b62d979a11e685bf43e9ff2131e13b42604782ce",
+      "external_behavior_count": 23
+    },
+    {
+      "path": "specs/packages/content-marketing.md",
+      "sha256": "a3978d753fef241df54cd0c1c60f423540d0542b4c6727432d2fe7f411a1943a",
+      "external_behavior_count": 14
+    },
+    {
+      "path": "specs/packages/customer-account.md",
+      "sha256": "4541b956c0f944ba130400ab499352a5f1564ce9817cdf0cb106b51189d4bba2",
+      "external_behavior_count": 19
+    },
+    {
+      "path": "specs/packages/customer-support.md",
+      "sha256": "9d4ad979484b837d985c91daa17bac16a8a534fee0594769490461852834b949",
+      "external_behavior_count": 17
+    },
+    {
+      "path": "specs/packages/launch-readiness.md",
+      "sha256": "4686afb2b40c04c95e254e687bb1e87940e5671086991909676976688d0c671e",
+      "external_behavior_count": 13
+    },
+    {
+      "path": "specs/packages/market-catalog.md",
+      "sha256": "af4f746d7645152c24f817492ec31a227a6a1226358b720ae824a3ab05cda281",
+      "external_behavior_count": 15
+    },
+    {
+      "path": "specs/packages/merchant-operations.md",
+      "sha256": "7d7882a8fea8e804801b3ccd9c10aeb181e237890fb81fdf3e0ec6bbc480a32d",
+      "external_behavior_count": 15
+    },
+    {
+      "path": "specs/packages/orders-fulfillment.md",
+      "sha256": "d4e99621aba759a0d1f75c56e3944c3558efa3ab037c39c74fce0f71e883b0e8",
+      "external_behavior_count": 16
+    },
+    {
+      "path": "specs/packages/product-selection.md",
+      "sha256": "cb5ed884f9c1d0cc157a020b2574f3611e75c0b9e98bd9d4a6147a0145e215bf",
+      "external_behavior_count": 10
+    },
+    {
+      "path": "specs/packages/site-quality.md",
+      "sha256": "07bb6ff4f38c7a68f12366503451a09e4645d62eeed2c66e7ba67e1ff8b4d630",
+      "external_behavior_count": 16
+    }
+  ],
+  "items": [
+    {
+      "id": "after-sales-1",
+      "text": "当有权顾客申请取消订单，售后流程应根据订单当前状态 [[orders-fulfillment-3](orders-fulfillment.md#orders-fulfillment-3)] 显示申请资格、处理状态及不符合条件的原因。",
+      "package": "after-sales",
+      "source": "specs/packages/after-sales.md",
+      "anchor": "after-sales-1",
+      "source_line": 13,
+      "related_requirement_ids": [
+        "orders-fulfillment-3"
+      ]
+    },
+    {
+      "id": "after-sales-2",
+      "text": "给定订单付款结果已核清，当有权员工批准未交运商品取消，售后流程应按付款状态记录取消原因、变更对应订单行状态 [[orders-fulfillment-4](orders-fulfillment.md#orders-fulfillment-4)] 并释放已取消商品的库存占用 [[market-catalog-12](market-catalog.md#market-catalog-12)]；付款前整单取消还应释放限额优惠 [[content-marketing-15](content-marketing.md#content-marketing-15)] 与积分占用 [[customer-account-21](customer-account.md#customer-account-21)]：\n\n| 付款状态 | 取消后的资金结果 |\n| --- | --- |\n| 待付款且无在途付款 | 关闭原待付款订单并释放全部行占用；仍需购买的商品须重新报价并建立新订单 [[cart-checkout-22](cart-checkout.md#cart-checkout-22)] |\n| 已付款 [[cart-checkout-14](cart-checkout.md#cart-checkout-14)] | 仅取消符合条件的未交运行并建立按原支付模式处理的退款待办，不将待办冒充已退款 |",
+      "package": "after-sales",
+      "source": "specs/packages/after-sales.md",
+      "anchor": "after-sales-2",
+      "source_line": 17,
+      "related_requirement_ids": [
+        "cart-checkout-14",
+        "cart-checkout-22",
+        "content-marketing-15",
+        "customer-account-21",
+        "market-catalog-12",
+        "orders-fulfillment-4"
+      ]
+    },
+    {
+      "id": "after-sales-3",
+      "text": "当已核验订单归属的顾客 [[orders-fulfillment-3](orders-fulfillment.md#orders-fulfillment-3)] 对订单行 [[orders-fulfillment-1](orders-fulfillment.md#orders-fulfillment-1)] 提交售后申请，售后流程应按申请类型收集资料并生成可查询的案件：\n\n| 申请类型 | 必需资料 |\n| --- | --- |\n| 退货 | 商品、数量、原因和必要证据 |\n| 换货 | 原商品、数量、目标商品或规格、原因和必要证据 |\n| 运输损坏 [[orders-fulfillment-12](orders-fulfillment.md#orders-fulfillment-12)] | 所涉商品、包裹、损坏说明和证据 |",
+      "package": "after-sales",
+      "source": "specs/packages/after-sales.md",
+      "anchor": "after-sales-3",
+      "source_line": 26,
+      "related_requirement_ids": [
+        "orders-fulfillment-1",
+        "orders-fulfillment-12",
+        "orders-fulfillment-3"
+      ]
+    },
+    {
+      "id": "after-sales-4",
+      "text": "当申请数量超过已购未处理数量，售后流程应拒绝超量申请并指出可申请数量。",
+      "package": "after-sales",
+      "source": "specs/packages/after-sales.md",
+      "anchor": "after-sales-4",
+      "source_line": 36,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "after-sales-5",
+      "text": "当退换申请不符合已公布的期限或条件，售后流程应显示适用的订单政策快照 [[orders-fulfillment-1](orders-fulfillment.md#orders-fulfillment-1)] 与拒绝原因。",
+      "package": "after-sales",
+      "source": "specs/packages/after-sales.md",
+      "anchor": "after-sales-5",
+      "source_line": 40,
+      "related_requirement_ids": [
+        "orders-fulfillment-1"
+      ]
+    },
+    {
+      "id": "after-sales-6",
+      "text": "当有权员工审核退换案件，售后流程应记录接受或拒绝决定、理由、处理人和时间，并向顾客显示下一步。",
+      "package": "after-sales",
+      "source": "specs/packages/after-sales.md",
+      "anchor": "after-sales-6",
+      "source_line": 44,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "after-sales-7",
+      "text": "当退回商品被实际接收并检查，售后流程应记录所涉序列号或订单行、状态、检查证据及可退款或换货的结论。",
+      "package": "after-sales",
+      "source": "specs/packages/after-sales.md",
+      "anchor": "after-sales-7",
+      "source_line": 48,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "after-sales-8",
+      "text": "当订单行或其换货案件退款被核准，售后流程应分开计算原订单与案件补款 [[after-sales-28](#after-sales-28)] 的可退金额，并按真实实收或隔离测试模拟付款模式使核准额同时符合逐笔来源交易的可退余额 [[after-sales-32](#after-sales-32)]，保存计算依据、币种、支付模式与核准者：\n\n| 退款来源 | 核准上限 |\n| --- | --- |\n| 原订单行付款 | 按本次获准且尚未处理的数量 [[after-sales-4](#after-sales-4)]、原成交快照的按件优惠、积分抵扣及税费／配送分摊 [[orders-fulfillment-1](orders-fulfillment.md#orders-fulfillment-1)] 计算；不超过该数量对应的尚未退款付款额度、该行及整单剩余已确认付款额度 |\n| 所属换货案件补款 | 仅限该案件已确认补款额度扣除既有退款与未结预留后的余额，不得转给其他订单行或数量 |",
+      "package": "after-sales",
+      "source": "specs/packages/after-sales.md",
+      "anchor": "after-sales-8",
+      "source_line": 52,
+      "related_requirement_ids": [
+        "after-sales-28",
+        "after-sales-32",
+        "after-sales-4",
+        "orders-fulfillment-1"
+      ]
+    },
+    {
+      "id": "after-sales-9",
+      "text": "当授权人员执行退款，售后流程应针对每项已核准的来源付款交易分配 [[after-sales-32](#after-sales-32)]，仅通过该交易所属支付模式 [[orders-fulfillment-1](orders-fulfillment.md#orders-fulfillment-1)] [[after-sales-28](#after-sales-28)] 允许的路径发起一次退款；测试模式仅更新隔离的模拟退款记录 [[launch-readiness-9](launch-readiness.md#launch-readiness-9)]，并分别保存来源交易与真实或测试退款引用。",
+      "package": "after-sales",
+      "source": "specs/packages/after-sales.md",
+      "anchor": "after-sales-9",
+      "source_line": 61,
+      "related_requirement_ids": [
+        "after-sales-28",
+        "after-sales-32",
+        "launch-readiness-9",
+        "orders-fulfillment-1"
+      ]
+    },
+    {
+      "id": "after-sales-10",
+      "text": "当退款结果未明，售后流程应将案件标为待核对，保留原退款引用与对应来源交易的可退额预留 [[after-sales-32](#after-sales-32)]，并在核清前阻止再次执行同笔退款。",
+      "package": "after-sales",
+      "source": "specs/packages/after-sales.md",
+      "anchor": "after-sales-10",
+      "source_line": 65,
+      "related_requirement_ids": [
+        "after-sales-32"
+      ]
+    },
+    {
+      "id": "after-sales-11",
+      "text": "当整车完成交付且商家取得可核实的序列号，售后流程应将序列号关联到确切订单行并限制重复关联。",
+      "package": "after-sales",
+      "source": "specs/packages/after-sales.md",
+      "anchor": "after-sales-11",
+      "source_line": 69,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "after-sales-12",
+      "text": "当顾客提交保修申请，售后流程应依据已公布的保修政策 [[content-marketing-9](content-marketing.md#content-marketing-9)] 与原订单快照 [[orders-fulfillment-1](orders-fulfillment.md#orders-fulfillment-1)] 判断资格，或说明资料不足并请求补充。",
+      "package": "after-sales",
+      "source": "specs/packages/after-sales.md",
+      "anchor": "after-sales-12",
+      "source_line": 73,
+      "related_requirement_ids": [
+        "content-marketing-9",
+        "orders-fulfillment-1"
+      ]
+    },
+    {
+      "id": "after-sales-13",
+      "text": "当保修或维修案件推进，售后流程应记录诊断、处理责任、修理或更换结果、费用依据及交还状态。",
+      "package": "after-sales",
+      "source": "specs/packages/after-sales.md",
+      "anchor": "after-sales-13",
+      "source_line": 77,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "after-sales-14",
+      "text": "当已批准售后案件改变库存占用 [[market-catalog-12](market-catalog.md#market-catalog-12)]、优惠权益 [[content-marketing-7](content-marketing.md#content-marketing-7)] 或积分账本 [[customer-account-13](customer-account.md#customer-account-13)]，售后流程应保存各调整的来源案件、避免重复调整同一权益，并保持原订单快照不变 [[orders-fulfillment-2](orders-fulfillment.md#orders-fulfillment-2)]。",
+      "package": "after-sales",
+      "source": "specs/packages/after-sales.md",
+      "anchor": "after-sales-14",
+      "source_line": 81,
+      "related_requirement_ids": [
+        "content-marketing-7",
+        "customer-account-13",
+        "market-catalog-12",
+        "orders-fulfillment-2"
+      ]
+    },
+    {
+      "id": "after-sales-18",
+      "text": "当售后案件发生有效业务动作，售后流程应按申请类型与下表推进案件状态，记录动作来源和时间，并拒绝跳过必要审核或检查的转换：\n\n| 案件类型 | 允许的状态路径 |\n| --- | --- |\n| 取消 | 待审核 → 已拒绝／待付款核对／待退款／已完成；待付款核对 → 待审核；待退款 → 已完成（全部来源退款成功后） [[after-sales-33](#after-sales-33)] |\n| 退货 | 待审核 → 已拒绝（原件未寄出）／待原件处置（已在途或收回且拒绝）／待退回；待退回 → 待检查；待检查 → 待原件处置／待退款；待原件处置 → 已拒绝（原件去向履行后） [[after-sales-31](#after-sales-31)]；待退款 → 已完成（全部来源退款成功后） [[after-sales-33](#after-sales-33)] |\n| 换货 | 待审核 → 已拒绝（原件未寄出）／待原件处置（已在途或收回且拒绝）／待退回；待退回 → 待检查；待检查 → 待原件处置／待补差价／待换货履约；待原件处置 → 已拒绝（原件去向履行后） [[after-sales-31](#after-sales-31)]；待补差价 → 待换货履约；交运前的待审核、待退回、待检查、待原件处置、待补差价或待换货履约 → 已终止（原件未寄出且无补款待退）／待终止结算（原件在途、已收回或有补款待退） [[after-sales-27](#after-sales-27)]；待换货履约 → 已完成（替代包裹送达后）；待终止结算 → 已终止（资金与原件去向核清后） [[after-sales-31](#after-sales-31)] |\n| 运输损坏或保修 | 待审核 → 已拒绝（车辆未寄出）／待原件处置（车辆已在途或收回且拒绝）／待补资料／待诊断；待补资料 → 待审核；待诊断 → 已拒绝（未收回车辆）／待原件处置（已在途或收回车辆）／待处理；待原件处置 → 已拒绝（车辆去向履行后） [[after-sales-31](#after-sales-31)]；待处理 → 已完成（结果履行后） |\n| 退款 | 待核准 → 已拒绝／待执行；待执行、结果待核对与已失败根据各来源分配结果 [[after-sales-33](#after-sales-33)] 分别进入待执行、结果待核对、已失败或已完成；仅失败分配重新核准后可由已失败进入待执行 |",
+      "package": "after-sales",
+      "source": "specs/packages/after-sales.md",
+      "anchor": "after-sales-18",
+      "source_line": 85,
+      "related_requirement_ids": [
+        "after-sales-27",
+        "after-sales-31",
+        "after-sales-33"
+      ]
+    },
+    {
+      "id": "after-sales-19",
+      "text": "当退款被确认为失败，售后流程应保留失败原因和可重试的原案件，释放该次来源交易可退额预留 [[after-sales-32](#after-sales-32)]，仅允许对失败分配重新核准并重试，不重复处理已成功或仍待核对的分配 [[after-sales-33](#after-sales-33)]。",
+      "package": "after-sales",
+      "source": "specs/packages/after-sales.md",
+      "anchor": "after-sales-19",
+      "source_line": 97,
+      "related_requirement_ids": [
+        "after-sales-32",
+        "after-sales-33"
+      ]
+    },
+    {
+      "id": "after-sales-20",
+      "text": "当同一退款执行或结果重复到达，售后流程应仅记一次已退金额、库存或积分调整，并保留重复事件的核对记录。",
+      "package": "after-sales",
+      "source": "specs/packages/after-sales.md",
+      "anchor": "after-sales-20",
+      "source_line": 101,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "after-sales-21",
+      "text": "当退货或换货申请获批准，售后流程应向顾客显示按原订单政策 [[orders-fulfillment-1](orders-fulfillment.md#orders-fulfillment-1)] 确定的退回地点、包装与整车拆装要求、费用承担及截止时间；尚未确定的条件应阻止生成寄回指引。",
+      "package": "after-sales",
+      "source": "specs/packages/after-sales.md",
+      "anchor": "after-sales-21",
+      "source_line": 105,
+      "related_requirement_ids": [
+        "orders-fulfillment-1"
+      ]
+    },
+    {
+      "id": "after-sales-22",
+      "text": "当换货目标商品与已检查的退回商品存在价差，售后流程应按原订单可退金额及目标商品当前报价 [[market-catalog-6](market-catalog.md#market-catalog-6)] 展示差额，并在顾客确认补款或退款安排前阻止替代商品交运。",
+      "package": "after-sales",
+      "source": "specs/packages/after-sales.md",
+      "anchor": "after-sales-22",
+      "source_line": 109,
+      "related_requirement_ids": [
+        "market-catalog-6"
+      ]
+    },
+    {
+      "id": "after-sales-23",
+      "text": "当换货案件准备替代商品履约，售后流程应按已取得的目标变体库存占用 [[after-sales-30](#after-sales-30)] 及价差处理结果 [[after-sales-28](#after-sales-28)] 决定是否请求创建可追踪的替代包裹 [[orders-fulfillment-19](orders-fulfillment.md#orders-fulfillment-19)]：\n\n| 履约条件 | 结果 |\n| --- | --- |\n| 已检查退回商品、目标变体占库有效、价差已结清且获履约授权 | 请求替代包裹 |\n| 目标变体占库失败 | 不创建包裹，向顾客提供改选目标或改走退款的路径 |\n| 未检查实物、价差未结清或缺少履约授权 | 保留案件待办，不创建包裹 |",
+      "package": "after-sales",
+      "source": "specs/packages/after-sales.md",
+      "anchor": "after-sales-23",
+      "source_line": 113,
+      "related_requirement_ids": [
+        "after-sales-28",
+        "after-sales-30",
+        "orders-fulfillment-19"
+      ]
+    },
+    {
+      "id": "after-sales-24",
+      "text": "当员工将售后案件标为已完成，售后流程应按处理结论核对实际结果与已接收原件的处置 [[after-sales-31](#after-sales-31)]，并阻止将未履行的决定标为已完成：\n\n| 处理结论 | 完成依据 |\n| --- | --- |\n| 未付款订单取消 | 原订单全部行已关闭且库存已释放 [[after-sales-2](#after-sales-2)] |\n| 已付款取消或退货退款 | 全部来源退款成功结果已确认 [[after-sales-33](#after-sales-33)] |\n| 换货 | 替代包裹已送达 [[orders-fulfillment-11](orders-fulfillment.md#orders-fulfillment-11)] |\n| 保修或维修 | 维修或更换结果已记录，车辆已交还或按适用政策完成处置 [[after-sales-13](#after-sales-13)] |",
+      "package": "after-sales",
+      "source": "specs/packages/after-sales.md",
+      "anchor": "after-sales-24",
+      "source_line": 123,
+      "related_requirement_ids": [
+        "after-sales-13",
+        "after-sales-2",
+        "after-sales-31",
+        "after-sales-33",
+        "orders-fulfillment-11"
+      ]
+    },
+    {
+      "id": "after-sales-25",
+      "text": "当原支付模式的退款结果被核实为成功，售后流程应按获核准的订单行或案件补款金额 [[after-sales-8](#after-sales-8)] 将对应来源付款交易的未结预留 [[after-sales-32](#after-sales-32)] 转为逐笔已退余额，依据各来源结果汇总案件状态 [[after-sales-33](#after-sales-33)]，并保存真实资金或隔离测试结果证据。",
+      "package": "after-sales",
+      "source": "specs/packages/after-sales.md",
+      "anchor": "after-sales-25",
+      "source_line": 134,
+      "related_requirement_ids": [
+        "after-sales-32",
+        "after-sales-33",
+        "after-sales-8"
+      ]
+    },
+    {
+      "id": "after-sales-26",
+      "text": "当顾客对付款结果待核对的订单 [[cart-checkout-23](cart-checkout.md#cart-checkout-23)] 申请取消，售后流程应将案件标为待付款核对，并在核清前保留库存占用且不声称订单已取消或已退款。",
+      "package": "after-sales",
+      "source": "specs/packages/after-sales.md",
+      "anchor": "after-sales-26",
+      "source_line": 138,
+      "related_requirement_ids": [
+        "cart-checkout-23"
+      ]
+    },
+    {
+      "id": "after-sales-27",
+      "text": "当换货案件在替代商品交运前收到顾客撤回或无法继续履约的确认，售后流程应释放已有目标变体库存占用 [[market-catalog-12](market-catalog.md#market-catalog-12)]、记录原因，将未退的已确认补款 [[after-sales-28](#after-sales-28)] 建为关联该案件及原补款交易的退款待办，并向顾客显示待退金额、退款状态及在途或已退回原件的去向；原件未寄出且无补款待退时可标记已终止，否则进入待终止结算 [[after-sales-31](#after-sales-31)]：\n\n| 终止原因 | 记录 |\n| --- | --- |\n| 顾客撤回换货 | 顾客请求与时间 |\n| 目标商品无法继续履约 | 失败原因与责任人 |",
+      "package": "after-sales",
+      "source": "specs/packages/after-sales.md",
+      "anchor": "after-sales-27",
+      "source_line": 142,
+      "related_requirement_ids": [
+        "after-sales-28",
+        "after-sales-31",
+        "market-catalog-12"
+      ]
+    },
+    {
+      "id": "after-sales-28",
+      "text": "当顾客确认换货价差安排，售后流程应按原订单支付模式 [[orders-fulfillment-1](orders-fulfillment.md#orders-fulfillment-1)] 将差额处理记录为独立于原订单快照的案件资金记录，并在结果未核实成功时保持换货待办：\n\n| 差额 | 处理结果 |\n| --- | --- |\n| 顾客需补款 | 每次已确认安排只发起一次关联案件的补款；成功后保存该笔真实实收或隔离测试模拟付款额度、币种、模式及交易引用，失败后可重新确认，结果未明须核对原尝试且不得再次扣款或交运 |\n| 商家需退差额 | 核准未超出该行可退金额 [[after-sales-8](#after-sales-8)] 后通过原支付模式退款 [[after-sales-9](#after-sales-9)]，全部来源结果核实成功 [[after-sales-33](#after-sales-33)] 后标记差额已结清 |\n| 无差额 | 记录零差额及顾客确认，不产生资金动作 |",
+      "package": "after-sales",
+      "source": "specs/packages/after-sales.md",
+      "anchor": "after-sales-28",
+      "source_line": 151,
+      "related_requirement_ids": [
+        "after-sales-33",
+        "after-sales-8",
+        "after-sales-9",
+        "orders-fulfillment-1"
+      ]
+    },
+    {
+      "id": "after-sales-29",
+      "text": "当有权人员核对结果未明的售后资金动作，售后流程应依据原退款 [[after-sales-10](#after-sales-10)] 或换货补款 [[after-sales-28](#after-sales-28)] 引用查询受理方结果，并按核实结果推进案件：\n\n| 核实结果 | 处理 |\n| --- | --- |\n| 退款成功或失败 | 分别按成功 [[after-sales-25](#after-sales-25)] 或失败 [[after-sales-19](#after-sales-19)] 处理 |\n| 换货补款成功或失败 | 按原差额安排 [[after-sales-28](#after-sales-28)] 标记结清或保留待办 |\n| 仍无法确认 | 保持待核对，不重复退款或扣款 |",
+      "package": "after-sales",
+      "source": "specs/packages/after-sales.md",
+      "anchor": "after-sales-29",
+      "source_line": 161,
+      "related_requirement_ids": [
+        "after-sales-10",
+        "after-sales-19",
+        "after-sales-25",
+        "after-sales-28"
+      ]
+    },
+    {
+      "id": "after-sales-30",
+      "text": "当已批准换货且退回商品检查完成、目标变体确定，售后流程应按目标变体当前可售量 [[market-catalog-13](market-catalog.md#market-catalog-13)] 请求一次关联案件的库存占用 [[market-catalog-11](market-catalog.md#market-catalog-11)]；占用失败时应保持案件待办、禁止替代包裹履约并向顾客显示改选或退款路径。",
+      "package": "after-sales",
+      "source": "specs/packages/after-sales.md",
+      "anchor": "after-sales-30",
+      "source_line": 171,
+      "related_requirement_ids": [
+        "market-catalog-11",
+        "market-catalog-13"
+      ]
+    },
+    {
+      "id": "after-sales-31",
+      "text": "当售后案件请求进入已拒绝、已终止或已完成的终态，售后流程应仅在原件去向已结清（从未寄出，或在途及已接收原件已按适用政策核清并履行退还、退货退款、维修交还 [[after-sales-13](#after-sales-13)] 或回收等去向），且案件退款义务已结清（无退款待办，或所有应退来源均已成功核实 [[after-sales-33](#after-sales-33)]）时允许结案，并向顾客显示资金结果与原件处置记录；原件去向未明、任一来源退款失败或结果未明时保持待原件处置、待终止结算或原处理状态。",
+      "package": "after-sales",
+      "source": "specs/packages/after-sales.md",
+      "anchor": "after-sales-31",
+      "source_line": 175,
+      "related_requirement_ids": [
+        "after-sales-13",
+        "after-sales-33"
+      ]
+    },
+    {
+      "id": "after-sales-32",
+      "text": "当售后流程核准一笔退款的付款来源，售后流程应将每项金额绑定到已确认的原订单付款交易 [[cart-checkout-14](cart-checkout.md#cart-checkout-14)] 或所属换货案件补款交易 [[after-sales-28](#after-sales-28)]，按同一退款核准标识仅一次原子预留每笔真实实收额或隔离测试模拟付款额度扣除该笔已成功退款及其他未结退款预留后的可退余额，拒绝超额、跨交易或跨真实／测试模式挪用并保存分配依据；补款未确认成功时不得作为退款来源。",
+      "package": "after-sales",
+      "source": "specs/packages/after-sales.md",
+      "anchor": "after-sales-32",
+      "source_line": 179,
+      "related_requirement_ids": [
+        "after-sales-28",
+        "cart-checkout-14"
+      ]
+    },
+    {
+      "id": "after-sales-33",
+      "text": "当案件内任一来源退款的执行或核对结果更新，售后流程应保留每笔来源交易的成功 [[after-sales-25](#after-sales-25)]、失败 [[after-sales-19](#after-sales-19)]、待执行或结果待核对 [[after-sales-10](#after-sales-10)] 记录，并按下表汇总案件退款状态，不将部分成功冒充全部完成：\n\n| 来源分配结果 | 案件退款状态 |\n| --- | --- |\n| 任一结果待核对 | 结果待核对，已成功部分保留，未明部分不得重试 |\n| 无待核对但仍有待执行分配 | 待执行，已成功部分保留 |\n| 无待执行或待核对且任一分配失败 | 已失败，已成功部分保留；仅失败部分可重新核准 |\n| 全部分配均核实成功 | 已完成 |",
+      "package": "after-sales",
+      "source": "specs/packages/after-sales.md",
+      "anchor": "after-sales-33",
+      "source_line": 183,
+      "related_requirement_ids": [
+        "after-sales-10",
+        "after-sales-19",
+        "after-sales-25"
+      ]
+    },
+    {
+      "id": "cart-checkout-1",
+      "text": "当顾客将可售变体 [[market-catalog-6](market-catalog.md#market-catalog-6)] 加入购物车，购物车应保存确切变体、数量、当前市场币种和展示价格。",
+      "package": "cart-checkout",
+      "source": "specs/packages/cart-checkout.md",
+      "anchor": "cart-checkout-1",
+      "source_line": 13,
+      "related_requirement_ids": [
+        "market-catalog-6"
+      ]
+    },
+    {
+      "id": "cart-checkout-2",
+      "text": "当顾客提交购物车行变更，购物车应按操作更新行与总额并阻止超出可售量 [[market-catalog-13](market-catalog.md#market-catalog-13)] 的数量：\n\n| 操作 | 结果 |\n| --- | --- |\n| 增加或减少数量 | 保留该行并重新计算小计 |\n| 删除行 | 移除该行及其小计 |",
+      "package": "cart-checkout",
+      "source": "specs/packages/cart-checkout.md",
+      "anchor": "cart-checkout-2",
+      "source_line": 17,
+      "related_requirement_ids": [
+        "market-catalog-13"
+      ]
+    },
+    {
+      "id": "cart-checkout-3",
+      "text": "当顾客离开并返回购物流程，购物车应恢复尚有效的行并标示已下架或缺货变体 [[market-catalog-7](market-catalog.md#market-catalog-7)] 及当前市场变价 [[market-catalog-2](market-catalog.md#market-catalog-2)]。",
+      "package": "cart-checkout",
+      "source": "specs/packages/cart-checkout.md",
+      "anchor": "cart-checkout-3",
+      "source_line": 26,
+      "related_requirement_ids": [
+        "market-catalog-2",
+        "market-catalog-7"
+      ]
+    },
+    {
+      "id": "cart-checkout-4",
+      "text": "当顾客切换市场，购物车应按新市场报价 [[market-catalog-2](market-catalog.md#market-catalog-2)] 重新核对各行并阻止沿用旧报价提交。",
+      "package": "cart-checkout",
+      "source": "specs/packages/cart-checkout.md",
+      "anchor": "cart-checkout-4",
+      "source_line": 30,
+      "related_requirement_ids": [
+        "market-catalog-2"
+      ]
+    },
+    {
+      "id": "cart-checkout-5",
+      "text": "当游客进入结账，结账流程应允许其在不注册的情况下提供联系信息和收货地址。",
+      "package": "cart-checkout",
+      "source": "specs/packages/cart-checkout.md",
+      "anchor": "cart-checkout-5",
+      "source_line": 34,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "cart-checkout-6",
+      "text": "当已登录顾客进入结账，结账流程应允许其使用已保存地址 [[customer-account-5](customer-account.md#customer-account-5)] 或输入新地址。",
+      "package": "cart-checkout",
+      "source": "specs/packages/cart-checkout.md",
+      "anchor": "cart-checkout-6",
+      "source_line": 38,
+      "related_requirement_ids": [
+        "customer-account-5"
+      ]
+    },
+    {
+      "id": "cart-checkout-7",
+      "text": "当顾客提交收货地址，结账流程应校验必填信息和已启用市场 [[market-catalog-1](market-catalog.md#market-catalog-1)] 的可配送规则 [[merchant-operations-10](merchant-operations.md#merchant-operations-10)]，并指出不可配送或缺失项。",
+      "package": "cart-checkout",
+      "source": "specs/packages/cart-checkout.md",
+      "anchor": "cart-checkout-7",
+      "source_line": 42,
+      "related_requirement_ids": [
+        "market-catalog-1",
+        "merchant-operations-10"
+      ]
+    },
+    {
+      "id": "cart-checkout-8",
+      "text": "当地址通过校验，结账流程应显示按已生效配送规则 [[merchant-operations-10](merchant-operations.md#merchant-operations-10)] 得出的可用选项、费用及有依据的预计时效，供顾客明确选择。",
+      "package": "cart-checkout",
+      "source": "specs/packages/cart-checkout.md",
+      "anchor": "cart-checkout-8",
+      "source_line": 46,
+      "related_requirement_ids": [
+        "merchant-operations-10"
+      ]
+    },
+    {
+      "id": "cart-checkout-9",
+      "text": "当顾客申请使用优惠，结账流程应依据已发布优惠规则 [[content-marketing-7](content-marketing.md#content-marketing-7)] 计算折扣，或说明优惠码与活动的无效、过期及不适用原因。",
+      "package": "cart-checkout",
+      "source": "specs/packages/cart-checkout.md",
+      "anchor": "cart-checkout-9",
+      "source_line": 50,
+      "related_requirement_ids": [
+        "content-marketing-7"
+      ]
+    },
+    {
+      "id": "cart-checkout-10",
+      "text": "当结账资料齐备，结账流程应按收货地和已生效的计费规则 [[merchant-operations-10](merchant-operations.md#merchant-operations-10)] 展示商品、已发布优惠 [[content-marketing-7](content-marketing.md#content-marketing-7)]、适用积分抵扣 [[customer-account-12](customer-account.md#customer-account-12)]、所选配送、税费、最终应付总额和币种的逐项报价：\n\n| 计费情形 | 报价结果 |\n| --- | --- |\n| 适用税费规则 | 按收货地、商品类别及生效版本计算并显示税额 |\n| 明确免税或零税 | 显示按适用规则得出的零税额及依据 |\n| 无法确定适用规则 | 不形成可付款报价，指出缺失的税务依据 |",
+      "package": "cart-checkout",
+      "source": "specs/packages/cart-checkout.md",
+      "anchor": "cart-checkout-10",
+      "source_line": 54,
+      "related_requirement_ids": [
+        "content-marketing-7",
+        "customer-account-12",
+        "merchant-operations-10"
+      ]
+    },
+    {
+      "id": "cart-checkout-11",
+      "text": "当提交前商品价格或库存 [[market-catalog-6](market-catalog.md#market-catalog-6)] [[market-catalog-13](market-catalog.md#market-catalog-13)]、优惠 [[content-marketing-7](content-marketing.md#content-marketing-7)]、税费或配送费用 [[merchant-operations-10](merchant-operations.md#merchant-operations-10)] 变化，结账流程应展示新旧差异并要求顾客重新确认报价。",
+      "package": "cart-checkout",
+      "source": "specs/packages/cart-checkout.md",
+      "anchor": "cart-checkout-11",
+      "source_line": 64,
+      "related_requirement_ids": [
+        "content-marketing-7",
+        "market-catalog-13",
+        "market-catalog-6",
+        "merchant-operations-10"
+      ]
+    },
+    {
+      "id": "cart-checkout-12",
+      "text": "当结账准备校验发现必需业务输入缺失，结账流程应阻止付款提交并说明缺失的业务条件：\n\n| 缺失输入 | 阻断依据 |\n| --- | --- |\n| 目标市场未启用 | 不提供该市场结账 [[market-catalog-3](market-catalog.md#market-catalog-3)] |\n| 收货地无适用税／配送／售后规则 | 显示受影响目的地或商品 [[launch-readiness-4](launch-readiness.md#launch-readiness-4)] |\n| 支付配置未就绪 | 显示支付模式缺项 [[launch-readiness-5](launch-readiness.md#launch-readiness-5)] |",
+      "package": "cart-checkout",
+      "source": "specs/packages/cart-checkout.md",
+      "anchor": "cart-checkout-12",
+      "source_line": 68,
+      "related_requirement_ids": [
+        "launch-readiness-4",
+        "launch-readiness-5",
+        "market-catalog-3"
+      ]
+    },
+    {
+      "id": "cart-checkout-13",
+      "text": "给定待付款订单、库存及所需优惠和积分占用已持久确认 [[cart-checkout-22](#cart-checkout-22)]，当顾客提交付款，结账流程应按下表重新核对所选支付模式，仅在对应条件通过后调用经就绪检查 [[launch-readiness-5](launch-readiness.md#launch-readiness-5)] 的支付方式，并明确标示模式：\n\n| 模式 | 付款前条件 |\n| --- | --- |\n| 真实支付 | 每个订单行对当前收货目的地均通过售卖就绪核验 [[launch-readiness-14](launch-readiness.md#launch-readiness-14)]；任一行未就绪则整单不得发起收款 |\n| 测试支付 | 隔离测试流程已就绪 [[launch-readiness-13](launch-readiness.md#launch-readiness-13)]，不得发起真实扣款 |",
+      "package": "cart-checkout",
+      "source": "specs/packages/cart-checkout.md",
+      "anchor": "cart-checkout-13",
+      "source_line": 78,
+      "related_requirement_ids": [
+        "cart-checkout-22",
+        "launch-readiness-13",
+        "launch-readiness-14",
+        "launch-readiness-5"
+      ]
+    },
+    {
+      "id": "cart-checkout-14",
+      "text": "给定对应待付款订单及库存占用仍有效 [[orders-fulfillment-1](orders-fulfillment.md#orders-fulfillment-1)] [[market-catalog-11](market-catalog.md#market-catalog-11)]，且订单实际使用的限额优惠 [[content-marketing-13](content-marketing.md#content-marketing-13)] 与积分 [[customer-account-19](customer-account.md#customer-account-19)] 占用仍有效（若有），当支付成功结果被核对，结账流程应原子地将该订单标为已付款并按下表保存模式、已确认付款额度、币种、结果与交易引用，仅对实际使用的优惠 [[content-marketing-14](content-marketing.md#content-marketing-14)] 与积分 [[customer-account-20](customer-account.md#customer-account-20)] 确认使用：\n\n| 支付模式 | 已确认付款额度与引用 |\n| --- | --- |\n| 真实支付 | 实际收款金额与原收款交易引用 |\n| 测试支付 [[cart-checkout-18](#cart-checkout-18)] | 隔离的模拟付款金额与测试交易引用，不记录为真实收款 |",
+      "package": "cart-checkout",
+      "source": "specs/packages/cart-checkout.md",
+      "anchor": "cart-checkout-14",
+      "source_line": 87,
+      "related_requirement_ids": [
+        "cart-checkout-18",
+        "content-marketing-13",
+        "content-marketing-14",
+        "customer-account-19",
+        "customer-account-20",
+        "market-catalog-11",
+        "orders-fulfillment-1"
+      ]
+    },
+    {
+      "id": "cart-checkout-15",
+      "text": "当支付被确认为失败，结账流程应将待付款订单标为付款失败、释放对应库存占用 [[market-catalog-12](market-catalog.md#market-catalog-12)] 及实际使用的限额优惠占用 [[content-marketing-15](content-marketing.md#content-marketing-15)] 和积分占用 [[customer-account-21](customer-account.md#customer-account-21)]（若有），并保留可重试的结账记录。",
+      "package": "cart-checkout",
+      "source": "specs/packages/cart-checkout.md",
+      "anchor": "cart-checkout-15",
+      "source_line": 96,
+      "related_requirement_ids": [
+        "content-marketing-15",
+        "customer-account-21",
+        "market-catalog-12"
+      ]
+    },
+    {
+      "id": "cart-checkout-16",
+      "text": "当同一报价提交或付款尝试的事件重复到达，结账流程应按原订单及支付尝试识别重复事件并只保留一次业务效果：\n\n| 重复事件 | 仅一次的效果 |\n| --- | --- |\n| 重复提交已确认报价 | 待付款订单 [[orders-fulfillment-1](orders-fulfillment.md#orders-fulfillment-1)]、库存 [[market-catalog-11](market-catalog.md#market-catalog-11)]、优惠 [[content-marketing-13](content-marketing.md#content-marketing-13)] 与积分占用 [[customer-account-19](customer-account.md#customer-account-19)] |\n| 重复支付结果 | 付款状态、优惠使用 [[content-marketing-14](content-marketing.md#content-marketing-14)] 与积分使用 [[customer-account-20](customer-account.md#customer-account-20)] 或冲回 [[customer-account-13](customer-account.md#customer-account-13)] |",
+      "package": "cart-checkout",
+      "source": "specs/packages/cart-checkout.md",
+      "anchor": "cart-checkout-16",
+      "source_line": 100,
+      "related_requirement_ids": [
+        "content-marketing-13",
+        "content-marketing-14",
+        "customer-account-13",
+        "customer-account-19",
+        "customer-account-20",
+        "market-catalog-11",
+        "orders-fulfillment-1"
+      ]
+    },
+    {
+      "id": "cart-checkout-17",
+      "text": "当顾客在已确认付款失败后重试，结账流程应重新核对当前报价与可售性 [[market-catalog-7](market-catalog.md#market-catalog-7)]，并在顾客确认后建立关联原失败订单的新待付款订单及库存占用 [[cart-checkout-22](#cart-checkout-22)]，保留原订单快照不变。",
+      "package": "cart-checkout",
+      "source": "specs/packages/cart-checkout.md",
+      "anchor": "cart-checkout-17",
+      "source_line": 109,
+      "related_requirement_ids": [
+        "cart-checkout-22",
+        "market-catalog-7"
+      ]
+    },
+    {
+      "id": "cart-checkout-18",
+      "text": "给定支付方式为测试模式，当顾客确认付款，结账流程应明确标示不会产生真实扣款，且测试结果不得表示真实收款授权。",
+      "package": "cart-checkout",
+      "source": "specs/packages/cart-checkout.md",
+      "anchor": "cart-checkout-18",
+      "source_line": 113,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "cart-checkout-22",
+      "text": "当顾客提交已确认的最终报价，结账流程应先核对真实交易的每个商品行对收货目的地均可售 [[launch-readiness-14](launch-readiness.md#launch-readiness-14)]，再按已选真实或测试交易模式原子地保存待付款订单快照 [[orders-fulfillment-1](orders-fulfillment.md#orders-fulfillment-1)]、占用同模式变体库存 [[market-catalog-11](market-catalog.md#market-catalog-11)] 及报价实际使用的限额优惠资格 [[content-marketing-13](content-marketing.md#content-marketing-13)] 和积分抵扣额 [[customer-account-19](customer-account.md#customer-account-19)]；真实交易有任一行未就绪、任一所需占用失败或测试流程缺少所需隔离资源时，应不创建可付款订单、不发起付款并逐行说明原因，且不得借用正式可售量或正式权益 [[launch-readiness-9](launch-readiness.md#launch-readiness-9)]。",
+      "package": "cart-checkout",
+      "source": "specs/packages/cart-checkout.md",
+      "anchor": "cart-checkout-22",
+      "source_line": 117,
+      "related_requirement_ids": [
+        "content-marketing-13",
+        "customer-account-19",
+        "launch-readiness-14",
+        "launch-readiness-9",
+        "market-catalog-11",
+        "orders-fulfillment-1"
+      ]
+    },
+    {
+      "id": "cart-checkout-23",
+      "text": "当付款结果未明，结账流程应将订单标为待核对、保留库存 [[market-catalog-11](market-catalog.md#market-catalog-11)]、实际使用的限额优惠 [[content-marketing-13](content-marketing.md#content-marketing-13)] 与积分占用 [[customer-account-19](customer-account.md#customer-account-19)]（若有）及支付引用、向有权员工展示待核对任务，并在核清结果前阻止再次扣款或实物履约。",
+      "package": "cart-checkout",
+      "source": "specs/packages/cart-checkout.md",
+      "anchor": "cart-checkout-23",
+      "source_line": 121,
+      "related_requirement_ids": [
+        "content-marketing-13",
+        "customer-account-19",
+        "market-catalog-11"
+      ]
+    },
+    {
+      "id": "cart-checkout-24",
+      "text": "当已核实的付款成功结果无法应用到原订单、库存或本订单实际使用的权益占用 [[cart-checkout-22](#cart-checkout-22)]，结账流程应将异常交给有权人员核对，并在原订单与权益状态修复或原支付模式退款成功 [[after-sales-25](after-sales.md#after-sales-25)] 前保持未结异常，不得生成第二笔扣款或授权实物履约。",
+      "package": "cart-checkout",
+      "source": "specs/packages/cart-checkout.md",
+      "anchor": "cart-checkout-24",
+      "source_line": 125,
+      "related_requirement_ids": [
+        "after-sales-25",
+        "cart-checkout-22"
+      ]
+    },
+    {
+      "id": "cart-checkout-25",
+      "text": "当待付款订单达到已配置的占用期限且付款被核实为未发起，结账流程应将订单标为已失效并释放对应库存占用 [[market-catalog-12](market-catalog.md#market-catalog-12)] 及实际使用的限额优惠占用 [[content-marketing-15](content-marketing.md#content-marketing-15)] 与积分占用 [[customer-account-21](customer-account.md#customer-account-21)]（若有）；结果待核对的付款不得按超时直接释放。",
+      "package": "cart-checkout",
+      "source": "specs/packages/cart-checkout.md",
+      "anchor": "cart-checkout-25",
+      "source_line": 129,
+      "related_requirement_ids": [
+        "content-marketing-15",
+        "customer-account-21",
+        "market-catalog-12"
+      ]
+    },
+    {
+      "id": "cart-checkout-26",
+      "text": "当有权人员核对结果未明的付款，结账流程应依据原支付尝试引用查询受理方结果，并按核实结果处理原订单：\n\n| 核实结果 | 处理 |\n| --- | --- |\n| 成功且原订单与占用有效 | 标为已付款 [[cart-checkout-14](#cart-checkout-14)] |\n| 成功但原订单或占用无效 | 转入修复或退款异常 [[cart-checkout-24](#cart-checkout-24)] |\n| 失败 | 标为失败并释放占用 [[cart-checkout-15](#cart-checkout-15)] |\n| 仍无法确认 | 保持待核对且不再次扣款 [[cart-checkout-23](#cart-checkout-23)] |",
+      "package": "cart-checkout",
+      "source": "specs/packages/cart-checkout.md",
+      "anchor": "cart-checkout-26",
+      "source_line": 133,
+      "related_requirement_ids": [
+        "cart-checkout-14",
+        "cart-checkout-15",
+        "cart-checkout-23",
+        "cart-checkout-24"
+      ]
+    },
+    {
+      "id": "content-marketing-1",
+      "text": "当访客进入内容入口，商店应展示当前站点语言 [[market-catalog-1](market-catalog.md#market-catalog-1)] 下已发布的品牌、技术和骑行内容列表。",
+      "package": "content-marketing",
+      "source": "specs/packages/content-marketing.md",
+      "anchor": "content-marketing-1",
+      "source_line": 13,
+      "related_requirement_ids": [
+        "market-catalog-1"
+      ]
+    },
+    {
+      "id": "content-marketing-2",
+      "text": "当访客打开文章，商店应显示标题、正文、发布时间及与内容相关的已发布商品入口 [[market-catalog-4](market-catalog.md#market-catalog-4)]。",
+      "package": "content-marketing",
+      "source": "specs/packages/content-marketing.md",
+      "anchor": "content-marketing-2",
+      "source_line": 17,
+      "related_requirement_ids": [
+        "market-catalog-4"
+      ]
+    },
+    {
+      "id": "content-marketing-3",
+      "text": "当公众请求非公开内容，商店应从公开列表、导航和直接访问中隐藏该内容：\n\n| 内容状态 | 公开结果 |\n| --- | --- |\n| 草稿或尚未发布 | 不可公开访问 |\n| 已撤回 | 不可公开访问，保留员工可见历史 |",
+      "package": "content-marketing",
+      "source": "specs/packages/content-marketing.md",
+      "anchor": "content-marketing-3",
+      "source_line": 21,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "content-marketing-4",
+      "text": "当文章包含有权使用的视频，商店应提供标题、封面或替代说明及可用播放入口，并标明外部平台来源。",
+      "package": "content-marketing",
+      "source": "specs/packages/content-marketing.md",
+      "anchor": "content-marketing-4",
+      "source_line": 30,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "content-marketing-5",
+      "text": "当视频链接无效或嵌入不可用，商店应呈现可理解的降级状态并保持文章正文可读。",
+      "package": "content-marketing",
+      "source": "specs/packages/content-marketing.md",
+      "anchor": "content-marketing-5",
+      "source_line": 34,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "content-marketing-6",
+      "text": "当有权员工编辑内容草稿，商店应保存修改并提供仅授权人员可见的预览。",
+      "package": "content-marketing",
+      "source": "specs/packages/content-marketing.md",
+      "anchor": "content-marketing-6",
+      "source_line": 38,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "content-marketing-7",
+      "text": "当有权员工发布促销，商店应保存适用市场 [[market-catalog-1](market-catalog.md#market-catalog-1)]、商品、时间、资格、叠加与使用限制，并只向符合条件且仍有未占用额度 [[content-marketing-13](#content-marketing-13)] 的顾客展示。",
+      "package": "content-marketing",
+      "source": "specs/packages/content-marketing.md",
+      "anchor": "content-marketing-7",
+      "source_line": 42,
+      "related_requirement_ids": [
+        "content-marketing-13",
+        "market-catalog-1"
+      ]
+    },
+    {
+      "id": "content-marketing-8",
+      "text": "当促销进入不可再使用的状态，商店应停止向顾客展示可用承诺，既有待付款订单已取得的有效占用 [[content-marketing-13](#content-marketing-13)] 按其确认报价处理：\n\n| 状态原因 | 对新购买的结果 |\n| --- | --- |\n| 到达结束时间 | 不再应用该促销 |\n| 被有权员工撤回 | 不再应用该促销 |\n| 已用与已占额度达到上限 | 不再应用该促销 |",
+      "package": "content-marketing",
+      "source": "specs/packages/content-marketing.md",
+      "anchor": "content-marketing-8",
+      "source_line": 46,
+      "related_requirement_ids": [
+        "content-marketing-13"
+      ]
+    },
+    {
+      "id": "content-marketing-9",
+      "text": "当访客查看联系、配送、整车组装、退换、保修、隐私和服务条款页面，商店应显示适用市场 [[market-catalog-1](market-catalog.md#market-catalog-1)]、已生效政策版本 [[merchant-operations-10](merchant-operations.md#merchant-operations-10)] 及生效时间。",
+      "package": "content-marketing",
+      "source": "specs/packages/content-marketing.md",
+      "anchor": "content-marketing-9",
+      "source_line": 56,
+      "related_requirement_ids": [
+        "market-catalog-1",
+        "merchant-operations-10"
+      ]
+    },
+    {
+      "id": "content-marketing-11",
+      "text": "当有权员工发布内容，商店应记录发布时间并使该版本进入公开内容入口。",
+      "package": "content-marketing",
+      "source": "specs/packages/content-marketing.md",
+      "anchor": "content-marketing-11",
+      "source_line": 60,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "content-marketing-12",
+      "text": "当有权员工撤回内容，商店应记录撤回时间并停止公开该内容。",
+      "package": "content-marketing",
+      "source": "specs/packages/content-marketing.md",
+      "anchor": "content-marketing-12",
+      "source_line": 64,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "content-marketing-13",
+      "text": "当待付款订单请求有限额的促销资格，商店应按已发布的总量及每客限制 [[content-marketing-7](#content-marketing-7)] 原子占用未占用额度并关联订单与交易模式；测试订单只能使用隔离的测试额度 [[launch-readiness-9](launch-readiness.md#launch-readiness-9)]。",
+      "package": "content-marketing",
+      "source": "specs/packages/content-marketing.md",
+      "anchor": "content-marketing-13",
+      "source_line": 68,
+      "related_requirement_ids": [
+        "content-marketing-7",
+        "launch-readiness-9"
+      ]
+    },
+    {
+      "id": "content-marketing-14",
+      "text": "当关联订单的付款成功结果已核实 [[cart-checkout-14](cart-checkout.md#cart-checkout-14)]，商店应将该订单的促销占用仅确认一次为实际使用 [[content-marketing-13](#content-marketing-13)]。",
+      "package": "content-marketing",
+      "source": "specs/packages/content-marketing.md",
+      "anchor": "content-marketing-14",
+      "source_line": 72,
+      "related_requirement_ids": [
+        "cart-checkout-14",
+        "content-marketing-13"
+      ]
+    },
+    {
+      "id": "content-marketing-15",
+      "text": "当订单关联的促销占用收到合法释放请求，商店应仅释放一次该订单的促销占用 [[content-marketing-13](#content-marketing-13)]；合法依据为已核实的付款失败 [[cart-checkout-15](cart-checkout.md#cart-checkout-15)]、未发起付款超时 [[cart-checkout-25](cart-checkout.md#cart-checkout-25)] 或付款前取消 [[after-sales-2](after-sales.md#after-sales-2)]，付款结果待核对 [[cart-checkout-23](cart-checkout.md#cart-checkout-23)] 时不得释放。",
+      "package": "content-marketing",
+      "source": "specs/packages/content-marketing.md",
+      "anchor": "content-marketing-15",
+      "source_line": 76,
+      "related_requirement_ids": [
+        "after-sales-2",
+        "cart-checkout-15",
+        "cart-checkout-23",
+        "cart-checkout-25",
+        "content-marketing-13"
+      ]
+    },
+    {
+      "id": "customer-account-1",
+      "text": "当访客注册账户，账户系统应验证必要联系渠道并阻止重复或无效身份占用。",
+      "package": "customer-account",
+      "source": "specs/packages/customer-account.md",
+      "anchor": "customer-account-1",
+      "source_line": 13,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "customer-account-2",
+      "text": "当顾客提交登录请求，账户系统应验证其凭据并仅向验证成功者建立可访问本人资料的会话。",
+      "package": "customer-account",
+      "source": "specs/packages/customer-account.md",
+      "anchor": "customer-account-2",
+      "source_line": 17,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "customer-account-3",
+      "text": "当游客请求查看订单或发起订单相关操作，账户系统应要求其证明对下单联系渠道的控制权，不能仅凭订单编号或可猜测资料授权。",
+      "package": "customer-account",
+      "source": "specs/packages/customer-account.md",
+      "anchor": "customer-account-3",
+      "source_line": 21,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "customer-account-4",
+      "text": "当顾客提交个人资料访问操作，账户系统应只允许其访问本人资料，并按操作保存结果：\n\n| 操作 | 结果 |\n| --- | --- |\n| 查看 | 仅返回本人可访问的资料 |\n| 修改 | 保存本人改动及可核实的修改记录 |",
+      "package": "customer-account",
+      "source": "specs/packages/customer-account.md",
+      "anchor": "customer-account-4",
+      "source_line": 25,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "customer-account-5",
+      "text": "当已登录顾客提交地址列表变更，账户系统应仅在本人账户保存变更，并阻止未授权用户读取：\n\n| 操作 | 结果 |\n| --- | --- |\n| 新增 | 加入本人地址列表 |\n| 修改 | 仅更新所选本人地址 |\n| 删除 | 从本人可选地址中移除所选地址 |",
+      "package": "customer-account",
+      "source": "specs/packages/customer-account.md",
+      "anchor": "customer-account-5",
+      "source_line": 34,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "customer-account-6",
+      "text": "当已登录顾客提交收藏列表变更，账户系统应跨会话保存本人选择并标示仍保留变体的下架或缺货状态 [[market-catalog-7](market-catalog.md#market-catalog-7)]：\n\n| 操作 | 结果 |\n| --- | --- |\n| 收藏变体 | 加入本人收藏列表 |\n| 移除变体 | 从本人收藏列表删除所选项 |",
+      "package": "customer-account",
+      "source": "specs/packages/customer-account.md",
+      "anchor": "customer-account-6",
+      "source_line": 44,
+      "related_requirement_ids": [
+        "market-catalog-7"
+      ]
+    },
+    {
+      "id": "customer-account-7",
+      "text": "当已登录顾客查看订单历史，账户系统应只展示其已归属订单的摘要及查询入口 [[orders-fulfillment-3](orders-fulfillment.md#orders-fulfillment-3)]。",
+      "package": "customer-account",
+      "source": "specs/packages/customer-account.md",
+      "anchor": "customer-account-7",
+      "source_line": 53,
+      "related_requirement_ids": [
+        "orders-fulfillment-3"
+      ]
+    },
+    {
+      "id": "customer-account-8",
+      "text": "当顾客对符合已公布资格的已购订单行 [[orders-fulfillment-1](orders-fulfillment.md#orders-fulfillment-1)] 提交评价，账户系统应记录评分、文字、订单行和待审核状态，并阻止同一订单行产生重复有效评价。",
+      "package": "customer-account",
+      "source": "specs/packages/customer-account.md",
+      "anchor": "customer-account-8",
+      "source_line": 57,
+      "related_requirement_ids": [
+        "orders-fulfillment-1"
+      ]
+    },
+    {
+      "id": "customer-account-9",
+      "text": "当有权员工审核评价，账户系统应记录发布或驳回结果及理由，并使前台只显示已发布评价。",
+      "package": "customer-account",
+      "source": "specs/packages/customer-account.md",
+      "anchor": "customer-account-9",
+      "source_line": 61,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "customer-account-10",
+      "text": "给定商家已启用积分计划，当合格订单达到所需状态 [[orders-fulfillment-4](orders-fulfillment.md#orders-fulfillment-4)] 并满足已公布的获得条件，账户系统应依据该订单币种及规则记录一笔可追溯积分取得事件。",
+      "package": "customer-account",
+      "source": "specs/packages/customer-account.md",
+      "anchor": "customer-account-10",
+      "source_line": 65,
+      "related_requirement_ids": [
+        "orders-fulfillment-4"
+      ]
+    },
+    {
+      "id": "customer-account-11",
+      "text": "给定商家已启用积分计划，当顾客查看积分，账户系统应展示余额、来源订单及取得、使用、冲回或过期记录，且余额不得为负。",
+      "package": "customer-account",
+      "source": "specs/packages/customer-account.md",
+      "anchor": "customer-account-11",
+      "source_line": 69,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "customer-account-12",
+      "text": "给定商家已启用积分计划，当顾客在结账使用积分，账户系统应仅按已公布的币种与兑换规则及扣除其他有效占用后的余额 [[customer-account-19](#customer-account-19)] 提供可用抵扣，并记录对应订单。",
+      "package": "customer-account",
+      "source": "specs/packages/customer-account.md",
+      "anchor": "customer-account-12",
+      "source_line": 73,
+      "related_requirement_ids": [
+        "customer-account-19"
+      ]
+    },
+    {
+      "id": "customer-account-13",
+      "text": "给定商家已启用积分计划，当原订单的积分资格发生已核实的变化，账户系统应按原订单行、原账本和已公布规则计算尚需调整的差额，且不同事件不得重复冲回同一权益：\n\n| 资格变化 | 账本结果 |\n| --- | --- |\n| 付款失败 [[cart-checkout-15](cart-checkout.md#cart-checkout-15)] | 释放尚未最终使用的抵扣，不取得购买积分 |\n| 订单行取消 [[after-sales-2](after-sales.md#after-sales-2)] | 按该行及原记录冲回取得或使用的积分 |\n| 退款成功 [[after-sales-25](after-sales.md#after-sales-25)] | 按实际退款范围与原记录调整积分 |\n| 同一事件重复 | 不再增加或扣减余额 |",
+      "package": "customer-account",
+      "source": "specs/packages/customer-account.md",
+      "anchor": "customer-account-13",
+      "source_line": 77,
+      "related_requirement_ids": [
+        "after-sales-2",
+        "after-sales-25",
+        "cart-checkout-15"
+      ]
+    },
+    {
+      "id": "customer-account-14",
+      "text": "给定商家未启用积分计划，当顾客浏览或结账，账户系统应不展示可兑换积分或暗示可获得积分。",
+      "package": "customer-account",
+      "source": "specs/packages/customer-account.md",
+      "anchor": "customer-account-14",
+      "source_line": 88,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "customer-account-17",
+      "text": "当已登录顾客退出，账户系统应撤销该会话对私有资料的后续访问。",
+      "package": "customer-account",
+      "source": "specs/packages/customer-account.md",
+      "anchor": "customer-account-17",
+      "source_line": 92,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "customer-account-18",
+      "text": "当顾客请求重置凭据，账户系统应验证其对已登记渠道的控制权并使旧凭据或过期重置凭据失效。",
+      "package": "customer-account",
+      "source": "specs/packages/customer-account.md",
+      "anchor": "customer-account-18",
+      "source_line": 96,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "customer-account-19",
+      "text": "给定积分计划已启用，当待付款订单请求积分抵扣，账户系统应按顾客、币种和已发布规则原子占用不超过未占用余额的积分，并关联订单及交易模式；测试订单只能使用隔离的测试积分 [[launch-readiness-9](launch-readiness.md#launch-readiness-9)]。",
+      "package": "customer-account",
+      "source": "specs/packages/customer-account.md",
+      "anchor": "customer-account-19",
+      "source_line": 100,
+      "related_requirement_ids": [
+        "launch-readiness-9"
+      ]
+    },
+    {
+      "id": "customer-account-20",
+      "text": "当关联订单的付款成功结果已核实 [[cart-checkout-14](cart-checkout.md#cart-checkout-14)]，账户系统应将该订单的积分占用仅确认一次为实际使用 [[customer-account-19](#customer-account-19)]。",
+      "package": "customer-account",
+      "source": "specs/packages/customer-account.md",
+      "anchor": "customer-account-20",
+      "source_line": 104,
+      "related_requirement_ids": [
+        "cart-checkout-14",
+        "customer-account-19"
+      ]
+    },
+    {
+      "id": "customer-account-21",
+      "text": "当订单关联的积分占用收到合法释放请求，账户系统应仅释放一次该订单的积分占用 [[customer-account-19](#customer-account-19)]；合法依据为已核实的付款失败 [[cart-checkout-15](cart-checkout.md#cart-checkout-15)]、未发起付款超时 [[cart-checkout-25](cart-checkout.md#cart-checkout-25)] 或付款前取消 [[after-sales-2](after-sales.md#after-sales-2)]，付款结果待核对 [[cart-checkout-23](cart-checkout.md#cart-checkout-23)] 时不得释放。",
+      "package": "customer-account",
+      "source": "specs/packages/customer-account.md",
+      "anchor": "customer-account-21",
+      "source_line": 108,
+      "related_requirement_ids": [
+        "after-sales-2",
+        "cart-checkout-15",
+        "cart-checkout-23",
+        "cart-checkout-25",
+        "customer-account-19"
+      ]
+    },
+    {
+      "id": "customer-support-1",
+      "text": "当顾客打开客服入口，客服系统应如实显示在线或离线状态及可用联系途径。",
+      "package": "customer-support",
+      "source": "specs/packages/customer-support.md",
+      "anchor": "customer-support-1",
+      "source_line": 13,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "customer-support-2",
+      "text": "给定客服在线，当顾客发送实时消息，客服系统应将消息持久送达会话并向双方显示发送状态。",
+      "package": "customer-support",
+      "source": "specs/packages/customer-support.md",
+      "anchor": "customer-support-2",
+      "source_line": 17,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "customer-support-3",
+      "text": "给定客服离线，当顾客留下消息和可用联系渠道，客服系统应保存待跟进会话并说明后续回复方式。",
+      "package": "customer-support",
+      "source": "specs/packages/customer-support.md",
+      "anchor": "customer-support-3",
+      "source_line": 21,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "customer-support-4",
+      "text": "当顾客断线后重新进入会话，客服系统应在身份核验后恢复其可访问的消息历史。",
+      "package": "customer-support",
+      "source": "specs/packages/customer-support.md",
+      "anchor": "customer-support-4",
+      "source_line": 25,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "customer-support-5",
+      "text": "当顾客请求将会话关联订单，客服系统应验证游客联系渠道控制权 [[customer-account-3](customer-account.md#customer-account-3)] 或会员本人订单归属 [[customer-account-7](customer-account.md#customer-account-7)]，并只向有权客服展示必要的订单摘要。",
+      "package": "customer-support",
+      "source": "specs/packages/customer-support.md",
+      "anchor": "customer-support-5",
+      "source_line": 29,
+      "related_requirement_ids": [
+        "customer-account-3",
+        "customer-account-7"
+      ]
+    },
+    {
+      "id": "customer-support-6",
+      "text": "当新会话进入队列，客服系统应将其标为待分配并使有权人员可见。",
+      "package": "customer-support",
+      "source": "specs/packages/customer-support.md",
+      "anchor": "customer-support-6",
+      "source_line": 33,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "customer-support-7",
+      "text": "当有权主管或客服分配会话，客服系统应在同一时点只记录一位负责人并通知该负责人。",
+      "package": "customer-support",
+      "source": "specs/packages/customer-support.md",
+      "anchor": "customer-support-7",
+      "source_line": 37,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "customer-support-8",
+      "text": "当有权人员转派会话，客服系统应保存原负责人、接手人、原因和时间，并将未处理状态交给新负责人。",
+      "package": "customer-support",
+      "source": "specs/packages/customer-support.md",
+      "anchor": "customer-support-8",
+      "source_line": 41,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "customer-support-9",
+      "text": "当客服结束会话后顾客继续发送消息，客服系统应恢复待跟进状态并保留原历史。",
+      "package": "customer-support",
+      "source": "specs/packages/customer-support.md",
+      "anchor": "customer-support-9",
+      "source_line": 45,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "customer-support-10",
+      "text": "当已登记的可通知业务事件发生，通知系统应按事件类型向已配置的顾客渠道发送对应状态与下一步：\n\n| 事件类型 | 通知内容 |\n| --- | --- |\n| 订单状态 [[orders-fulfillment-4](orders-fulfillment.md#orders-fulfillment-4)] | 最新订单状态与查询入口 |\n| 付款成功或失败 [[cart-checkout-14](cart-checkout.md#cart-checkout-14)] [[cart-checkout-15](cart-checkout.md#cart-checkout-15)] | 付款结果、模式及后续操作 |\n| 包裹交运 [[orders-fulfillment-9](orders-fulfillment.md#orders-fulfillment-9)] | 包裹及跟踪入口 |\n| 售后决定与退款结果 [[after-sales-6](after-sales.md#after-sales-6)] [[after-sales-25](after-sales.md#after-sales-25)] | 案件状态及下一步 |\n| 客服回复 [[customer-support-20](#customer-support-20)] | 会话回复及回访入口 |",
+      "package": "customer-support",
+      "source": "specs/packages/customer-support.md",
+      "anchor": "customer-support-10",
+      "source_line": 49,
+      "related_requirement_ids": [
+        "after-sales-25",
+        "after-sales-6",
+        "cart-checkout-14",
+        "cart-checkout-15",
+        "customer-support-20",
+        "orders-fulfillment-4",
+        "orders-fulfillment-9"
+      ]
+    },
+    {
+      "id": "customer-support-11",
+      "text": "当游客订单发生通知事件，通知系统应使用下单时可用的联系渠道 [[cart-checkout-5](cart-checkout.md#cart-checkout-5)]，而非依赖账户站内消息。",
+      "package": "customer-support",
+      "source": "specs/packages/customer-support.md",
+      "anchor": "customer-support-11",
+      "source_line": 61,
+      "related_requirement_ids": [
+        "cart-checkout-5"
+      ]
+    },
+    {
+      "id": "customer-support-12",
+      "text": "当通知发送失败，通知系统应保存失败原因和可重试状态，且重试不重复触发原业务动作。",
+      "package": "customer-support",
+      "source": "specs/packages/customer-support.md",
+      "anchor": "customer-support-12",
+      "source_line": 65,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "customer-support-13",
+      "text": "当通知渠道未配置或不可用，通知系统应向有权员工显示待处理异常，且不声称顾客已收到消息。",
+      "package": "customer-support",
+      "source": "specs/packages/customer-support.md",
+      "anchor": "customer-support-13",
+      "source_line": 69,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "customer-support-17",
+      "text": "当客服打开尚未选择会话的工作区，客服系统应显示选择会话或等待分配的明确提示。",
+      "package": "customer-support",
+      "source": "specs/packages/customer-support.md",
+      "anchor": "customer-support-17",
+      "source_line": 73,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "customer-support-18",
+      "text": "当客服会话工作区加载失败，客服系统应显示故障状态和可执行的重试路径。",
+      "package": "customer-support",
+      "source": "specs/packages/customer-support.md",
+      "anchor": "customer-support-18",
+      "source_line": 77,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "customer-support-19",
+      "text": "当员工打开无权访问的会话，客服系统应拒绝读取内容并显示返回其授权队列的路径。",
+      "package": "customer-support",
+      "source": "specs/packages/customer-support.md",
+      "anchor": "customer-support-19",
+      "source_line": 81,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "customer-support-20",
+      "text": "当已分配且有权的客服向会话发送回复，客服系统应持久保存发送者、内容与时间，并使顾客在实时连接或重新进入会话后读取该回复。",
+      "package": "customer-support",
+      "source": "specs/packages/customer-support.md",
+      "anchor": "customer-support-20",
+      "source_line": 85,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "launch-readiness-1",
+      "text": "当有权员工查看上线就绪状态，商店应按市场列出品牌与语言、商品与库存、价格、授权素材、税、配送、适用整车组装责任、支付、售后政策、通知、客服和站点服务的配置状态，并标明缺项影响的商品变体与可服务目的地；未配置市场时应列出市场缺项。",
+      "package": "launch-readiness",
+      "source": "specs/packages/launch-readiness.md",
+      "anchor": "launch-readiness-1",
+      "source_line": 13,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "launch-readiness-2",
+      "text": "当商店核验市场中的商品交易资格，商店应按每个拟售变体的已发布资料 [[market-catalog-5](market-catalog.md#market-catalog-5)]、当前市场价格 [[market-catalog-6](market-catalog.md#market-catalog-6)] 与可售库存 [[market-catalog-13](market-catalog.md#market-catalog-13)] 标示其真实交易就绪或缺项；市场无任何可交易变体时应标示市场无可交易商品。",
+      "package": "launch-readiness",
+      "source": "specs/packages/launch-readiness.md",
+      "anchor": "launch-readiness-2",
+      "source_line": 17,
+      "related_requirement_ids": [
+        "market-catalog-13",
+        "market-catalog-5",
+        "market-catalog-6"
+      ]
+    },
+    {
+      "id": "launch-readiness-3",
+      "text": "当商品图片 [[market-catalog-9](market-catalog.md#market-catalog-9)] 或内容视频 [[content-marketing-4](content-marketing.md#content-marketing-4)] 缺少授权证明或来源记录，商店应标示对应商品素材或内容发布未就绪并指出待补资料；仅被交易引用的商品素材缺口阻断对应商品交易。",
+      "package": "launch-readiness",
+      "source": "specs/packages/launch-readiness.md",
+      "anchor": "launch-readiness-3",
+      "source_line": 21,
+      "related_requirement_ids": [
+        "content-marketing-4",
+        "market-catalog-9"
+      ]
+    },
+    {
+      "id": "launch-readiness-4",
+      "text": "当市场缺少已生效税务、配送或售后规则 [[merchant-operations-10](merchant-operations.md#merchant-operations-10)]，商店应标示受影响的目的地或商品交易未就绪，并指出结账阻断条件 [[cart-checkout-12](cart-checkout.md#cart-checkout-12)]。",
+      "package": "launch-readiness",
+      "source": "specs/packages/launch-readiness.md",
+      "anchor": "launch-readiness-4",
+      "source_line": 25,
+      "related_requirement_ids": [
+        "cart-checkout-12",
+        "merchant-operations-10"
+      ]
+    },
+    {
+      "id": "launch-readiness-5",
+      "text": "当有权员工检查结账所用支付配置 [[cart-checkout-13](cart-checkout.md#cart-checkout-13)]，商店应按已选择的支付模式分别标示真实收款或测试付款的就绪状态及缺失的确认资料：\n\n| 支付配置 | 就绪结果 |\n| --- | --- |\n| 真实支付服务已核验且资金与退款路径 [[after-sales-9](after-sales.md#after-sales-9)] [[after-sales-25](after-sales.md#after-sales-25)] 可用 | 可供真实售卖就绪检查使用 |\n| 测试支付已明确标示 [[cart-checkout-18](cart-checkout.md#cart-checkout-18)] | 仅可供测试流程就绪检查使用 |\n| 模式未确认、真实服务不可用或测试标示缺失 | 对应支付流程未就绪 |",
+      "package": "launch-readiness",
+      "source": "specs/packages/launch-readiness.md",
+      "anchor": "launch-readiness-5",
+      "source_line": 29,
+      "related_requirement_ids": [
+        "after-sales-25",
+        "after-sales-9",
+        "cart-checkout-13",
+        "cart-checkout-18"
+      ]
+    },
+    {
+      "id": "launch-readiness-6",
+      "text": "当通知发送渠道 [[customer-support-10](customer-support.md#customer-support-10)] 或客服联系途径 [[customer-support-1](customer-support.md#customer-support-1)] 缺少可用配置，商店应显示对应服务未就绪及受影响的顾客联系路径。",
+      "package": "launch-readiness",
+      "source": "specs/packages/launch-readiness.md",
+      "anchor": "launch-readiness-6",
+      "source_line": 39,
+      "related_requirement_ids": [
+        "customer-support-1",
+        "customer-support-10"
+      ]
+    },
+    {
+      "id": "launch-readiness-7",
+      "text": "当域名与公开服务、私有资料访问控制 [[site-quality-8](site-quality.md#site-quality-8)]、备份结果 [[site-quality-14](site-quality.md#site-quality-14)] 或恢复验证 [[site-quality-17](site-quality.md#site-quality-17)] 缺少可核验结果，商店应在就绪状态中指出对应运行风险及待办。",
+      "package": "launch-readiness",
+      "source": "specs/packages/launch-readiness.md",
+      "anchor": "launch-readiness-7",
+      "source_line": 43,
+      "related_requirement_ids": [
+        "site-quality-14",
+        "site-quality-17",
+        "site-quality-8"
+      ]
+    },
+    {
+      "id": "launch-readiness-8",
+      "text": "当商家完成一项就绪输入，商店应重新核验相关状态并保留验证时间、结果和责任人。",
+      "package": "launch-readiness",
+      "source": "specs/packages/launch-readiness.md",
+      "anchor": "launch-readiness-8",
+      "source_line": 47,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "launch-readiness-9",
+      "text": "当样例或测试数据存在于商店，商店应使测试订单、模拟付款 [[cart-checkout-14](cart-checkout.md#cart-checkout-14)] 与退款记录 [[after-sales-9](after-sales.md#after-sales-9)] 同正式订单、真实收退款记录、可售库存 [[market-catalog-11](market-catalog.md#market-catalog-11)]、限额优惠 [[content-marketing-13](content-marketing.md#content-marketing-13)]、积分 [[customer-account-19](customer-account.md#customer-account-19)]、评价和经营汇总 [[merchant-operations-12](merchant-operations.md#merchant-operations-12)] 隔离，并标示数据来源；正式商品资料仅可供测试流程只读引用。",
+      "package": "launch-readiness",
+      "source": "specs/packages/launch-readiness.md",
+      "anchor": "launch-readiness-9",
+      "source_line": 51,
+      "related_requirement_ids": [
+        "after-sales-9",
+        "cart-checkout-14",
+        "content-marketing-13",
+        "customer-account-19",
+        "market-catalog-11",
+        "merchant-operations-12"
+      ]
+    },
+    {
+      "id": "launch-readiness-10",
+      "text": "当有权员工请求真实售卖就绪结论，商店应按市场、拟售商品变体及可服务目的地的组合核对商品与库存 [[launch-readiness-2](#launch-readiness-2)]、该商品所用授权素材 [[launch-readiness-3](#launch-readiness-3)]、该目的地及商品适用的税配送与售后政策 [[launch-readiness-4](#launch-readiness-4)]、适用整车组装责任与顾客指引 [[launch-readiness-15](#launch-readiness-15)]，并核对市场共同依赖的真实支付及退款服务 [[launch-readiness-5](#launch-readiness-5)]、通知客服 [[launch-readiness-6](#launch-readiness-6)]、运行恢复 [[launch-readiness-7](#launch-readiness-7)]，其他商业决策按其影响范围核对；仅通过的组合可标为真实售卖就绪，市场应分别显示全部、部分或无组合就绪及各缺项，测试支付不能满足真实售卖条件。",
+      "package": "launch-readiness",
+      "source": "specs/packages/launch-readiness.md",
+      "anchor": "launch-readiness-10",
+      "source_line": 55,
+      "related_requirement_ids": [
+        "launch-readiness-15",
+        "launch-readiness-2",
+        "launch-readiness-3",
+        "launch-readiness-4",
+        "launch-readiness-5",
+        "launch-readiness-6",
+        "launch-readiness-7"
+      ]
+    },
+    {
+      "id": "launch-readiness-13",
+      "text": "当有权员工请求测试流程就绪结论，商店应仅在可核对的测试报价 [[cart-checkout-10](cart-checkout.md#cart-checkout-10)]、显式测试付款 [[cart-checkout-18](cart-checkout.md#cart-checkout-18)]、隔离的测试库存与实际使用的权益可供下单 [[cart-checkout-22](cart-checkout.md#cart-checkout-22)] [[launch-readiness-9](#launch-readiness-9)] 和阻止测试订单真实交运 [[orders-fulfillment-13](orders-fulfillment.md#orders-fulfillment-13)] 均可核验时标示测试流程就绪，并与真实售卖就绪状态分开显示。",
+      "package": "launch-readiness",
+      "source": "specs/packages/launch-readiness.md",
+      "anchor": "launch-readiness-13",
+      "source_line": 59,
+      "related_requirement_ids": [
+        "cart-checkout-10",
+        "cart-checkout-18",
+        "cart-checkout-22",
+        "launch-readiness-9",
+        "orders-fulfillment-13"
+      ]
+    },
+    {
+      "id": "launch-readiness-14",
+      "text": "当顾客准备对购物车发起真实收款，商店应仅在每个商品行与该订单收货目的地的组合均通过真实售卖就绪核验 [[launch-readiness-10](#launch-readiness-10)] 时允许整单付款；任一行未就绪应阻止整单收款、指出受影响行并避免对公众宣称该行可真实购买，其他单独就绪的商品不受其缺项阻断。",
+      "package": "launch-readiness",
+      "source": "specs/packages/launch-readiness.md",
+      "anchor": "launch-readiness-14",
+      "source_line": 63,
+      "related_requirement_ids": [
+        "launch-readiness-10"
+      ]
+    },
+    {
+      "id": "launch-readiness-15",
+      "text": "当市场准备销售整车，商店应核对该车型的商家已确认组装责任、交付形态、可用于随货交付的顾客指引 [[orders-fulfillment-7](orders-fulfillment.md#orders-fulfillment-7)] 及购买前可见的组装说明与适用政策 [[market-catalog-17](market-catalog.md#market-catalog-17)] [[content-marketing-9](content-marketing.md#content-marketing-9)]；任一缺失应将该车型的真实售卖标为未就绪并列出缺项，未销售整车的市场不以此项阻断。",
+      "package": "launch-readiness",
+      "source": "specs/packages/launch-readiness.md",
+      "anchor": "launch-readiness-15",
+      "source_line": 67,
+      "related_requirement_ids": [
+        "content-marketing-9",
+        "market-catalog-17",
+        "orders-fulfillment-7"
+      ]
+    },
+    {
+      "id": "market-catalog-1",
+      "text": "给定商家已启用一个市场，当顾客进入商店，商店应显示当前市场、适用的站点语言和报价币种。",
+      "package": "market-catalog",
+      "source": "specs/packages/market-catalog.md",
+      "anchor": "market-catalog-1",
+      "source_line": 13,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "market-catalog-2",
+      "text": "当顾客切换到另一个已启用市场，商店应重新展示该市场可售商品及其独立报价，并标示原市场商品的不可售或变价结果。",
+      "package": "market-catalog",
+      "source": "specs/packages/market-catalog.md",
+      "anchor": "market-catalog-2",
+      "source_line": 17,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "market-catalog-3",
+      "text": "当顾客请求未启用的市场，商店应说明该地区暂不可购买，且不提供该地区的结账入口。",
+      "package": "market-catalog",
+      "source": "specs/packages/market-catalog.md",
+      "anchor": "market-catalog-3",
+      "source_line": 21,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "market-catalog-4",
+      "text": "当顾客浏览目录，商店应按自行车与配件的已配置类别展示已发布商品，并清楚标示缺货商品。",
+      "package": "market-catalog",
+      "source": "specs/packages/market-catalog.md",
+      "anchor": "market-catalog-4",
+      "source_line": 25,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "market-catalog-5",
+      "text": "当顾客打开已发布商品详情，商店应显示名称、类别、品牌、图片或明确的无图状态、可核实规格、价格币种及购买条件。",
+      "package": "market-catalog",
+      "source": "specs/packages/market-catalog.md",
+      "anchor": "market-catalog-5",
+      "source_line": 29,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "market-catalog-6",
+      "text": "当顾客选择商品变体，商店应显示该变体的唯一标识、规格、当前市场价格和可售状态。",
+      "package": "market-catalog",
+      "source": "specs/packages/market-catalog.md",
+      "anchor": "market-catalog-6",
+      "source_line": 33,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "market-catalog-7",
+      "text": "当某变体在当前市场不可售，商店应阻止该变体进入新的待付款订单 [[cart-checkout-22](cart-checkout.md#cart-checkout-22)] 或换货占用 [[after-sales-30](after-sales.md#after-sales-30)] 并说明原因：\n\n| 不可售原因 | 说明 |\n| --- | --- |\n| 未在当前市场上架 | 标示市场不可售 |\n| 可售量不足 | 标示缺货或可用数量 |",
+      "package": "market-catalog",
+      "source": "specs/packages/market-catalog.md",
+      "anchor": "market-catalog-7",
+      "source_line": 37,
+      "related_requirement_ids": [
+        "after-sales-30",
+        "cart-checkout-22"
+      ]
+    },
+    {
+      "id": "market-catalog-8",
+      "text": "当有权员工提交商品资料变更，商店应按变更类型保存商品及变体的类别、规格、市场可售性、价格、媒体来源和发布状态：\n\n| 变更类型 | 保存结果 |\n| --- | --- |\n| 新增商品或变体 | 创建可识别且尚未发布的记录 |\n| 修改商品或变体 | 仅更新所选记录并保留其他记录 |",
+      "package": "market-catalog",
+      "source": "specs/packages/market-catalog.md",
+      "anchor": "market-catalog-8",
+      "source_line": 46,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "market-catalog-9",
+      "text": "当有权员工发布商品，商店应拒绝缺少该商品类别所需的真实规格、当前市场价格或合法使用的素材，并指出缺项。",
+      "package": "market-catalog",
+      "source": "specs/packages/market-catalog.md",
+      "anchor": "market-catalog-9",
+      "source_line": 55,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "market-catalog-10",
+      "text": "当有权员工调整库存，商店应记录目标变体、调整前后数量、原因、操作者和时间。",
+      "package": "market-catalog",
+      "source": "specs/packages/market-catalog.md",
+      "anchor": "market-catalog-10",
+      "source_line": 59,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "market-catalog-11",
+      "text": "当业务流程请求占用变体库存，商店应仅减少同一交易模式库存池中目标变体的可售量并保留关联业务来源的可追溯占用记录；测试订单只能占用隔离的测试库存，不得改变正式可售量 [[launch-readiness-9](launch-readiness.md#launch-readiness-9)]：\n\n| 占用来源 | 关联记录 |\n| --- | --- |\n| 待付款订单 [[orders-fulfillment-1](orders-fulfillment.md#orders-fulfillment-1)] | 订单及订单行 |\n| 已批准且检查完成的换货占库请求 [[after-sales-30](after-sales.md#after-sales-30)] | 原订单行、售后案件与目标变体 |",
+      "package": "market-catalog",
+      "source": "specs/packages/market-catalog.md",
+      "anchor": "market-catalog-11",
+      "source_line": 63,
+      "related_requirement_ids": [
+        "after-sales-30",
+        "launch-readiness-9",
+        "orders-fulfillment-1"
+      ]
+    },
+    {
+      "id": "market-catalog-12",
+      "text": "当库存占用接收合法释放请求，商店应仅恢复对应变体的可售量且重复释放不产生额外库存：\n\n| 释放来源 | 释放依据 |\n| --- | --- |\n| 付款失败 | 失败结果已核实 [[cart-checkout-15](cart-checkout.md#cart-checkout-15)] |\n| 未付款超时 | 付款未发起且占用已失效 [[cart-checkout-25](cart-checkout.md#cart-checkout-25)] |\n| 待付款整单或已付款订单行取消 | 取消已批准 [[after-sales-2](after-sales.md#after-sales-2)] |\n| 换货终止 | 替代商品尚未交运 [[after-sales-27](after-sales.md#after-sales-27)] |",
+      "package": "market-catalog",
+      "source": "specs/packages/market-catalog.md",
+      "anchor": "market-catalog-12",
+      "source_line": 72,
+      "related_requirement_ids": [
+        "after-sales-2",
+        "after-sales-27",
+        "cart-checkout-15",
+        "cart-checkout-25"
+      ]
+    },
+    {
+      "id": "market-catalog-13",
+      "text": "当同一变体的订单 [[cart-checkout-22](cart-checkout.md#cart-checkout-22)] 或换货 [[after-sales-30](after-sales.md#after-sales-30)] 库存占用请求超过所属库存池可售量，商店应拒绝超量部分并向请求方显示可用数量或缺货状态。",
+      "package": "market-catalog",
+      "source": "specs/packages/market-catalog.md",
+      "anchor": "market-catalog-13",
+      "source_line": 83,
+      "related_requirement_ids": [
+        "after-sales-30",
+        "cart-checkout-22"
+      ]
+    },
+    {
+      "id": "market-catalog-14",
+      "text": "当商品媒体不可用，商店应展示明确的无图状态而不显示破损图片或未经授权的替代素材。",
+      "package": "market-catalog",
+      "source": "specs/packages/market-catalog.md",
+      "anchor": "market-catalog-14",
+      "source_line": 87,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "market-catalog-17",
+      "text": "当顾客查看已发布整车商品的购买条件，商店应在购买前展示该车型已确认的交付形态、商家与顾客各自的组装责任、所需顾客指引及适用政策入口 [[content-marketing-9](content-marketing.md#content-marketing-9)]；资料未确认时应明确提示且不得形成可付款报价。",
+      "package": "market-catalog",
+      "source": "specs/packages/market-catalog.md",
+      "anchor": "market-catalog-17",
+      "source_line": 91,
+      "related_requirement_ids": [
+        "content-marketing-9"
+      ]
+    },
+    {
+      "id": "merchant-operations-1",
+      "text": "当商家受控初始化首位管理员，运营系统应建立可识别的个人账号，并阻止未经授权的重复初始化。",
+      "package": "merchant-operations",
+      "source": "specs/packages/merchant-operations.md",
+      "anchor": "merchant-operations-1",
+      "source_line": 13,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "merchant-operations-2",
+      "text": "当有权管理员创建员工，运营系统应建立其个人账号并记录身份、创建者与时间。",
+      "package": "merchant-operations",
+      "source": "specs/packages/merchant-operations.md",
+      "anchor": "merchant-operations-2",
+      "source_line": 17,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "merchant-operations-3",
+      "text": "当管理员提交员工角色变更，运营系统应记录变更并使员工后续操作立即遵守新权限：\n\n| 变更 | 后续权限 |\n| --- | --- |\n| 授予角色 | 允许新角色授权的操作 |\n| 撤销角色 | 立即拒绝已失去授权的操作 |",
+      "package": "merchant-operations",
+      "source": "specs/packages/merchant-operations.md",
+      "anchor": "merchant-operations-3",
+      "source_line": 21,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "merchant-operations-4",
+      "text": "当员工请求超出其角色的商品、订单、退款、内容或客户资料操作，运营系统应拒绝该操作且不改变业务记录。",
+      "package": "merchant-operations",
+      "source": "specs/packages/merchant-operations.md",
+      "anchor": "merchant-operations-4",
+      "source_line": 30,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "merchant-operations-5",
+      "text": "当商品运营人员维护商品、变体、市场价格或发布状态，运营系统应仅允许其通过商品管理行为 [[market-catalog-8](market-catalog.md#market-catalog-8)] 修改获授权字段。",
+      "package": "merchant-operations",
+      "source": "specs/packages/merchant-operations.md",
+      "anchor": "merchant-operations-5",
+      "source_line": 34,
+      "related_requirement_ids": [
+        "market-catalog-8"
+      ]
+    },
+    {
+      "id": "merchant-operations-6",
+      "text": "当库存人员提交盘点差异调整，运营系统应要求原因并保留库存调整记录 [[market-catalog-10](market-catalog.md#market-catalog-10)]。",
+      "package": "merchant-operations",
+      "source": "specs/packages/merchant-operations.md",
+      "anchor": "merchant-operations-6",
+      "source_line": 38,
+      "related_requirement_ids": [
+        "market-catalog-10"
+      ]
+    },
+    {
+      "id": "merchant-operations-7",
+      "text": "当订单或履约员工处理待办，运营系统应显示其有权访问的订单、包裹和异常队列，并仅允许合法状态推进 [[orders-fulfillment-4](orders-fulfillment.md#orders-fulfillment-4)]。",
+      "package": "merchant-operations",
+      "source": "specs/packages/merchant-operations.md",
+      "anchor": "merchant-operations-7",
+      "source_line": 42,
+      "related_requirement_ids": [
+        "orders-fulfillment-4"
+      ]
+    },
+    {
+      "id": "merchant-operations-8",
+      "text": "当售后员工请求案件处理动作，运营系统应按其角色开放取消 [[after-sales-2](after-sales.md#after-sales-2)]、退换审核 [[after-sales-6](after-sales.md#after-sales-6)] 或退款执行 [[after-sales-9](after-sales.md#after-sales-9)] 的对应权限，并记录决定依据。",
+      "package": "merchant-operations",
+      "source": "specs/packages/merchant-operations.md",
+      "anchor": "merchant-operations-8",
+      "source_line": 46,
+      "related_requirement_ids": [
+        "after-sales-2",
+        "after-sales-6",
+        "after-sales-9"
+      ]
+    },
+    {
+      "id": "merchant-operations-9",
+      "text": "当客服主管查看会话队列，运营系统应显示其可分配 [[customer-support-7](customer-support.md#customer-support-7)] 与转派 [[customer-support-8](customer-support.md#customer-support-8)] 的待办 [[customer-support-6](customer-support.md#customer-support-6)]，并隐藏无权访问的客户资料。",
+      "package": "merchant-operations",
+      "source": "specs/packages/merchant-operations.md",
+      "anchor": "merchant-operations-9",
+      "source_line": 50,
+      "related_requirement_ids": [
+        "customer-support-6",
+        "customer-support-7",
+        "customer-support-8"
+      ]
+    },
+    {
+      "id": "merchant-operations-10",
+      "text": "当有权员工维护税、配送、保修、退换、优惠或通知规则，运营系统应保存适用范围、生效时间、版本及操作者，并阻止缺少必需值的规则生效。",
+      "package": "merchant-operations",
+      "source": "specs/packages/merchant-operations.md",
+      "anchor": "merchant-operations-10",
+      "source_line": 54,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "merchant-operations-11",
+      "text": "当价格、库存、订单、退款、积分、权限、内容发布或客服转派发生敏感变更，运营系统应写入不可由普通员工删改的审计事件。",
+      "package": "merchant-operations",
+      "source": "specs/packages/merchant-operations.md",
+      "anchor": "merchant-operations-11",
+      "source_line": 58,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "merchant-operations-12",
+      "text": "当有权人员按市场和时间查看经营汇总，运营系统应展示订单、销量、待发、退货及客服积压，并区分测试交易与真实交易。",
+      "package": "merchant-operations",
+      "source": "specs/packages/merchant-operations.md",
+      "anchor": "merchant-operations-12",
+      "source_line": 62,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "merchant-operations-13",
+      "text": "当有权人员从经营汇总打开异常指标，运营系统应提供可核对的相应工作队列入口。",
+      "package": "merchant-operations",
+      "source": "specs/packages/merchant-operations.md",
+      "anchor": "merchant-operations-13",
+      "source_line": 66,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "merchant-operations-16",
+      "text": "当有权管理员停用员工，运营系统应记录操作者与时间并阻断该员工后续访问。",
+      "package": "merchant-operations",
+      "source": "specs/packages/merchant-operations.md",
+      "anchor": "merchant-operations-16",
+      "source_line": 70,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "merchant-operations-17",
+      "text": "当有权管理员发起员工凭据重置，运营系统应记录发起者与时间并要求员工在受控渠道验证身份后完成重置。",
+      "package": "merchant-operations",
+      "source": "specs/packages/merchant-operations.md",
+      "anchor": "merchant-operations-17",
+      "source_line": 74,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "orders-fulfillment-1",
+      "text": "当结账提交已确认报价并建立待付款订单 [[cart-checkout-22](cart-checkout.md#cart-checkout-22)]，订单系统应保存下表所列不可变的成交快照：\n\n| 快照部分 | 必需内容 |\n| --- | --- |\n| 订单身份 | 编号、购买人或游客联系途径、提交时间 |\n| 商品行 | 确切变体 [[market-catalog-6](market-catalog.md#market-catalog-6)]、数量、成交单价和币种 |\n| 行金额 | 优惠分摊 [[content-marketing-7](content-marketing.md#content-marketing-7)]、积分抵扣分摊 [[customer-account-12](customer-account.md#customer-account-12)]、税额与计税依据 [[cart-checkout-10](cart-checkout.md#cart-checkout-10)]，以及多件同一订单行按件分摊和尾差归属 |\n| 配送 | 收货地址、所选服务、费用、预计时效 [[cart-checkout-8](cart-checkout.md#cart-checkout-8)]、适用费用分摊规则 [[merchant-operations-10](merchant-operations.md#merchant-operations-10)] 及逐行按件实际分摊金额 |\n| 成交与政策 | 最终应付总额 [[cart-checkout-10](cart-checkout.md#cart-checkout-10)]、支付模式 [[cart-checkout-13](cart-checkout.md#cart-checkout-13)]、适用规则和政策版本 [[content-marketing-9](content-marketing.md#content-marketing-9)] |",
+      "package": "orders-fulfillment",
+      "source": "specs/packages/orders-fulfillment.md",
+      "anchor": "orders-fulfillment-1",
+      "source_line": 13,
+      "related_requirement_ids": [
+        "cart-checkout-10",
+        "cart-checkout-13",
+        "cart-checkout-22",
+        "cart-checkout-8",
+        "content-marketing-7",
+        "content-marketing-9",
+        "customer-account-12",
+        "market-catalog-6",
+        "merchant-operations-10"
+      ]
+    },
+    {
+      "id": "orders-fulfillment-2",
+      "text": "当商品资料、价格或政策在下单后改变，订单系统应保留原订单快照而不以新配置覆写历史。",
+      "package": "orders-fulfillment",
+      "source": "specs/packages/orders-fulfillment.md",
+      "anchor": "orders-fulfillment-2",
+      "source_line": 25,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "orders-fulfillment-3",
+      "text": "当已核验订单归属的游客 [[customer-account-3](customer-account.md#customer-account-3)]、已登录且订单归属本人的会员 [[customer-account-7](customer-account.md#customer-account-7)] 或有权员工 [[merchant-operations-3](merchant-operations.md#merchant-operations-3)] 查询订单，订单系统应展示其可访问的当前支付、履约及售后状态和事件时间。",
+      "package": "orders-fulfillment",
+      "source": "specs/packages/orders-fulfillment.md",
+      "anchor": "orders-fulfillment-3",
+      "source_line": 29,
+      "related_requirement_ids": [
+        "customer-account-3",
+        "customer-account-7",
+        "merchant-operations-3"
+      ]
+    },
+    {
+      "id": "orders-fulfillment-4",
+      "text": "当支付、履约或售后事件推进订单记录，订单系统应按下表分别保存对应状态、操作者或事件来源、原因与时间，并拒绝表外跳转：\n\n| 状态维度 | 允许的变化 |\n| --- | --- |\n| 支付 | 待付款 → 结果待核对／已付款／付款失败／已失效／已关闭（全部未付款行取消）；结果待核对 → 已付款／付款失败；付款失败与已失效为终态，重试建立关联的新待付款订单 [[cart-checkout-17](cart-checkout.md#cart-checkout-17)]；已付款结果不因退款倒退 [[cart-checkout-14](cart-checkout.md#cart-checkout-14)] [[cart-checkout-15](cart-checkout.md#cart-checkout-15)] [[cart-checkout-23](cart-checkout.md#cart-checkout-23)] [[cart-checkout-25](cart-checkout.md#cart-checkout-25)] [[after-sales-2](after-sales.md#after-sales-2)] |\n| 订单行履约 | 待付款 → 待履约（确认付款后）／已取消（付款前取消）；待履约 → 拣货中 → 已打包 → 已交运 → 已送达；未交运的行可按批准取消转为已取消 [[after-sales-2](after-sales.md#after-sales-2)]；已交运行不得直接取消 |\n| 包裹配送 | 待交运 → 已交运 → 已送达；运输异常作为带证据的标记，不代替送达事件 |\n| 退款 | 每行未退款 → 部分退款 → 已退款；仅在退款成功结果被确认 [[after-sales-25](after-sales.md#after-sales-25)] 后推进，不改写原支付成功记录或既有交运历史 |\n| 售后 | 案件状态单独记录 [[after-sales-18](after-sales.md#after-sales-18)]，不将申请中直接解释为订单已取消或已退款 |",
+      "package": "orders-fulfillment",
+      "source": "specs/packages/orders-fulfillment.md",
+      "anchor": "orders-fulfillment-4",
+      "source_line": 33,
+      "related_requirement_ids": [
+        "after-sales-18",
+        "after-sales-2",
+        "after-sales-25",
+        "cart-checkout-14",
+        "cart-checkout-15",
+        "cart-checkout-17",
+        "cart-checkout-23",
+        "cart-checkout-25"
+      ]
+    },
+    {
+      "id": "orders-fulfillment-5",
+      "text": "当履约人员开始处理已具备付款确认 [[cart-checkout-14](cart-checkout.md#cart-checkout-14)] 且非结果待核对 [[cart-checkout-23](cart-checkout.md#cart-checkout-23)] 的订单，订单系统应按实物履约授权记录每个整车或配件订单行的拣货与待发状态。",
+      "package": "orders-fulfillment",
+      "source": "specs/packages/orders-fulfillment.md",
+      "anchor": "orders-fulfillment-5",
+      "source_line": 45,
+      "related_requirement_ids": [
+        "cart-checkout-14",
+        "cart-checkout-23"
+      ]
+    },
+    {
+      "id": "orders-fulfillment-6",
+      "text": "当履约人员包装整车，订单系统应记录适用的包装检查项目、完成者和异常结果。",
+      "package": "orders-fulfillment",
+      "source": "specs/packages/orders-fulfillment.md",
+      "anchor": "orders-fulfillment-6",
+      "source_line": 49,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "orders-fulfillment-7",
+      "text": "当整车按已公布的组装与保修政策 [[content-marketing-9](content-marketing.md#content-marketing-9)] 交付，订单系统应记录需由商家完成或需顾客完成的组装事项及随货指引。",
+      "package": "orders-fulfillment",
+      "source": "specs/packages/orders-fulfillment.md",
+      "anchor": "orders-fulfillment-7",
+      "source_line": 53,
+      "related_requirement_ids": [
+        "content-marketing-9"
+      ]
+    },
+    {
+      "id": "orders-fulfillment-8",
+      "text": "当同一订单包含整车与配件，订单系统应允许分别记录包裹和履约状态，且顾客可识别各商品的预计到达情况。",
+      "package": "orders-fulfillment",
+      "source": "specs/packages/orders-fulfillment.md",
+      "anchor": "orders-fulfillment-8",
+      "source_line": 57,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "orders-fulfillment-9",
+      "text": "当包裹被交运，订单系统应保存承运服务、跟踪标识、交运时间和来源证据，并向顾客展示更新时间。",
+      "package": "orders-fulfillment",
+      "source": "specs/packages/orders-fulfillment.md",
+      "anchor": "orders-fulfillment-9",
+      "source_line": 61,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "orders-fulfillment-10",
+      "text": "当承运状态不可获得或更新失败，订单系统应标示跟踪信息的来源与最后更新时间，而不声称已送达。",
+      "package": "orders-fulfillment",
+      "source": "specs/packages/orders-fulfillment.md",
+      "anchor": "orders-fulfillment-10",
+      "source_line": 65,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "orders-fulfillment-11",
+      "text": "当包裹有可核实的送达事件，订单系统应记录送达时间与来源，并更新相应包裹而非无关包裹的状态。",
+      "package": "orders-fulfillment",
+      "source": "specs/packages/orders-fulfillment.md",
+      "anchor": "orders-fulfillment-11",
+      "source_line": 69,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "orders-fulfillment-12",
+      "text": "当顾客报告运输损坏，订单系统应保存所涉包裹、商品、证据和报告时间，并提供可跟踪的售后处理入口 [[after-sales-3](after-sales.md#after-sales-3)]。",
+      "package": "orders-fulfillment",
+      "source": "specs/packages/orders-fulfillment.md",
+      "anchor": "orders-fulfillment-12",
+      "source_line": 73,
+      "related_requirement_ids": [
+        "after-sales-3"
+      ]
+    },
+    {
+      "id": "orders-fulfillment-13",
+      "text": "给定订单的支付方式为测试模式 [[cart-checkout-18](cart-checkout.md#cart-checkout-18)]，当员工尝试生成真实交运任务，订单系统应阻止将测试支付结果当作实物交运授权。",
+      "package": "orders-fulfillment",
+      "source": "specs/packages/orders-fulfillment.md",
+      "anchor": "orders-fulfillment-13",
+      "source_line": 77,
+      "related_requirement_ids": [
+        "cart-checkout-18"
+      ]
+    },
+    {
+      "id": "orders-fulfillment-14",
+      "text": "当履约动作重复提交，订单系统应避免重复拣货、交运或送达事件影响同一包裹状态。",
+      "package": "orders-fulfillment",
+      "source": "specs/packages/orders-fulfillment.md",
+      "anchor": "orders-fulfillment-14",
+      "source_line": 81,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "orders-fulfillment-18",
+      "text": "当订单含多个订单行或包裹，订单系统应根据各行与包裹的实际状态展示部分或全部交运、送达及取消结果，并单独显示退款和售后状态，不以汇总状态覆盖历史事件。",
+      "package": "orders-fulfillment",
+      "source": "specs/packages/orders-fulfillment.md",
+      "anchor": "orders-fulfillment-18",
+      "source_line": 85,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "orders-fulfillment-19",
+      "text": "当已完成资格与占库核对的换货案件 [[after-sales-23](after-sales.md#after-sales-23)] 请求替代商品履约，订单系统应创建关联原订单行、目标变体与售后案件的独立包裹，并按该包裹的实际交运与送达事件推进状态。",
+      "package": "orders-fulfillment",
+      "source": "specs/packages/orders-fulfillment.md",
+      "anchor": "orders-fulfillment-19",
+      "source_line": 89,
+      "related_requirement_ids": [
+        "after-sales-23"
+      ]
+    },
+    {
+      "id": "product-selection-1",
+      "text": "当顾客按关键词搜索，商店应返回当前市场已发布商品 [[market-catalog-4](market-catalog.md#market-catalog-4)] 的相关结果，或说明无结果并提供继续浏览的入口。",
+      "package": "product-selection",
+      "source": "specs/packages/product-selection.md",
+      "anchor": "product-selection-1",
+      "source_line": 13,
+      "related_requirement_ids": [
+        "market-catalog-4"
+      ]
+    },
+    {
+      "id": "product-selection-2",
+      "text": "当顾客组合商品类别与规格 [[market-catalog-5](market-catalog.md#market-catalog-5)]、当前价格 [[market-catalog-6](market-catalog.md#market-catalog-6)] 或可售状态 [[market-catalog-7](market-catalog.md#market-catalog-7)] 筛选，商店应只显示同时满足条件的商品并允许清除任一条件。",
+      "package": "product-selection",
+      "source": "specs/packages/product-selection.md",
+      "anchor": "product-selection-2",
+      "source_line": 17,
+      "related_requirement_ids": [
+        "market-catalog-5",
+        "market-catalog-6",
+        "market-catalog-7"
+      ]
+    },
+    {
+      "id": "product-selection-3",
+      "text": "当顾客选择排序规则，商店应按所标示规则排序结果并保持筛选条件。",
+      "package": "product-selection",
+      "source": "specs/packages/product-selection.md",
+      "anchor": "product-selection-3",
+      "source_line": 21,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "product-selection-4",
+      "text": "当顾客选择多个可比较商品，商店应并列展示商品详情中已核实的规格 [[market-catalog-5](market-catalog.md#market-catalog-5)]，并将缺失值明确标为未知。",
+      "package": "product-selection",
+      "source": "specs/packages/product-selection.md",
+      "anchor": "product-selection-4",
+      "source_line": 25,
+      "related_requirement_ids": [
+        "market-catalog-5"
+      ]
+    },
+    {
+      "id": "product-selection-5",
+      "text": "当顾客打开整车选型信息，商店应显示对应商品详情 [[market-catalog-5](market-catalog.md#market-catalog-5)] 中商家提供的尺码范围、几何参数及各数据的适用车型或变体。",
+      "package": "product-selection",
+      "source": "specs/packages/product-selection.md",
+      "anchor": "product-selection-5",
+      "source_line": 29,
+      "related_requirement_ids": [
+        "market-catalog-5"
+      ]
+    },
+    {
+      "id": "product-selection-6",
+      "text": "给定商家提供了适用的选型规则，当顾客输入规则要求的身体尺寸和骑行偏好，商店应返回候选车架尺码及所用依据。",
+      "package": "product-selection",
+      "source": "specs/packages/product-selection.md",
+      "anchor": "product-selection-6",
+      "source_line": 33,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "product-selection-7",
+      "text": "当顾客的选型输入不能得出唯一有依据的尺码，商店应提示不确定性和需补充的信息，且不宣称唯一合适尺码：\n\n| 原因 | 提示重点 |\n| --- | --- |\n| 落在相邻尺码边界 | 展示有依据的候选尺码与需核对的骑姿信息 |\n| 超出规则适用范围 | 说明规则不适用并引导人工确认 |\n| 必需数据缺失 | 指明缺失的身体尺寸或车型参数 |",
+      "package": "product-selection",
+      "source": "specs/packages/product-selection.md",
+      "anchor": "product-selection-7",
+      "source_line": 37,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "product-selection-8",
+      "text": "当顾客查看配件与整车的兼容信息，商店应显示已验证的适配结论、对应变体 [[market-catalog-6](market-catalog.md#market-catalog-6)] 的型号／规格及资料来源或核验时间。",
+      "package": "product-selection",
+      "source": "specs/packages/product-selection.md",
+      "anchor": "product-selection-8",
+      "source_line": 47,
+      "related_requirement_ids": [
+        "market-catalog-6"
+      ]
+    },
+    {
+      "id": "product-selection-9",
+      "text": "当所选配件与整车变体的兼容结论缺乏充分依据 [[market-catalog-6](market-catalog.md#market-catalog-6)]，商店应标示尚不能确认适配，并提供核对规格或咨询的路径：\n\n| 资料问题 | 提示重点 |\n| --- | --- |\n| 资料缺失 | 指明待核对的接口或尺寸 |\n| 核验资料过期 | 标示最后核验时间 |\n| 资料与所选变体不匹配 | 指明不匹配的型号或规格 |",
+      "package": "product-selection",
+      "source": "specs/packages/product-selection.md",
+      "anchor": "product-selection-9",
+      "source_line": 51,
+      "related_requirement_ids": [
+        "market-catalog-6"
+      ]
+    },
+    {
+      "id": "product-selection-10",
+      "text": "当员工更新选型或兼容资料，商店应保存适用型号、数据来源、核验者与更新时间，并使公开结论随有效资料更新。",
+      "package": "product-selection",
+      "source": "specs/packages/product-selection.md",
+      "anchor": "product-selection-10",
+      "source_line": 61,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "site-quality-1",
+      "text": "当顾客或员工在桌面或窄屏设备执行主要任务，站点应保持任务所需内容与操作可见、可完成且不发生横向遮挡：\n\n| 用户任务 | 覆盖行为 |\n| --- | --- |\n| 顾客选品与购物车 | 商品发现 [[product-selection-1](product-selection.md#product-selection-1)]、购物车变更 [[cart-checkout-2](cart-checkout.md#cart-checkout-2)] |\n| 顾客结账与查单 | 最终报价 [[cart-checkout-10](cart-checkout.md#cart-checkout-10)]、订单查询 [[orders-fulfillment-3](orders-fulfillment.md#orders-fulfillment-3)] |\n| 顾客售后与客服 | 售后申请 [[after-sales-3](after-sales.md#after-sales-3)]、实时消息 [[customer-support-2](customer-support.md#customer-support-2)] 与客服回复 [[customer-support-20](customer-support.md#customer-support-20)] |\n| 员工工作区 | 订单待办 [[merchant-operations-7](merchant-operations.md#merchant-operations-7)]、客服队列 [[merchant-operations-9](merchant-operations.md#merchant-operations-9)] |",
+      "package": "site-quality",
+      "source": "specs/packages/site-quality.md",
+      "anchor": "site-quality-1",
+      "source_line": 13,
+      "related_requirement_ids": [
+        "after-sales-3",
+        "cart-checkout-10",
+        "cart-checkout-2",
+        "customer-support-2",
+        "customer-support-20",
+        "merchant-operations-7",
+        "merchant-operations-9",
+        "orders-fulfillment-3",
+        "product-selection-1"
+      ]
+    },
+    {
+      "id": "site-quality-2",
+      "text": "当顾客浏览主要页面，站点应以一致的字体、色彩、图像比例、留白和信息层级清楚呈现自行车商品及主要操作。",
+      "package": "site-quality",
+      "source": "specs/packages/site-quality.md",
+      "anchor": "site-quality-2",
+      "source_line": 24,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "site-quality-3",
+      "text": "当用户仅用键盘操作主要流程，站点应提供可见焦点、合理顺序和可操作的控件。",
+      "package": "site-quality",
+      "source": "specs/packages/site-quality.md",
+      "anchor": "site-quality-3",
+      "source_line": 28,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "site-quality-4",
+      "text": "当用户使用辅助技术阅读表单、图片、状态或费用变化，站点应提供语义标签、适当替代文本及可感知反馈。",
+      "package": "site-quality",
+      "source": "specs/packages/site-quality.md",
+      "anchor": "site-quality-4",
+      "source_line": 32,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "site-quality-5",
+      "text": "当用户提交无效输入或操作失败，站点应指出具体问题并提供可继续的修正或重试路径。",
+      "package": "site-quality",
+      "source": "specs/packages/site-quality.md",
+      "anchor": "site-quality-5",
+      "source_line": 36,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "site-quality-6",
+      "text": "当公开商品与分类 [[market-catalog-4](market-catalog.md#market-catalog-4)] 或文章 [[content-marketing-11](content-marketing.md#content-marketing-11)] 已发布，站点应提供可读地址、独立标题与描述、可索引正文及规范地址。",
+      "package": "site-quality",
+      "source": "specs/packages/site-quality.md",
+      "anchor": "site-quality-6",
+      "source_line": 40,
+      "related_requirement_ids": [
+        "content-marketing-11",
+        "market-catalog-4"
+      ]
+    },
+    {
+      "id": "site-quality-7",
+      "text": "当页面不属于可索引的公开内容，站点应避免将其加入公开站点地图或向搜索引擎声明可索引：\n\n| 页面类型 | 排除依据 |\n| --- | --- |\n| 未发布内容 | 尚未面向公众 [[content-marketing-3](content-marketing.md#content-marketing-3)] |\n| 账户资料与结账 | 包含私有资料或交易状态 [[customer-account-4](customer-account.md#customer-account-4)] [[cart-checkout-5](cart-checkout.md#cart-checkout-5)] |\n| 内部搜索与员工页面 | 不属于稳定公开内容或需要授权 [[merchant-operations-4](merchant-operations.md#merchant-operations-4)] |",
+      "package": "site-quality",
+      "source": "specs/packages/site-quality.md",
+      "anchor": "site-quality-7",
+      "source_line": 44,
+      "related_requirement_ids": [
+        "cart-checkout-5",
+        "content-marketing-3",
+        "customer-account-4",
+        "merchant-operations-4"
+      ]
+    },
+    {
+      "id": "site-quality-8",
+      "text": "当用户请求其他人的账户、订单、客服或员工资料，站点应拒绝访问且不泄露该资料是否存在的敏感细节。",
+      "package": "site-quality",
+      "source": "specs/packages/site-quality.md",
+      "anchor": "site-quality-8",
+      "source_line": 54,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "site-quality-9",
+      "text": "当用户登录或执行敏感操作，站点应限制滥用尝试并保护凭据、会话和传输中的敏感资料。",
+      "package": "site-quality",
+      "source": "specs/packages/site-quality.md",
+      "anchor": "site-quality-9",
+      "source_line": 58,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "site-quality-10",
+      "text": "当商店收集顾客资料，站点应说明已批准的用途与适用政策，并提供查询、更正及删除或保留请求入口。",
+      "package": "site-quality",
+      "source": "specs/packages/site-quality.md",
+      "anchor": "site-quality-10",
+      "source_line": 62,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "site-quality-11",
+      "text": "当业务事件被记录或错误被报告，站点应避免在公开响应与普通日志中暴露密码、完整支付凭据或不必要的个人资料。",
+      "package": "site-quality",
+      "source": "specs/packages/site-quality.md",
+      "anchor": "site-quality-11",
+      "source_line": 66,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "site-quality-12",
+      "text": "当业务写入中断或外部服务超时，站点应显示可理解状态并保留可核对的交易记录，使重试不重复产生业务效果。",
+      "package": "site-quality",
+      "source": "specs/packages/site-quality.md",
+      "anchor": "site-quality-12",
+      "source_line": 70,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "site-quality-13",
+      "text": "当关键业务错误持续未解决，站点应使有权员工查看错误、影响范围和处理状态。",
+      "package": "site-quality",
+      "source": "specs/packages/site-quality.md",
+      "anchor": "site-quality-13",
+      "source_line": 74,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "site-quality-14",
+      "text": "当按已批准的备份计划执行备份，站点应保存备份结果、覆盖的数据范围及声明的恢复点。",
+      "package": "site-quality",
+      "source": "specs/packages/site-quality.md",
+      "anchor": "site-quality-14",
+      "source_line": 78,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "site-quality-17",
+      "text": "当按已批准的计划执行恢复演练，站点应验证订单、库存、账户及审计数据可恢复到声明的恢复点并保存演练结果。",
+      "package": "site-quality",
+      "source": "specs/packages/site-quality.md",
+      "anchor": "site-quality-17",
+      "source_line": 82,
+      "related_requirement_ids": []
+    },
+    {
+      "id": "site-quality-18",
+      "text": "给定正式品牌视觉规范已确认，当顾客浏览主要页面，站点应使已发布页面的字体、色彩与图像处理符合该规范。",
+      "package": "site-quality",
+      "source": "specs/packages/site-quality.md",
+      "anchor": "site-quality-18",
+      "source_line": 86,
+      "related_requirement_ids": []
+    }
+  ]
+}

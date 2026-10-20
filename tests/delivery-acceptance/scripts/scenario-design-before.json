@@ -1,0 +1,13 @@
+{
+  "head": "c0e5c2e2d9c03e79fdb0f8a1d7fefac80f6c16d9",
+  "status": "",
+  "hashes": {
+    "requirements.json": "19eac30ed888286396019edbdc3b79937ae17218ab16b48797ba0395a21c943a",
+    "project.json": "1f861b598fe27161b54ca68ae9c63118415526e39b49d211169752e306ca2eac",
+    "resources.json": "c3f826f98a8411eba0ba06cf8db49f9b6d7785edb9b77a3c009bd22c62419a07",
+    "coverage_review.json": "9c38d460b1c6d5fad8a2d3577ac21fd7203465d3db6c4b604f74de553a92d147",
+    "scenarios.json": "0cd484315299b317055dd637f056299c82dff8b657ba927db18157da777dbc8f",
+    "methods.json": "0343639fac1511a32a4c9a92c7655a6e9f9ad3a600fc6f30b5bdad6806160a97"
+  },
+  "white_box": []
+}

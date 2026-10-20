@@ -1,0 +1,7 @@
+{
+  "e0cdfaa6-6613-4b9a-940f-dd0397992467": {
+    "project": "/Users/boboyang/work/sublang.ai/premium-cycling",
+    "test_dir": "/Users/boboyang/work/sublang.ai/premium-cycling/tests",
+    "playbook": "black-box-scenarios"
+  }
+}

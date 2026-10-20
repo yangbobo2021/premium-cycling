@@ -1,0 +1,315 @@
+{
+  "first_review_status": "gaps",
+  "first_review_gap_requirements": [
+    "after-sales-4",
+    "after-sales-7",
+    "after-sales-12",
+    "after-sales-18",
+    "after-sales-23",
+    "after-sales-24",
+    "after-sales-27",
+    "after-sales-28",
+    "after-sales-29",
+    "after-sales-31",
+    "after-sales-32",
+    "after-sales-33",
+    "cart-checkout-14",
+    "cart-checkout-16",
+    "cart-checkout-22",
+    "customer-account-1",
+    "customer-account-5",
+    "customer-support-2",
+    "customer-support-7",
+    "customer-support-20",
+    "orders-fulfillment-2",
+    "orders-fulfillment-18",
+    "site-quality-12"
+  ],
+  "first_review_uncovered_records": 25,
+  "modified": {
+    "scenarios.json": [
+      {
+        "id": "BB-after-sales-4",
+        "changed_fields": [
+          "expected"
+        ]
+      },
+      {
+        "id": "BB-after-sales-7",
+        "changed_fields": [
+          "expected"
+        ]
+      },
+      {
+        "id": "BB-after-sales-12",
+        "changed_fields": [
+          "expected"
+        ]
+      },
+      {
+        "id": "BB-after-sales-18",
+        "changed_fields": [
+          "expected"
+        ]
+      },
+      {
+        "id": "BB-after-sales-23",
+        "changed_fields": [
+          "expected"
+        ]
+      },
+      {
+        "id": "BB-after-sales-24",
+        "changed_fields": [
+          "expected"
+        ]
+      },
+      {
+        "id": "BB-after-sales-27",
+        "changed_fields": [
+          "expected"
+        ]
+      },
+      {
+        "id": "BB-after-sales-32",
+        "changed_fields": [
+          "expected"
+        ]
+      },
+      {
+        "id": "BB-cart-checkout-14",
+        "changed_fields": [
+          "expected"
+        ]
+      },
+      {
+        "id": "BB-cart-checkout-16",
+        "changed_fields": [
+          "expected"
+        ]
+      },
+      {
+        "id": "BB-cart-checkout-22",
+        "changed_fields": [
+          "expected"
+        ]
+      },
+      {
+        "id": "BB-customer-account-1",
+        "changed_fields": [
+          "expected"
+        ]
+      },
+      {
+        "id": "BB-customer-account-5",
+        "changed_fields": [
+          "expected"
+        ]
+      },
+      {
+        "id": "BB-customer-support-2",
+        "changed_fields": [
+          "expected"
+        ]
+      },
+      {
+        "id": "BB-customer-support-7",
+        "changed_fields": [
+          "expected"
+        ]
+      },
+      {
+        "id": "BB-customer-support-20",
+        "changed_fields": [
+          "expected"
+        ]
+      },
+      {
+        "id": "BB-orders-fulfillment-18",
+        "changed_fields": [
+          "expected"
+        ]
+      },
+      {
+        "id": "BB-site-quality-12",
+        "changed_fields": [
+          "expected"
+        ]
+      },
+      {
+        "id": "BB-journey-exchange-settlement-withdrawn",
+        "changed_fields": [
+          "expected"
+        ]
+      },
+      {
+        "id": "BB-journey-exchange-settlement-closed",
+        "changed_fields": [
+          "expected"
+        ]
+      }
+    ],
+    "methods.json": [
+      {
+        "id": "AI-after-sales-4",
+        "changed_fields": [
+          "actions",
+          "evidence_expected",
+          "preconditions"
+        ]
+      },
+      {
+        "id": "AI-after-sales-7",
+        "changed_fields": [
+          "actions",
+          "evidence_expected",
+          "preconditions"
+        ]
+      },
+      {
+        "id": "AI-after-sales-12",
+        "changed_fields": [
+          "actions",
+          "evidence_expected",
+          "preconditions"
+        ]
+      },
+      {
+        "id": "AI-after-sales-18",
+        "changed_fields": [
+          "actions",
+          "evidence_expected",
+          "preconditions",
+          "transition_matrix"
+        ]
+      },
+      {
+        "id": "AI-after-sales-23",
+        "changed_fields": [
+          "actions",
+          "evidence_expected",
+          "preconditions"
+        ]
+      },
+      {
+        "id": "AI-after-sales-24",
+        "changed_fields": [
+          "actions",
+          "evidence_expected",
+          "preconditions"
+        ]
+      },
+      {
+        "id": "AI-after-sales-27",
+        "changed_fields": [
+          "actions",
+          "evidence_expected",
+          "preconditions"
+        ]
+      },
+      {
+        "id": "AI-after-sales-32",
+        "changed_fields": [
+          "actions",
+          "evidence_expected",
+          "preconditions"
+        ]
+      },
+      {
+        "id": "AI-cart-checkout-14",
+        "changed_fields": [
+          "actions",
+          "evidence_expected",
+          "preconditions"
+        ]
+      },
+      {
+        "id": "AI-cart-checkout-16",
+        "changed_fields": [
+          "actions",
+          "evidence_expected",
+          "preconditions"
+        ]
+      },
+      {
+        "id": "AI-cart-checkout-22",
+        "changed_fields": [
+          "actions",
+          "evidence_expected",
+          "preconditions"
+        ]
+      },
+      {
+        "id": "AI-customer-account-1",
+        "changed_fields": [
+          "actions",
+          "evidence_expected",
+          "preconditions"
+        ]
+      },
+      {
+        "id": "AI-customer-account-5",
+        "changed_fields": [
+          "actions",
+          "evidence_expected",
+          "preconditions"
+        ]
+      },
+      {
+        "id": "AI-customer-support-2",
+        "changed_fields": [
+          "actions",
+          "evidence_expected",
+          "preconditions"
+        ]
+      },
+      {
+        "id": "AI-customer-support-7",
+        "changed_fields": [
+          "actions",
+          "evidence_expected",
+          "preconditions"
+        ]
+      },
+      {
+        "id": "AI-customer-support-20",
+        "changed_fields": [
+          "actions",
+          "evidence_expected",
+          "preconditions"
+        ]
+      },
+      {
+        "id": "AI-orders-fulfillment-18",
+        "changed_fields": [
+          "actions",
+          "evidence_expected",
+          "preconditions"
+        ]
+      },
+      {
+        "id": "AI-site-quality-12",
+        "changed_fields": [
+          "actions",
+          "evidence_expected",
+          "preconditions"
+        ]
+      },
+      {
+        "id": "AI-journey-exchange-settlement",
+        "changed_fields": [
+          "actions",
+          "evidence_expected",
+          "preconditions"
+        ]
+      }
+    ]
+  },
+  "final_review_status": "passed",
+  "final_gap_requirements": [],
+  "independent_fault_probes": 962,
+  "requirements_unchanged": true,
+  "app_tests_executed": false,
+  "white_box_scenarios": 0,
+  "website_acceptance": "not_assessed"
+}

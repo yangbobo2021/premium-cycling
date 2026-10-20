@@ -1,0 +1,15 @@
+◇ /black-box-scenarios started
+START
+⤷ analyst: Analyst validates and initializes the confirmed requirements file.
+→ ready
+⤷ analyst: Analyst maps every confirmed requirement to black-box scenarios and methods.
+→ done
+⤷ reviewer: Reviewer independently checks requirement coverage and scenario meaning.
+→ gaps
+⤷ analyst: Analyst repairs the named scenario gaps or the black-box stage failure.
+→ done
+⤷ reviewer: Reviewer independently checks requirement coverage and scenario meaning.
+→ passed
+Executed script for blackBoxGate (exit 0).
+◇ /black-box-scenarios finished
+{"sessionId": "e0cdfaa6-6613-4b9a-940f-dd0397992467", "reply": "The black-box scenario design completed. The Reviewer verdict and black-box stage gate both passed.", "testDir": "/Users/boboyang/work/sublang.ai/premium-cycling/tests", "assets": "/Users/boboyang/work/sublang.ai/premium-cycling/tests/delivery-acceptance"}

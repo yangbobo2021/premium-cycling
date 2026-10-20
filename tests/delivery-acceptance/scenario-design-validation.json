@@ -1,0 +1,22 @@
+{
+  "kind": "analyst_design_validation_not_independent_review",
+  "requirement_count": 188,
+  "mapped_requirement_count": 188,
+  "black_box_scenarios": 204,
+  "ai_methods": 196,
+  "requirements_gate": "passed",
+  "scenario_structure_gate": "passed",
+  "independent_review": "pending and untouched",
+  "execution": "not_run",
+  "black_box_complete": true,
+  "white_box_complete": false,
+  "preserved_files": {
+    "requirements.json": true,
+    "project.json": true,
+    "resources.json": true,
+    "coverage_review.json": true
+  },
+  "git_head_unchanged": true,
+  "git_visible_worktree_unchanged": true,
+  "ledger_git_ignored": true
+}

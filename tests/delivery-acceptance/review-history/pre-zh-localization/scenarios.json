@@ -1,0 +1,2542 @@
+{
+  "black_box_complete": true,
+  "white_box_complete": false,
+  "items": [
+    {
+      "id": "BB-after-sales-1",
+      "kind": "black_box",
+      "title": "Cancellation eligibility follows current fulfillment",
+      "requirement_ids": [
+        "after-sales-1"
+      ],
+      "expected": "Eligibility and refusal reason match each current state; submission shows processing rather than a fabricated completed cancellation; no other-customer access.",
+      "method_ids": [
+        "AI-after-sales-1"
+      ]
+    },
+    {
+      "id": "BB-after-sales-2",
+      "kind": "black_box",
+      "title": "Unpaid whole-order and paid line cancellation",
+      "requirement_ids": [
+        "after-sales-2"
+      ],
+      "expected": "Unpaid order closes all lines, releases all holds once and requires new quote/order for repurchase. Paid order cancels only eligible line and creates refund pending in original mode, never claims refunded; shipped line unchanged; reason recorded.",
+      "method_ids": [
+        "AI-after-sales-2"
+      ]
+    },
+    {
+      "id": "BB-after-sales-3",
+      "kind": "black_box",
+      "title": "Return, exchange and damage application data",
+      "requirement_ids": [
+        "after-sales-3"
+      ],
+      "expected": "Queryable case binds correct line, quantity, type, reason and evidence; exchange identifies target; damage identifies package. Incomplete application identifies missing required data rather than losing it or fabricating evidence.",
+      "method_ids": [
+        "AI-after-sales-3"
+      ]
+    },
+    {
+      "id": "BB-after-sales-4",
+      "kind": "black_box",
+      "title": "After-sales remaining quantity boundary",
+      "requirement_ids": [
+        "after-sales-4"
+      ],
+      "expected": "Claims cannot exceed remaining 2 individually or collectively; excess refused with available quantity; already processed units cannot be claimed again. Additional mandatory check: Both attempts refused with remaining quantity 0; no newly accepted application or reopened entitlement for already processed goods.",
+      "method_ids": [
+        "AI-after-sales-4"
+      ]
+    },
+    {
+      "id": "BB-after-sales-5",
+      "kind": "black_box",
+      "title": "Original return-policy time and condition boundary",
+      "requirement_ids": [
+        "after-sales-5"
+      ],
+      "expected": "Eligibility uses V1's explicit inclusive/exclusive rule and conditions; disallowed applications show original policy and specific reason, never substitute V2. Undefined boundary semantics are recorded as a missing execution oracle.",
+      "method_ids": [
+        "AI-after-sales-5"
+      ]
+    },
+    {
+      "id": "BB-after-sales-6",
+      "kind": "black_box",
+      "title": "Accept and refuse a return or exchange",
+      "requirement_ids": [
+        "after-sales-6"
+      ],
+      "expected": "Decision, reason, reviewer and time persist; customer sees corresponding next step, not the opposite branch or an unexplained status.",
+      "method_ids": [
+        "AI-after-sales-6"
+      ]
+    },
+    {
+      "id": "BB-after-sales-7",
+      "kind": "black_box",
+      "title": "Received goods inspection stays bound to item",
+      "requirement_ids": [
+        "after-sales-7"
+      ],
+      "expected": "Received serial/line, condition, evidence and refund/exchange conclusion persist on correct case; mere shipment is not represented as inspected receipt; second case remains unchanged. Additional mandatory check: Lack of a serial number does not bypass inspection: no inspection-dependent progression before inspection; order-line identity, condition, evidence and conclusion persist on the correct accessory case after inspection.",
+      "method_ids": [
+        "AI-after-sales-7"
+      ]
+    },
+    {
+      "id": "BB-after-sales-8",
+      "kind": "black_box",
+      "title": "Refund amount limits per unit, line, order and top-up",
+      "requirement_ids": [
+        "after-sales-8"
+      ],
+      "expected": "Approval records amount basis, currency, mode and approver; approved amount never exceeds eligible unprocessed quantity or any remaining limit; top-up balance belongs only to its case; current prices cannot inflate original refund.",
+      "method_ids": [
+        "AI-after-sales-8"
+      ]
+    },
+    {
+      "id": "BB-after-sales-9",
+      "kind": "black_box",
+      "title": "Refund dispatch uses original source and mode once",
+      "requirement_ids": [
+        "after-sales-9"
+      ],
+      "expected": "One refund per approved allocation via its original mode; separate original-payment and refund references saved. Test creates only isolated simulated refunds and no real receiver request.",
+      "method_ids": [
+        "AI-after-sales-9"
+      ]
+    },
+    {
+      "id": "BB-after-sales-10",
+      "kind": "black_box",
+      "title": "Uncertain refund retains its reservation",
+      "requirement_ids": [
+        "after-sales-10"
+      ],
+      "expected": "Case remains pending reconciliation with original reference and reserved amount; same refund is not dispatched again and competing approval cannot spend the reservation.",
+      "method_ids": [
+        "AI-after-sales-10"
+      ]
+    },
+    {
+      "id": "BB-after-sales-11",
+      "kind": "black_box",
+      "title": "Bicycle serial binding uniqueness",
+      "requirement_ids": [
+        "after-sales-11"
+      ],
+      "expected": "Serial refers to exact delivered line without duplicate associations; second-line conflict is restricted and first association remains correct.",
+      "method_ids": [
+        "AI-after-sales-11"
+      ]
+    },
+    {
+      "id": "BB-after-sales-12",
+      "kind": "black_box",
+      "title": "Warranty eligibility and insufficient evidence",
+      "requirement_ids": [
+        "after-sales-12"
+      ],
+      "expected": "Eligibility reflects published applicable policy and original order snapshot; insufficient data prompts specific supplementation, not an invented approval/refusal; reassessment uses supplied evidence. Additional mandatory check: Each cutoff result follows original applicable V1 boundary semantics, not V2 or rounded local time. Missing approved boundary semantics leaves this vector unproven, not guessed.",
+      "method_ids": [
+        "AI-after-sales-12"
+      ]
+    },
+    {
+      "id": "BB-after-sales-13",
+      "kind": "black_box",
+      "title": "Repair responsibility through return to customer",
+      "requirement_ids": [
+        "after-sales-13"
+      ],
+      "expected": "All diagnosis, responsibility, repair/replacement result, fee basis and handback states persist; completion is not inferred from diagnosis alone.",
+      "method_ids": [
+        "AI-after-sales-13"
+      ]
+    },
+    {
+      "id": "BB-after-sales-14",
+      "kind": "black_box",
+      "title": "After-sales adjustments are traceable and nonduplicative",
+      "requirement_ids": [
+        "after-sales-14"
+      ],
+      "expected": "Each adjustment names source case; entitlement changes only by remaining justified amount; repeated or overlapping events do not double-adjust; original snapshot is byte/field equivalent at visible export boundary.",
+      "method_ids": [
+        "AI-after-sales-14"
+      ]
+    },
+    {
+      "id": "BB-after-sales-18",
+      "kind": "black_box",
+      "title": "Every allowed after-sales transition and rejected shortcut",
+      "requirement_ids": [
+        "after-sales-18"
+      ],
+      "expected": "Exactly listed transitions with prerequisites succeed; skipped review/inspection, unfinished refund, undelivered replacement and unresolved original-item custody cannot reach terminal state. Source and time persist; An actual forbidden transition request must be rejected with unchanged persisted case state; absence of a UI control alone is not rejection evidence.",
+      "method_ids": [
+        "AI-after-sales-18"
+      ]
+    },
+    {
+      "id": "BB-after-sales-19",
+      "kind": "black_box",
+      "title": "Only definitively failed refund allocations can retry",
+      "requirement_ids": [
+        "after-sales-19"
+      ],
+      "expected": "Failure reason remains on original case, failed reserve releases once; only failed and reapproved allocation retries; successful money and uncertain reservation remain unchanged.",
+      "method_ids": [
+        "AI-after-sales-19"
+      ]
+    },
+    {
+      "id": "BB-after-sales-20",
+      "kind": "black_box",
+      "title": "Duplicate refund results do not multiply side effects",
+      "requirement_ids": [
+        "after-sales-20"
+      ],
+      "expected": "Money, inventory and points adjust once only; duplicate-event reconciliation record is visible to authorized staff.",
+      "method_ids": [
+        "AI-after-sales-20"
+      ]
+    },
+    {
+      "id": "BB-after-sales-21",
+      "kind": "black_box",
+      "title": "Return instructions require all original-policy conditions",
+      "requirement_ids": [
+        "after-sales-21"
+      ],
+      "expected": "Instructions use V1 destination, bicycle handling, payer and deadline; each missing input blocks shipping instructions and identifies missing condition; restored complete case provides them.",
+      "method_ids": [
+        "AI-after-sales-21"
+      ]
+    },
+    {
+      "id": "BB-after-sales-22",
+      "kind": "black_box",
+      "title": "Positive, negative and zero exchange price difference",
+      "requirement_ids": [
+        "after-sales-22"
+      ],
+      "expected": "Difference compares original refundable amount with current target quote; shipment blocked before confirmation; positive/negative/zero branch stated accurately without silently using original list price.",
+      "method_ids": [
+        "AI-after-sales-22"
+      ]
+    },
+    {
+      "id": "BB-after-sales-23",
+      "kind": "black_box",
+      "title": "Replacement shipment requires the full prerequisite combination",
+      "requirement_ids": [
+        "after-sales-23"
+      ],
+      "expected": "Only fully qualified case requests traceable replacement package; stock failure exposes change-target/refund paths; each other missing prerequisite leaves pending case with no replacement package. Additional mandatory check: Test payment or simulated exchange settlement cannot create real shipment authority, live dispatch task or real receiver request; test exchange must not bypass the original test-order shipping guard. Authorized real control remains usable.",
+      "method_ids": [
+        "AI-after-sales-23"
+      ]
+    },
+    {
+      "id": "BB-after-sales-24",
+      "kind": "black_box",
+      "title": "Completion checks the actual promised result",
+      "requirement_ids": [
+        "after-sales-24"
+      ],
+      "expected": "Unpaid cancellation needs all lines closed/stock released; refund needs all sources successful; exchange needs replacement delivered; repair needs fulfilled return/disposition; unmet conditions refuse completion and preserve pending state. Additional mandatory check: Each independently absent completion prerequisite alone prevents completed status. Restoring the last missing prerequisite permits the corresponding valid conclusion; a guard checked only in combination with another missing guard fails.",
+      "method_ids": [
+        "AI-after-sales-24"
+      ]
+    },
+    {
+      "id": "BB-after-sales-25",
+      "kind": "black_box",
+      "title": "Confirmed refund success converts only its source reserve",
+      "requirement_ids": [
+        "after-sales-25"
+      ],
+      "expected": "Only corresponding source reservation becomes refunded balance, once; partial success does not complete case; complete only after both successes; source result evidence and actual/test distinction persist.",
+      "method_ids": [
+        "AI-after-sales-25"
+      ]
+    },
+    {
+      "id": "BB-after-sales-26",
+      "kind": "black_box",
+      "title": "Cancellation cannot release uncertain payment holds",
+      "requirement_ids": [
+        "after-sales-26"
+      ],
+      "expected": "Case becomes pending payment reconciliation; inventory stays held, order is not described as cancelled/refunded; reconciliation required before next decision.",
+      "method_ids": [
+        "AI-after-sales-26"
+      ]
+    },
+    {
+      "id": "BB-after-sales-27",
+      "kind": "black_box",
+      "title": "Pre-shipment exchange termination and settlement",
+      "requirement_ids": [
+        "after-sales-27"
+      ],
+      "expected": "Target hold releases once; reason/request time/responsible person retained; unrefunded top-up linked to case and original transaction becomes pending refund. Only never-sent original with no refund due can terminate immediately; other cases await settlement; shipped case cannot use this pre-shipment route. Additional mandatory check: Outstanding obligation is C-R=70, never C; previously refunded 30 is not generated again. With H=20 already represented, at most 50 becomes a new reservation/task for the same obligation; total outstanding remains 70. Repeated withdrawal does not add amounts; aggregate successful refunds cannot exceed 100.",
+      "method_ids": [
+        "AI-after-sales-27"
+      ]
+    },
+    {
+      "id": "BB-after-sales-28",
+      "kind": "black_box",
+      "title": "Exchange settlement positive, negative, zero and uncertain",
+      "requirement_ids": [
+        "after-sales-28"
+      ],
+      "expected": "Positive arrangement initiates once, records confirmed amount/currency/mode/reference on success; failure can reconfirm, unknown cannot debit again/ship. Negative settles only all refunds successful; zero records confirmation without money action; original snapshot unchanged.",
+      "method_ids": [
+        "AI-after-sales-28"
+      ]
+    },
+    {
+      "id": "BB-after-sales-29",
+      "kind": "black_box",
+      "title": "Reconcile original refund and top-up attempts",
+      "requirement_ids": [
+        "after-sales-29"
+      ],
+      "expected": "Queries original attempt; success/failure follow refund/top-up branches, unknown remains pending with no second refund/debit. Already-successful allocations stay intact.",
+      "method_ids": [
+        "AI-after-sales-29"
+      ]
+    },
+    {
+      "id": "BB-after-sales-30",
+      "kind": "black_box",
+      "title": "Exchange inventory hold happens once after inspection",
+      "requirement_ids": [
+        "after-sales-30"
+      ],
+      "expected": "Eligible case gets one linked target hold; no oversell, duplicate hold or premature hold for missing prerequisites; failure remains pending, blocks package and offers change target/refund.",
+      "method_ids": [
+        "AI-after-sales-30"
+      ]
+    },
+    {
+      "id": "BB-after-sales-31",
+      "kind": "black_box",
+      "title": "Terminal states require money AND original-item settlement",
+      "requirement_ids": [
+        "after-sales-31"
+      ],
+      "expected": "Terminal allowed only when BOTH obligations settled; unresolved original stays awaiting disposition/termination settlement or original state; failed/unknown money prevents closure; public case shows actual money and disposition records.",
+      "method_ids": [
+        "AI-after-sales-31"
+      ]
+    },
+    {
+      "id": "BB-after-sales-32",
+      "kind": "black_box",
+      "title": "Refund source reservations cannot exceed or cross balances",
+      "requirement_ids": [
+        "after-sales-32"
+      ],
+      "expected": "Each allocation binds eligible confirmed source and reserves once; aggregate accepted reservations never exceed that source balance; cross-source or mode borrowing and unconfirmed top-up refused with basis saved. Additional mandatory check: No partially completed approval is usable to execute an incompletely reserved allocation; funds represented by any recoverable in-flight reservation cannot be reused by competing approval. Recovery yields either no approved allocation or the complete single approval, with each source reserve exact once; no leaked/doubled reserve and no source overspend.",
+      "method_ids": [
+        "AI-after-sales-32"
+      ]
+    },
+    {
+      "id": "BB-after-sales-33",
+      "kind": "black_box",
+      "title": "Multi-source refund aggregation precedence",
+      "requirement_ids": [
+        "after-sales-33"
+      ],
+      "expected": "Unknown takes precedence, then pending, then failed, then complete only if all success; per-source outcomes retained; successful sources never re-execute and unknown cannot retry; only failed reapproved allocation can retry.",
+      "method_ids": [
+        "AI-after-sales-33"
+      ]
+    },
+    {
+      "id": "BB-cart-checkout-1",
+      "kind": "black_box",
+      "title": "Exact variant and market in cart",
+      "requirement_ids": [
+        "cart-checkout-1"
+      ],
+      "expected": "Each line shows exact selected variant, quantity, market currency and displayed price; similarly named variants are not substituted.",
+      "method_ids": [
+        "AI-cart-checkout-1"
+      ]
+    },
+    {
+      "id": "BB-cart-checkout-2",
+      "kind": "black_box",
+      "title": "Cart quantities, deletion and stock boundary",
+      "requirement_ids": [
+        "cart-checkout-2"
+      ],
+      "expected": "Valid changes preserve line/recalculate subtotal and total; excess rejected; deleting removes only selected line and subtotal; empty cart has no stale total.",
+      "method_ids": [
+        "AI-cart-checkout-2"
+      ]
+    },
+    {
+      "id": "BB-cart-checkout-3",
+      "kind": "black_box",
+      "title": "Cart restoration revalidates surviving items",
+      "requirement_ids": [
+        "cart-checkout-3"
+      ],
+      "expected": "Still-valid lines restored; unavailable and changed-price lines clearly identified; old price or stock is not silently represented as current.",
+      "method_ids": [
+        "AI-cart-checkout-3"
+      ]
+    },
+    {
+      "id": "BB-cart-checkout-4",
+      "kind": "black_box",
+      "title": "Market switch invalidates old cart quote",
+      "requirement_ids": [
+        "cart-checkout-4"
+      ],
+      "expected": "Every line is rechecked for B; old quote cannot submit unchanged; difference/unavailability shown with correct B currency.",
+      "method_ids": [
+        "AI-cart-checkout-4"
+      ]
+    },
+    {
+      "id": "BB-cart-checkout-5",
+      "kind": "black_box",
+      "title": "Guest checkout requires no registration",
+      "requirement_ids": [
+        "cart-checkout-5"
+      ],
+      "expected": "Guest can provide required information and proceed; no mandatory account creation or hidden login gate.",
+      "method_ids": [
+        "AI-cart-checkout-5"
+      ]
+    },
+    {
+      "id": "BB-cart-checkout-6",
+      "kind": "black_box",
+      "title": "Member saved and new address choice",
+      "requirement_ids": [
+        "cart-checkout-6"
+      ],
+      "expected": "Chosen address is used correctly; new address entry works; B's addresses never offered.",
+      "method_ids": [
+        "AI-cart-checkout-6"
+      ]
+    },
+    {
+      "id": "BB-cart-checkout-7",
+      "kind": "black_box",
+      "title": "Address validation across delivery coverage",
+      "requirement_ids": [
+        "cart-checkout-7"
+      ],
+      "expected": "Missing fields and uncovered destination identified; invalid destination cannot advance as deliverable; corrected covered address proceeds.",
+      "method_ids": [
+        "AI-cart-checkout-7"
+      ]
+    },
+    {
+      "id": "BB-cart-checkout-8",
+      "kind": "black_box",
+      "title": "Delivery choices and justified estimates",
+      "requirement_ids": [
+        "cart-checkout-8"
+      ],
+      "expected": "Only applicable options with rule-derived fee and supported estimate appear; customer choice is explicit and reflected in quote; stale service not retained when inapplicable.",
+      "method_ids": [
+        "AI-cart-checkout-8"
+      ]
+    },
+    {
+      "id": "BB-cart-checkout-9",
+      "kind": "black_box",
+      "title": "Promotion eligibility, expiry and stacking",
+      "requirement_ids": [
+        "cart-checkout-9"
+      ],
+      "expected": "Eligible discount matches rule; invalid/expired/inapplicable reasons distinct; forbidden stacking or exhausted quota cannot reduce total.",
+      "method_ids": [
+        "AI-cart-checkout-9"
+      ]
+    },
+    {
+      "id": "BB-cart-checkout-10",
+      "kind": "black_box",
+      "title": "Itemized quote with tax, zero tax and missing rules",
+      "requirement_ids": [
+        "cart-checkout-10"
+      ],
+      "expected": "Goods, discounts, applicable points, shipping, tax, total and currency reconcile; zero shows basis; missing tax basis blocks payable quote rather than assuming zero.",
+      "method_ids": [
+        "AI-cart-checkout-10"
+      ]
+    },
+    {
+      "id": "BB-cart-checkout-11",
+      "kind": "black_box",
+      "title": "Quote change requires fresh confirmation",
+      "requirement_ids": [
+        "cart-checkout-11"
+      ],
+      "expected": "Old/new differences shown and fresh customer confirmation required; unavailable stock cannot proceed; declining cannot create payment at new total.",
+      "method_ids": [
+        "AI-cart-checkout-11"
+      ]
+    },
+    {
+      "id": "BB-cart-checkout-12",
+      "kind": "black_box",
+      "title": "Missing business inputs block payment",
+      "requirement_ids": [
+        "cart-checkout-12"
+      ],
+      "expected": "No payment dispatch for each gap; affected destination/item/mode and missing business condition shown; configuration absence not converted into a default policy.",
+      "method_ids": [
+        "AI-cart-checkout-12"
+      ]
+    },
+    {
+      "id": "BB-cart-checkout-13",
+      "kind": "black_box",
+      "title": "Payment rechecks mode and every line readiness",
+      "requirement_ids": [
+        "cart-checkout-13"
+      ],
+      "expected": "Only ready corresponding mode invoked; any unready real line blocks whole payment; ready test routes isolated simulation with explicit label and zero real requests.",
+      "method_ids": [
+        "AI-cart-checkout-13"
+      ]
+    },
+    {
+      "id": "BB-cart-checkout-14",
+      "kind": "black_box",
+      "title": "Successful payment confirms money and used benefits once",
+      "requirement_ids": [
+        "cart-checkout-14"
+      ],
+      "expected": "Order becomes paid with correct mode/confirmed amount/currency/reference; only used holds convert once, no partial visible state where paid order retains unconfirmed used benefit; test money not real receipts. Additional mandatory check: No partially applied paid state is exposed as completed/fulfillable while used benefits or confirmed amount/reference disagree. State is either consistent pre-application/pending reconciliation or consistently completed; recovery applies original success once with exact money reference and each used benefit once. Partial committed effects left inconsistent after interruption fail.",
+      "method_ids": [
+        "AI-cart-checkout-14"
+      ]
+    },
+    {
+      "id": "BB-cart-checkout-15",
+      "kind": "black_box",
+      "title": "Definitive failure releases exactly the used holds",
+      "requirement_ids": [
+        "cart-checkout-15"
+      ],
+      "expected": "Failure status and retryable checkout retained; inventory and actual used benefits release once; unused benefits unaffected, no paid claim.",
+      "method_ids": [
+        "AI-cart-checkout-15"
+      ]
+    },
+    {
+      "id": "BB-cart-checkout-16",
+      "kind": "black_box",
+      "title": "Repeated quote and payment events have one effect",
+      "requirement_ids": [
+        "cart-checkout-16"
+      ],
+      "expected": "One pending order and one set of holds; each result creates one payment/benefit use or reversal effect tied to original attempt; independent genuine quotes remain distinct. Additional mandatory check: Exactly two distinct orders with separate correct holds/payment references exist, one per independent quote; each quote replay affects only its own order once. Deduplication by customer/cart/amount that swallows Q2 fails.",
+      "method_ids": [
+        "AI-cart-checkout-16"
+      ]
+    },
+    {
+      "id": "BB-cart-checkout-17",
+      "kind": "black_box",
+      "title": "Failed-payment retry creates newly confirmed order",
+      "requirement_ids": [
+        "cart-checkout-17"
+      ],
+      "expected": "Current price/availability checked; new related pending order/holds only after confirmation; original failed order and snapshot unchanged; unavailable item blocks retry order.",
+      "method_ids": [
+        "AI-cart-checkout-17"
+      ]
+    },
+    {
+      "id": "BB-cart-checkout-18",
+      "kind": "black_box",
+      "title": "Test checkout never implies real charge",
+      "requirement_ids": [
+        "cart-checkout-18"
+      ],
+      "expected": "Before and after payment explicitly says test/no real charge; simulated success not real receipt or real-shipping authorization; receiver has no real debit.",
+      "method_ids": [
+        "AI-cart-checkout-18"
+      ]
+    },
+    {
+      "id": "BB-cart-checkout-22",
+      "kind": "black_box",
+      "title": "Order and all required holds succeed or fail together",
+      "requirement_ids": [
+        "cart-checkout-22"
+      ],
+      "expected": "Success saves snapshot and same-mode holds together. Any required failure produces no payable order or payment and no orphan holds, identifies affected line/reason, never borrows live resources for test. Additional mandatory check: Failed/interrupted creation never exposes a payable partial order or initiates payment. A rejected submission leaves no leaked partial holds; a recoverable in-flight submission is visibly nonpayable until it resolves completely. Retry yields at most one complete order/snapshot with exactly one set of mode-correct holds, or clean failure with no holds.",
+      "method_ids": [
+        "AI-cart-checkout-22"
+      ]
+    },
+    {
+      "id": "BB-cart-checkout-23",
+      "kind": "black_box",
+      "title": "Uncertain payment blocks second charge and shipping",
+      "requirement_ids": [
+        "cart-checkout-23"
+      ],
+      "expected": "Order remains pending reconciliation with original reference, staff task and holds; no second charge or physical fulfillment; elapsed deadline alone does not release holds.",
+      "method_ids": [
+        "AI-cart-checkout-23"
+      ]
+    },
+    {
+      "id": "BB-cart-checkout-24",
+      "kind": "black_box",
+      "title": "Confirmed money with broken original state stays exceptional",
+      "requirement_ids": [
+        "cart-checkout-24"
+      ],
+      "expected": "Affected case stays unresolved with staff task until repair or successful refund; no second charge or physical fulfillment meanwhile; absent unused benefits must not manufacture an exception.",
+      "method_ids": [
+        "AI-cart-checkout-24"
+      ]
+    },
+    {
+      "id": "BB-cart-checkout-25",
+      "kind": "black_box",
+      "title": "Hold deadline distinguishes unstarted from uncertain payment",
+      "requirement_ids": [
+        "cart-checkout-25"
+      ],
+      "expected": "Verified-unstarted order expires at configured boundary and releases inventory/used benefits once; before deadline stays valid; uncertain payment never auto-releases even after T.",
+      "method_ids": [
+        "AI-cart-checkout-25"
+      ]
+    },
+    {
+      "id": "BB-cart-checkout-26",
+      "kind": "black_box",
+      "title": "Original payment reconciliation all outcomes",
+      "requirement_ids": [
+        "cart-checkout-26"
+      ],
+      "expected": "Queries original reference; valid success paid, invalid success repair/refund exception, failure releases, unknown holds/no second charge; no unrelated order advanced.",
+      "method_ids": [
+        "AI-cart-checkout-26"
+      ]
+    },
+    {
+      "id": "BB-content-marketing-1",
+      "kind": "black_box",
+      "title": "Published content follows active language",
+      "requirement_ids": [
+        "content-marketing-1"
+      ],
+      "expected": "Lists include only published content in active language and correct category; no draft/withdrawn leakage.",
+      "method_ids": [
+        "AI-content-marketing-1"
+      ]
+    },
+    {
+      "id": "BB-content-marketing-2",
+      "kind": "black_box",
+      "title": "Article metadata and related published products",
+      "requirement_ids": [
+        "content-marketing-2"
+      ],
+      "expected": "Title, complete body and publication time match published version; related product links lead to published products, not private drafts.",
+      "method_ids": [
+        "AI-content-marketing-2"
+      ]
+    },
+    {
+      "id": "BB-content-marketing-3",
+      "kind": "black_box",
+      "title": "Draft and withdrawn content hidden at every public entry",
+      "requirement_ids": [
+        "content-marketing-3"
+      ],
+      "expected": "No nonpublic body exposed on public routes; withdrawal keeps staff-visible history.",
+      "method_ids": [
+        "AI-content-marketing-3"
+      ]
+    },
+    {
+      "id": "BB-content-marketing-4",
+      "kind": "black_box",
+      "title": "Authorized external video entry",
+      "requirement_ids": [
+        "content-marketing-4"
+      ],
+      "expected": "Title and cover/alternative visible; playback entry usable; external source identified accurately.",
+      "method_ids": [
+        "AI-content-marketing-4"
+      ]
+    },
+    {
+      "id": "BB-content-marketing-5",
+      "kind": "black_box",
+      "title": "Video failure does not hide article",
+      "requirement_ids": [
+        "content-marketing-5"
+      ],
+      "expected": "Understandable video fallback; article text remains readable and navigable without false playback success.",
+      "method_ids": [
+        "AI-content-marketing-5"
+      ]
+    },
+    {
+      "id": "BB-content-marketing-6",
+      "kind": "black_box",
+      "title": "Draft save and private preview",
+      "requirement_ids": [
+        "content-marketing-6"
+      ],
+      "expected": "Saved draft revision persists, preview only authorized; public content not prematurely changed.",
+      "method_ids": [
+        "AI-content-marketing-6"
+      ]
+    },
+    {
+      "id": "BB-content-marketing-7",
+      "kind": "black_box",
+      "title": "Promotion publication scope and remaining capacity",
+      "requirement_ids": [
+        "content-marketing-7"
+      ],
+      "expected": "Saved rule fields preserved; only qualified customers with unheld quota see usable promise; out-of-scope or capacity-held customers do not.",
+      "method_ids": [
+        "AI-content-marketing-7"
+      ]
+    },
+    {
+      "id": "BB-content-marketing-8",
+      "kind": "black_box",
+      "title": "Expired, withdrawn and exhausted promotions distinguish held orders",
+      "requirement_ids": [
+        "content-marketing-8"
+      ],
+      "expected": "New purchase cannot apply unavailable promo or see usable promise; still-valid existing hold honored at confirmed quote rather than retroactively removed.",
+      "method_ids": [
+        "AI-content-marketing-8"
+      ]
+    },
+    {
+      "id": "BB-content-marketing-9",
+      "kind": "black_box",
+      "title": "Policy pages expose correct market version",
+      "requirement_ids": [
+        "content-marketing-9"
+      ],
+      "expected": "Every page identifies applicable market, effective version and time; future/other-market version not substituted.",
+      "method_ids": [
+        "AI-content-marketing-9"
+      ]
+    },
+    {
+      "id": "BB-content-marketing-11",
+      "kind": "black_box",
+      "title": "Publish exposes exact version and time",
+      "requirement_ids": [
+        "content-marketing-11"
+      ],
+      "expected": "V2 enters public entry with recorded publication time; V1 is not mistakenly published as latest.",
+      "method_ids": [
+        "AI-content-marketing-11"
+      ]
+    },
+    {
+      "id": "BB-content-marketing-12",
+      "kind": "black_box",
+      "title": "Withdrawal removes published content",
+      "requirement_ids": [
+        "content-marketing-12"
+      ],
+      "expected": "Withdrawal time persists and content stops being public while staff history remains.",
+      "method_ids": [
+        "AI-content-marketing-12"
+      ]
+    },
+    {
+      "id": "BB-content-marketing-13",
+      "kind": "black_box",
+      "title": "Promotion total and customer quotas under contention",
+      "requirement_ids": [
+        "content-marketing-13"
+      ],
+      "expected": "Accepted holds never exceed either cap; each tied to order/mode; test does not consume live quota; losing checkout gets no payable order with missing quota.",
+      "method_ids": [
+        "AI-content-marketing-13"
+      ]
+    },
+    {
+      "id": "BB-content-marketing-14",
+      "kind": "black_box",
+      "title": "Promotion use confirms only paid associated order once",
+      "requirement_ids": [
+        "content-marketing-14"
+      ],
+      "expected": "First hold converts once to used; second untouched until its verified success; no double decrement on duplicate success.",
+      "method_ids": [
+        "AI-content-marketing-14"
+      ]
+    },
+    {
+      "id": "BB-content-marketing-15",
+      "kind": "black_box",
+      "title": "Promotion release legal reasons and uncertain control",
+      "requirement_ids": [
+        "content-marketing-15"
+      ],
+      "expected": "Only first three release their own quota once; uncertain payment retains quota; other order unaffected.",
+      "method_ids": [
+        "AI-content-marketing-15"
+      ]
+    },
+    {
+      "id": "BB-customer-account-1",
+      "kind": "black_box",
+      "title": "Verified registration rejects invalid and duplicate identity",
+      "requirement_ids": [
+        "customer-account-1"
+      ],
+      "expected": "Only verified valid identity is established; duplicate/invalid identity cannot occupy another account; correct verified visitor can proceed. Additional mandatory check: At most one account occupies the verified identity; competing attempt is rejected or resolves to the same established account without creating a second identity. Unique-contact registration control still succeeds.",
+      "method_ids": [
+        "AI-customer-account-1"
+      ]
+    },
+    {
+      "id": "BB-customer-account-2",
+      "kind": "black_box",
+      "title": "Credential validation and private session scope",
+      "requirement_ids": [
+        "customer-account-2"
+      ],
+      "expected": "Wrong login creates no private session; valid login accesses A only, B remains inaccessible.",
+      "method_ids": [
+        "AI-customer-account-2"
+      ]
+    },
+    {
+      "id": "BB-customer-account-3",
+      "kind": "black_box",
+      "title": "Guest order access needs channel control",
+      "requirement_ids": [
+        "customer-account-3"
+      ],
+      "expected": "No ownership authorization until control verified; valid proof permits only corresponding order actions; guessed facts cannot expose order data.",
+      "method_ids": [
+        "AI-customer-account-3"
+      ]
+    },
+    {
+      "id": "BB-customer-account-4",
+      "kind": "black_box",
+      "title": "Own profile read and edit isolation",
+      "requirement_ids": [
+        "customer-account-4"
+      ],
+      "expected": "A changes persist with verifiable history; B untouched and private; unauthorized responses do not return B fields.",
+      "method_ids": [
+        "AI-customer-account-4"
+      ]
+    },
+    {
+      "id": "BB-customer-account-5",
+      "kind": "black_box",
+      "title": "Address add, edit, delete and ownership",
+      "requirement_ids": [
+        "customer-account-5"
+      ],
+      "expected": "Only requested A records change and deleted A2 no longer selectable; A3 persists; unauthorized users cannot read A addresses. Additional mandatory check: Foreign edit and delete both refused without B1 alteration/removal or effects on B2; own authorized edits/deletes still work. Read denial alone is insufficient.",
+      "method_ids": [
+        "AI-customer-account-5"
+      ]
+    },
+    {
+      "id": "BB-customer-account-6",
+      "kind": "black_box",
+      "title": "Favorites survive sessions and catalog changes",
+      "requirement_ids": [
+        "customer-account-6"
+      ],
+      "expected": "A selections survive sessions, retained variants show unlisted/out-of-stock state; removal persists; B list unaffected.",
+      "method_ids": [
+        "AI-customer-account-6"
+      ]
+    },
+    {
+      "id": "BB-customer-account-7",
+      "kind": "black_box",
+      "title": "Order history ownership",
+      "requirement_ids": [
+        "customer-account-7"
+      ],
+      "expected": "Only assigned A orders summarized and queryable; no implicit claim of unrelated guest order; empty history does not leak other users.",
+      "method_ids": [
+        "AI-customer-account-7"
+      ]
+    },
+    {
+      "id": "BB-customer-account-8",
+      "kind": "black_box",
+      "title": "Review qualification and duplicate line protection",
+      "requirement_ids": [
+        "customer-account-8"
+      ],
+      "expected": "One effective review per qualified purchased line, with score/text/line and pending-review status; ineligible/foreign submissions not accepted as valid reviews.",
+      "method_ids": [
+        "AI-customer-account-8"
+      ]
+    },
+    {
+      "id": "BB-customer-account-9",
+      "kind": "black_box",
+      "title": "Review moderation governs public display",
+      "requirement_ids": [
+        "customer-account-9"
+      ],
+      "expected": "Decisions/reasons recorded; only published review appears, pending/rejected text hidden from public.",
+      "method_ids": [
+        "AI-customer-account-9"
+      ]
+    },
+    {
+      "id": "BB-customer-account-10",
+      "kind": "black_box",
+      "title": "Points earning at the qualifying state",
+      "requirement_ids": [
+        "customer-account-10"
+      ],
+      "expected": "Exactly one traceable award for qualifying order under its currency/rule; premature/disqualified order earns none; repeat does not duplicate and test/live remain separate.",
+      "method_ids": [
+        "AI-customer-account-10"
+      ]
+    },
+    {
+      "id": "BB-customer-account-11",
+      "kind": "black_box",
+      "title": "Points balance reconciles all event types",
+      "requirement_ids": [
+        "customer-account-11"
+      ],
+      "expected": "Visible balance nonnegative and reconciles ledger; source orders and acquire/use/reverse/expiry records distinguishable, without hiding negative arithmetic behind misleading balance.",
+      "method_ids": [
+        "AI-customer-account-11"
+      ]
+    },
+    {
+      "id": "BB-customer-account-12",
+      "kind": "black_box",
+      "title": "Points redemption currency and available balance",
+      "requirement_ids": [
+        "customer-account-12"
+      ],
+      "expected": "Only unheld eligible balance available under published currency conversion; excessive/unsupported redemption cannot lower payable amount; associated order recorded.",
+      "method_ids": [
+        "AI-customer-account-12"
+      ]
+    },
+    {
+      "id": "BB-customer-account-13",
+      "kind": "black_box",
+      "title": "Points reversals across overlapping qualification events",
+      "requirement_ids": [
+        "customer-account-13"
+      ],
+      "expected": "Failure releases uncommitted redemption without award; cancel/refund adjust only actual eligible scope and outstanding delta; duplicate or overlapping events never reverse same entitlement twice.",
+      "method_ids": [
+        "AI-customer-account-13"
+      ]
+    },
+    {
+      "id": "BB-customer-account-14",
+      "kind": "black_box",
+      "title": "Disabled points plan has no promises",
+      "requirement_ids": [
+        "customer-account-14"
+      ],
+      "expected": "No redeemable-points display or earning promise while disabled; stale entry cannot silently apply points.",
+      "method_ids": [
+        "AI-customer-account-14"
+      ]
+    },
+    {
+      "id": "BB-customer-account-17",
+      "kind": "black_box",
+      "title": "Logout revokes private access",
+      "requirement_ids": [
+        "customer-account-17"
+      ],
+      "expected": "Former session no longer authorizes private data; stale UI does not grant subsequent read/write access.",
+      "method_ids": [
+        "AI-customer-account-17"
+      ]
+    },
+    {
+      "id": "BB-customer-account-18",
+      "kind": "black_box",
+      "title": "Credential reset proves ownership and expires old credentials",
+      "requirement_ids": [
+        "customer-account-18"
+      ],
+      "expected": "Only verified registered-channel holder resets; old credential and expired reset proof rejected; new credential authenticates intended account.",
+      "method_ids": [
+        "AI-customer-account-18"
+      ]
+    },
+    {
+      "id": "BB-customer-account-19",
+      "kind": "black_box",
+      "title": "Points reservations account/currency/mode boundaries",
+      "requirement_ids": [
+        "customer-account-19"
+      ],
+      "expected": "One correctly scoped hold per order; total never exceeds unheld A balance, no borrowing B/other currency/live pool; record includes order and mode.",
+      "method_ids": [
+        "AI-customer-account-19"
+      ]
+    },
+    {
+      "id": "BB-customer-account-20",
+      "kind": "black_box",
+      "title": "Points redemption finalizes once on verified payment",
+      "requirement_ids": [
+        "customer-account-20"
+      ],
+      "expected": "A hold becomes one actual-use event; B not finalized; customer balance and reserved amount reconcile without duplicate deduction.",
+      "method_ids": [
+        "AI-customer-account-20"
+      ]
+    },
+    {
+      "id": "BB-customer-account-21",
+      "kind": "black_box",
+      "title": "Points release only legal order-specific holds",
+      "requirement_ids": [
+        "customer-account-21"
+      ],
+      "expected": "Only respective legal hold releases once; uncertain and unrelated holds remain; no new points created by repeated release.",
+      "method_ids": [
+        "AI-customer-account-21"
+      ]
+    },
+    {
+      "id": "BB-customer-support-1",
+      "kind": "black_box",
+      "title": "Support availability is truthful",
+      "requirement_ids": [
+        "customer-support-1"
+      ],
+      "expected": "Online/offline indicator agrees with service, usable contact routes shown without claiming unavailable staff online.",
+      "method_ids": [
+        "AI-customer-support-1"
+      ]
+    },
+    {
+      "id": "BB-customer-support-2",
+      "kind": "black_box",
+      "title": "Online message persists for both participants",
+      "requirement_ids": [
+        "customer-support-2"
+      ],
+      "expected": "Message durably visible in correct conversation to both with accurate send state; no lost message after refresh or unrelated-conversation delivery. Additional mandatory check: Rejected delivery is not labeled sent/delivered. Lost acknowledgement is shown as unconfirmed/pending rather than falsely proven failed or delivered until reconciled; eventual status agrees with durable recipient history and message remains visible after reload. No success inferred solely from clicking Send.",
+      "method_ids": [
+        "AI-customer-support-2"
+      ]
+    },
+    {
+      "id": "BB-customer-support-3",
+      "kind": "black_box",
+      "title": "Offline message and reachable contact",
+      "requirement_ids": [
+        "customer-support-3"
+      ],
+      "expected": "Valid message creates saved follow-up conversation and explains reply route; no false live-delivery claim; contact sufficient for stated route.",
+      "method_ids": [
+        "AI-customer-support-3"
+      ]
+    },
+    {
+      "id": "BB-customer-support-4",
+      "kind": "black_box",
+      "title": "Reconnect requires identity and restores only own history",
+      "requirement_ids": [
+        "customer-support-4"
+      ],
+      "expected": "After verification A history restored including pre-disconnect messages; unverified/foreign history not exposed.",
+      "method_ids": [
+        "AI-customer-support-4"
+      ]
+    },
+    {
+      "id": "BB-customer-support-5",
+      "kind": "black_box",
+      "title": "Order association checks guest/member ownership",
+      "requirement_ids": [
+        "customer-support-5"
+      ],
+      "expected": "Only verified guest or owner-member order can link; only authorized support sees necessary summary, no unrelated full customer details.",
+      "method_ids": [
+        "AI-customer-support-5"
+      ]
+    },
+    {
+      "id": "BB-customer-support-6",
+      "kind": "black_box",
+      "title": "New conversations become visible unassigned work",
+      "requirement_ids": [
+        "customer-support-6"
+      ],
+      "expected": "New conversations marked unassigned and visible to authorized personnel; unauthorized customer details not exposed.",
+      "method_ids": [
+        "AI-customer-support-6"
+      ]
+    },
+    {
+      "id": "BB-customer-support-7",
+      "kind": "black_box",
+      "title": "Concurrent assignment leaves one notified owner",
+      "requirement_ids": [
+        "customer-support-7"
+      ],
+      "expected": "At each observable settled state exactly one responsible agent; notification matches effective assignment, no competing active owners. Additional mandatory check: At every observed interval there is at most one effective owner; after successful assignment there is one. Two agents must never both be authorized against the same ownership interval. Sequential A-then-B authority after an actual recorded transfer is not a false failure. Notifications correspond to ownership sequence.",
+      "method_ids": [
+        "AI-customer-support-7"
+      ]
+    },
+    {
+      "id": "BB-customer-support-8",
+      "kind": "black_box",
+      "title": "Transfer carries unfinished work and audit",
+      "requirement_ids": [
+        "customer-support-8"
+      ],
+      "expected": "Original owner, new owner, reason/time recorded; B receives unfinished state and history, work not marked resolved or left with two owners.",
+      "method_ids": [
+        "AI-customer-support-8"
+      ]
+    },
+    {
+      "id": "BB-customer-support-9",
+      "kind": "black_box",
+      "title": "New message reopens closed conversation",
+      "requirement_ids": [
+        "customer-support-9"
+      ],
+      "expected": "Pending follow-up restored; original history retained and new message included, not silently lost in closed state.",
+      "method_ids": [
+        "AI-customer-support-9"
+      ]
+    },
+    {
+      "id": "BB-customer-support-10",
+      "kind": "black_box",
+      "title": "Notification event matrix and next-step links",
+      "requirement_ids": [
+        "customer-support-10"
+      ],
+      "expected": "Corresponding status, payment mode where relevant, and next action correct; link leads to authorized correct record; old/other customer's status never substituted.",
+      "method_ids": [
+        "AI-customer-support-10"
+      ]
+    },
+    {
+      "id": "BB-customer-support-11",
+      "kind": "black_box",
+      "title": "Guest notifications use checkout channel",
+      "requirement_ids": [
+        "customer-support-11"
+      ],
+      "expected": "Guest receives through checkout contact without account inbox dependency; correct guest order route and ownership challenge preserved.",
+      "method_ids": [
+        "AI-customer-support-11"
+      ]
+    },
+    {
+      "id": "BB-customer-support-12",
+      "kind": "black_box",
+      "title": "Notification retry has no repeated business action",
+      "requirement_ids": [
+        "customer-support-12"
+      ],
+      "expected": "Failure cause and retryable state retained; delivery retry never repeats payment/refund/shipment or original state transition.",
+      "method_ids": [
+        "AI-customer-support-12"
+      ]
+    },
+    {
+      "id": "BB-customer-support-13",
+      "kind": "black_box",
+      "title": "Absent and broken notification channels surface pending work",
+      "requirement_ids": [
+        "customer-support-13"
+      ],
+      "expected": "Authorized staff sees actionable pending channel exception; no claim customer received undelivered message.",
+      "method_ids": [
+        "AI-customer-support-13"
+      ]
+    },
+    {
+      "id": "BB-customer-support-17",
+      "kind": "black_box",
+      "title": "Empty agent workspace is understandable",
+      "requirement_ids": [
+        "customer-support-17"
+      ],
+      "expected": "Explicit select-conversation or wait-for-assignment instruction; no stale customer's conversation shown as current.",
+      "method_ids": [
+        "AI-customer-support-17"
+      ]
+    },
+    {
+      "id": "BB-customer-support-18",
+      "kind": "black_box",
+      "title": "Workspace load failure and recovery",
+      "requirement_ids": [
+        "customer-support-18"
+      ],
+      "expected": "Visible fault with usable retry; retry actually loads authorized workspace, not endless false success or blank panel.",
+      "method_ids": [
+        "AI-customer-support-18"
+      ]
+    },
+    {
+      "id": "BB-customer-support-19",
+      "kind": "black_box",
+      "title": "Forbidden conversation access has safe return path",
+      "requirement_ids": [
+        "customer-support-19"
+      ],
+      "expected": "B content refused/not disclosed; return reaches authorized queue, not another forbidden or stale conversation.",
+      "method_ids": [
+        "AI-customer-support-19"
+      ]
+    },
+    {
+      "id": "BB-customer-support-20",
+      "kind": "black_box",
+      "title": "Assigned agent reply survives reconnect",
+      "requirement_ids": [
+        "customer-support-20"
+      ],
+      "expected": "Authorized replies persist sender/content/time and are readable live or after re-entry; unauthorized reply cannot appear as valid assigned-agent reply. Additional mandatory check: Former owner A cannot persist/deliver a post-transfer reply as assigned agent; B reply succeeds with B identity/time. Pre-transfer A history remains intact. Lack of a new-session permission is not the only tested case.",
+      "method_ids": [
+        "AI-customer-support-20"
+      ]
+    },
+    {
+      "id": "BB-launch-readiness-1",
+      "kind": "black_box",
+      "title": "Readiness inventory by market and affected scope",
+      "requirement_ids": [
+        "launch-readiness-1"
+      ],
+      "expected": "No market explicitly reported; each category status and gap names affected variants/destinations; no generic green status concealing a scoped missing input.",
+      "method_ids": [
+        "AI-launch-readiness-1"
+      ]
+    },
+    {
+      "id": "BB-launch-readiness-2",
+      "kind": "black_box",
+      "title": "Variant readiness and market with zero tradable goods",
+      "requirement_ids": [
+        "launch-readiness-2"
+      ],
+      "expected": "Readiness tied to each variant and its missing input; market with no passing variant explicitly has no tradable goods, not ready merely because catalog exists.",
+      "method_ids": [
+        "AI-launch-readiness-2"
+      ]
+    },
+    {
+      "id": "BB-launch-readiness-3",
+      "kind": "black_box",
+      "title": "Media authorization scope does not overblock commerce",
+      "requirement_ids": [
+        "launch-readiness-3"
+      ],
+      "expected": "Affected media/content flagged with missing proof; A gap blocks A transaction; unrelated video gap does not block ready B transaction.",
+      "method_ids": [
+        "AI-launch-readiness-3"
+      ]
+    },
+    {
+      "id": "BB-launch-readiness-4",
+      "kind": "black_box",
+      "title": "Effective rules apply to affected destinations and goods",
+      "requirement_ids": [
+        "launch-readiness-4"
+      ],
+      "expected": "Affected destination/product marked unready with exact checkout blocker; future rule not treated effective; unaffected valid combination remains ready.",
+      "method_ids": [
+        "AI-launch-readiness-4"
+      ]
+    },
+    {
+      "id": "BB-launch-readiness-5",
+      "kind": "black_box",
+      "title": "Payment readiness distinguishes real from test",
+      "requirement_ids": [
+        "launch-readiness-5"
+      ],
+      "expected": "Only verified real with working money/refund route qualifies for real readiness; labeled test only test; invalid/unconfirmed configurations unready with specific missing confirmation.",
+      "method_ids": [
+        "AI-launch-readiness-5"
+      ]
+    },
+    {
+      "id": "BB-launch-readiness-6",
+      "kind": "black_box",
+      "title": "Communication readiness identifies customer routes",
+      "requirement_ids": [
+        "launch-readiness-6"
+      ],
+      "expected": "Each missing/unusable service marked unready with affected contact path; presence of config alone not claimed working.",
+      "method_ids": [
+        "AI-launch-readiness-6"
+      ]
+    },
+    {
+      "id": "BB-launch-readiness-7",
+      "kind": "black_box",
+      "title": "Runtime readiness requires verifiable operation evidence",
+      "requirement_ids": [
+        "launch-readiness-7"
+      ],
+      "expected": "Every absent verification yields corresponding risk and action; backup record alone cannot stand for recovery verification; complete evidence discoverable.",
+      "method_ids": [
+        "AI-launch-readiness-7"
+      ]
+    },
+    {
+      "id": "BB-launch-readiness-8",
+      "kind": "black_box",
+      "title": "Fixing a readiness gap triggers scoped recheck",
+      "requirement_ids": [
+        "launch-readiness-8"
+      ],
+      "expected": "Related status recomputed from result, verifier/time/result retained; B not cleared; failed recheck not recorded ready merely because input saved.",
+      "method_ids": [
+        "AI-launch-readiness-8"
+      ]
+    },
+    {
+      "id": "BB-launch-readiness-9",
+      "kind": "black_box",
+      "title": "Test workflows cannot mutate live business state",
+      "requirement_ids": [
+        "launch-readiness-9"
+      ],
+      "expected": "Test source labeled and all money/order/stock/benefits/reviews/metrics segregated; no live debit/refund/shipment or live mutable effect; product reference remains read-only.",
+      "method_ids": [
+        "AI-launch-readiness-9"
+      ]
+    },
+    {
+      "id": "BB-launch-readiness-10",
+      "kind": "black_box",
+      "title": "Readiness per market, variant and destination combination",
+      "requirement_ids": [
+        "launch-readiness-10"
+      ],
+      "expected": "Only fully passing combinations ready; market summary none/partial/all accurate; local gap does not block unrelated combination, shared gap blocks its market, test payment never satisfies real requirement.",
+      "method_ids": [
+        "AI-launch-readiness-10"
+      ]
+    },
+    {
+      "id": "BB-launch-readiness-13",
+      "kind": "black_box",
+      "title": "Test readiness requires isolated usable resources",
+      "requirement_ids": [
+        "launch-readiness-13"
+      ],
+      "expected": "Ready only with all applicable checks verifiable; unused benefits not mandatory; no fallback to live stock/rights, simulated success not real-sale readiness.",
+      "method_ids": [
+        "AI-launch-readiness-13"
+      ]
+    },
+    {
+      "id": "BB-launch-readiness-14",
+      "kind": "black_box",
+      "title": "Mixed cart readiness is all-or-nothing at payment",
+      "requirement_ids": [
+        "launch-readiness-14"
+      ],
+      "expected": "Any failing line blocks entire charge and names line; no public real-purchase promise for failing line; A alone remains purchasable when ready; changing destination rechecks combination.",
+      "method_ids": [
+        "AI-launch-readiness-14"
+      ]
+    },
+    {
+      "id": "BB-launch-readiness-15",
+      "kind": "black_box",
+      "title": "Bicycle assembly inputs are model-specific prerequisites",
+      "requirement_ids": [
+        "launch-readiness-15"
+      ],
+      "expected": "Each A gap names missing input and prevents A real sale; complete B unaffected; accessory-only market not blocked by inapplicable bicycle requirements.",
+      "method_ids": [
+        "AI-launch-readiness-15"
+      ]
+    },
+    {
+      "id": "BB-market-catalog-1",
+      "kind": "black_box",
+      "title": "Enabled market language and quote currency",
+      "requirement_ids": [
+        "market-catalog-1"
+      ],
+      "expected": "Current market, applicable language and quote currency visible and consistent with that market, not stale previous setting.",
+      "method_ids": [
+        "AI-market-catalog-1"
+      ]
+    },
+    {
+      "id": "BB-market-catalog-2",
+      "kind": "black_box",
+      "title": "Market switch changes product availability and quotes",
+      "requirement_ids": [
+        "market-catalog-2"
+      ],
+      "expected": "B sellable set and independent quotes shown; prior V2 unavailable and V1 change marked; no stale A currency/price.",
+      "method_ids": [
+        "AI-market-catalog-2"
+      ]
+    },
+    {
+      "id": "BB-market-catalog-3",
+      "kind": "black_box",
+      "title": "Disabled market cannot checkout",
+      "requirement_ids": [
+        "market-catalog-3"
+      ],
+      "expected": "D explains region unavailable and offers no D checkout path; enabled E remains usable.",
+      "method_ids": [
+        "AI-market-catalog-3"
+      ]
+    },
+    {
+      "id": "BB-market-catalog-4",
+      "kind": "black_box",
+      "title": "Catalog publication, category and stock",
+      "requirement_ids": [
+        "market-catalog-4"
+      ],
+      "expected": "Configured categories and only published products displayed; out-of-stock clearly marked, drafts excluded.",
+      "method_ids": [
+        "AI-market-catalog-4"
+      ]
+    },
+    {
+      "id": "BB-market-catalog-5",
+      "kind": "black_box",
+      "title": "Product details distinguish evidence and absent image",
+      "requirement_ids": [
+        "market-catalog-5"
+      ],
+      "expected": "All required fields accurately visible, specs backed by supplied data; no-image explicit instead of fabricated image; conditions not omitted.",
+      "method_ids": [
+        "AI-market-catalog-5"
+      ]
+    },
+    {
+      "id": "BB-market-catalog-6",
+      "kind": "black_box",
+      "title": "Variant selection updates identity and price",
+      "requirement_ids": [
+        "market-catalog-6"
+      ],
+      "expected": "Selected unique ID/spec/price/availability all agree; last variant not accidentally reused.",
+      "method_ids": [
+        "AI-market-catalog-6"
+      ]
+    },
+    {
+      "id": "BB-market-catalog-7",
+      "kind": "black_box",
+      "title": "Unavailable variants cannot enter orders or exchange holds",
+      "requirement_ids": [
+        "market-catalog-7"
+      ],
+      "expected": "No new payable order or exchange hold for unavailable variant; reason distinguishes market exclusion from shortage/available quantity.",
+      "method_ids": [
+        "AI-market-catalog-7"
+      ]
+    },
+    {
+      "id": "BB-market-catalog-8",
+      "kind": "black_box",
+      "title": "Create unpublished and edit selected product only",
+      "requirement_ids": [
+        "market-catalog-8"
+      ],
+      "expected": "New records identifiable and unpublished; specified categories/specs/market/price/media source/status saved; other records unchanged.",
+      "method_ids": [
+        "AI-market-catalog-8"
+      ]
+    },
+    {
+      "id": "BB-market-catalog-9",
+      "kind": "black_box",
+      "title": "Publishing rejects missing evidence",
+      "requirement_ids": [
+        "market-catalog-9"
+      ],
+      "expected": "Each gap prevents publication with named missing field/evidence; complete genuine data can publish; another category's specs cannot substitute.",
+      "method_ids": [
+        "AI-market-catalog-9"
+      ]
+    },
+    {
+      "id": "BB-market-catalog-10",
+      "kind": "black_box",
+      "title": "Inventory adjustments preserve before/after audit",
+      "requirement_ids": [
+        "market-catalog-10"
+      ],
+      "expected": "V1 before/after, reason, operator and time match action; V2 count unchanged.",
+      "method_ids": [
+        "AI-market-catalog-10"
+      ]
+    },
+    {
+      "id": "BB-market-catalog-11",
+      "kind": "black_box",
+      "title": "Inventory reservation source and mode isolation",
+      "requirement_ids": [
+        "market-catalog-11"
+      ],
+      "expected": "Only corresponding-mode V1 availability decreases; history traces order/line or original line/case/target; V2 and opposite-mode pools unchanged; absent test pool cannot borrow live.",
+      "method_ids": [
+        "AI-market-catalog-11"
+      ]
+    },
+    {
+      "id": "BB-market-catalog-12",
+      "kind": "black_box",
+      "title": "Stock release is source-specific and idempotent",
+      "requirement_ids": [
+        "market-catalog-12"
+      ],
+      "expected": "Only associated variant/mode quantity restored once; invalid/uncertain release does not inflate stock; unrelated holds preserved.",
+      "method_ids": [
+        "AI-market-catalog-12"
+      ]
+    },
+    {
+      "id": "BB-market-catalog-13",
+      "kind": "black_box",
+      "title": "Orders and exchanges compete for remaining stock",
+      "requirement_ids": [
+        "market-catalog-13"
+      ],
+      "expected": "Accepted total never exceeds 1; excess part refused with availability/shortage; no extra payable order/fulfillable exchange or cross-variant borrowing.",
+      "method_ids": [
+        "AI-market-catalog-13"
+      ]
+    },
+    {
+      "id": "BB-market-catalog-14",
+      "kind": "black_box",
+      "title": "Broken or unavailable media has explicit fallback",
+      "requirement_ids": [
+        "market-catalog-14"
+      ],
+      "expected": "Clear no-image state, no broken-image glyph or unlicensed substitute; product information readable.",
+      "method_ids": [
+        "AI-market-catalog-14"
+      ]
+    },
+    {
+      "id": "BB-market-catalog-17",
+      "kind": "black_box",
+      "title": "Assembly conditions visible before payable quote",
+      "requirement_ids": [
+        "market-catalog-17"
+      ],
+      "expected": "Complete model shows every required pre-purchase condition and working policy entry; incomplete model explicitly warns and cannot form payable quote.",
+      "method_ids": [
+        "AI-market-catalog-17"
+      ]
+    },
+    {
+      "id": "BB-merchant-operations-1",
+      "kind": "black_box",
+      "title": "Controlled first-administrator initialization",
+      "requirement_ids": [
+        "merchant-operations-1"
+      ],
+      "expected": "First personal identifiable admin established only by controlled process; unauthorized/repeated initialization cannot create replacement or extra admin.",
+      "method_ids": [
+        "AI-merchant-operations-1"
+      ]
+    },
+    {
+      "id": "BB-merchant-operations-2",
+      "kind": "black_box",
+      "title": "Employee creation has individual identity and provenance",
+      "requirement_ids": [
+        "merchant-operations-2"
+      ],
+      "expected": "Personal employee identity, creator and creation time saved rather than a shared untraceable account.",
+      "method_ids": [
+        "AI-merchant-operations-2"
+      ]
+    },
+    {
+      "id": "BB-merchant-operations-3",
+      "kind": "black_box",
+      "title": "Role grants and revocation affect existing sessions",
+      "requirement_ids": [
+        "merchant-operations-3"
+      ],
+      "expected": "Grant allows matching action; revocation immediately blocks subsequent action in all existing sessions; role change history recorded.",
+      "method_ids": [
+        "AI-merchant-operations-3"
+      ]
+    },
+    {
+      "id": "BB-merchant-operations-4",
+      "kind": "black_box",
+      "title": "Unauthorized staff operations leave records unchanged",
+      "requirement_ids": [
+        "merchant-operations-4"
+      ],
+      "expected": "All forbidden actions refused without business-record changes or private fields; authorized control can perform permitted counterpart.",
+      "method_ids": [
+        "AI-merchant-operations-4"
+      ]
+    },
+    {
+      "id": "BB-merchant-operations-5",
+      "kind": "black_box",
+      "title": "Product staff can edit only authorized fields",
+      "requirement_ids": [
+        "merchant-operations-5"
+      ],
+      "expected": "Only granted product/variant/market-price/publication fields changed through catalog behavior; unauthorized field and P2 preserved.",
+      "method_ids": [
+        "AI-merchant-operations-5"
+      ]
+    },
+    {
+      "id": "BB-merchant-operations-6",
+      "kind": "black_box",
+      "title": "Stocktaking requires reason",
+      "requirement_ids": [
+        "merchant-operations-6"
+      ],
+      "expected": "Missing reason prevents adjustment; accepted adjustment retains before/after/count delta, cause, operator and time.",
+      "method_ids": [
+        "AI-merchant-operations-6"
+      ]
+    },
+    {
+      "id": "BB-merchant-operations-7",
+      "kind": "black_box",
+      "title": "Fulfillment queue respects scope and legal progression",
+      "requirement_ids": [
+        "merchant-operations-7"
+      ],
+      "expected": "Only authorized work visible; legal update persists, invalid state jump blocked, unrelated records unchanged.",
+      "method_ids": [
+        "AI-merchant-operations-7"
+      ]
+    },
+    {
+      "id": "BB-merchant-operations-8",
+      "kind": "black_box",
+      "title": "After-sales role boundaries per action",
+      "requirement_ids": [
+        "merchant-operations-8"
+      ],
+      "expected": "Only corresponding role permissions permit action; denial leaves case unchanged; accepted action records decision basis.",
+      "method_ids": [
+        "AI-merchant-operations-8"
+      ]
+    },
+    {
+      "id": "BB-merchant-operations-9",
+      "kind": "black_box",
+      "title": "Support manager queue privacy",
+      "requirement_ids": [
+        "merchant-operations-9"
+      ],
+      "expected": "Only accessible assignable/transferable tasks and necessary data shown; unprivileged customer details hidden.",
+      "method_ids": [
+        "AI-merchant-operations-9"
+      ]
+    },
+    {
+      "id": "BB-merchant-operations-10",
+      "kind": "black_box",
+      "title": "Rule version, scope, effective time and required values",
+      "requirement_ids": [
+        "merchant-operations-10"
+      ],
+      "expected": "Scope/time/version/operator persisted; incomplete rules cannot activate; applicable effective version used, not merely last edited.",
+      "method_ids": [
+        "AI-merchant-operations-10"
+      ]
+    },
+    {
+      "id": "BB-merchant-operations-11",
+      "kind": "black_box",
+      "title": "Sensitive actions create staff-immutable audit",
+      "requirement_ids": [
+        "merchant-operations-11"
+      ],
+      "expected": "Each event has accountable sensitive-change record; ordinary employee cannot delete/alter it; original event still viewable.",
+      "method_ids": [
+        "AI-merchant-operations-11"
+      ]
+    },
+    {
+      "id": "BB-merchant-operations-12",
+      "kind": "black_box",
+      "title": "Business summaries separate market/time and test activity",
+      "requirement_ids": [
+        "merchant-operations-12"
+      ],
+      "expected": "Metrics match included records and distinguish test from real; wrong market/time or test transactions cannot inflate real totals.",
+      "method_ids": [
+        "AI-merchant-operations-12"
+      ]
+    },
+    {
+      "id": "BB-merchant-operations-13",
+      "kind": "black_box",
+      "title": "Exception metrics lead to reconcilable work queues",
+      "requirement_ids": [
+        "merchant-operations-13"
+      ],
+      "expected": "Queue supports verifying corresponding metric with consistent scope; no unrelated default queue or missing contributing exception.",
+      "method_ids": [
+        "AI-merchant-operations-13"
+      ]
+    },
+    {
+      "id": "BB-merchant-operations-16",
+      "kind": "black_box",
+      "title": "Employee deactivation blocks existing access",
+      "requirement_ids": [
+        "merchant-operations-16"
+      ],
+      "expected": "Actor/time recorded; every subsequent access blocked, including old session; protected business state unchanged.",
+      "method_ids": [
+        "AI-merchant-operations-16"
+      ]
+    },
+    {
+      "id": "BB-merchant-operations-17",
+      "kind": "black_box",
+      "title": "Employee reset requires controlled identity proof",
+      "requirement_ids": [
+        "merchant-operations-17"
+      ],
+      "expected": "Initiator/time recorded; reset cannot complete before verified identity; valid employee can finish through controlled channel.",
+      "method_ids": [
+        "AI-merchant-operations-17"
+      ]
+    },
+    {
+      "id": "BB-orders-fulfillment-1",
+      "kind": "black_box",
+      "title": "Order snapshot preserves exact allocation and policy",
+      "requirement_ids": [
+        "orders-fulfillment-1"
+      ],
+      "expected": "Order ID/owner-contact/time, exact variants/quantities/prices/currency, per-unit discount/points/tax/shipping and rounding recipient, tax basis, address/service/fee/estimate, total/mode/policy versions all preserved; unit allocations sum to quoted totals.",
+      "method_ids": [
+        "AI-orders-fulfillment-1"
+      ]
+    },
+    {
+      "id": "BB-orders-fulfillment-2",
+      "kind": "black_box",
+      "title": "Catalog and policy updates do not rewrite history",
+      "requirement_ids": [
+        "orders-fulfillment-2"
+      ],
+      "expected": "Old order's complete transaction snapshot unchanged; new quote reflects current values without overwriting history.",
+      "method_ids": [
+        "AI-orders-fulfillment-2"
+      ]
+    },
+    {
+      "id": "BB-orders-fulfillment-3",
+      "kind": "black_box",
+      "title": "Guest, member and employee order visibility",
+      "requirement_ids": [
+        "orders-fulfillment-3"
+      ],
+      "expected": "Only authorized owner/employee sees current states and event times; other identities refused, guest number alone insufficient.",
+      "method_ids": [
+        "AI-orders-fulfillment-3"
+      ]
+    },
+    {
+      "id": "BB-orders-fulfillment-4",
+      "kind": "black_box",
+      "title": "Order state dimensions progress without illegal jumps",
+      "requirement_ids": [
+        "orders-fulfillment-4"
+      ],
+      "expected": "Only permitted qualified edge changes its dimension; failed/expired retries create related new order; refund does not erase paid/shipping history; transport exception is annotation, after-sales request is not cancellation/refund.",
+      "method_ids": [
+        "AI-orders-fulfillment-4"
+      ]
+    },
+    {
+      "id": "BB-orders-fulfillment-5",
+      "kind": "black_box",
+      "title": "Picking requires verified payment and physical authorization",
+      "requirement_ids": [
+        "orders-fulfillment-5"
+      ],
+      "expected": "Qualified lines show their picking/ready status; unpaid/unknown cannot advance and test success alone cannot authorize physical fulfillment.",
+      "method_ids": [
+        "AI-orders-fulfillment-5"
+      ]
+    },
+    {
+      "id": "BB-orders-fulfillment-6",
+      "kind": "black_box",
+      "title": "Bicycle packaging checks include failures",
+      "requirement_ids": [
+        "orders-fulfillment-6"
+      ],
+      "expected": "Applicable checks, performer and actual abnormal result retained on correct package, failure not silently converted to all-pass.",
+      "method_ids": [
+        "AI-orders-fulfillment-6"
+      ]
+    },
+    {
+      "id": "BB-orders-fulfillment-7",
+      "kind": "black_box",
+      "title": "Assembly responsibilities and accompanying guide",
+      "requirement_ids": [
+        "orders-fulfillment-7"
+      ],
+      "expected": "Correct model/policy-specific responsibilities and actual guide recorded and available; merchant work not misattributed to customer or vice versa.",
+      "method_ids": [
+        "AI-orders-fulfillment-7"
+      ]
+    },
+    {
+      "id": "BB-orders-fulfillment-8",
+      "kind": "black_box",
+      "title": "Mixed bicycle and accessory split delivery",
+      "requirement_ids": [
+        "orders-fulfillment-8"
+      ],
+      "expected": "Each package/line status independent and each item's expected arrival identifiable; first shipment does not falsely mark all shipped.",
+      "method_ids": [
+        "AI-orders-fulfillment-8"
+      ]
+    },
+    {
+      "id": "BB-orders-fulfillment-9",
+      "kind": "black_box",
+      "title": "Shipment records expose carrier and update time",
+      "requirement_ids": [
+        "orders-fulfillment-9"
+      ],
+      "expected": "Correct carrier/tracking/time/evidence persist for dispatched package; customer sees update time, second package unaffected.",
+      "method_ids": [
+        "AI-orders-fulfillment-9"
+      ]
+    },
+    {
+      "id": "BB-orders-fulfillment-10",
+      "kind": "black_box",
+      "title": "Unavailable tracking never invents delivery",
+      "requirement_ids": [
+        "orders-fulfillment-10"
+      ],
+      "expected": "Source and last update clearly shown; failure/no data not delivered; recovery displays actual subsequent status.",
+      "method_ids": [
+        "AI-orders-fulfillment-10"
+      ]
+    },
+    {
+      "id": "BB-orders-fulfillment-11",
+      "kind": "black_box",
+      "title": "Verified delivery updates only matching package",
+      "requirement_ids": [
+        "orders-fulfillment-11"
+      ],
+      "expected": "First records source/time and delivered status; second unchanged until its own verifiable delivery, no order-wide fabricated arrival.",
+      "method_ids": [
+        "AI-orders-fulfillment-11"
+      ]
+    },
+    {
+      "id": "BB-orders-fulfillment-12",
+      "kind": "black_box",
+      "title": "Transport damage links exact package and case",
+      "requirement_ids": [
+        "orders-fulfillment-12"
+      ],
+      "expected": "Report preserves correct package/item/description/evidence/time; queryable linked case, accessory not mistakenly implicated.",
+      "method_ids": [
+        "AI-orders-fulfillment-12"
+      ]
+    },
+    {
+      "id": "BB-orders-fulfillment-13",
+      "kind": "black_box",
+      "title": "Simulated payment cannot authorize physical shipping",
+      "requirement_ids": [
+        "orders-fulfillment-13"
+      ],
+      "expected": "Physical dispatch task rejected and no real carrier request; test-payment status explicitly not authorization.",
+      "method_ids": [
+        "AI-orders-fulfillment-13"
+      ]
+    },
+    {
+      "id": "BB-orders-fulfillment-14",
+      "kind": "black_box",
+      "title": "Repeated fulfillment events stay single-effect",
+      "requirement_ids": [
+        "orders-fulfillment-14"
+      ],
+      "expected": "No duplicate business effect or state regression from repetitions; single package not dispatched twice or counted delivered twice.",
+      "method_ids": [
+        "AI-orders-fulfillment-14"
+      ]
+    },
+    {
+      "id": "BB-orders-fulfillment-18",
+      "kind": "black_box",
+      "title": "Aggregate order status preserves partial histories",
+      "requirement_ids": [
+        "orders-fulfillment-18"
+      ],
+      "expected": "Partial/all shipping, delivery and cancellation accurately derived; refund/after-sales displayed separately; earlier events and per-line reality retained. Additional mandatory check: Summary transitions partial cancellation to all lines cancelled at the last cancellation; refund pending/success remains separate. It must not remain only partly cancelled or claim all refunded before source results. Original payment/line event histories survive.",
+      "method_ids": [
+        "AI-orders-fulfillment-18"
+      ]
+    },
+    {
+      "id": "BB-orders-fulfillment-19",
+      "kind": "black_box",
+      "title": "Replacement package independent from original",
+      "requirement_ids": [
+        "orders-fulfillment-19"
+      ],
+      "expected": "New independent package links original line, case and exact target variant; only replacement follows its actual progress, original history preserved.",
+      "method_ids": [
+        "AI-orders-fulfillment-19"
+      ]
+    },
+    {
+      "id": "BB-product-selection-1",
+      "kind": "black_box",
+      "title": "Search includes only matching current-market published items",
+      "requirement_ids": [
+        "product-selection-1"
+      ],
+      "expected": "Results relevant and restricted to current market published products; empty result explicit with usable browse entry.",
+      "method_ids": [
+        "AI-product-selection-1"
+      ]
+    },
+    {
+      "id": "BB-product-selection-2",
+      "kind": "black_box",
+      "title": "Filters combine conjunctively and clear independently",
+      "requirement_ids": [
+        "product-selection-2"
+      ],
+      "expected": "Every displayed item satisfies remaining combined filters; clearing one preserves others and restores only newly eligible items; boundary inclusion matches stated filter.",
+      "method_ids": [
+        "AI-product-selection-2"
+      ]
+    },
+    {
+      "id": "BB-product-selection-3",
+      "kind": "black_box",
+      "title": "Sorting preserves selected filters",
+      "requirement_ids": [
+        "product-selection-3"
+      ],
+      "expected": "Results obey advertised ordering, tied values do not break filtering; filters and membership retained rather than resetting catalog.",
+      "method_ids": [
+        "AI-product-selection-3"
+      ]
+    },
+    {
+      "id": "BB-product-selection-4",
+      "kind": "black_box",
+      "title": "Comparison marks missing specs unknown",
+      "requirement_ids": [
+        "product-selection-4"
+      ],
+      "expected": "Correct products/specs aligned; missing value explicitly unknown, not zero or copied from other product.",
+      "method_ids": [
+        "AI-product-selection-4"
+      ]
+    },
+    {
+      "id": "BB-product-selection-5",
+      "kind": "black_box",
+      "title": "Sizing information corresponds to model and variant",
+      "requirement_ids": [
+        "product-selection-5"
+      ],
+      "expected": "Applicable size ranges, geometry and model/variant attribution match supplied data, not stale or generalized dimensions.",
+      "method_ids": [
+        "AI-product-selection-5"
+      ]
+    },
+    {
+      "id": "BB-product-selection-6",
+      "kind": "black_box",
+      "title": "Fit recommendation follows provided rule",
+      "requirement_ids": [
+        "product-selection-6"
+      ],
+      "expected": "Returned candidate frame sizes and explanation match provided rule; recommendation changes when a rule-relevant input changes.",
+      "method_ids": [
+        "AI-product-selection-6"
+      ]
+    },
+    {
+      "id": "BB-product-selection-7",
+      "kind": "black_box",
+      "title": "Ambiguous, out-of-range and incomplete sizing",
+      "requirement_ids": [
+        "product-selection-7"
+      ],
+      "expected": "Boundary shows justified candidate sizes and posture checks; out-of-range says not applicable/manual confirmation; missing input named; none claims uniquely correct size.",
+      "method_ids": [
+        "AI-product-selection-7"
+      ]
+    },
+    {
+      "id": "BB-product-selection-8",
+      "kind": "black_box",
+      "title": "Compatibility conclusion names exact verified variants",
+      "requirement_ids": [
+        "product-selection-8"
+      ],
+      "expected": "Verified conclusion, exact model/spec and source or verification time shown; other variant's conclusion not reused.",
+      "method_ids": [
+        "AI-product-selection-8"
+      ]
+    },
+    {
+      "id": "BB-product-selection-9",
+      "kind": "black_box",
+      "title": "Unsupported compatibility is not promised",
+      "requirement_ids": [
+        "product-selection-9"
+      ],
+      "expected": "Cannot-confirm state with specific missing spec, last verification time or variant mismatch; usable specification/support path, no unsupported compatibility guarantee.",
+      "method_ids": [
+        "AI-product-selection-9"
+      ]
+    },
+    {
+      "id": "BB-product-selection-10",
+      "kind": "black_box",
+      "title": "Updating fit data refreshes public conclusion",
+      "requirement_ids": [
+        "product-selection-10"
+      ],
+      "expected": "Updated metadata persists and affected public conclusion follows effective data; control model unchanged and obsolete conclusion not retained.",
+      "method_ids": [
+        "AI-product-selection-10"
+      ]
+    },
+    {
+      "id": "BB-site-quality-1",
+      "kind": "black_box",
+      "title": "Desktop and narrow-screen complete main workflows",
+      "requirement_ids": [
+        "site-quality-1"
+      ],
+      "expected": "Required content and actions visible and completable without horizontal obstruction; no lost totals, hidden submit control or inaccessible staff queue after reflow. Evidence includes task completion at each viewport.",
+      "method_ids": [
+        "AI-site-quality-1"
+      ]
+    },
+    {
+      "id": "BB-site-quality-2",
+      "kind": "black_box",
+      "title": "Consistent product presentation across main pages",
+      "requirement_ids": [
+        "site-quality-2"
+      ],
+      "expected": "Typography/color/image proportions/spacing/hierarchy consistently communicate products and actions; stretched images, clipped labels or visually indistinguishable primary action fail qualitative review.",
+      "method_ids": [
+        "AI-site-quality-2"
+      ]
+    },
+    {
+      "id": "BB-site-quality-3",
+      "kind": "black_box",
+      "title": "Keyboard-only complete main flows",
+      "requirement_ids": [
+        "site-quality-3"
+      ],
+      "expected": "Visible focus, logical traversal and usable controls permit task completion; no keyboard trap or unreachable critical action; recording shows focus progression.",
+      "method_ids": [
+        "AI-site-quality-3"
+      ]
+    },
+    {
+      "id": "BB-site-quality-4",
+      "kind": "black_box",
+      "title": "Assistive reading of inputs, images and changing status",
+      "requirement_ids": [
+        "site-quality-4"
+      ],
+      "expected": "Meaningful labels/appropriate alternatives and perceivable changed status/fees; user can identify field/error/result without seeing layout; decorative images not misleadingly announced as products.",
+      "method_ids": [
+        "AI-site-quality-4"
+      ]
+    },
+    {
+      "id": "BB-site-quality-5",
+      "kind": "black_box",
+      "title": "Actionable validation and recoverable operation failure",
+      "requirement_ids": [
+        "site-quality-5"
+      ],
+      "expected": "Specific problem identified and working correction/retry path; valid continuation succeeds without unexplained blank state or loss of necessary context.",
+      "method_ids": [
+        "AI-site-quality-5"
+      ]
+    },
+    {
+      "id": "BB-site-quality-6",
+      "kind": "black_box",
+      "title": "Public content is indexable with unique metadata",
+      "requirement_ids": [
+        "site-quality-6"
+      ],
+      "expected": "Readable URL, page-specific title/description, indexable substantive text and correct canonical; no all-pages-identical title or canonical to unrelated page.",
+      "method_ids": [
+        "AI-site-quality-6"
+      ]
+    },
+    {
+      "id": "BB-site-quality-7",
+      "kind": "black_box",
+      "title": "Private and nonpublic pages are not advertised to crawlers",
+      "requirement_ids": [
+        "site-quality-7"
+      ],
+      "expected": "Excluded route classes absent from public sitemap and never declare themselves indexable; public discovery does not reveal unpublished/private content.",
+      "method_ids": [
+        "AI-site-quality-7"
+      ]
+    },
+    {
+      "id": "BB-site-quality-8",
+      "kind": "black_box",
+      "title": "Cross-user resource access does not leak existence",
+      "requirement_ids": [
+        "site-quality-8"
+      ],
+      "expected": "Both unauthorized-existent and nonexistent requests avoid sensitive existence/detail disclosures; forbidden data/change unavailable, owner data unchanged.",
+      "method_ids": [
+        "AI-site-quality-8"
+      ]
+    },
+    {
+      "id": "BB-site-quality-9",
+      "kind": "black_box",
+      "title": "Abuse controls and sensitive session protection",
+      "requirement_ids": [
+        "site-quality-9"
+      ],
+      "expected": "Configured abuse limits enforced at defined boundary with recoverable legitimate use; credentials/session data protected in transit and exposed browser surfaces per approved policy. Missing thresholds/policy are execution-oracle gaps, not invented defaults.",
+      "method_ids": [
+        "AI-site-quality-9"
+      ]
+    },
+    {
+      "id": "BB-site-quality-10",
+      "kind": "black_box",
+      "title": "Privacy purpose, policy and request entry",
+      "requirement_ids": [
+        "site-quality-10"
+      ],
+      "expected": "Approved purpose and applicable policy available; each required request path usable with queryable acknowledgement appropriate to configured process; no claim of immediate deletion where only request is required.",
+      "method_ids": [
+        "AI-site-quality-10"
+      ]
+    },
+    {
+      "id": "BB-site-quality-11",
+      "kind": "black_box",
+      "title": "Responses and ordinary logs redact sensitive data",
+      "requirement_ids": [
+        "site-quality-11"
+      ],
+      "expected": "No password/full payment credential/unnecessary personal marker exposed; logs still correlate event/error without secret. Evidence records marker labels/redacted findings, not credential values.",
+      "method_ids": [
+        "AI-site-quality-11"
+      ]
+    },
+    {
+      "id": "BB-site-quality-12",
+      "kind": "black_box",
+      "title": "Interrupted writes and timeouts remain reconcilable",
+      "requirement_ids": [
+        "site-quality-12"
+      ],
+      "expected": "Understandable pending/failure state and reconcilable original record retained; retry does not duplicate respective business effect; unknown money result not falsely finalized. Additional mandatory check: Interrupted writes produce understandable unresolved/failure status with original correlation preserved; after recovery each operation is either unapplied/retryable or applied once consistently, never duplicate orders/charges/refunds/messages or contradictory completed money state. An untriggered write fault cannot pass.",
+      "method_ids": [
+        "AI-site-quality-12"
+      ]
+    },
+    {
+      "id": "BB-site-quality-13",
+      "kind": "black_box",
+      "title": "Persistent critical errors visible to authorized staff",
+      "requirement_ids": [
+        "site-quality-13"
+      ],
+      "expected": "Authorized staff sees concrete error, scope and handling status across persistence/resolution; unrelated staff does not gain private data; unresolved error cannot vanish without outcome.",
+      "method_ids": [
+        "AI-site-quality-13"
+      ]
+    },
+    {
+      "id": "BB-site-quality-14",
+      "kind": "black_box",
+      "title": "Backup result records actual coverage and recovery point",
+      "requirement_ids": [
+        "site-quality-14"
+      ],
+      "expected": "Actual success/failure, covered dataset scope and declared recovery point saved; failed/incomplete backup never reported as successful full coverage.",
+      "method_ids": [
+        "AI-site-quality-14"
+      ]
+    },
+    {
+      "id": "BB-site-quality-17",
+      "kind": "black_box",
+      "title": "Restore drill verifies recovered business records",
+      "requirement_ids": [
+        "site-quality-17"
+      ],
+      "expected": "All four datasets recover to declared point and verifiable drill result saved; merely starting restore not success, missing/inconsistent dataset fails; no production destructive action assumed.",
+      "method_ids": [
+        "AI-site-quality-17"
+      ]
+    },
+    {
+      "id": "BB-site-quality-18",
+      "kind": "black_box",
+      "title": "Published pages match confirmed brand standard",
+      "requirement_ids": [
+        "site-quality-18"
+      ],
+      "expected": "Published pages match confirmed standard; deviations documented per page. Without formal standard this conditional execution remains unproven, never self-approved with an invented look.",
+      "method_ids": [
+        "AI-site-quality-18"
+      ]
+    },
+    {
+      "id": "BB-journey-guest-purchase-quote-order",
+      "kind": "black_box",
+      "title": "Guest discovery through split delivery — quote-order",
+      "requirement_ids": [
+        "product-selection-1",
+        "cart-checkout-5",
+        "cart-checkout-10",
+        "cart-checkout-22",
+        "orders-fulfillment-1",
+        "orders-fulfillment-8",
+        "customer-support-11"
+      ],
+      "expected": "Quote and pending order agree on exact variants, per-unit allocations, currency and policy; guest not forced to register. Full journey must also satisfy: Quote and pending order agree on exact variants, per-unit allocations, currency and policy; guest not forced to register. Guest contact receives correct event links; physical branch shows partial shipment and distinct arrival estimates, while test branch grants no physical authorization.",
+      "method_ids": [
+        "AI-journey-guest-purchase"
+      ]
+    },
+    {
+      "id": "BB-journey-guest-purchase-delivery-contact",
+      "kind": "black_box",
+      "title": "Guest discovery through split delivery — delivery-contact",
+      "requirement_ids": [
+        "product-selection-1",
+        "cart-checkout-5",
+        "cart-checkout-10",
+        "cart-checkout-22",
+        "orders-fulfillment-1",
+        "orders-fulfillment-8",
+        "customer-support-11"
+      ],
+      "expected": "Guest contact receives correct event links; physical branch shows partial shipment and distinct arrival estimates, while test branch grants no physical authorization. Full journey must also satisfy: Quote and pending order agree on exact variants, per-unit allocations, currency and policy; guest not forced to register. Guest contact receives correct event links; physical branch shows partial shipment and distinct arrival estimates, while test branch grants no physical authorization.",
+      "method_ids": [
+        "AI-journey-guest-purchase"
+      ]
+    },
+    {
+      "id": "BB-journey-competing-resources-allocation",
+      "kind": "black_box",
+      "title": "Competing carts and exchange cannot overspend shared resources — allocation",
+      "requirement_ids": [
+        "cart-checkout-22",
+        "market-catalog-13",
+        "content-marketing-13",
+        "customer-account-19",
+        "after-sales-30"
+      ],
+      "expected": "Across winners, accepted stock/promotion/points holds never exceed corresponding available pool or per-customer balance; exchange competes for same stock. Full journey must also satisfy: Across winners, accepted stock/promotion/points holds never exceed corresponding available pool or per-customer balance; exchange competes for same stock. Losing checkout has no payable order or orphan partial hold; losing exchange pending with alternative path; live pool untouched by isolated test contention.",
+      "method_ids": [
+        "AI-journey-competing-resources"
+      ]
+    },
+    {
+      "id": "BB-journey-competing-resources-failure-cleanup",
+      "kind": "black_box",
+      "title": "Competing carts and exchange cannot overspend shared resources — failure-cleanup",
+      "requirement_ids": [
+        "cart-checkout-22",
+        "market-catalog-13",
+        "content-marketing-13",
+        "customer-account-19",
+        "after-sales-30"
+      ],
+      "expected": "Losing checkout has no payable order or orphan partial hold; losing exchange pending with alternative path; live pool untouched by isolated test contention. Full journey must also satisfy: Across winners, accepted stock/promotion/points holds never exceed corresponding available pool or per-customer balance; exchange competes for same stock. Losing checkout has no payable order or orphan partial hold; losing exchange pending with alternative path; live pool untouched by isolated test contention.",
+      "method_ids": [
+        "AI-journey-competing-resources"
+      ]
+    },
+    {
+      "id": "BB-journey-uncertain-cancel-pending",
+      "kind": "black_box",
+      "title": "Unknown payment, timeout, cancellation and reconciliation — pending",
+      "requirement_ids": [
+        "cart-checkout-23",
+        "cart-checkout-25",
+        "cart-checkout-26",
+        "after-sales-26",
+        "market-catalog-12",
+        "content-marketing-15",
+        "customer-account-21"
+      ],
+      "expected": "Unknown payment keeps every used hold beyond deadline, cancellation waits for payment reconciliation, and no second debit or fulfillment occurs. Full journey must also satisfy: Unknown payment keeps every used hold beyond deadline, cancellation waits for payment reconciliation, and no second debit or fulfillment occurs. Verified failure releases associated holds once; verified success follows paid/cancellation review path; still unknown retains pending task and holds without invented result.",
+      "method_ids": [
+        "AI-journey-uncertain-cancel"
+      ]
+    },
+    {
+      "id": "BB-journey-uncertain-cancel-reconciled",
+      "kind": "black_box",
+      "title": "Unknown payment, timeout, cancellation and reconciliation — reconciled",
+      "requirement_ids": [
+        "cart-checkout-23",
+        "cart-checkout-25",
+        "cart-checkout-26",
+        "after-sales-26",
+        "market-catalog-12",
+        "content-marketing-15",
+        "customer-account-21"
+      ],
+      "expected": "Verified failure releases associated holds once; verified success follows paid/cancellation review path; still unknown retains pending task and holds without invented result. Full journey must also satisfy: Unknown payment keeps every used hold beyond deadline, cancellation waits for payment reconciliation, and no second debit or fulfillment occurs. Verified failure releases associated holds once; verified success follows paid/cancellation review path; still unknown retains pending task and holds without invented result.",
+      "method_ids": [
+        "AI-journey-uncertain-cancel"
+      ]
+    },
+    {
+      "id": "BB-journey-exchange-settlement-withdrawn",
+      "kind": "black_box",
+      "title": "Exchange top-up withdrawal requires both money and custody resolution — withdrawn",
+      "requirement_ids": [
+        "after-sales-27",
+        "after-sales-28",
+        "after-sales-29",
+        "after-sales-31",
+        "after-sales-32",
+        "after-sales-33",
+        "orders-fulfillment-2"
+      ],
+      "expected": "Branch N terminates with no original-item or refund obligation. Branch T remains pending until actual original disposition is fulfilled. In R, existing target hold releases once; only unrefunded confirmed top-up obligation is represented once, existing pending allocations counted rather than duplicated; original-reference reconciliation preserves each allocation outcome and permits closure only after both all funds and original disposition settled. No branch rewrites original order snapshot; no branch simultaneously assumes unreceived and inspected original.",
+      "method_ids": [
+        "AI-journey-exchange-settlement"
+      ]
+    },
+    {
+      "id": "BB-journey-exchange-settlement-closed",
+      "kind": "black_box",
+      "title": "Exchange top-up withdrawal requires both money and custody resolution — closed",
+      "requirement_ids": [
+        "after-sales-27",
+        "after-sales-28",
+        "after-sales-29",
+        "after-sales-31",
+        "after-sales-32",
+        "after-sales-33",
+        "orders-fulfillment-2"
+      ],
+      "expected": "Branch N terminates with no original-item or refund obligation. Branch T remains pending until actual original disposition is fulfilled. In R, existing target hold releases once; only unrefunded confirmed top-up obligation is represented once, existing pending allocations counted rather than duplicated; original-reference reconciliation preserves each allocation outcome and permits closure only after both all funds and original disposition settled. No branch rewrites original order snapshot; no branch simultaneously assumes unreceived and inspected original.",
+      "method_ids": [
+        "AI-journey-exchange-settlement"
+      ]
+    },
+    {
+      "id": "BB-journey-partial-refund-recovery-partial",
+      "kind": "black_box",
+      "title": "Multiple refund sources tolerate partial success and selective retry — partial",
+      "requirement_ids": [
+        "after-sales-8",
+        "after-sales-9",
+        "after-sales-10",
+        "after-sales-19",
+        "after-sales-25",
+        "after-sales-32",
+        "after-sales-33"
+      ],
+      "expected": "Successful source recorded once, unknown source reserve retained, failed reserve released; overlap cannot reuse reserved amount; case remains unknown then failed as precedence requires. Full journey must also satisfy: Successful source recorded once, unknown source reserve retained, failed reserve released; overlap cannot reuse reserved amount; case remains unknown then failed as precedence requires. Only reapproved failed source is retried; case complete only all verified success, source balances and refunded total equal approval exactly with no duplicate money action.",
+      "method_ids": [
+        "AI-journey-partial-refund-recovery"
+      ]
+    },
+    {
+      "id": "BB-journey-partial-refund-recovery-complete",
+      "kind": "black_box",
+      "title": "Multiple refund sources tolerate partial success and selective retry — complete",
+      "requirement_ids": [
+        "after-sales-8",
+        "after-sales-9",
+        "after-sales-10",
+        "after-sales-19",
+        "after-sales-25",
+        "after-sales-32",
+        "after-sales-33"
+      ],
+      "expected": "Only reapproved failed source is retried; case complete only all verified success, source balances and refunded total equal approval exactly with no duplicate money action. Full journey must also satisfy: Successful source recorded once, unknown source reserve retained, failed reserve released; overlap cannot reuse reserved amount; case remains unknown then failed as precedence requires. Only reapproved failed source is retried; case complete only all verified success, source balances and refunded total equal approval exactly with no duplicate money action.",
+      "method_ids": [
+        "AI-journey-partial-refund-recovery"
+      ]
+    },
+    {
+      "id": "BB-journey-mixed-readiness-blocked",
+      "kind": "black_box",
+      "title": "Scoped readiness changes cannot leak into stale payment authorization — blocked",
+      "requirement_ids": [
+        "launch-readiness-10",
+        "launch-readiness-14",
+        "launch-readiness-15",
+        "market-catalog-17",
+        "cart-checkout-11",
+        "cart-checkout-13"
+      ],
+      "expected": "Mixed D1 order cannot charge with any unready line; customer sees affected line and assembly/policy gap, no public promise of real purchase for B. Full journey must also satisfy: Mixed D1 order cannot charge with any unready line; customer sees affected line and assembly/policy gap, no public promise of real purchase for B. A alone unaffected by B-specific gap; restored combination rechecks and requires confirmation of actual changed quote before charge; none/partial/all summary matches combinations.",
+      "method_ids": [
+        "AI-journey-mixed-readiness"
+      ]
+    },
+    {
+      "id": "BB-journey-mixed-readiness-restored",
+      "kind": "black_box",
+      "title": "Scoped readiness changes cannot leak into stale payment authorization — restored",
+      "requirement_ids": [
+        "launch-readiness-10",
+        "launch-readiness-14",
+        "launch-readiness-15",
+        "market-catalog-17",
+        "cart-checkout-11",
+        "cart-checkout-13"
+      ],
+      "expected": "A alone unaffected by B-specific gap; restored combination rechecks and requires confirmation of actual changed quote before charge; none/partial/all summary matches combinations. Full journey must also satisfy: Mixed D1 order cannot charge with any unready line; customer sees affected line and assembly/policy gap, no public promise of real purchase for B. A alone unaffected by B-specific gap; restored combination rechecks and requires confirmation of actual changed quote before charge; none/partial/all summary matches combinations.",
+      "method_ids": [
+        "AI-journey-mixed-readiness"
+      ]
+    },
+    {
+      "id": "BB-journey-support-handoff-identity-history",
+      "kind": "black_box",
+      "title": "Verified order support survives disconnect, transfer and closure — identity-history",
+      "requirement_ids": [
+        "customer-account-3",
+        "customer-support-4",
+        "customer-support-5",
+        "customer-support-7",
+        "customer-support-8",
+        "customer-support-9",
+        "customer-support-20"
+      ],
+      "expected": "Only verified guest can link/read own order conversation; reconnect restores durable correct history; unauthorized employee sees no private content. Full journey must also satisfy: Only verified guest can link/read own order conversation; reconnect restores durable correct history; unauthorized employee sees no private content. Single new owner receives unfinished work and transfer provenance; new message after close restores follow-up while preserving both agents replies and original history.",
+      "method_ids": [
+        "AI-journey-support-handoff"
+      ]
+    },
+    {
+      "id": "BB-journey-support-handoff-ownership-followup",
+      "kind": "black_box",
+      "title": "Verified order support survives disconnect, transfer and closure — ownership-followup",
+      "requirement_ids": [
+        "customer-account-3",
+        "customer-support-4",
+        "customer-support-5",
+        "customer-support-7",
+        "customer-support-8",
+        "customer-support-9",
+        "customer-support-20"
+      ],
+      "expected": "Single new owner receives unfinished work and transfer provenance; new message after close restores follow-up while preserving both agents replies and original history. Full journey must also satisfy: Only verified guest can link/read own order conversation; reconnect restores durable correct history; unauthorized employee sees no private content. Single new owner receives unfinished work and transfer provenance; new message after close restores follow-up while preserving both agents replies and original history.",
+      "method_ids": [
+        "AI-journey-support-handoff"
+      ]
+    },
+    {
+      "id": "BB-journey-test-isolation-simulated",
+      "kind": "black_box",
+      "title": "End-to-end test sale and return cannot change live business — simulated",
+      "requirement_ids": [
+        "launch-readiness-9",
+        "launch-readiness-13",
+        "cart-checkout-18",
+        "orders-fulfillment-13",
+        "merchant-operations-12",
+        "after-sales-9"
+      ],
+      "expected": "Every order/payment/refund explicitly test; test records have own references and correct simulation outcomes, physical dispatch blocked. Full journey must also satisfy: Every order/payment/refund explicitly test; test records have own references and correct simulation outcomes, physical dispatch blocked. All live inventory/rights/reviews/money/metrics unchanged; missing test resource blocks rather than borrowing live; business reports distinguish test source.",
+      "method_ids": [
+        "AI-journey-test-isolation"
+      ]
+    },
+    {
+      "id": "BB-journey-test-isolation-live-unchanged",
+      "kind": "black_box",
+      "title": "End-to-end test sale and return cannot change live business — live-unchanged",
+      "requirement_ids": [
+        "launch-readiness-9",
+        "launch-readiness-13",
+        "cart-checkout-18",
+        "orders-fulfillment-13",
+        "merchant-operations-12",
+        "after-sales-9"
+      ],
+      "expected": "All live inventory/rights/reviews/money/metrics unchanged; missing test resource blocks rather than borrowing live; business reports distinguish test source. Full journey must also satisfy: Every order/payment/refund explicitly test; test records have own references and correct simulation outcomes, physical dispatch blocked. All live inventory/rights/reviews/money/metrics unchanged; missing test resource blocks rather than borrowing live; business reports distinguish test source.",
+      "method_ids": [
+        "AI-journey-test-isolation"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "status": "pending_business_inputs_not_resolved_by_scenario_design",
+  "execution_policy": "场景可采用已确认规则和可核对的合成数据参数化设计；未确定条件只能断言缺项提示与规定阻断，不将夹具值升级为经营政策。",
+  "groups": [
+    {
+      "id": "PENDING-MARKET",
+      "topics": [
+        "目标国家/地区",
+        "站点语言",
+        "报价及结算币种",
+        "正式品牌及授权资料"
+      ],
+      "requirement_ids": [
+        "market-catalog-1",
+        "market-catalog-2",
+        "market-catalog-9",
+        "launch-readiness-1",
+        "site-quality-18"
+      ]
+    },
+    {
+      "id": "PENDING-PAYMENT",
+      "topics": [
+        "支付渠道与真实/测试模式确认",
+        "真实资金与退款路径",
+        "受理方核对能力"
+      ],
+      "requirement_ids": [
+        "cart-checkout-13",
+        "cart-checkout-26",
+        "after-sales-9",
+        "after-sales-29",
+        "launch-readiness-5"
+      ]
+    },
+    {
+      "id": "PENDING-POLICY",
+      "topics": [
+        "配送范围/服务/费用/时效",
+        "税务及零税依据",
+        "退换期限/条件/费用",
+        "按件分摊/尾差规则"
+      ],
+      "requirement_ids": [
+        "cart-checkout-7",
+        "cart-checkout-8",
+        "cart-checkout-10",
+        "orders-fulfillment-1",
+        "after-sales-5",
+        "after-sales-8",
+        "after-sales-21",
+        "merchant-operations-10"
+      ]
+    },
+    {
+      "id": "PENDING-BICYCLE",
+      "topics": [
+        "车型/尺码/几何/选型规则",
+        "配件兼容来源与有效期",
+        "交付形态/包装/组装责任/随货指引",
+        "运输损坏/保修/维修/原件处置政策"
+      ],
+      "requirement_ids": [
+        "product-selection-6",
+        "product-selection-7",
+        "product-selection-9",
+        "market-catalog-17",
+        "orders-fulfillment-6",
+        "after-sales-12",
+        "after-sales-31",
+        "launch-readiness-15"
+      ]
+    },
+    {
+      "id": "PENDING-BENEFITS",
+      "topics": [
+        "积分启用与否",
+        "获得/使用/冲回/过期/币种兑换",
+        "优惠适用/叠加/总量/每客限制",
+        "评价资格"
+      ],
+      "requirement_ids": [
+        "customer-account-8",
+        "customer-account-10",
+        "customer-account-12",
+        "customer-account-13",
+        "content-marketing-7",
+        "content-marketing-13"
+      ]
+    },
+    {
+      "id": "PENDING-OPERATIONS",
+      "topics": [
+        "岗位权限/审批级别",
+        "客服时段/通知渠道",
+        "隐私用途/保留期限/删除处理",
+        "限流及身份验证方式",
+        "备份计划/恢复点/恢复演练标准",
+        "主要流程/设备范围/品牌视觉标准"
+      ],
+      "requirement_ids": [
+        "merchant-operations-3",
+        "customer-support-1",
+        "customer-support-10",
+        "site-quality-9",
+        "site-quality-10",
+        "site-quality-14",
+        "site-quality-17",
+        "site-quality-1",
+        "site-quality-18"
+      ]
+    }
+  ],
+  "out_of_scope_extensions": [
+    "电助力车",
+    "定制装配",
+    "经销商能力"
+  ],
+  "application_execution": "not_run",
+  "white_box_design": "not_requested",
+  "website_acceptance": "not_assessed"
+}

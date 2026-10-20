@@ -1,0 +1,78 @@
+{
+  "status": "passed",
+  "requirement_count": 188,
+  "validation_sections_imported": false,
+  "excluded_packages": [
+    "git",
+    "licensing"
+  ],
+  "unresolved_related_requirement_ids": [],
+  "files": [
+    {
+      "source": "specs/packages/after-sales.md",
+      "count": 30,
+      "verbatim_external_behavior": true,
+      "tables_and_links_preserved": true
+    },
+    {
+      "source": "specs/packages/cart-checkout.md",
+      "count": 23,
+      "verbatim_external_behavior": true,
+      "tables_and_links_preserved": true
+    },
+    {
+      "source": "specs/packages/content-marketing.md",
+      "count": 14,
+      "verbatim_external_behavior": true,
+      "tables_and_links_preserved": true
+    },
+    {
+      "source": "specs/packages/customer-account.md",
+      "count": 19,
+      "verbatim_external_behavior": true,
+      "tables_and_links_preserved": true
+    },
+    {
+      "source": "specs/packages/customer-support.md",
+      "count": 17,
+      "verbatim_external_behavior": true,
+      "tables_and_links_preserved": true
+    },
+    {
+      "source": "specs/packages/launch-readiness.md",
+      "count": 13,
+      "verbatim_external_behavior": true,
+      "tables_and_links_preserved": true
+    },
+    {
+      "source": "specs/packages/market-catalog.md",
+      "count": 15,
+      "verbatim_external_behavior": true,
+      "tables_and_links_preserved": true
+    },
+    {
+      "source": "specs/packages/merchant-operations.md",
+      "count": 15,
+      "verbatim_external_behavior": true,
+      "tables_and_links_preserved": true
+    },
+    {
+      "source": "specs/packages/orders-fulfillment.md",
+      "count": 16,
+      "verbatim_external_behavior": true,
+      "tables_and_links_preserved": true
+    },
+    {
+      "source": "specs/packages/product-selection.md",
+      "count": 10,
+      "verbatim_external_behavior": true,
+      "tables_and_links_preserved": true
+    },
+    {
+      "source": "specs/packages/site-quality.md",
+      "count": 16,
+      "verbatim_external_behavior": true,
+      "tables_and_links_preserved": true
+    }
+  ]
+}

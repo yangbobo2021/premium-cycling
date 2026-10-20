@@ -1,0 +1,2693 @@
+{
+  "status": "passed",
+  "review_type": "independent_localization_semantic_and_black_box_design_review",
+  "reviewed_at": "2026-10-08T07:54:52.562698+00:00",
+  "reviewer_kind": "independent_ai",
+  "baseline": "review-history/pre-zh-localization/manifest.json",
+  "baseline_sha256": "b0504bf555322456325ce2761d4623c8f8e3d69848cb8b77ecd4cb185b8775d5",
+  "scope": {
+    "requirements": 188,
+    "black_box_scenarios": 204,
+    "methods": 196,
+    "requirement_scenario_links": 292,
+    "review_records": 188,
+    "fault_probes": 962,
+    "localized_natural_language_fields": 1194,
+    "shared_journey_methods": 8,
+    "repaired_method_groups": 18
+  },
+  "review_hashes": {
+    "requirements_sha256": "19eac30ed888286396019edbdc3b79937ae17218ab16b48797ba0395a21c943a",
+    "scenarios_sha256": "b6d873d89d9997309317dfcb90019a1ba30fe14d61ffbab7f90cdbf81c03c7c4",
+    "methods_sha256": "d5ff58097718cf629cce3dff37fe4653db4dedeb329f66aaaeff7e69ad3b0352"
+  },
+  "invariants": {
+    "requirements_bytes_unchanged": true,
+    "baseline_manifest_hashes_valid": true,
+    "all_nonlanguage_fields_unchanged": true,
+    "item_order_and_flags_unchanged": true,
+    "ids_and_links_unchanged": true,
+    "transition_matrix_nonlanguage_content_unchanged": true,
+    "original_review_items_and_fault_probes_unchanged": true
+  },
+  "method": "逐条独立对照英文基线和中文候选，核对操作、主体、正常异常分支、数值边界、转换、断言及证据；逐需求用原有962个合理错误实现反例重新挑战当前方法，不以脚本结构通过替代语义审查。追加修复段和共享旅程另行完整对照。",
+  "resolved_wording_findings": [
+    {
+      "id": "cart-checkout-24",
+      "issue": "结账异常不应增加售后案件限定",
+      "resolution": "受影响的异常事项"
+    },
+    {
+      "id": "after-sales-18",
+      "issue": "custody不应误解为原件所有权",
+      "resolution": "原件去向及处置"
+    },
+    {
+      "id": "cart-checkout-11",
+      "issue": "stale不限于时间过期",
+      "resolution": "失效报价"
+    },
+    {
+      "id": "customer-account-21",
+      "issue": "未发起付款与已发起结果未知必须区分",
+      "resolution": "未发起付款超时"
+    },
+    {
+      "id": "customer-support-10,customer-support-11",
+      "issue": "registered events不应限定为账户注册通知",
+      "resolution": "已配置／启用的对应通知事件"
+    },
+    {
+      "id": "site-quality-1",
+      "issue": "resize须实际改变视口尺寸",
+      "resolution": "旋转设备／调整窗口或视口尺寸"
+    },
+    {
+      "id": "site-quality-4",
+      "issue": "informative images不只指信息图",
+      "resolution": "承载信息的图片／装饰图片"
+    }
+  ],
+  "unresolved_localization_issues": [],
+  "unresolved_execution_oracles": "经营参数、政策版本与边界、视觉规范、安全阈值、资源及可控故障设施保持既有待定状态，不代填；不可验证时未来执行须标记unproven／blocked。",
+  "application_execution_performed": false,
+  "white_box_generation_performed": false,
+  "website_acceptance_claimed": false,
+  "per_requirement": [
+    {
+      "requirement_id": "after-sales-1",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-after-sales-1"
+      ],
+      "method_ids": [
+        "AI-after-sales-1"
+      ],
+      "fault_probes_reviewed": 5,
+      "sufficiency_record": "coverage_review.json#after-sales-1"
+    },
+    {
+      "requirement_id": "after-sales-2",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-after-sales-2"
+      ],
+      "method_ids": [
+        "AI-after-sales-2"
+      ],
+      "fault_probes_reviewed": 6,
+      "sufficiency_record": "coverage_review.json#after-sales-2"
+    },
+    {
+      "requirement_id": "after-sales-3",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-after-sales-3"
+      ],
+      "method_ids": [
+        "AI-after-sales-3"
+      ],
+      "fault_probes_reviewed": 8,
+      "sufficiency_record": "coverage_review.json#after-sales-3"
+    },
+    {
+      "requirement_id": "after-sales-4",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-after-sales-4"
+      ],
+      "method_ids": [
+        "AI-after-sales-4"
+      ],
+      "fault_probes_reviewed": 3,
+      "sufficiency_record": "coverage_review.json#after-sales-4"
+    },
+    {
+      "requirement_id": "after-sales-5",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-after-sales-5"
+      ],
+      "method_ids": [
+        "AI-after-sales-5"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#after-sales-5"
+    },
+    {
+      "requirement_id": "after-sales-6",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-after-sales-6"
+      ],
+      "method_ids": [
+        "AI-after-sales-6"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#after-sales-6"
+    },
+    {
+      "requirement_id": "after-sales-7",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-after-sales-7"
+      ],
+      "method_ids": [
+        "AI-after-sales-7"
+      ],
+      "fault_probes_reviewed": 5,
+      "sufficiency_record": "coverage_review.json#after-sales-7"
+    },
+    {
+      "requirement_id": "after-sales-8",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-after-sales-8",
+        "BB-journey-partial-refund-recovery-partial",
+        "BB-journey-partial-refund-recovery-complete"
+      ],
+      "method_ids": [
+        "AI-after-sales-8",
+        "AI-journey-partial-refund-recovery"
+      ],
+      "fault_probes_reviewed": 7,
+      "sufficiency_record": "coverage_review.json#after-sales-8"
+    },
+    {
+      "requirement_id": "after-sales-9",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-after-sales-9",
+        "BB-journey-partial-refund-recovery-partial",
+        "BB-journey-partial-refund-recovery-complete",
+        "BB-journey-test-isolation-simulated",
+        "BB-journey-test-isolation-live-unchanged"
+      ],
+      "method_ids": [
+        "AI-after-sales-9",
+        "AI-journey-partial-refund-recovery",
+        "AI-journey-test-isolation"
+      ],
+      "fault_probes_reviewed": 6,
+      "sufficiency_record": "coverage_review.json#after-sales-9"
+    },
+    {
+      "requirement_id": "after-sales-10",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-after-sales-10",
+        "BB-journey-partial-refund-recovery-partial",
+        "BB-journey-partial-refund-recovery-complete"
+      ],
+      "method_ids": [
+        "AI-after-sales-10",
+        "AI-journey-partial-refund-recovery"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#after-sales-10"
+    },
+    {
+      "requirement_id": "after-sales-11",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-after-sales-11"
+      ],
+      "method_ids": [
+        "AI-after-sales-11"
+      ],
+      "fault_probes_reviewed": 3,
+      "sufficiency_record": "coverage_review.json#after-sales-11"
+    },
+    {
+      "requirement_id": "after-sales-12",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-after-sales-12"
+      ],
+      "method_ids": [
+        "AI-after-sales-12"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#after-sales-12"
+    },
+    {
+      "requirement_id": "after-sales-13",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-after-sales-13"
+      ],
+      "method_ids": [
+        "AI-after-sales-13"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#after-sales-13"
+    },
+    {
+      "requirement_id": "after-sales-14",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-after-sales-14"
+      ],
+      "method_ids": [
+        "AI-after-sales-14"
+      ],
+      "fault_probes_reviewed": 3,
+      "sufficiency_record": "coverage_review.json#after-sales-14"
+    },
+    {
+      "requirement_id": "after-sales-18",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-after-sales-18"
+      ],
+      "method_ids": [
+        "AI-after-sales-18"
+      ],
+      "fault_probes_reviewed": 5,
+      "sufficiency_record": "coverage_review.json#after-sales-18"
+    },
+    {
+      "requirement_id": "after-sales-19",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-after-sales-19",
+        "BB-journey-partial-refund-recovery-partial",
+        "BB-journey-partial-refund-recovery-complete"
+      ],
+      "method_ids": [
+        "AI-after-sales-19",
+        "AI-journey-partial-refund-recovery"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#after-sales-19"
+    },
+    {
+      "requirement_id": "after-sales-20",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-after-sales-20"
+      ],
+      "method_ids": [
+        "AI-after-sales-20"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#after-sales-20"
+    },
+    {
+      "requirement_id": "after-sales-21",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-after-sales-21"
+      ],
+      "method_ids": [
+        "AI-after-sales-21"
+      ],
+      "fault_probes_reviewed": 6,
+      "sufficiency_record": "coverage_review.json#after-sales-21"
+    },
+    {
+      "requirement_id": "after-sales-22",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-after-sales-22"
+      ],
+      "method_ids": [
+        "AI-after-sales-22"
+      ],
+      "fault_probes_reviewed": 6,
+      "sufficiency_record": "coverage_review.json#after-sales-22"
+    },
+    {
+      "requirement_id": "after-sales-23",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-after-sales-23"
+      ],
+      "method_ids": [
+        "AI-after-sales-23"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#after-sales-23"
+    },
+    {
+      "requirement_id": "after-sales-24",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-after-sales-24"
+      ],
+      "method_ids": [
+        "AI-after-sales-24"
+      ],
+      "fault_probes_reviewed": 9,
+      "sufficiency_record": "coverage_review.json#after-sales-24"
+    },
+    {
+      "requirement_id": "after-sales-25",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-after-sales-25",
+        "BB-journey-partial-refund-recovery-partial",
+        "BB-journey-partial-refund-recovery-complete"
+      ],
+      "method_ids": [
+        "AI-after-sales-25",
+        "AI-journey-partial-refund-recovery"
+      ],
+      "fault_probes_reviewed": 7,
+      "sufficiency_record": "coverage_review.json#after-sales-25"
+    },
+    {
+      "requirement_id": "after-sales-26",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-after-sales-26",
+        "BB-journey-uncertain-cancel-pending",
+        "BB-journey-uncertain-cancel-reconciled"
+      ],
+      "method_ids": [
+        "AI-after-sales-26",
+        "AI-journey-uncertain-cancel"
+      ],
+      "fault_probes_reviewed": 3,
+      "sufficiency_record": "coverage_review.json#after-sales-26"
+    },
+    {
+      "requirement_id": "after-sales-27",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-after-sales-27",
+        "BB-journey-exchange-settlement-withdrawn",
+        "BB-journey-exchange-settlement-closed"
+      ],
+      "method_ids": [
+        "AI-after-sales-27",
+        "AI-journey-exchange-settlement"
+      ],
+      "fault_probes_reviewed": 17,
+      "sufficiency_record": "coverage_review.json#after-sales-27"
+    },
+    {
+      "requirement_id": "after-sales-28",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-after-sales-28",
+        "BB-journey-exchange-settlement-withdrawn",
+        "BB-journey-exchange-settlement-closed"
+      ],
+      "method_ids": [
+        "AI-after-sales-28",
+        "AI-journey-exchange-settlement"
+      ],
+      "fault_probes_reviewed": 10,
+      "sufficiency_record": "coverage_review.json#after-sales-28"
+    },
+    {
+      "requirement_id": "after-sales-29",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-after-sales-29",
+        "BB-journey-exchange-settlement-withdrawn",
+        "BB-journey-exchange-settlement-closed"
+      ],
+      "method_ids": [
+        "AI-after-sales-29",
+        "AI-journey-exchange-settlement"
+      ],
+      "fault_probes_reviewed": 10,
+      "sufficiency_record": "coverage_review.json#after-sales-29"
+    },
+    {
+      "requirement_id": "after-sales-30",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-after-sales-30",
+        "BB-journey-competing-resources-allocation",
+        "BB-journey-competing-resources-failure-cleanup"
+      ],
+      "method_ids": [
+        "AI-after-sales-30",
+        "AI-journey-competing-resources"
+      ],
+      "fault_probes_reviewed": 9,
+      "sufficiency_record": "coverage_review.json#after-sales-30"
+    },
+    {
+      "requirement_id": "after-sales-31",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-after-sales-31",
+        "BB-journey-exchange-settlement-withdrawn",
+        "BB-journey-exchange-settlement-closed"
+      ],
+      "method_ids": [
+        "AI-after-sales-31",
+        "AI-journey-exchange-settlement"
+      ],
+      "fault_probes_reviewed": 10,
+      "sufficiency_record": "coverage_review.json#after-sales-31"
+    },
+    {
+      "requirement_id": "after-sales-32",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-after-sales-32",
+        "BB-journey-exchange-settlement-withdrawn",
+        "BB-journey-exchange-settlement-closed",
+        "BB-journey-partial-refund-recovery-partial",
+        "BB-journey-partial-refund-recovery-complete"
+      ],
+      "method_ids": [
+        "AI-after-sales-32",
+        "AI-journey-exchange-settlement",
+        "AI-journey-partial-refund-recovery"
+      ],
+      "fault_probes_reviewed": 18,
+      "sufficiency_record": "coverage_review.json#after-sales-32"
+    },
+    {
+      "requirement_id": "after-sales-33",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-after-sales-33",
+        "BB-journey-exchange-settlement-withdrawn",
+        "BB-journey-exchange-settlement-closed",
+        "BB-journey-partial-refund-recovery-partial",
+        "BB-journey-partial-refund-recovery-complete"
+      ],
+      "method_ids": [
+        "AI-after-sales-33",
+        "AI-journey-exchange-settlement",
+        "AI-journey-partial-refund-recovery"
+      ],
+      "fault_probes_reviewed": 15,
+      "sufficiency_record": "coverage_review.json#after-sales-33"
+    },
+    {
+      "requirement_id": "cart-checkout-1",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-cart-checkout-1"
+      ],
+      "method_ids": [
+        "AI-cart-checkout-1"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#cart-checkout-1"
+    },
+    {
+      "requirement_id": "cart-checkout-2",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-cart-checkout-2"
+      ],
+      "method_ids": [
+        "AI-cart-checkout-2"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#cart-checkout-2"
+    },
+    {
+      "requirement_id": "cart-checkout-3",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-cart-checkout-3"
+      ],
+      "method_ids": [
+        "AI-cart-checkout-3"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#cart-checkout-3"
+    },
+    {
+      "requirement_id": "cart-checkout-4",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-cart-checkout-4"
+      ],
+      "method_ids": [
+        "AI-cart-checkout-4"
+      ],
+      "fault_probes_reviewed": 3,
+      "sufficiency_record": "coverage_review.json#cart-checkout-4"
+    },
+    {
+      "requirement_id": "cart-checkout-5",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-cart-checkout-5",
+        "BB-journey-guest-purchase-quote-order",
+        "BB-journey-guest-purchase-delivery-contact"
+      ],
+      "method_ids": [
+        "AI-cart-checkout-5",
+        "AI-journey-guest-purchase"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#cart-checkout-5"
+    },
+    {
+      "requirement_id": "cart-checkout-6",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-cart-checkout-6"
+      ],
+      "method_ids": [
+        "AI-cart-checkout-6"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#cart-checkout-6"
+    },
+    {
+      "requirement_id": "cart-checkout-7",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-cart-checkout-7"
+      ],
+      "method_ids": [
+        "AI-cart-checkout-7"
+      ],
+      "fault_probes_reviewed": 8,
+      "sufficiency_record": "coverage_review.json#cart-checkout-7"
+    },
+    {
+      "requirement_id": "cart-checkout-8",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-cart-checkout-8"
+      ],
+      "method_ids": [
+        "AI-cart-checkout-8"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#cart-checkout-8"
+    },
+    {
+      "requirement_id": "cart-checkout-9",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-cart-checkout-9"
+      ],
+      "method_ids": [
+        "AI-cart-checkout-9"
+      ],
+      "fault_probes_reviewed": 3,
+      "sufficiency_record": "coverage_review.json#cart-checkout-9"
+    },
+    {
+      "requirement_id": "cart-checkout-10",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-cart-checkout-10",
+        "BB-journey-guest-purchase-quote-order",
+        "BB-journey-guest-purchase-delivery-contact"
+      ],
+      "method_ids": [
+        "AI-cart-checkout-10",
+        "AI-journey-guest-purchase"
+      ],
+      "fault_probes_reviewed": 7,
+      "sufficiency_record": "coverage_review.json#cart-checkout-10"
+    },
+    {
+      "requirement_id": "cart-checkout-11",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-cart-checkout-11",
+        "BB-journey-mixed-readiness-blocked",
+        "BB-journey-mixed-readiness-restored"
+      ],
+      "method_ids": [
+        "AI-cart-checkout-11",
+        "AI-journey-mixed-readiness"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#cart-checkout-11"
+    },
+    {
+      "requirement_id": "cart-checkout-12",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-cart-checkout-12"
+      ],
+      "method_ids": [
+        "AI-cart-checkout-12"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#cart-checkout-12"
+    },
+    {
+      "requirement_id": "cart-checkout-13",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-cart-checkout-13",
+        "BB-journey-mixed-readiness-blocked",
+        "BB-journey-mixed-readiness-restored"
+      ],
+      "method_ids": [
+        "AI-cart-checkout-13",
+        "AI-journey-mixed-readiness"
+      ],
+      "fault_probes_reviewed": 7,
+      "sufficiency_record": "coverage_review.json#cart-checkout-13"
+    },
+    {
+      "requirement_id": "cart-checkout-14",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-cart-checkout-14"
+      ],
+      "method_ids": [
+        "AI-cart-checkout-14"
+      ],
+      "fault_probes_reviewed": 5,
+      "sufficiency_record": "coverage_review.json#cart-checkout-14"
+    },
+    {
+      "requirement_id": "cart-checkout-15",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-cart-checkout-15"
+      ],
+      "method_ids": [
+        "AI-cart-checkout-15"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#cart-checkout-15"
+    },
+    {
+      "requirement_id": "cart-checkout-16",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-cart-checkout-16"
+      ],
+      "method_ids": [
+        "AI-cart-checkout-16"
+      ],
+      "fault_probes_reviewed": 3,
+      "sufficiency_record": "coverage_review.json#cart-checkout-16"
+    },
+    {
+      "requirement_id": "cart-checkout-17",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-cart-checkout-17"
+      ],
+      "method_ids": [
+        "AI-cart-checkout-17"
+      ],
+      "fault_probes_reviewed": 3,
+      "sufficiency_record": "coverage_review.json#cart-checkout-17"
+    },
+    {
+      "requirement_id": "cart-checkout-18",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-cart-checkout-18",
+        "BB-journey-test-isolation-simulated",
+        "BB-journey-test-isolation-live-unchanged"
+      ],
+      "method_ids": [
+        "AI-cart-checkout-18",
+        "AI-journey-test-isolation"
+      ],
+      "fault_probes_reviewed": 3,
+      "sufficiency_record": "coverage_review.json#cart-checkout-18"
+    },
+    {
+      "requirement_id": "cart-checkout-22",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-cart-checkout-22",
+        "BB-journey-guest-purchase-quote-order",
+        "BB-journey-guest-purchase-delivery-contact",
+        "BB-journey-competing-resources-allocation",
+        "BB-journey-competing-resources-failure-cleanup"
+      ],
+      "method_ids": [
+        "AI-cart-checkout-22",
+        "AI-journey-guest-purchase",
+        "AI-journey-competing-resources"
+      ],
+      "fault_probes_reviewed": 11,
+      "sufficiency_record": "coverage_review.json#cart-checkout-22"
+    },
+    {
+      "requirement_id": "cart-checkout-23",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-cart-checkout-23",
+        "BB-journey-uncertain-cancel-pending",
+        "BB-journey-uncertain-cancel-reconciled"
+      ],
+      "method_ids": [
+        "AI-cart-checkout-23",
+        "AI-journey-uncertain-cancel"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#cart-checkout-23"
+    },
+    {
+      "requirement_id": "cart-checkout-24",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-cart-checkout-24"
+      ],
+      "method_ids": [
+        "AI-cart-checkout-24"
+      ],
+      "fault_probes_reviewed": 6,
+      "sufficiency_record": "coverage_review.json#cart-checkout-24"
+    },
+    {
+      "requirement_id": "cart-checkout-25",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-cart-checkout-25",
+        "BB-journey-uncertain-cancel-pending",
+        "BB-journey-uncertain-cancel-reconciled"
+      ],
+      "method_ids": [
+        "AI-cart-checkout-25",
+        "AI-journey-uncertain-cancel"
+      ],
+      "fault_probes_reviewed": 9,
+      "sufficiency_record": "coverage_review.json#cart-checkout-25"
+    },
+    {
+      "requirement_id": "cart-checkout-26",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-cart-checkout-26",
+        "BB-journey-uncertain-cancel-pending",
+        "BB-journey-uncertain-cancel-reconciled"
+      ],
+      "method_ids": [
+        "AI-cart-checkout-26",
+        "AI-journey-uncertain-cancel"
+      ],
+      "fault_probes_reviewed": 3,
+      "sufficiency_record": "coverage_review.json#cart-checkout-26"
+    },
+    {
+      "requirement_id": "content-marketing-1",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-content-marketing-1"
+      ],
+      "method_ids": [
+        "AI-content-marketing-1"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#content-marketing-1"
+    },
+    {
+      "requirement_id": "content-marketing-2",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-content-marketing-2"
+      ],
+      "method_ids": [
+        "AI-content-marketing-2"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#content-marketing-2"
+    },
+    {
+      "requirement_id": "content-marketing-3",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-content-marketing-3"
+      ],
+      "method_ids": [
+        "AI-content-marketing-3"
+      ],
+      "fault_probes_reviewed": 9,
+      "sufficiency_record": "coverage_review.json#content-marketing-3"
+    },
+    {
+      "requirement_id": "content-marketing-4",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-content-marketing-4"
+      ],
+      "method_ids": [
+        "AI-content-marketing-4"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#content-marketing-4"
+    },
+    {
+      "requirement_id": "content-marketing-5",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-content-marketing-5"
+      ],
+      "method_ids": [
+        "AI-content-marketing-5"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#content-marketing-5"
+    },
+    {
+      "requirement_id": "content-marketing-6",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-content-marketing-6"
+      ],
+      "method_ids": [
+        "AI-content-marketing-6"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#content-marketing-6"
+    },
+    {
+      "requirement_id": "content-marketing-7",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-content-marketing-7"
+      ],
+      "method_ids": [
+        "AI-content-marketing-7"
+      ],
+      "fault_probes_reviewed": 8,
+      "sufficiency_record": "coverage_review.json#content-marketing-7"
+    },
+    {
+      "requirement_id": "content-marketing-8",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-content-marketing-8"
+      ],
+      "method_ids": [
+        "AI-content-marketing-8"
+      ],
+      "fault_probes_reviewed": 6,
+      "sufficiency_record": "coverage_review.json#content-marketing-8"
+    },
+    {
+      "requirement_id": "content-marketing-9",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-content-marketing-9"
+      ],
+      "method_ids": [
+        "AI-content-marketing-9"
+      ],
+      "fault_probes_reviewed": 6,
+      "sufficiency_record": "coverage_review.json#content-marketing-9"
+    },
+    {
+      "requirement_id": "content-marketing-11",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-content-marketing-11"
+      ],
+      "method_ids": [
+        "AI-content-marketing-11"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#content-marketing-11"
+    },
+    {
+      "requirement_id": "content-marketing-12",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-content-marketing-12"
+      ],
+      "method_ids": [
+        "AI-content-marketing-12"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#content-marketing-12"
+    },
+    {
+      "requirement_id": "content-marketing-13",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-content-marketing-13",
+        "BB-journey-competing-resources-allocation",
+        "BB-journey-competing-resources-failure-cleanup"
+      ],
+      "method_ids": [
+        "AI-content-marketing-13",
+        "AI-journey-competing-resources"
+      ],
+      "fault_probes_reviewed": 7,
+      "sufficiency_record": "coverage_review.json#content-marketing-13"
+    },
+    {
+      "requirement_id": "content-marketing-14",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-content-marketing-14"
+      ],
+      "method_ids": [
+        "AI-content-marketing-14"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#content-marketing-14"
+    },
+    {
+      "requirement_id": "content-marketing-15",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-content-marketing-15",
+        "BB-journey-uncertain-cancel-pending",
+        "BB-journey-uncertain-cancel-reconciled"
+      ],
+      "method_ids": [
+        "AI-content-marketing-15",
+        "AI-journey-uncertain-cancel"
+      ],
+      "fault_probes_reviewed": 9,
+      "sufficiency_record": "coverage_review.json#content-marketing-15"
+    },
+    {
+      "requirement_id": "customer-account-1",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-account-1"
+      ],
+      "method_ids": [
+        "AI-customer-account-1"
+      ],
+      "fault_probes_reviewed": 7,
+      "sufficiency_record": "coverage_review.json#customer-account-1"
+    },
+    {
+      "requirement_id": "customer-account-2",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-account-2"
+      ],
+      "method_ids": [
+        "AI-customer-account-2"
+      ],
+      "fault_probes_reviewed": 6,
+      "sufficiency_record": "coverage_review.json#customer-account-2"
+    },
+    {
+      "requirement_id": "customer-account-3",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-account-3",
+        "BB-journey-support-handoff-identity-history",
+        "BB-journey-support-handoff-ownership-followup"
+      ],
+      "method_ids": [
+        "AI-customer-account-3",
+        "AI-journey-support-handoff"
+      ],
+      "fault_probes_reviewed": 7,
+      "sufficiency_record": "coverage_review.json#customer-account-3"
+    },
+    {
+      "requirement_id": "customer-account-4",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-account-4"
+      ],
+      "method_ids": [
+        "AI-customer-account-4"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#customer-account-4"
+    },
+    {
+      "requirement_id": "customer-account-5",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-account-5"
+      ],
+      "method_ids": [
+        "AI-customer-account-5"
+      ],
+      "fault_probes_reviewed": 10,
+      "sufficiency_record": "coverage_review.json#customer-account-5"
+    },
+    {
+      "requirement_id": "customer-account-6",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-account-6"
+      ],
+      "method_ids": [
+        "AI-customer-account-6"
+      ],
+      "fault_probes_reviewed": 9,
+      "sufficiency_record": "coverage_review.json#customer-account-6"
+    },
+    {
+      "requirement_id": "customer-account-7",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-account-7"
+      ],
+      "method_ids": [
+        "AI-customer-account-7"
+      ],
+      "fault_probes_reviewed": 3,
+      "sufficiency_record": "coverage_review.json#customer-account-7"
+    },
+    {
+      "requirement_id": "customer-account-8",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-account-8"
+      ],
+      "method_ids": [
+        "AI-customer-account-8"
+      ],
+      "fault_probes_reviewed": 6,
+      "sufficiency_record": "coverage_review.json#customer-account-8"
+    },
+    {
+      "requirement_id": "customer-account-9",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-account-9"
+      ],
+      "method_ids": [
+        "AI-customer-account-9"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#customer-account-9"
+    },
+    {
+      "requirement_id": "customer-account-10",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-account-10"
+      ],
+      "method_ids": [
+        "AI-customer-account-10"
+      ],
+      "fault_probes_reviewed": 6,
+      "sufficiency_record": "coverage_review.json#customer-account-10"
+    },
+    {
+      "requirement_id": "customer-account-11",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-account-11"
+      ],
+      "method_ids": [
+        "AI-customer-account-11"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#customer-account-11"
+    },
+    {
+      "requirement_id": "customer-account-12",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-account-12"
+      ],
+      "method_ids": [
+        "AI-customer-account-12"
+      ],
+      "fault_probes_reviewed": 6,
+      "sufficiency_record": "coverage_review.json#customer-account-12"
+    },
+    {
+      "requirement_id": "customer-account-13",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-account-13"
+      ],
+      "method_ids": [
+        "AI-customer-account-13"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#customer-account-13"
+    },
+    {
+      "requirement_id": "customer-account-14",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-account-14"
+      ],
+      "method_ids": [
+        "AI-customer-account-14"
+      ],
+      "fault_probes_reviewed": 6,
+      "sufficiency_record": "coverage_review.json#customer-account-14"
+    },
+    {
+      "requirement_id": "customer-account-17",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-account-17"
+      ],
+      "method_ids": [
+        "AI-customer-account-17"
+      ],
+      "fault_probes_reviewed": 3,
+      "sufficiency_record": "coverage_review.json#customer-account-17"
+    },
+    {
+      "requirement_id": "customer-account-18",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-account-18"
+      ],
+      "method_ids": [
+        "AI-customer-account-18"
+      ],
+      "fault_probes_reviewed": 6,
+      "sufficiency_record": "coverage_review.json#customer-account-18"
+    },
+    {
+      "requirement_id": "customer-account-19",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-account-19",
+        "BB-journey-competing-resources-allocation",
+        "BB-journey-competing-resources-failure-cleanup"
+      ],
+      "method_ids": [
+        "AI-customer-account-19",
+        "AI-journey-competing-resources"
+      ],
+      "fault_probes_reviewed": 10,
+      "sufficiency_record": "coverage_review.json#customer-account-19"
+    },
+    {
+      "requirement_id": "customer-account-20",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-account-20"
+      ],
+      "method_ids": [
+        "AI-customer-account-20"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#customer-account-20"
+    },
+    {
+      "requirement_id": "customer-account-21",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-account-21",
+        "BB-journey-uncertain-cancel-pending",
+        "BB-journey-uncertain-cancel-reconciled"
+      ],
+      "method_ids": [
+        "AI-customer-account-21",
+        "AI-journey-uncertain-cancel"
+      ],
+      "fault_probes_reviewed": 13,
+      "sufficiency_record": "coverage_review.json#customer-account-21"
+    },
+    {
+      "requirement_id": "customer-support-1",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-support-1"
+      ],
+      "method_ids": [
+        "AI-customer-support-1"
+      ],
+      "fault_probes_reviewed": 6,
+      "sufficiency_record": "coverage_review.json#customer-support-1"
+    },
+    {
+      "requirement_id": "customer-support-2",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-support-2"
+      ],
+      "method_ids": [
+        "AI-customer-support-2"
+      ],
+      "fault_probes_reviewed": 3,
+      "sufficiency_record": "coverage_review.json#customer-support-2"
+    },
+    {
+      "requirement_id": "customer-support-3",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-support-3"
+      ],
+      "method_ids": [
+        "AI-customer-support-3"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#customer-support-3"
+    },
+    {
+      "requirement_id": "customer-support-4",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-support-4",
+        "BB-journey-support-handoff-identity-history",
+        "BB-journey-support-handoff-ownership-followup"
+      ],
+      "method_ids": [
+        "AI-customer-support-4",
+        "AI-journey-support-handoff"
+      ],
+      "fault_probes_reviewed": 5,
+      "sufficiency_record": "coverage_review.json#customer-support-4"
+    },
+    {
+      "requirement_id": "customer-support-5",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-support-5",
+        "BB-journey-support-handoff-identity-history",
+        "BB-journey-support-handoff-ownership-followup"
+      ],
+      "method_ids": [
+        "AI-customer-support-5",
+        "AI-journey-support-handoff"
+      ],
+      "fault_probes_reviewed": 13,
+      "sufficiency_record": "coverage_review.json#customer-support-5"
+    },
+    {
+      "requirement_id": "customer-support-6",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-support-6"
+      ],
+      "method_ids": [
+        "AI-customer-support-6"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#customer-support-6"
+    },
+    {
+      "requirement_id": "customer-support-7",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-support-7",
+        "BB-journey-support-handoff-identity-history",
+        "BB-journey-support-handoff-ownership-followup"
+      ],
+      "method_ids": [
+        "AI-customer-support-7",
+        "AI-journey-support-handoff"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#customer-support-7"
+    },
+    {
+      "requirement_id": "customer-support-8",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-support-8",
+        "BB-journey-support-handoff-identity-history",
+        "BB-journey-support-handoff-ownership-followup"
+      ],
+      "method_ids": [
+        "AI-customer-support-8",
+        "AI-journey-support-handoff"
+      ],
+      "fault_probes_reviewed": 3,
+      "sufficiency_record": "coverage_review.json#customer-support-8"
+    },
+    {
+      "requirement_id": "customer-support-9",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-support-9",
+        "BB-journey-support-handoff-identity-history",
+        "BB-journey-support-handoff-ownership-followup"
+      ],
+      "method_ids": [
+        "AI-customer-support-9",
+        "AI-journey-support-handoff"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#customer-support-9"
+    },
+    {
+      "requirement_id": "customer-support-10",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-support-10"
+      ],
+      "method_ids": [
+        "AI-customer-support-10"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#customer-support-10"
+    },
+    {
+      "requirement_id": "customer-support-11",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-support-11",
+        "BB-journey-guest-purchase-quote-order",
+        "BB-journey-guest-purchase-delivery-contact"
+      ],
+      "method_ids": [
+        "AI-customer-support-11",
+        "AI-journey-guest-purchase"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#customer-support-11"
+    },
+    {
+      "requirement_id": "customer-support-12",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-support-12"
+      ],
+      "method_ids": [
+        "AI-customer-support-12"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#customer-support-12"
+    },
+    {
+      "requirement_id": "customer-support-13",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-support-13"
+      ],
+      "method_ids": [
+        "AI-customer-support-13"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#customer-support-13"
+    },
+    {
+      "requirement_id": "customer-support-17",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-support-17"
+      ],
+      "method_ids": [
+        "AI-customer-support-17"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#customer-support-17"
+    },
+    {
+      "requirement_id": "customer-support-18",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-support-18"
+      ],
+      "method_ids": [
+        "AI-customer-support-18"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#customer-support-18"
+    },
+    {
+      "requirement_id": "customer-support-19",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-support-19"
+      ],
+      "method_ids": [
+        "AI-customer-support-19"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#customer-support-19"
+    },
+    {
+      "requirement_id": "customer-support-20",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-customer-support-20",
+        "BB-journey-support-handoff-identity-history",
+        "BB-journey-support-handoff-ownership-followup"
+      ],
+      "method_ids": [
+        "AI-customer-support-20",
+        "AI-journey-support-handoff"
+      ],
+      "fault_probes_reviewed": 11,
+      "sufficiency_record": "coverage_review.json#customer-support-20"
+    },
+    {
+      "requirement_id": "launch-readiness-1",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-launch-readiness-1"
+      ],
+      "method_ids": [
+        "AI-launch-readiness-1"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#launch-readiness-1"
+    },
+    {
+      "requirement_id": "launch-readiness-2",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-launch-readiness-2"
+      ],
+      "method_ids": [
+        "AI-launch-readiness-2"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#launch-readiness-2"
+    },
+    {
+      "requirement_id": "launch-readiness-3",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-launch-readiness-3"
+      ],
+      "method_ids": [
+        "AI-launch-readiness-3"
+      ],
+      "fault_probes_reviewed": 9,
+      "sufficiency_record": "coverage_review.json#launch-readiness-3"
+    },
+    {
+      "requirement_id": "launch-readiness-4",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-launch-readiness-4"
+      ],
+      "method_ids": [
+        "AI-launch-readiness-4"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#launch-readiness-4"
+    },
+    {
+      "requirement_id": "launch-readiness-5",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-launch-readiness-5"
+      ],
+      "method_ids": [
+        "AI-launch-readiness-5"
+      ],
+      "fault_probes_reviewed": 8,
+      "sufficiency_record": "coverage_review.json#launch-readiness-5"
+    },
+    {
+      "requirement_id": "launch-readiness-6",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-launch-readiness-6"
+      ],
+      "method_ids": [
+        "AI-launch-readiness-6"
+      ],
+      "fault_probes_reviewed": 6,
+      "sufficiency_record": "coverage_review.json#launch-readiness-6"
+    },
+    {
+      "requirement_id": "launch-readiness-7",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-launch-readiness-7"
+      ],
+      "method_ids": [
+        "AI-launch-readiness-7"
+      ],
+      "fault_probes_reviewed": 8,
+      "sufficiency_record": "coverage_review.json#launch-readiness-7"
+    },
+    {
+      "requirement_id": "launch-readiness-8",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-launch-readiness-8"
+      ],
+      "method_ids": [
+        "AI-launch-readiness-8"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#launch-readiness-8"
+    },
+    {
+      "requirement_id": "launch-readiness-9",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-launch-readiness-9",
+        "BB-journey-test-isolation-simulated",
+        "BB-journey-test-isolation-live-unchanged"
+      ],
+      "method_ids": [
+        "AI-launch-readiness-9",
+        "AI-journey-test-isolation"
+      ],
+      "fault_probes_reviewed": 7,
+      "sufficiency_record": "coverage_review.json#launch-readiness-9"
+    },
+    {
+      "requirement_id": "launch-readiness-10",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-launch-readiness-10",
+        "BB-journey-mixed-readiness-blocked",
+        "BB-journey-mixed-readiness-restored"
+      ],
+      "method_ids": [
+        "AI-launch-readiness-10",
+        "AI-journey-mixed-readiness"
+      ],
+      "fault_probes_reviewed": 7,
+      "sufficiency_record": "coverage_review.json#launch-readiness-10"
+    },
+    {
+      "requirement_id": "launch-readiness-13",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-launch-readiness-13",
+        "BB-journey-test-isolation-simulated",
+        "BB-journey-test-isolation-live-unchanged"
+      ],
+      "method_ids": [
+        "AI-launch-readiness-13",
+        "AI-journey-test-isolation"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#launch-readiness-13"
+    },
+    {
+      "requirement_id": "launch-readiness-14",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-launch-readiness-14",
+        "BB-journey-mixed-readiness-blocked",
+        "BB-journey-mixed-readiness-restored"
+      ],
+      "method_ids": [
+        "AI-launch-readiness-14",
+        "AI-journey-mixed-readiness"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#launch-readiness-14"
+    },
+    {
+      "requirement_id": "launch-readiness-15",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-launch-readiness-15",
+        "BB-journey-mixed-readiness-blocked",
+        "BB-journey-mixed-readiness-restored"
+      ],
+      "method_ids": [
+        "AI-launch-readiness-15",
+        "AI-journey-mixed-readiness"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#launch-readiness-15"
+    },
+    {
+      "requirement_id": "market-catalog-1",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-market-catalog-1"
+      ],
+      "method_ids": [
+        "AI-market-catalog-1"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#market-catalog-1"
+    },
+    {
+      "requirement_id": "market-catalog-2",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-market-catalog-2"
+      ],
+      "method_ids": [
+        "AI-market-catalog-2"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#market-catalog-2"
+    },
+    {
+      "requirement_id": "market-catalog-3",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-market-catalog-3"
+      ],
+      "method_ids": [
+        "AI-market-catalog-3"
+      ],
+      "fault_probes_reviewed": 6,
+      "sufficiency_record": "coverage_review.json#market-catalog-3"
+    },
+    {
+      "requirement_id": "market-catalog-4",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-market-catalog-4"
+      ],
+      "method_ids": [
+        "AI-market-catalog-4"
+      ],
+      "fault_probes_reviewed": 6,
+      "sufficiency_record": "coverage_review.json#market-catalog-4"
+    },
+    {
+      "requirement_id": "market-catalog-5",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-market-catalog-5"
+      ],
+      "method_ids": [
+        "AI-market-catalog-5"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#market-catalog-5"
+    },
+    {
+      "requirement_id": "market-catalog-6",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-market-catalog-6"
+      ],
+      "method_ids": [
+        "AI-market-catalog-6"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#market-catalog-6"
+    },
+    {
+      "requirement_id": "market-catalog-7",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-market-catalog-7"
+      ],
+      "method_ids": [
+        "AI-market-catalog-7"
+      ],
+      "fault_probes_reviewed": 6,
+      "sufficiency_record": "coverage_review.json#market-catalog-7"
+    },
+    {
+      "requirement_id": "market-catalog-8",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-market-catalog-8"
+      ],
+      "method_ids": [
+        "AI-market-catalog-8"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#market-catalog-8"
+    },
+    {
+      "requirement_id": "market-catalog-9",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-market-catalog-9"
+      ],
+      "method_ids": [
+        "AI-market-catalog-9"
+      ],
+      "fault_probes_reviewed": 8,
+      "sufficiency_record": "coverage_review.json#market-catalog-9"
+    },
+    {
+      "requirement_id": "market-catalog-10",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-market-catalog-10"
+      ],
+      "method_ids": [
+        "AI-market-catalog-10"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#market-catalog-10"
+    },
+    {
+      "requirement_id": "market-catalog-11",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-market-catalog-11"
+      ],
+      "method_ids": [
+        "AI-market-catalog-11"
+      ],
+      "fault_probes_reviewed": 6,
+      "sufficiency_record": "coverage_review.json#market-catalog-11"
+    },
+    {
+      "requirement_id": "market-catalog-12",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-market-catalog-12",
+        "BB-journey-uncertain-cancel-pending",
+        "BB-journey-uncertain-cancel-reconciled"
+      ],
+      "method_ids": [
+        "AI-market-catalog-12",
+        "AI-journey-uncertain-cancel"
+      ],
+      "fault_probes_reviewed": 16,
+      "sufficiency_record": "coverage_review.json#market-catalog-12"
+    },
+    {
+      "requirement_id": "market-catalog-13",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-market-catalog-13",
+        "BB-journey-competing-resources-allocation",
+        "BB-journey-competing-resources-failure-cleanup"
+      ],
+      "method_ids": [
+        "AI-market-catalog-13",
+        "AI-journey-competing-resources"
+      ],
+      "fault_probes_reviewed": 9,
+      "sufficiency_record": "coverage_review.json#market-catalog-13"
+    },
+    {
+      "requirement_id": "market-catalog-14",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-market-catalog-14"
+      ],
+      "method_ids": [
+        "AI-market-catalog-14"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#market-catalog-14"
+    },
+    {
+      "requirement_id": "market-catalog-17",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-market-catalog-17",
+        "BB-journey-mixed-readiness-blocked",
+        "BB-journey-mixed-readiness-restored"
+      ],
+      "method_ids": [
+        "AI-market-catalog-17",
+        "AI-journey-mixed-readiness"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#market-catalog-17"
+    },
+    {
+      "requirement_id": "merchant-operations-1",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-merchant-operations-1"
+      ],
+      "method_ids": [
+        "AI-merchant-operations-1"
+      ],
+      "fault_probes_reviewed": 6,
+      "sufficiency_record": "coverage_review.json#merchant-operations-1"
+    },
+    {
+      "requirement_id": "merchant-operations-2",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-merchant-operations-2"
+      ],
+      "method_ids": [
+        "AI-merchant-operations-2"
+      ],
+      "fault_probes_reviewed": 1,
+      "sufficiency_record": "coverage_review.json#merchant-operations-2"
+    },
+    {
+      "requirement_id": "merchant-operations-3",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-merchant-operations-3"
+      ],
+      "method_ids": [
+        "AI-merchant-operations-3"
+      ],
+      "fault_probes_reviewed": 3,
+      "sufficiency_record": "coverage_review.json#merchant-operations-3"
+    },
+    {
+      "requirement_id": "merchant-operations-4",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-merchant-operations-4"
+      ],
+      "method_ids": [
+        "AI-merchant-operations-4"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#merchant-operations-4"
+    },
+    {
+      "requirement_id": "merchant-operations-5",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-merchant-operations-5"
+      ],
+      "method_ids": [
+        "AI-merchant-operations-5"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#merchant-operations-5"
+    },
+    {
+      "requirement_id": "merchant-operations-6",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-merchant-operations-6"
+      ],
+      "method_ids": [
+        "AI-merchant-operations-6"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#merchant-operations-6"
+    },
+    {
+      "requirement_id": "merchant-operations-7",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-merchant-operations-7"
+      ],
+      "method_ids": [
+        "AI-merchant-operations-7"
+      ],
+      "fault_probes_reviewed": 6,
+      "sufficiency_record": "coverage_review.json#merchant-operations-7"
+    },
+    {
+      "requirement_id": "merchant-operations-8",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-merchant-operations-8"
+      ],
+      "method_ids": [
+        "AI-merchant-operations-8"
+      ],
+      "fault_probes_reviewed": 3,
+      "sufficiency_record": "coverage_review.json#merchant-operations-8"
+    },
+    {
+      "requirement_id": "merchant-operations-9",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-merchant-operations-9"
+      ],
+      "method_ids": [
+        "AI-merchant-operations-9"
+      ],
+      "fault_probes_reviewed": 3,
+      "sufficiency_record": "coverage_review.json#merchant-operations-9"
+    },
+    {
+      "requirement_id": "merchant-operations-10",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-merchant-operations-10"
+      ],
+      "method_ids": [
+        "AI-merchant-operations-10"
+      ],
+      "fault_probes_reviewed": 3,
+      "sufficiency_record": "coverage_review.json#merchant-operations-10"
+    },
+    {
+      "requirement_id": "merchant-operations-11",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-merchant-operations-11"
+      ],
+      "method_ids": [
+        "AI-merchant-operations-11"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#merchant-operations-11"
+    },
+    {
+      "requirement_id": "merchant-operations-12",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-merchant-operations-12",
+        "BB-journey-test-isolation-simulated",
+        "BB-journey-test-isolation-live-unchanged"
+      ],
+      "method_ids": [
+        "AI-merchant-operations-12",
+        "AI-journey-test-isolation"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#merchant-operations-12"
+    },
+    {
+      "requirement_id": "merchant-operations-13",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-merchant-operations-13"
+      ],
+      "method_ids": [
+        "AI-merchant-operations-13"
+      ],
+      "fault_probes_reviewed": 6,
+      "sufficiency_record": "coverage_review.json#merchant-operations-13"
+    },
+    {
+      "requirement_id": "merchant-operations-16",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-merchant-operations-16"
+      ],
+      "method_ids": [
+        "AI-merchant-operations-16"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#merchant-operations-16"
+    },
+    {
+      "requirement_id": "merchant-operations-17",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-merchant-operations-17"
+      ],
+      "method_ids": [
+        "AI-merchant-operations-17"
+      ],
+      "fault_probes_reviewed": 6,
+      "sufficiency_record": "coverage_review.json#merchant-operations-17"
+    },
+    {
+      "requirement_id": "orders-fulfillment-1",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-orders-fulfillment-1",
+        "BB-journey-guest-purchase-quote-order",
+        "BB-journey-guest-purchase-delivery-contact"
+      ],
+      "method_ids": [
+        "AI-orders-fulfillment-1",
+        "AI-journey-guest-purchase"
+      ],
+      "fault_probes_reviewed": 5,
+      "sufficiency_record": "coverage_review.json#orders-fulfillment-1"
+    },
+    {
+      "requirement_id": "orders-fulfillment-2",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-orders-fulfillment-2",
+        "BB-journey-exchange-settlement-withdrawn",
+        "BB-journey-exchange-settlement-closed"
+      ],
+      "method_ids": [
+        "AI-orders-fulfillment-2",
+        "AI-journey-exchange-settlement"
+      ],
+      "fault_probes_reviewed": 8,
+      "sufficiency_record": "coverage_review.json#orders-fulfillment-2"
+    },
+    {
+      "requirement_id": "orders-fulfillment-3",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-orders-fulfillment-3"
+      ],
+      "method_ids": [
+        "AI-orders-fulfillment-3"
+      ],
+      "fault_probes_reviewed": 12,
+      "sufficiency_record": "coverage_review.json#orders-fulfillment-3"
+    },
+    {
+      "requirement_id": "orders-fulfillment-4",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-orders-fulfillment-4"
+      ],
+      "method_ids": [
+        "AI-orders-fulfillment-4"
+      ],
+      "fault_probes_reviewed": 8,
+      "sufficiency_record": "coverage_review.json#orders-fulfillment-4"
+    },
+    {
+      "requirement_id": "orders-fulfillment-5",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-orders-fulfillment-5"
+      ],
+      "method_ids": [
+        "AI-orders-fulfillment-5"
+      ],
+      "fault_probes_reviewed": 8,
+      "sufficiency_record": "coverage_review.json#orders-fulfillment-5"
+    },
+    {
+      "requirement_id": "orders-fulfillment-6",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-orders-fulfillment-6"
+      ],
+      "method_ids": [
+        "AI-orders-fulfillment-6"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#orders-fulfillment-6"
+    },
+    {
+      "requirement_id": "orders-fulfillment-7",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-orders-fulfillment-7"
+      ],
+      "method_ids": [
+        "AI-orders-fulfillment-7"
+      ],
+      "fault_probes_reviewed": 1,
+      "sufficiency_record": "coverage_review.json#orders-fulfillment-7"
+    },
+    {
+      "requirement_id": "orders-fulfillment-8",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-orders-fulfillment-8",
+        "BB-journey-guest-purchase-quote-order",
+        "BB-journey-guest-purchase-delivery-contact"
+      ],
+      "method_ids": [
+        "AI-orders-fulfillment-8",
+        "AI-journey-guest-purchase"
+      ],
+      "fault_probes_reviewed": 3,
+      "sufficiency_record": "coverage_review.json#orders-fulfillment-8"
+    },
+    {
+      "requirement_id": "orders-fulfillment-9",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-orders-fulfillment-9"
+      ],
+      "method_ids": [
+        "AI-orders-fulfillment-9"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#orders-fulfillment-9"
+    },
+    {
+      "requirement_id": "orders-fulfillment-10",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-orders-fulfillment-10"
+      ],
+      "method_ids": [
+        "AI-orders-fulfillment-10"
+      ],
+      "fault_probes_reviewed": 3,
+      "sufficiency_record": "coverage_review.json#orders-fulfillment-10"
+    },
+    {
+      "requirement_id": "orders-fulfillment-11",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-orders-fulfillment-11"
+      ],
+      "method_ids": [
+        "AI-orders-fulfillment-11"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#orders-fulfillment-11"
+    },
+    {
+      "requirement_id": "orders-fulfillment-12",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-orders-fulfillment-12"
+      ],
+      "method_ids": [
+        "AI-orders-fulfillment-12"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#orders-fulfillment-12"
+    },
+    {
+      "requirement_id": "orders-fulfillment-13",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-orders-fulfillment-13",
+        "BB-journey-test-isolation-simulated",
+        "BB-journey-test-isolation-live-unchanged"
+      ],
+      "method_ids": [
+        "AI-orders-fulfillment-13",
+        "AI-journey-test-isolation"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#orders-fulfillment-13"
+    },
+    {
+      "requirement_id": "orders-fulfillment-14",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-orders-fulfillment-14"
+      ],
+      "method_ids": [
+        "AI-orders-fulfillment-14"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#orders-fulfillment-14"
+    },
+    {
+      "requirement_id": "orders-fulfillment-18",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-orders-fulfillment-18"
+      ],
+      "method_ids": [
+        "AI-orders-fulfillment-18"
+      ],
+      "fault_probes_reviewed": 5,
+      "sufficiency_record": "coverage_review.json#orders-fulfillment-18"
+    },
+    {
+      "requirement_id": "orders-fulfillment-19",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-orders-fulfillment-19"
+      ],
+      "method_ids": [
+        "AI-orders-fulfillment-19"
+      ],
+      "fault_probes_reviewed": 3,
+      "sufficiency_record": "coverage_review.json#orders-fulfillment-19"
+    },
+    {
+      "requirement_id": "product-selection-1",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-product-selection-1",
+        "BB-journey-guest-purchase-quote-order",
+        "BB-journey-guest-purchase-delivery-contact"
+      ],
+      "method_ids": [
+        "AI-product-selection-1",
+        "AI-journey-guest-purchase"
+      ],
+      "fault_probes_reviewed": 7,
+      "sufficiency_record": "coverage_review.json#product-selection-1"
+    },
+    {
+      "requirement_id": "product-selection-2",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-product-selection-2"
+      ],
+      "method_ids": [
+        "AI-product-selection-2"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#product-selection-2"
+    },
+    {
+      "requirement_id": "product-selection-3",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-product-selection-3"
+      ],
+      "method_ids": [
+        "AI-product-selection-3"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#product-selection-3"
+    },
+    {
+      "requirement_id": "product-selection-4",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-product-selection-4"
+      ],
+      "method_ids": [
+        "AI-product-selection-4"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#product-selection-4"
+    },
+    {
+      "requirement_id": "product-selection-5",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-product-selection-5"
+      ],
+      "method_ids": [
+        "AI-product-selection-5"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#product-selection-5"
+    },
+    {
+      "requirement_id": "product-selection-6",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-product-selection-6"
+      ],
+      "method_ids": [
+        "AI-product-selection-6"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#product-selection-6"
+    },
+    {
+      "requirement_id": "product-selection-7",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-product-selection-7"
+      ],
+      "method_ids": [
+        "AI-product-selection-7"
+      ],
+      "fault_probes_reviewed": 3,
+      "sufficiency_record": "coverage_review.json#product-selection-7"
+    },
+    {
+      "requirement_id": "product-selection-8",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-product-selection-8"
+      ],
+      "method_ids": [
+        "AI-product-selection-8"
+      ],
+      "fault_probes_reviewed": 3,
+      "sufficiency_record": "coverage_review.json#product-selection-8"
+    },
+    {
+      "requirement_id": "product-selection-9",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-product-selection-9"
+      ],
+      "method_ids": [
+        "AI-product-selection-9"
+      ],
+      "fault_probes_reviewed": 3,
+      "sufficiency_record": "coverage_review.json#product-selection-9"
+    },
+    {
+      "requirement_id": "product-selection-10",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-product-selection-10"
+      ],
+      "method_ids": [
+        "AI-product-selection-10"
+      ],
+      "fault_probes_reviewed": 9,
+      "sufficiency_record": "coverage_review.json#product-selection-10"
+    },
+    {
+      "requirement_id": "site-quality-1",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-site-quality-1"
+      ],
+      "method_ids": [
+        "AI-site-quality-1"
+      ],
+      "fault_probes_reviewed": 12,
+      "sufficiency_record": "coverage_review.json#site-quality-1"
+    },
+    {
+      "requirement_id": "site-quality-2",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-site-quality-2"
+      ],
+      "method_ids": [
+        "AI-site-quality-2"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#site-quality-2"
+    },
+    {
+      "requirement_id": "site-quality-3",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-site-quality-3"
+      ],
+      "method_ids": [
+        "AI-site-quality-3"
+      ],
+      "fault_probes_reviewed": 6,
+      "sufficiency_record": "coverage_review.json#site-quality-3"
+    },
+    {
+      "requirement_id": "site-quality-4",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-site-quality-4"
+      ],
+      "method_ids": [
+        "AI-site-quality-4"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#site-quality-4"
+    },
+    {
+      "requirement_id": "site-quality-5",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-site-quality-5"
+      ],
+      "method_ids": [
+        "AI-site-quality-5"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#site-quality-5"
+    },
+    {
+      "requirement_id": "site-quality-6",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-site-quality-6"
+      ],
+      "method_ids": [
+        "AI-site-quality-6"
+      ],
+      "fault_probes_reviewed": 3,
+      "sufficiency_record": "coverage_review.json#site-quality-6"
+    },
+    {
+      "requirement_id": "site-quality-7",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-site-quality-7"
+      ],
+      "method_ids": [
+        "AI-site-quality-7"
+      ],
+      "fault_probes_reviewed": 8,
+      "sufficiency_record": "coverage_review.json#site-quality-7"
+    },
+    {
+      "requirement_id": "site-quality-8",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-site-quality-8"
+      ],
+      "method_ids": [
+        "AI-site-quality-8"
+      ],
+      "fault_probes_reviewed": 9,
+      "sufficiency_record": "coverage_review.json#site-quality-8"
+    },
+    {
+      "requirement_id": "site-quality-9",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-site-quality-9"
+      ],
+      "method_ids": [
+        "AI-site-quality-9"
+      ],
+      "fault_probes_reviewed": 8,
+      "sufficiency_record": "coverage_review.json#site-quality-9"
+    },
+    {
+      "requirement_id": "site-quality-10",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-site-quality-10"
+      ],
+      "method_ids": [
+        "AI-site-quality-10"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#site-quality-10"
+    },
+    {
+      "requirement_id": "site-quality-11",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-site-quality-11"
+      ],
+      "method_ids": [
+        "AI-site-quality-11"
+      ],
+      "fault_probes_reviewed": 4,
+      "sufficiency_record": "coverage_review.json#site-quality-11"
+    },
+    {
+      "requirement_id": "site-quality-12",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-site-quality-12"
+      ],
+      "method_ids": [
+        "AI-site-quality-12"
+      ],
+      "fault_probes_reviewed": 9,
+      "sufficiency_record": "coverage_review.json#site-quality-12"
+    },
+    {
+      "requirement_id": "site-quality-13",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-site-quality-13"
+      ],
+      "method_ids": [
+        "AI-site-quality-13"
+      ],
+      "fault_probes_reviewed": 6,
+      "sufficiency_record": "coverage_review.json#site-quality-13"
+    },
+    {
+      "requirement_id": "site-quality-14",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-site-quality-14"
+      ],
+      "method_ids": [
+        "AI-site-quality-14"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#site-quality-14"
+    },
+    {
+      "requirement_id": "site-quality-17",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-site-quality-17"
+      ],
+      "method_ids": [
+        "AI-site-quality-17"
+      ],
+      "fault_probes_reviewed": 3,
+      "sufficiency_record": "coverage_review.json#site-quality-17"
+    },
+    {
+      "requirement_id": "site-quality-18",
+      "semantic_verdict": "equivalent",
+      "design_verdict": "sufficient",
+      "scenario_ids": [
+        "BB-site-quality-18"
+      ],
+      "method_ids": [
+        "AI-site-quality-18"
+      ],
+      "fault_probes_reviewed": 2,
+      "sufficiency_record": "coverage_review.json#site-quality-18"
+    }
+  ],
+  "black_box_gate": {
+    "command": [
+      "python3",
+      "/Users/boboyang/.codex/skills/app-delivery-acceptance/scripts/playbook.py",
+      "check",
+      "/Users/boboyang/work/sublang.ai/premium-cycling",
+      "--test-dir",
+      "/Users/boboyang/work/sublang.ai/premium-cycling/tests",
+      "--stage",
+      "black-box"
+    ],
+    "exit_code": 0,
+    "status": "black_box_ready",
+    "report": "black-box-gate.json"
+  }
+}

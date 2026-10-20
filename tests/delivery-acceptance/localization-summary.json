@@ -1,0 +1,184 @@
+{
+  "operation": "仅简体中文语言转换，不包含应用执行或审查批准",
+  "baseline_manifest": "/Users/boboyang/work/sublang.ai/premium-cycling/tests/delivery-acceptance/review-history/pre-zh-localization/manifest.json",
+  "created_at": "2026-10-08T07:48:54.944626+00:00",
+  "language": "zh-CN",
+  "files": {
+    "scenarios.json": {
+      "count": 204,
+      "prose_fields": 408,
+      "chinese_prose_fields": 408,
+      "sha256": "968d8b857b8930c3396f71c03fe5e4eb4ea8151400dcca80cc6a3a8cca011c50",
+      "baseline_sha256": "725c23f66787954449a22b87f80549b142f32ba0ea6036ce90a8f661e3b94658",
+      "non_text_fields_order_ids_links_flags_exactly_equal": true
+    },
+    "methods.json": {
+      "count": 196,
+      "prose_fields": 786,
+      "chinese_prose_fields": 786,
+      "sha256": "0f32f271ed68973d6a057ec9db2d8d1aa51587d5397b60ec4059f1aeda861690",
+      "baseline_sha256": "fc1545cbee956fd7424e6c7bb5cfcef3791ce0a724738fff629ce5d68e99fbb5",
+      "non_text_fields_order_ids_links_flags_exactly_equal": true
+    }
+  },
+  "invariants": {
+    "requirements.json": {
+      "unchanged": true,
+      "sha256": "19eac30ed888286396019edbdc3b79937ae17218ab16b48797ba0395a21c943a"
+    },
+    "coverage_review.json": {
+      "unchanged": true,
+      "sha256": "2b1ad2b125ca1d8b9a8b7d3c890d7cdd4214e31db26b0440f88059d2d6d1f0a7"
+    },
+    "black-box-gate.json": {
+      "unchanged": true,
+      "sha256": "f43a0177a273cc8686d83077f5336f44c59e838a1ccab4ddc1d71ef04f323211"
+    }
+  },
+  "review_status": "awaiting_independent_review",
+  "additional_repair_methods": [
+    "after-sales-4",
+    "after-sales-7",
+    "after-sales-12",
+    "after-sales-18",
+    "after-sales-23",
+    "after-sales-24",
+    "after-sales-27",
+    "after-sales-32",
+    "cart-checkout-14",
+    "cart-checkout-16",
+    "cart-checkout-22",
+    "customer-account-1",
+    "customer-account-5",
+    "customer-support-2",
+    "customer-support-7",
+    "customer-support-20",
+    "orders-fulfillment-18",
+    "site-quality-12"
+  ],
+  "shared_journey_methods": [
+    "journey-guest-purchase",
+    "journey-competing-resources",
+    "journey-uncertain-cancel",
+    "journey-exchange-settlement",
+    "journey-partial-refund-recovery",
+    "journey-mixed-readiness",
+    "journey-support-handoff",
+    "journey-test-isolation"
+  ],
+  "retained_technical_english": [
+    "ID、需求ID、文件名及路径",
+    "schema/枚举：black_box、ai_check、unproven、blocked",
+    "API、HTTP、URL、canonical、AI",
+    "Tab、Shift-Tab、Enter、Space",
+    "变量 V1/V2、N/T/R、C/R/H/Rpaid 及原金额计算表达式",
+    "原控件名 Complete（同时提供中文说明）"
+  ],
+  "repair_paragraph_counts": {
+    "after-sales-4": {
+      "preconditions": 1,
+      "actions": 1,
+      "evidence_expected": 1
+    },
+    "after-sales-7": {
+      "preconditions": 1,
+      "actions": 1,
+      "evidence_expected": 1
+    },
+    "after-sales-12": {
+      "preconditions": 1,
+      "actions": 1,
+      "evidence_expected": 1
+    },
+    "after-sales-18": {
+      "preconditions": 1,
+      "actions": 1,
+      "evidence_expected": 1
+    },
+    "after-sales-23": {
+      "preconditions": 1,
+      "actions": 1,
+      "evidence_expected": 1
+    },
+    "after-sales-24": {
+      "preconditions": 1,
+      "actions": 1,
+      "evidence_expected": 1
+    },
+    "after-sales-27": {
+      "preconditions": 1,
+      "actions": 1,
+      "evidence_expected": 1
+    },
+    "after-sales-32": {
+      "preconditions": 1,
+      "actions": 1,
+      "evidence_expected": 1
+    },
+    "cart-checkout-14": {
+      "preconditions": 1,
+      "actions": 1,
+      "evidence_expected": 1
+    },
+    "cart-checkout-16": {
+      "preconditions": 1,
+      "actions": 1,
+      "evidence_expected": 1
+    },
+    "cart-checkout-22": {
+      "preconditions": 1,
+      "actions": 1,
+      "evidence_expected": 1
+    },
+    "customer-account-1": {
+      "preconditions": 1,
+      "actions": 1,
+      "evidence_expected": 1
+    },
+    "customer-account-5": {
+      "preconditions": 1,
+      "actions": 1,
+      "evidence_expected": 1
+    },
+    "customer-support-2": {
+      "preconditions": 1,
+      "actions": 1,
+      "evidence_expected": 1
+    },
+    "customer-support-7": {
+      "preconditions": 1,
+      "actions": 1,
+      "evidence_expected": 1
+    },
+    "customer-support-20": {
+      "preconditions": 1,
+      "actions": 1,
+      "evidence_expected": 1
+    },
+    "orders-fulfillment-18": {
+      "preconditions": 1,
+      "actions": 1,
+      "evidence_expected": 1
+    },
+    "site-quality-12": {
+      "preconditions": 1,
+      "actions": 1,
+      "evidence_expected": 1
+    }
+  },
+  "result": "全量语言转换完成，独立复核与门禁尚需由 Reviewer 执行；本记录不批准场景或网站验收。",
+  "translated_nested_prose_fields": [
+    "AI-after-sales-18.transition_matrix.execution_rule",
+    "AI-orders-fulfillment-4.transition_matrix.execution_rule"
+  ],
+  "matrix_non_text_invariants": {
+    "AI-after-sales-18": {
+      "only_execution_rule_translated": true,
+      "allowed_adjacency_guard_oracle_keys_order_paths_unchanged": true
+    },
+    "AI-orders-fulfillment-4": {
+      "only_execution_rule_translated": true,
+      "allowed_adjacency_guard_oracle_keys_order_paths_unchanged": true
+    }
+  }
+}
