@@ -28,6 +28,7 @@ meta.md       规约的规约
 | --- | --- | --- |
 | [DR-000](decisions/000-spec-structure-format.md) | 000-spec-structure-format.md | 规约结构、格式和命名约定 |
 | [DR-001](decisions/001-candidate-business-requirements.md) | 001-candidate-business-requirements.md | 首版中文业务候选需求的来源、边界与待定决策 |
+| [DR-002](decisions/002-ai-project-experiment.md) | 002-ai-project-experiment.md | AI 完整项目开发实验的目标与完成判断依据 |
 
 ## 规约包
 
